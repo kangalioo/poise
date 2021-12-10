@@ -240,6 +240,9 @@
 <span id="239">239</span>
 <span id="240">240</span>
 <span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="kw">fn</span> <span class="ident">find_matching_application_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
@@ -268,7 +271,7 @@
             }
         }
         <span class="comment">// TODO: improve this monstrosity</span>
-        <span class="ident"><span class="kw">crate</span>::ApplicationCommandTree::Slash</span>(<span class="ident">cmd</span>) =&gt; <span class="kw">match</span> <span class="ident">cmd</span> {
+        <span class="ident"><span class="kw">crate</span>::ApplicationCommandTree::Slash</span>(<span class="ident">cmd_meta</span>) =&gt; <span class="kw">match</span> <span class="ident">cmd_meta</span> {
             <span class="ident"><span class="kw">crate</span>::SlashCommandMeta::Command</span>(<span class="ident">cmd</span>) =&gt; {
                 <span class="kw">if</span> <span class="ident">cmd</span>.<span class="ident">name</span> <span class="op">==</span> <span class="ident">interaction</span>.<span class="ident">name</span>
                     <span class="op">&amp;&amp;</span> <span class="ident">interaction</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::ApplicationCommandType::ChatInput</span>
@@ -285,6 +288,9 @@
                 <span class="ident">description</span>: <span class="kw">_</span>,
                 <span class="ident">id</span>: <span class="kw">_</span>,
             } =&gt; {
+                <span class="kw">if</span> <span class="ident">cmd_meta</span>.<span class="ident">name</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">interaction</span>.<span class="ident">name</span> {
+                    <span class="kw">return</span> <span class="prelude-val">None</span>;
+                }
                 <span class="kw">let</span> <span class="ident">interaction</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">interaction</span>.<span class="ident">options</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">option</span><span class="op">|</span> {
                     <span class="ident">option</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::ApplicationCommandOptionType::SubCommand</span>
                         <span class="op">|</span><span class="op">|</span> <span class="ident">option</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::ApplicationCommandOptionType::SubCommandGroup</span>
@@ -482,5 +488,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e6b883c74 2021-12-08)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b42deacc 2021-12-09)" ></div>
 </body></html>
