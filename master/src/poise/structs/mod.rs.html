@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;structs&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css"disabled><link rel="stylesheet" type="text/css" href="../../../dark.css"disabled><link rel="stylesheet" type="text/css" href="../../../light.css"id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../scrape-examples.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../poise/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;structs&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../scrape-examples.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href='../../../poise/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container rust-logo" href='../../../poise/index.html'><img src='../../../rust-logo.png' alt='logo'></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -204,6 +204,58 @@
 <span id="203">203</span>
 <span id="204">204</span>
 <span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -212,7 +264,7 @@
 <span class="kw">mod</span> <span class="ident">framework_options</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">framework_options</span>::<span class="kw-2">*</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
 
 <span class="comment">// needed for proc macro</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -244,12 +296,20 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Copy</span> <span class="kw">for</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {}
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Yield name of this command, or, if context menu command, the context menu entry label</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Yield `name` of this command, or, if context menu command, the context menu entry label</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">name</span>,
             <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">slash_or_context_menu_name</span>(),
+        }
+    }
+
+    <span class="doccomment">/// Yield `id` of this command.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">x</span>.<span class="ident">id</span>,
+            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">id</span>(),
         }
     }
 }
@@ -322,6 +382,7 @@
     <span class="doccomment">/// Error in bot command</span>
     <span class="ident">Command</span>(<span class="ident">CommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
     <span class="doccomment">/// Error in autocomplete callback</span>
+    <span class="comment">// TODO: remove and just use Self::Command instead?</span>
     <span class="ident">Autocomplete</span>(<span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
 }
 
@@ -338,6 +399,7 @@
 
 <span class="doccomment">/// Type returned from `#[poise::command]` annotated functions, which contains all of the generated</span>
 <span class="doccomment">/// prefix and application commands</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandDefinition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Generated prefix command, if it was enabled</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -348,6 +410,7 @@
 }
 
 <span class="doccomment">/// A view into a command definition with its different implementations</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandDefinitionRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Prefix implementation of the command</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -356,15 +419,16 @@
     <span class="doccomment">/// Context menu implementation of the command</span>
     <span class="kw">pub</span> <span class="ident">context_menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::ContextMenuCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Implementation type agnostic data that is always present</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// This struct holds all data shared across different command types of the same implementation.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// For example with a `#[command(prefix_command, slash_command)]`, the generated</span>
-<span class="doccomment">/// [`crate::PrefixCommand`] and [`crate::SlashCommand`] will both contain an `Arc&lt;CommandId&gt;`</span>
+<span class="doccomment">/// [`crate::PrefixCommand`] and [`crate::SlashCommand`] will both contain an `Arc&lt;CommandId&lt;U, E&gt;&gt;`</span>
 <span class="doccomment">/// pointing to the same [`CommandId`] instance.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandId</span> {
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// A string to identify this particular command within a list of commands.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Can be configured via the [`crate::command`] macro (though it&#39;s probably not needed for most</span>
@@ -377,6 +441,10 @@
     <span class="kw">pub</span> <span class="ident">hide_in_help</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Short description of the command. Displayed inline in help menus and similar.</span>
     <span class="kw">pub</span> <span class="ident">inline_help</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Multiline description with detailed usage instructions. Displayed in the command specific</span>
+    <span class="doccomment">/// help: `~help command_name`</span>
+    <span class="comment">// TODO: fix the inconsistency that this is String and everywhere else it&#39;s &amp;&#39;static str</span>
+    <span class="kw">pub</span> <span class="ident">multiline_help</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>() -&gt; <span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Handles command cooldowns. Mainly for framework internal use</span>
     <span class="kw">pub</span> <span class="ident">cooldowns</span>: <span class="ident">std::sync::Mutex</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Cooldowns</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Permissions which users must have to invoke this command.</span>
@@ -392,11 +460,47 @@
     <span class="doccomment">/// If true, only users from the [owners list](crate::FrameworkOptions::owners) may use this</span>
     <span class="doccomment">/// command.</span>
     <span class="kw">pub</span> <span class="ident">owners_only</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Command-specific override for [`crate::FrameworkOptions::on_error`]</span>
+    <span class="kw">pub</span> <span class="ident">on_error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="ident">E</span>, <span class="ident">CommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, ()<span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// If this function returns false, this command will not be executed.</span>
+    <span class="kw">pub</span> <span class="ident">check</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="self">Self</span> {
+            <span class="ident">identifying_name</span>,
+            <span class="ident">category</span>,
+            <span class="ident">hide_in_help</span>,
+            <span class="ident">inline_help</span>,
+            <span class="ident">multiline_help</span>,
+            <span class="ident">cooldowns</span>,
+            <span class="ident">required_permissions</span>,
+            <span class="ident">required_bot_permissions</span>,
+            <span class="ident">owners_only</span>,
+            <span class="ident">on_error</span>,
+            <span class="ident">check</span>,
+        } <span class="op">=</span> <span class="self">self</span>;
+
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CommandId&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;identifying_name&quot;</span>, <span class="ident">identifying_name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;category&quot;</span>, <span class="ident">category</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;hide_in_help&quot;</span>, <span class="ident">hide_in_help</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;inline_help&quot;</span>, <span class="ident">inline_help</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;multiline_help&quot;</span>, <span class="ident">multiline_help</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;cooldowns&quot;</span>, <span class="ident">cooldowns</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;required_permissions&quot;</span>, <span class="ident">required_permissions</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;required_bot_permissions&quot;</span>, <span class="ident">required_bot_permissions</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;owners_only&quot;</span>, <span class="ident">owners_only</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;on_error&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">on_error</span>.<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;&lt;function pointer&gt;&quot;</span>))
+            .<span class="ident">field</span>(<span class="string">&quot;check&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">check</span>.<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;&lt;function pointer&gt;&quot;</span>))
+            .<span class="ident">finish</span>()
+    }
 }
 
 <span class="doccomment">/// Used for command errors to store the specific operation in a command&#39;s execution where an</span>
 <span class="doccomment">/// error occured</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Hash</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CommandErrorLocation</span> {
     <span class="doccomment">/// Error occured in the main command code</span>
     <span class="ident">Body</span>,
@@ -410,5 +514,5 @@
     <span class="ident">MissingBotPermissionsCallback</span>,
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (532d2b14c 2021-12-03)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b42deacc 2021-12-09)" ></div>
 </body></html>
