@@ -1,3 +1,94 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `command` attr in crate `poise`."><meta name="keywords" content="rust, rustlang, rust-lang, command"><title>command in poise - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script><script defer src="../scrape-examples.js"></script>
-    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc attr"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href='../poise/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><div class="sidebar-elems"><h2 class="location">Other items in<br><a href="index.html">poise</a></h2><div id="sidebar-vars" data-name="command" data-ty="attr" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container rust-logo" href='../poise/index.html'><img src='../rust-logo.png' alt='logo'></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><h1 class="fqn"><span class="in-band">Attribute Macro <a href="index.html">poise</a>::<wbr><a class="attr" href="#">command</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></span></h1><div class="docblock item-decl"><pre class="rust attr"><code>#[command]</code></pre></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b42deacc 2021-12-09)" ></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="This macro transforms plain functions into poise bot commands."><meta name="keywords" content="rust, rustlang, rust-lang, command"><title>command in poise - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script><script defer src="../scrape-examples.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc attr"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href='../poise/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><div class="sidebar-elems"><h2 class="location">Other items in<br><a href="index.html">poise</a></h2><div id="sidebar-vars" data-name="command" data-ty="attr" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container rust-logo" href='../poise/index.html'><img src='../rust-logo.png' alt='logo'></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><h1 class="fqn"><span class="in-band">Attribute Macro <a href="index.html">poise</a>::<wbr><a class="attr" href="#">command</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></span></h1><div class="docblock item-decl"><pre class="rust attr"><code>#[command]</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>This macro transforms plain functions into poise bot commands.</p>
+<p>Documentation comments are used as help text. The first line is a single-line description,
+displayed in listings of your bot’s commands (i.e. <code>~help</code>). Following paragraphs are detailed explanations,
+for example for command-specific help (i.e. <code>~help command_name</code>). Escape newlines with <code>\</code></p>
+<h2 id="macro-arguments" class="section-header"><a href="#macro-arguments">Macro arguments</a></h2>
+<p><code>#[poise::command]</code> accepts a number of arguments to configure the command:</p>
+<ul>
+<li><code>prefix_command</code>: Generate a prefix command</li>
+<li><code>slash_command</code>: Generate a slash command</li>
+<li><code>context_menu_command</code>: Generate a context menu command</li>
+<li><code>aliases</code>: Command name aliases (only applies to prefix commands)</li>
+<li><code>track_edits</code>: Enable edit tracking (only applies to prefix commands)</li>
+<li><code>broadcast_typing</code>: Trigger a typing indicator while command runs (only applies to prefix commands I think)</li>
+<li><code>explanation_fn</code>: Path to a string-returning function which is used for the detailed explanations instead of documentation comments
+<ul>
+<li>Useful if you have many commands with very similar help messages: you can abstract the common parts into a function</li>
+</ul>
+</li>
+<li><code>check</code>: Path to a function which is invoked for every invocation. If the function returns false, the command is not executed</li>
+<li><code>on_error</code>: Error handling function</li>
+<li><code>rename</code>: Choose an alternative command name instead of the function name
+<ul>
+<li>Useful if your command name is a Rust keyword, like <code>move</code></li>
+</ul>
+</li>
+<li><code>discard_spare_arguments</code>: Don’t throw an error if the user supplies too many arguments</li>
+<li><code>hide_in_help</code>: Hide this command in help menus</li>
+<li><code>ephemeral</code>: Make bot responses ephemeral if possible
+<ul>
+<li>Only poise’s function, like <code>poise::send_reply</code>, respect this preference</li>
+</ul>
+</li>
+<li><code>required_permissions</code>: Permissions which the command caller needs to have</li>
+<li><code>owners_only</code>: Restricts command callers to the list of owners specified in framework options</li>
+</ul>
+<h2 id="function-parameters" class="section-header"><a href="#function-parameters">Function parameters</a></h2>
+<p><code>Context</code> is the first parameter of all command functions. It’s an enum over either PrefixContext or
+SlashContext, which contain a variety of context data each. Context provides some utility methods to
+access data present in both PrefixContext and SlashContext, like <code>author()</code> or <code>created_at()</code>.</p>
+<p>All following parameters are inputs to the command. You can use all types that implement
+<code>poise::PopArgumentAsync</code>, <code>poise::PopArgument</code>, <code>serenity::ArgumentConvert</code> or <code>std::str::FromStr</code>.
+You can also wrap types in <code>Option</code> or <code>Vec</code> to make them optional or variadic. In addition, there
+are multiple attributes you can use on parameters:</p>
+<ul>
+<li><code>#[description]</code>: Required for slash commands; a description of the parameter</li>
+<li><code>#[rest]</code>: Relevant for prefix commands; means that the entire rest of the message is parsed as the parameter even without quotes</li>
+<li><code>#[lazy]</code>: Relevant for prefix commands; can be used on Option and Vec parameters and is equivalent to regular expressions’ laziness</li>
+<li><code>#[flag]</code>: Relevant for prefix commands; can be used on a bool parameter to set the bool to true if the user typed the parameter name literally
+<ul>
+<li>For example with <code>async fn my_command(ctx: Context&lt;'_&gt;, #[flag] my_flag: bool)</code>, <code>~my_command</code> would set my_flag to false, and <code>~my_command my_flag</code> would set my_flag to true</li>
+</ul>
+</li>
+</ul>
+<h2 id="internals" class="section-header"><a href="#internals">Internals</a></h2>
+<p>Internally, this attribute macro generates a function with a single [<code>poise::CommandDefinition</code>]
+return type, which contains all data about this command. For example, it transforms a function of
+this form:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// This is a command</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">slash_command</span>, <span class="ident">prefix_command</span>)]</span>
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">my_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="comment">// code</span>
+}</code></pre></div>
+<p>into something like</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn</span> <span class="ident">my_command</span>() -&gt; <span class="ident">poise::CommandDefinition</span><span class="op">&lt;</span><span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">inner</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="comment">// code</span>
+    }
+
+    <span class="ident">poise::CommandDefinition</span> {
+        <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::PrefixCommand</span> {
+            <span class="ident">name</span>: <span class="string">&quot;my_command&quot;</span>,
+            <span class="ident">action</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
+            }),
+            <span class="comment">// ...</span>
+        }),
+        <span class="ident">slash</span>: <span class="prelude-val">Some</span>(<span class="ident">ooise::SlashCommand</span> {
+            <span class="ident">name</span>: <span class="string">&quot;my_command&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;This is a command&quot;</span>,
+            <span class="ident">action</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
+            })
+            <span class="comment">// ...</span>
+        }),
+        <span class="ident">context_menu</span>: <span class="prelude-val">None</span>,
+    }
+}</code></pre></div>
+<p>If you’re curious, you can use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to see the
+exact desugaring</p>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (928783de6 2021-12-11)" ></div>
 </body></html>
