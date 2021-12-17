@@ -257,6 +257,10 @@
 <span id="255">255</span>
 <span id="256">256</span>
 <span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -400,7 +404,7 @@
 
 <span class="doccomment">/// Type returned from `#[poise::command]` annotated functions, which contains all of the generated</span>
 <span class="doccomment">/// prefix and application commands</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandDefinition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Generated prefix command, if it was enabled</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -408,10 +412,12 @@
     <span class="kw">pub</span> <span class="ident">slash</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::SlashCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Generated context menu command, if it was enabled</span>
     <span class="kw">pub</span> <span class="ident">context_menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ContextMenuCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Implementation type agnostic data that is always present</span>
+    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// A view into a command definition with its different implementations</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandDefinitionRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Prefix implementation of the command</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -493,8 +499,8 @@
             .<span class="ident">field</span>(<span class="string">&quot;required_permissions&quot;</span>, <span class="ident">required_permissions</span>)
             .<span class="ident">field</span>(<span class="string">&quot;required_bot_permissions&quot;</span>, <span class="ident">required_bot_permissions</span>)
             .<span class="ident">field</span>(<span class="string">&quot;owners_only&quot;</span>, <span class="ident">owners_only</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;on_error&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">on_error</span>.<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;&lt;function pointer&gt;&quot;</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;check&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">check</span>.<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;&lt;function pointer&gt;&quot;</span>))
+            .<span class="ident">field</span>(<span class="string">&quot;on_error&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">on_error</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;check&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">check</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
             .<span class="ident">finish</span>()
     }
 }
@@ -513,6 +519,8 @@
     <span class="ident">CooldownCallback</span>,
     <span class="doccomment">/// Error occured in [`crate::FrameworkOptions::missing_bot_permissions_handler`]</span>
     <span class="ident">MissingBotPermissionsCallback</span>,
+    <span class="doccomment">/// Error occured in [`crate::FrameworkOptions::missing_permissions_handler`]</span>
+    <span class="ident">MissingPermissionsCallback</span>,
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>

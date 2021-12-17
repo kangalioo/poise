@@ -153,6 +153,9 @@
 <span id="151">151</span>
 <span id="152">152</span>
 <span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// Retrieves user permissions in the given channel. If unknown, returns None. If in DMs, returns</span>
@@ -254,6 +257,9 @@
     <span class="kw">if</span> <span class="op">!</span><span class="ident">check_required_permissions_and_owners_only</span>(<span class="ident">ctx</span>, <span class="ident">cmd</span>.<span class="ident">required_permissions</span>, <span class="ident">cmd</span>.<span class="ident">owners_only</span>)
         .<span class="kw">await</span>
     {
+        (<span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">missing_permissions_handler</span>)(<span class="ident">ctx</span>)
+            .<span class="kw">await</span>
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> (<span class="ident">e</span>, <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::MissingPermissionsCallback</span>))<span class="question-mark">?</span>;
         <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
     }
 

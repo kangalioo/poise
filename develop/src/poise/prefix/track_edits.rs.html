@@ -254,6 +254,7 @@
 <span id="252">252</span>
 <span id="253">253</span>
 <span id="254">254</span>
+<span id="255">255</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Tools for implementing automatic edit tracking, i.e. the bot automatically updating its response</span>
 <span class="doccomment">//! when the user edits their command invocation message.</span>
 
@@ -304,6 +305,7 @@
 
 <span class="doccomment">/// Stores messages and the associated bot responses in order to implement poise&#39;s edit tracking</span>
 <span class="doccomment">/// feature.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EditTracker</span> {
     <span class="ident">max_duration</span>: <span class="ident">std::time::Duration</span>,
     <span class="ident">cache</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">serenity::Message</span>, <span class="ident">serenity::Message</span>)<span class="op">&gt;</span>,

@@ -417,6 +417,37 @@
 <span id="415">415</span>
 <span id="416">416</span>
 <span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -554,7 +585,7 @@
 }
 
 <span class="doccomment">/// Application command specific configuration of a framework command</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ApplicationCommandOptions</span> {
     <span class="doccomment">/// Whether responses to this command should be ephemeral by default.</span>
     <span class="kw">pub</span> <span class="ident">ephemeral</span>: <span class="ident">bool</span>,
@@ -585,6 +616,23 @@
     <span class="op">&gt;</span>,
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SlashCommandParameter</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="self">Self</span> {
+            <span class="ident">builder</span>,
+            <span class="ident">autocomplete_callback</span>,
+        } <span class="op">=</span> <span class="self">self</span>;
+
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SlashCommandParameter&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;builder&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">builder</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(
+                <span class="string">&quot;autocomplete_callback&quot;</span>,
+                <span class="kw-2">&amp;</span><span class="ident">autocomplete_callback</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()),
+            )
+            .<span class="ident">finish</span>()
+    }
+}
+
 <span class="doccomment">/// Fully defines a single slash command in the framework</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SlashCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -605,8 +653,30 @@
     <span class="kw">pub</span> <span class="ident">options</span>: <span class="ident">ApplicationCommandOptions</span>,
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SlashCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="self">Self</span> {
+            <span class="ident">name</span>,
+            <span class="ident">description</span>,
+            <span class="ident">parameters</span>,
+            <span class="ident">action</span>,
+            <span class="ident">id</span>,
+            <span class="ident">options</span>,
+        } <span class="op">=</span> <span class="self">self</span>;
+
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SlashCommand&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;description&quot;</span>, <span class="ident">description</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;parameters&quot;</span>, <span class="ident">parameters</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;action&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">action</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;id&quot;</span>, <span class="ident">id</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;options&quot;</span>, <span class="ident">options</span>)
+            .<span class="ident">finish</span>()
+    }
+}
+
 <span class="doccomment">/// A single slash command or slash command group</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SlashCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Single slash command</span>
     <span class="ident">Command</span>(<span class="ident">SlashCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
@@ -722,8 +792,17 @@
     <span class="ident">Message</span>(<span class="kw">fn</span>(<span class="ident">ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="ident">serenity::Message</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>),
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ContextMenuCommandAction</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::User</span>(<span class="ident">x</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_tuple</span>(<span class="string">&quot;User&quot;</span>).<span class="ident">field</span>(<span class="kw-2">&amp;</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*const</span> ())).<span class="ident">finish</span>(),
+            <span class="ident"><span class="self">Self</span>::Message</span>(<span class="ident">x</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_tuple</span>(<span class="string">&quot;Message&quot;</span>).<span class="ident">field</span>(<span class="kw-2">&amp;</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*const</span> ())).<span class="ident">finish</span>(),
+        }
+    }
+}
+
 <span class="doccomment">/// Fully defines a context menu command in the framework</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContextMenuCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Name of the context menu entry, displayed in the Discord UI</span>
     <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
@@ -737,7 +816,7 @@
 
 <span class="doccomment">/// Defines any application command, including subcommands if supported by the application command</span>
 <span class="doccomment">/// type</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ApplicationCommandTree</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Slash command</span>
     <span class="ident">Slash</span>(<span class="ident">SlashCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
@@ -804,33 +883,16 @@
 }
 
 <span class="doccomment">/// Application command specific configuration for the framework</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ApplicationFrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// List of bot commands.</span>
     <span class="kw">pub</span> <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ApplicationCommandTree</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Invoked when a user tries to execute an application command but doesn&#39;t have the required</span>
-    <span class="doccomment">/// permissions for it.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This handler should be used to reply with some form of error message. If this handler does</span>
-    <span class="doccomment">/// nothing, the user will be shown &quot;Interaction failed&quot; by their Discord client.</span>
-    <span class="kw">pub</span> <span class="ident">missing_permissions_handler</span>: <span class="kw">fn</span>(<span class="ident">ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, ()<span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ApplicationFrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ApplicationFrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">commands</span>: <span class="ident">Vec::new</span>(),
-            <span class="ident">missing_permissions_handler</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
-                <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="macro">format!</span>(
-                        <span class="string">&quot;You don&#39;t have the required permissions for `/{}`&quot;</span>,
-                        <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">slash_or_context_menu_name</span>()
-                    );
-                    <span class="kw">let</span> <span class="kw">_</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span>
-                        <span class="ident"><span class="kw">crate</span>::send_application_reply</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>))
-                            .<span class="kw">await</span>;
-                })
-            },
         }
     }
 }

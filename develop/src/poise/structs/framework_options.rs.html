@@ -270,6 +270,57 @@
 <span id="268">268</span>
 <span id="269">269</span>
 <span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
 
 <span class="kw">fn</span> <span class="ident">prepare_command_definition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
@@ -281,19 +332,11 @@
         <span class="ident">prefix</span>: <span class="kw-2">mut</span> <span class="ident">prefix_command</span>,
         <span class="ident">slash</span>: <span class="kw-2">mut</span> <span class="ident">slash_command</span>,
         <span class="ident">context_menu</span>: <span class="kw-2">mut</span> <span class="ident">context_menu_command</span>,
+        <span class="ident">id</span>,
     } <span class="op">=</span> <span class="ident">definition</span>;
 
     <span class="comment">// Make sure every implementation points to the same CommandId (they may have different</span>
     <span class="comment">// IDs if each implemented comes from a different function, like rustbot&#39;s rustify)</span>
-    <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">prefix_command</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">prefix_command</span> {
-        <span class="ident">prefix_command</span>.<span class="ident">id</span>.<span class="ident">clone</span>()
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">slash_command</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">slash_command</span> {
-        <span class="ident">slash_command</span>.<span class="ident">id</span>.<span class="ident">clone</span>()
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">context_menu_command</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">context_menu_command</span> {
-        <span class="ident">context_menu_command</span>.<span class="ident">id</span>.<span class="ident">clone</span>()
-    } <span class="kw">else</span> {
-        <span class="macro">panic!</span>(<span class="string">&quot;Empty command definition (no implementations)&quot;</span>);
-    };
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">prefix_command</span>) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">prefix_command</span> {
         <span class="ident">prefix_command</span>.<span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">clone</span>();
     }
@@ -364,7 +407,7 @@
                             <span class="ident">name</span>: <span class="ident">cmd</span>.<span class="ident">name</span>,
                             <span class="ident">description</span>: <span class="ident">cmd</span>.<span class="ident">description</span>,
                             <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">subcommand</span>],
-                            <span class="ident">id</span>: <span class="ident">builder</span>.<span class="ident">id</span>,
+                            <span class="ident">id</span>: <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">clone</span>(),
                         };
                     }
                 }
@@ -396,6 +439,13 @@
     <span class="doccomment">/// an argument.</span>
     <span class="kw">pub</span> <span class="ident">missing_bot_permissions_handler</span>:
         <span class="kw">fn</span>(<span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="ident">serenity::Permissions</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Invoked when a user tries to execute an command but doesn&#39;t have the required</span>
+    <span class="doccomment">/// permissions for it.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This handler should be used to reply with some form of error message. On</span>
+    <span class="doccomment">/// application commands, if this handler does</span>
+    <span class="doccomment">/// nothing, the user will be shown &quot;Interaction failed&quot; by their Discord client.</span>
+    <span class="kw">pub</span> <span class="ident">missing_permissions_handler</span>: <span class="kw">fn</span>(<span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Default set of allowed mentions to use for all responses</span>
     <span class="kw">pub</span> <span class="ident">allowed_mentions</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateAllowedMentions</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Called on every Discord event. Can be used to react to non-command events, like messages</span>
@@ -456,6 +506,46 @@
                     <span class="ident">context_menu_command</span>,
                 ));
         }
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">FrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="self">Self</span> {
+            <span class="ident">on_error</span>,
+            <span class="ident">pre_command</span>,
+            <span class="ident">post_command</span>,
+            <span class="ident">command_check</span>,
+            <span class="ident">cooldown_hit</span>,
+            <span class="ident">missing_bot_permissions_handler</span>,
+            <span class="ident">missing_permissions_handler</span>,
+            <span class="ident">allowed_mentions</span>,
+            <span class="ident">listener</span>,
+            <span class="ident">application_options</span>,
+            <span class="ident">prefix_options</span>,
+            <span class="ident">owners</span>,
+        } <span class="op">=</span> <span class="self">self</span>;
+
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;FrameworkOptions&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;on_error&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">on_error</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;pre_command&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">pre_command</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;post_command&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">post_command</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;command_check&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">command_check</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;cooldown_hit&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">cooldown_hit</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(
+                <span class="string">&quot;missing_bot_permissions_handler&quot;</span>,
+                <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">missing_bot_permissions_handler</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()),
+            )
+            .<span class="ident">field</span>(
+                <span class="string">&quot;missing_permissions_handler&quot;</span>,
+                <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">missing_permissions_handler</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()),
+            )
+            .<span class="ident">field</span>(<span class="string">&quot;allowed_mentions&quot;</span>, <span class="ident">allowed_mentions</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;listener&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">listener</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;application_options&quot;</span>, <span class="ident">application_options</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;prefix_options&quot;</span>, <span class="ident">prefix_options</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;owners&quot;</span>, <span class="ident">owners</span>)
+            .<span class="ident">finish</span>()
     }
 }
 
@@ -524,6 +614,18 @@
                         <span class="ident">missing_permissions</span>,
                     );
                     <span class="kw">let</span> <span class="kw">_</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">msg</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span>;
+
+                    <span class="prelude-val">Ok</span>(())
+                })
+            },
+            <span class="ident">missing_permissions_handler</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+                <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="macro">format!</span>(
+                        <span class="string">&quot;You don&#39;t have the required permissions for `{}{}`&quot;</span>,
+                        <span class="ident">ctx</span>.<span class="ident">prefix</span>(),
+                        <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">map_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>, <span class="op">|</span><span class="ident">cmd</span><span class="op">|</span> <span class="ident">cmd</span>.<span class="ident">name</span>()),
+                    );
+                    <span class="kw">let</span> <span class="kw">_</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span>;
 
                     <span class="prelude-val">Ok</span>(())
                 })
