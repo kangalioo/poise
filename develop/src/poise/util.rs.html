@@ -47,9 +47,7 @@
 <span id="45">45</span>
 <span id="46">46</span>
 <span id="47">47</span>
-<span id="48">48</span>
-</pre><pre class="rust"><code><span class="comment">// I don&#39;t want a dependency on indexmap (it unconditionally depends on rayon???), so this will have</span>
-<span class="comment">// to do instead</span>
+</pre><pre class="rust"><code><span class="comment">// Depending on indexmap seems overkill, so this will do instead</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OrderedMap</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">V</span><span class="op">&gt;</span>(<span class="kw">pub</span> <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">K</span>, <span class="ident">V</span>)<span class="op">&gt;</span>);
 
