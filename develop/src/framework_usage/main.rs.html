@@ -108,9 +108,32 @@
 <span id="106">106</span>
 <span id="107">107</span>
 <span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
 </pre><pre class="rust"><code><span class="kw">mod</span> <span class="ident">autocomplete</span>;
 <span class="kw">mod</span> <span class="ident">commands</span>;
 <span class="kw">mod</span> <span class="ident">context_menu</span>;
+<span class="kw">mod</span> <span class="ident">subcommands</span>;
 
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">env::var</span>, <span class="ident">sync::Mutex</span>, <span class="ident">time::Duration</span>};
 
@@ -119,6 +142,7 @@
 <span class="kw">type</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">poise::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>;
 
 <span class="comment">// Custom user data passed to all command functions</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Data</span> {
     <span class="ident">votes</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
@@ -155,13 +179,29 @@ This is an example bot made to showcase features of my custom Discord bot framew
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">Error</span>, <span class="ident">ctx</span>: <span class="ident">poise::ErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
-    <span class="kw">match</span> <span class="ident">ctx</span> {
-        <span class="ident">poise::ErrorContext::Setup</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Failed to start bot: {:?}&quot;</span>, <span class="ident">error</span>),
-        <span class="ident">poise::ErrorContext::Command</span>(<span class="ident">ctx</span>) =&gt; {
-            <span class="macro">println!</span>(<span class="string">&quot;Error in command `{}`: {:?}&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>(), <span class="ident">error</span>)
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
+    <span class="comment">// This is our custom error handler</span>
+    <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
+    <span class="comment">// and forward the rest to the default handler</span>
+    <span class="kw">match</span> <span class="ident">error</span> {
+        <span class="ident">poise::FrameworkError::Setup</span> { <span class="ident">error</span> } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Failed to start bot: {:?}&quot;</span>, <span class="ident">error</span>),
+        <span class="ident">poise::FrameworkError::Command</span> {
+            <span class="ident">error</span>,
+            <span class="ident">ctx</span>,
+            <span class="ident">location</span>,
+        } =&gt; {
+            <span class="macro">println!</span>(
+                <span class="string">&quot;Error in command `{}` in {:?}: {:?}&quot;</span>,
+                <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>(),
+                <span class="ident">error</span>,
+                <span class="ident">location</span>
+            );
         }
-        <span class="kw">_</span> =&gt; <span class="macro">println!</span>(<span class="string">&quot;Other error: {:?}&quot;</span>, <span class="ident">error</span>),
+        <span class="ident">error</span> =&gt; {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">poise::builtins::on_error</span>(<span class="ident">error</span>).<span class="kw">await</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Error while handling error: {}&quot;</span>, <span class="ident">e</span>)
+            }
+        }
     }
 }
 
@@ -177,15 +217,15 @@ This is an example bot made to showcase features of my custom Discord bot framew
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -212,10 +252,14 @@ This is an example bot made to showcase features of my custom Discord bot framew
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>

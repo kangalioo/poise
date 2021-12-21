@@ -6,25 +6,7 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/main.rs.html#63&quot;,&quot;line 63&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#63">line 63</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-<span>64</span>
-<span>65</span>
-<span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/main.rs.html#81&quot;,&quot;line 81&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#81">line 81</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -56,6 +38,28 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>106</span>
 <span>107</span>
 <span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -67,15 +71,15 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -102,20 +106,15 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[19,21],&quot;../src/serenity_example_port/main.rs.html#252-254&quot;,&quot;lines 252-254&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#252-254">lines 252-254</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[19,21],&quot;../src/serenity_example_port/main.rs.html#261-263&quot;,&quot;lines 261-263&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#261-263">lines 261-263</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -205,12 +204,21 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>329</span>
 <span>330</span>
 <span>331</span>
+<span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+<span>339</span>
+<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -328,5 +336,5 @@ not in cache. Also returns a bool with <code>true</code> if this message was pre
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_current_subscriber" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.29/src/tracing/instrument.rs.html#221" title="goto source code">[src]</a></div><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></div></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.29/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.21/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>

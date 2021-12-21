@@ -241,26 +241,6 @@
 <span id="239">239</span>
 <span id="240">240</span>
 <span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
-<span id="252">252</span>
-<span id="253">253</span>
-<span id="254">254</span>
-<span id="255">255</span>
-<span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="comment">// Returns tuple of stripped prefix and rest of the message, if any prefix matches</span>
@@ -400,7 +380,7 @@
             <span class="ident">prefix</span>,
             <span class="ident">framework</span>,
             <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">get_user_data</span>().<span class="kw">await</span>,
-            <span class="ident">command</span>: <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">command_meta</span>.<span class="ident">command</span>),
+            <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident">command_meta</span>.<span class="ident">command</span>,
         };
 
         <span class="ident">first_matching_command</span> <span class="op">=</span> <span class="prelude-val">Some</span>(
@@ -437,7 +417,7 @@
     <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
     <span class="ident">triggered_by_edit</span>: <span class="ident">bool</span>,
     <span class="ident">previously_tracked</span>: <span class="ident">bool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">E</span>, <span class="ident"><span class="kw">crate</span>::PrefixCommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>,
 {
@@ -477,25 +457,12 @@
         <span class="ident">prefix</span>,
         <span class="ident">framework</span>,
         <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">get_user_data</span>().<span class="kw">await</span>,
-        <span class="ident">command</span>: <span class="prelude-val">Some</span>(<span class="ident">command</span>),
+        <span class="ident">command</span>,
     };
 
-    <span class="kw">let</span> <span class="ident">perms_and_cooldown_ok</span> <span class="op">=</span>
-        <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">id</span>)
-            .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span>(<span class="ident">e</span>, <span class="ident">location</span>)<span class="op">|</span> {
-                <span class="prelude-val">Some</span>((
-                    <span class="ident">e</span>,
-                    <span class="ident"><span class="kw">crate</span>::PrefixCommandErrorContext</span> {
-                        <span class="ident">ctx</span>,
-                        <span class="ident">command</span>,
-                        <span class="ident">location</span>,
-                    },
-                ))
-            })<span class="question-mark">?</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">perms_and_cooldown_ok</span> {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="prelude-val">None</span>);
-    }
+    <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">id</span>)
+        .<span class="kw">await</span>
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">command</span>.<span class="ident">id</span>)))<span class="question-mark">?</span>;
 
     <span class="comment">// Typing is broadcasted as long as this object is alive</span>
     <span class="kw">let</span> <span class="ident">_typing_broadcaster</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">broadcast_typing</span> {
@@ -507,21 +474,14 @@
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">pre_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 
     <span class="comment">// Execute command</span>
-    <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="ident">command</span>.<span class="ident">action</span>)(<span class="ident">ctx</span>, <span class="ident">args</span>).<span class="kw">await</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-        <span class="prelude-val">Some</span>((
-            <span class="ident">e</span>,
-            <span class="ident"><span class="kw">crate</span>::PrefixCommandErrorContext</span> {
-                <span class="ident">ctx</span>,
-                <span class="ident">command</span>,
-                <span class="ident">location</span>: <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::Check</span>,
-            },
-        ))
-    });
+    <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="ident">command</span>.<span class="ident">action</span>)(<span class="ident">ctx</span>, <span class="ident">args</span>)
+        .<span class="kw">await</span>
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">command</span>.<span class="ident">id</span>)));
 
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">post_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 
     <span class="ident">res</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>

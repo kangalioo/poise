@@ -12,25 +12,7 @@ owner.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#48-202" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.prefix" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#51-53" title="goto source code">[src]</a></div><a href="#method.prefix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.prefix" class="fnname">prefix</a>(self, _prefix: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div><div class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please set the prefix via FrameworkOptions::prefix_options::prefix</p>
 </div></div></summary><div class="docblock"><p>Set a prefix for commands</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.user_data_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#56-69" title="goto source code">[src]</a></div><a href="#method.user_data_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.user_data_setup" class="fnname">user_data_setup</a>&lt;F&gt;(self, user_data_setup: F) -&gt; Self <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + for&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a>, &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/gateway/struct.Ready.html" title="struct serenity::model::gateway::Ready">Ready</a>, &amp;'a <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;) -&gt; <a class="type" href="type.BoxFuture.html" title="type poise::BoxFuture">BoxFuture</a>&lt;'a, <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, E&gt;&gt;,&nbsp;</span></h4></div></summary><div class="docblock"><p>Set a callback to be invoked to create the user data instance</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[27,33],&quot;../src/framework_usage/main.rs.html#86-92&quot;,&quot;lines 86-92&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#86-92">lines 86-92</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-<span>64</span>
-<span>65</span>
-<span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[27,33],&quot;../src/framework_usage/main.rs.html#104-110&quot;,&quot;lines 104-110&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#104-110">lines 104-110</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -62,6 +44,28 @@ owner.</p>
 <span>106</span>
 <span>107</span>
 <span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -73,15 +77,15 @@ owner.</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -108,20 +112,15 @@ owner.</p>
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[34,40],&quot;../src/serenity_example_port/main.rs.html#267-273&quot;,&quot;lines 267-273&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#267-273">lines 267-273</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[34,40],&quot;../src/serenity_example_port/main.rs.html#276-282&quot;,&quot;lines 276-282&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#276-282">lines 276-282</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -211,12 +210,21 @@ owner.</p>
 <span>329</span>
 <span>330</span>
 <span>331</span>
+<span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+<span>339</span>
+<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -311,25 +319,7 @@ owner.</p>
     */</span>
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.options" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#72-75" title="goto source code">[src]</a></div><a href="#method.options" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.options" class="fnname">options</a>(self, options: <a class="struct" href="struct.FrameworkOptions.html" title="struct poise::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;) -&gt; Self</h4></div></summary><div class="docblock"><p>Configure framework options</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[34,34],&quot;../src/framework_usage/main.rs.html#93&quot;,&quot;line 93&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#93">line 93</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-<span>64</span>
-<span>65</span>
-<span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[34,34],&quot;../src/framework_usage/main.rs.html#111&quot;,&quot;line 111&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#111">line 111</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -361,6 +351,28 @@ owner.</p>
 <span>106</span>
 <span>107</span>
 <span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -372,15 +384,15 @@ owner.</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -407,20 +419,15 @@ owner.</p>
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[33,33],&quot;../src/serenity_example_port/main.rs.html#266&quot;,&quot;line 266&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#266">line 266</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[33,33],&quot;../src/serenity_example_port/main.rs.html#275&quot;,&quot;line 275&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#275">line 275</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -510,12 +517,21 @@ owner.</p>
 <span>329</span>
 <span>330</span>
 <span>331</span>
+<span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+<span>339</span>
+<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -614,25 +630,7 @@ client builder</p>
 <p>Note: the builder’s token will be overridden by the
 <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a>; use <a href="struct.FrameworkBuilder.html#method.token" title="FrameworkBuilder::token"><code>FrameworkBuilder::token</code></a> to supply a token.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.token" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#91-94" title="goto source code">[src]</a></div><a href="#method.token" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.token" class="fnname">token</a>(self, token: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div></summary><div class="docblock"><p>The bot token</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[26,26],&quot;../src/framework_usage/main.rs.html#85&quot;,&quot;line 85&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#85">line 85</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-<span>64</span>
-<span>65</span>
-<span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[26,26],&quot;../src/framework_usage/main.rs.html#103&quot;,&quot;line 103&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#103">line 103</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -664,6 +662,28 @@ client builder</p>
 <span>106</span>
 <span>107</span>
 <span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -675,15 +695,15 @@ client builder</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -710,20 +730,15 @@ client builder</p>
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[32,32],&quot;../src/serenity_example_port/main.rs.html#265&quot;,&quot;line 265&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#265">line 265</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[32,32],&quot;../src/serenity_example_port/main.rs.html#274&quot;,&quot;line 274&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#274">line 274</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -813,12 +828,21 @@ client builder</p>
 <span>329</span>
 <span>330</span>
 <span>331</span>
+<span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+<span>339</span>
+<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -913,25 +937,7 @@ client builder</p>
     */</span>
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.command" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#97-105" title="goto source code">[src]</a></div><a href="#method.command" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.command" class="fnname">command</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;definition: <a class="struct" href="struct.CommandDefinition.html" title="struct poise::CommandDefinition">CommandDefinition</a>&lt;U, E&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;meta_builder: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;mut <a class="struct" href="struct.CommandBuilder.html" title="struct poise::CommandBuilder">CommandBuilder</a>&lt;U, E&gt;) -&gt; &amp;mut <a class="struct" href="struct.CommandBuilder.html" title="struct poise::CommandBuilder">CommandBuilder</a>&lt;U, E&gt; + 'static<br>) -&gt; Self</h4></div></summary><div class="docblock"><p>Add a new command to the framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3" class="section-header"><a href="#scraped-examples-3">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[35,35],&quot;../src/framework_usage/main.rs.html#94&quot;,&quot;line 94&quot;],[[36,36],&quot;../src/framework_usage/main.rs.html#95&quot;,&quot;line 95&quot;],[[37,37],&quot;../src/framework_usage/main.rs.html#96&quot;,&quot;line 96&quot;],[[38,38],&quot;../src/framework_usage/main.rs.html#97&quot;,&quot;line 97&quot;],[[39,39],&quot;../src/framework_usage/main.rs.html#98&quot;,&quot;line 98&quot;],[[40,40],&quot;../src/framework_usage/main.rs.html#99&quot;,&quot;line 99&quot;],[[41,41],&quot;../src/framework_usage/main.rs.html#100&quot;,&quot;line 100&quot;],[[42,42],&quot;../src/framework_usage/main.rs.html#101&quot;,&quot;line 101&quot;],[[43,43],&quot;../src/framework_usage/main.rs.html#102&quot;,&quot;line 102&quot;],[[44,44],&quot;../src/framework_usage/main.rs.html#103&quot;,&quot;line 103&quot;],[[45,45],&quot;../src/framework_usage/main.rs.html#104&quot;,&quot;line 104&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#94">line 94</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-<span>64</span>
-<span>65</span>
-<span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3" class="section-header"><a href="#scraped-examples-3">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[35,35],&quot;../src/framework_usage/main.rs.html#112&quot;,&quot;line 112&quot;],[[36,36],&quot;../src/framework_usage/main.rs.html#113&quot;,&quot;line 113&quot;],[[37,37],&quot;../src/framework_usage/main.rs.html#114&quot;,&quot;line 114&quot;],[[38,38],&quot;../src/framework_usage/main.rs.html#115&quot;,&quot;line 115&quot;],[[39,39],&quot;../src/framework_usage/main.rs.html#116&quot;,&quot;line 116&quot;],[[40,40],&quot;../src/framework_usage/main.rs.html#117&quot;,&quot;line 117&quot;],[[41,41],&quot;../src/framework_usage/main.rs.html#118&quot;,&quot;line 118&quot;],[[42,42],&quot;../src/framework_usage/main.rs.html#119&quot;,&quot;line 119&quot;],[[43,43],&quot;../src/framework_usage/main.rs.html#120&quot;,&quot;line 120&quot;],[[44,44],&quot;../src/framework_usage/main.rs.html#121&quot;,&quot;line 121&quot;],[[45,45],&quot;../src/framework_usage/main.rs.html#122&quot;,&quot;line 122&quot;],[[46,49],&quot;../src/framework_usage/main.rs.html#123-126&quot;,&quot;lines 123-126&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#112">line 112</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -963,6 +969,28 @@ client builder</p>
 <span>106</span>
 <span>107</span>
 <span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -974,15 +1002,15 @@ client builder</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -1009,20 +1037,15 @@ client builder</p>
         .<span class="highlight"><span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
         .<span class="highlight"><span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
         .<span class="highlight"><span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
+        .<span class="highlight"><span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })</span>
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[45,45],&quot;../src/serenity_example_port/main.rs.html#278&quot;,&quot;line 278&quot;],[[49,49],&quot;../src/serenity_example_port/main.rs.html#282&quot;,&quot;line 282&quot;],[[50,50],&quot;../src/serenity_example_port/main.rs.html#283&quot;,&quot;line 283&quot;],[[51,51],&quot;../src/serenity_example_port/main.rs.html#284&quot;,&quot;line 284&quot;],[[52,52],&quot;../src/serenity_example_port/main.rs.html#285&quot;,&quot;line 285&quot;],[[53,53],&quot;../src/serenity_example_port/main.rs.html#286&quot;,&quot;line 286&quot;],[[54,54],&quot;../src/serenity_example_port/main.rs.html#287&quot;,&quot;line 287&quot;],[[55,55],&quot;../src/serenity_example_port/main.rs.html#288&quot;,&quot;line 288&quot;],[[56,56],&quot;../src/serenity_example_port/main.rs.html#289&quot;,&quot;line 289&quot;],[[57,62],&quot;../src/serenity_example_port/main.rs.html#290-295&quot;,&quot;lines 290-295&quot;],[[63,63],&quot;../src/serenity_example_port/main.rs.html#296&quot;,&quot;line 296&quot;],[[64,64],&quot;../src/serenity_example_port/main.rs.html#297&quot;,&quot;line 297&quot;],[[65,65],&quot;../src/serenity_example_port/main.rs.html#298&quot;,&quot;line 298&quot;],[[66,66],&quot;../src/serenity_example_port/main.rs.html#299&quot;,&quot;line 299&quot;],[[67,67],&quot;../src/serenity_example_port/main.rs.html#300&quot;,&quot;line 300&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#278">line 278</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[45,45],&quot;../src/serenity_example_port/main.rs.html#287&quot;,&quot;line 287&quot;],[[49,49],&quot;../src/serenity_example_port/main.rs.html#291&quot;,&quot;line 291&quot;],[[50,50],&quot;../src/serenity_example_port/main.rs.html#292&quot;,&quot;line 292&quot;],[[51,51],&quot;../src/serenity_example_port/main.rs.html#293&quot;,&quot;line 293&quot;],[[52,52],&quot;../src/serenity_example_port/main.rs.html#294&quot;,&quot;line 294&quot;],[[53,53],&quot;../src/serenity_example_port/main.rs.html#295&quot;,&quot;line 295&quot;],[[54,54],&quot;../src/serenity_example_port/main.rs.html#296&quot;,&quot;line 296&quot;],[[55,55],&quot;../src/serenity_example_port/main.rs.html#297&quot;,&quot;line 297&quot;],[[56,56],&quot;../src/serenity_example_port/main.rs.html#298&quot;,&quot;line 298&quot;],[[57,62],&quot;../src/serenity_example_port/main.rs.html#299-304&quot;,&quot;lines 299-304&quot;],[[63,63],&quot;../src/serenity_example_port/main.rs.html#305&quot;,&quot;line 305&quot;],[[64,64],&quot;../src/serenity_example_port/main.rs.html#306&quot;,&quot;line 306&quot;],[[65,65],&quot;../src/serenity_example_port/main.rs.html#307&quot;,&quot;line 307&quot;],[[66,66],&quot;../src/serenity_example_port/main.rs.html#308&quot;,&quot;line 308&quot;],[[67,67],&quot;../src/serenity_example_port/main.rs.html#309&quot;,&quot;line 309&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#287">line 287</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -1112,12 +1135,21 @@ client builder</p>
 <span>329</span>
 <span>330</span>
 <span>331</span>
+<span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+<span>339</span>
+<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -1224,25 +1256,7 @@ times with the builder left to defaults, i.e. no command category or subcommands
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.run" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#186-192" title="goto source code">[src]</a></div><a href="#method.run" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run" class="fnname">run</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Start the framework with the specified configuration.</p>
 <p><a href="struct.FrameworkBuilder.html#method.run" title="FrameworkBuilder::run"><code>FrameworkBuilder::run</code></a> is just a shorthand that calls <a href="struct.FrameworkBuilder.html#method.build" title="FrameworkBuilder::build"><code>FrameworkBuilder::build</code></a> and
 starts the returned framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4" class="section-header"><a href="#scraped-examples-4">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[46,46],&quot;../src/framework_usage/main.rs.html#105&quot;,&quot;line 105&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#105">line 105</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-<span>64</span>
-<span>65</span>
-<span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4" class="section-header"><a href="#scraped-examples-4">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[50,50],&quot;../src/framework_usage/main.rs.html#127&quot;,&quot;line 127&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#127">line 127</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -1274,6 +1288,28 @@ starts the returned framework</p>
 <span>106</span>
 <span>107</span>
 <span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -1285,15 +1321,15 @@ starts the returned framework</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>());
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -1320,20 +1356,15 @@ starts the returned framework</p>
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="highlight focus"><span class="ident">run</span>()</span>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[68,68],&quot;../src/serenity_example_port/main.rs.html#301&quot;,&quot;line 301&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#301">line 301</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[68,68],&quot;../src/serenity_example_port/main.rs.html#310&quot;,&quot;line 310&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#310">line 310</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -1423,12 +1454,21 @@ starts the returned framework</p>
 <span>329</span>
 <span>330</span>
 <span>331</span>
+<span>332</span>
+<span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+<span>339</span>
+<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -1542,5 +1582,5 @@ starts the returned framework</p>
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_current_subscriber" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.29/src/tracing/instrument.rs.html#221" title="goto source code">[src]</a></div><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></div></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.29/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.21/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>

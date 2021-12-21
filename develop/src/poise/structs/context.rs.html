@@ -217,9 +217,11 @@
 <span id="215">215</span>
 <span id="216">216</span>
 <span id="217">217</span>
+<span id="218">218</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// Wrapper around either [`crate::ApplicationContext`] or [`crate::PrefixContext`]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Application command context</span>
     <span class="ident">Application</span>(<span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
@@ -389,11 +391,11 @@
     }
 
     <span class="doccomment">/// Returns a reference to the command.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="kw">crate</span>::CommandRef::Prefix</span>(<span class="ident">x</span>.<span class="ident">command</span><span class="question-mark">?</span>),
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="kw">crate</span>::CommandRef::Prefix</span>(<span class="ident">x</span>.<span class="ident">command</span>),
             <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="kw">crate</span>::CommandRef::Application</span>(<span class="ident">x</span>.<span class="ident">command</span>),
-        })
+        }
     }
 
     <span class="doccomment">/// Returns the prefix this command was invoked with, or a slash (`/`), if this is an</span>
@@ -435,5 +437,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>

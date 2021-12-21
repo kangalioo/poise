@@ -229,21 +229,6 @@
 <span id="227">227</span>
 <span id="228">228</span>
 <span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="kw">fn</span> <span class="ident">find_matching_application_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
@@ -363,7 +348,7 @@
         <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
         <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
     ),
-    <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">E</span>, <span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
 <span class="op">&gt;</span> {
     <span class="kw">let</span> (<span class="ident">command</span>, <span class="ident">leaf_interaction_options</span>) <span class="op">=</span>
         <span class="ident">find_matching_application_command</span>(<span class="ident">framework</span>, <span class="ident">interaction</span>.<span class="ident">data</span>()).<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
@@ -383,15 +368,9 @@
         <span class="ident">has_sent_initial_response</span>,
     };
 
-    <span class="kw">let</span> <span class="ident">perms_and_cooldown_ok</span> <span class="op">=</span>
-        <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="ident">command</span>.<span class="ident">id</span>())
-            .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span>(<span class="ident">e</span>, <span class="ident">location</span>)<span class="op">|</span> {
-                <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span> { <span class="ident">ctx</span>, <span class="ident">location</span> }))
-            })<span class="question-mark">?</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">perms_and_cooldown_ok</span> {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="prelude-val">None</span>);
-    }
+    <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="ident">command</span>.<span class="ident">id</span>())
+        .<span class="kw">await</span>
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">command</span>.<span class="ident">id</span>())))<span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>((<span class="ident">ctx</span>, <span class="ident">leaf_interaction_options</span>))
 }
@@ -402,7 +381,7 @@
     <span class="ident">interaction</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::ApplicationCommandInteraction</span>,
     <span class="comment">// Need to pass this in from outside because of lifetime issues</span>
     <span class="ident">has_sent_initial_response</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::atomic::AtomicBool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">E</span>, <span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> (<span class="ident">ctx</span>, <span class="ident">options</span>) <span class="op">=</span> <span class="ident">extract_command_and_run_checks</span>(
         <span class="ident">framework</span>,
         <span class="ident">ctx</span>,
@@ -435,15 +414,7 @@
 
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">post_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 
-    <span class="ident">action_result</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-        <span class="prelude-val">Some</span>((
-            <span class="ident">e</span>,
-            <span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span> {
-                <span class="ident">ctx</span>,
-                <span class="ident">location</span>: <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::Body</span>,
-            },
-        ))
-    })
+    <span class="ident">action_result</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">id</span>())))
 }
 
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">dispatch_autocomplete</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
@@ -452,7 +423,7 @@
     <span class="ident">interaction</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::AutocompleteInteraction</span>,
     <span class="comment">// Need to pass this in from outside because of lifetime issues</span>
     <span class="ident">has_sent_initial_response</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::atomic::AtomicBool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">E</span>, <span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> (<span class="ident">ctx</span>, <span class="ident">options</span>) <span class="op">=</span> <span class="ident">extract_command_and_run_checks</span>(
         <span class="ident">framework</span>,
         <span class="ident">ctx</span>,
@@ -472,22 +443,21 @@
             <span class="prelude-val">None</span> =&gt; <span class="kw">continue</span>,
         };
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">autocomplete_callback</span>(<span class="ident">ctx</span>, <span class="ident">interaction</span>, <span class="ident">options</span>).<span class="kw">await</span> {
-            <span class="kw">let</span> <span class="ident">error_ctx</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::ApplicationCommandErrorContext</span> {
-                <span class="ident">ctx</span>,
-                <span class="ident">location</span>: <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::Autocomplete</span>,
-            };
-
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">on_error</span>) <span class="op">=</span> <span class="ident">error_ctx</span>.<span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">id</span>().<span class="ident">on_error</span> {
-                <span class="ident">on_error</span>(<span class="ident">e</span>, <span class="ident"><span class="kw">crate</span>::CommandErrorContext::Application</span>(<span class="ident">error_ctx</span>)).<span class="kw">await</span>;
-            } <span class="kw">else</span> {
-                (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">on_error</span>)(<span class="ident">e</span>, <span class="ident"><span class="kw">crate</span>::ErrorContext::Autocomplete</span>(<span class="ident">error_ctx</span>)).<span class="kw">await</span>;
-            }
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">error</span>) <span class="op">=</span> <span class="ident">autocomplete_callback</span>(<span class="ident">ctx</span>, <span class="ident">interaction</span>, <span class="ident">options</span>).<span class="kw">await</span> {
+            <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">command</span>;
+            <span class="ident">command</span>.<span class="ident">id</span>().<span class="ident">on_error</span>.<span class="ident">unwrap_or</span>(<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">on_error</span>)(
+                <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> {
+                    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>),
+                    <span class="ident">error</span>,
+                    <span class="ident">location</span>: <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::Autocomplete</span>,
+                },
+            )
+            .<span class="kw">await</span>;
         }
     }
 
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>

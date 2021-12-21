@@ -7,9 +7,115 @@
 </div></details><h2 id="variants" class="variants small-section-header">Variants<a href="#variants" class="anchor"></a></h2><h3 id="variant.Prefix" class="variant small-section-header"><a href="#variant.Prefix" class="anchor field"></a><code>Prefix(&amp;'a <a class="struct" href="struct.PrefixCommand.html" title="struct poise::PrefixCommand">PrefixCommand</a>&lt;U, E&gt;)</code></h3><div class="sub-variant" id="variant.Prefix.fields"><h4>Tuple Fields</h4><div class="sub-variant-field"><span id="variant.Prefix.field.0" class="variant small-section-header"><a href="#variant.Prefix.field.0" class="anchor field"></a><code>0:&nbsp;&amp;'a <a class="struct" href="struct.PrefixCommand.html" title="struct poise::PrefixCommand">PrefixCommand</a>&lt;U, E&gt;</code></span></div></div><div class="docblock"><p>Prefix command</p>
 </div><h3 id="variant.Application" class="variant small-section-header"><a href="#variant.Application" class="anchor field"></a><code>Application(<a class="enum" href="enum.ApplicationCommand.html" title="enum poise::ApplicationCommand">ApplicationCommand</a>&lt;'a, U, E&gt;)</code></h3><div class="sub-variant" id="variant.Application.fields"><h4>Tuple Fields</h4><div class="sub-variant-field"><span id="variant.Application.field.0" class="variant small-section-header"><a href="#variant.Application.field.0" class="anchor field"></a><code>0:&nbsp;<a class="enum" href="enum.ApplicationCommand.html" title="enum poise::ApplicationCommand">ApplicationCommand</a>&lt;'a, U, E&gt;</code></span></div></div><div class="docblock"><p>Application command</p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/mod.rs.html#41-57" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="enum" href="enum.CommandRef.html" title="enum poise::CommandRef">CommandRef</a>&lt;'a, U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/mod.rs.html#43-48" title="goto source code">[src]</a></div><a href="#method.name" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.name" class="fnname">name</a>(self) -&gt; &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></h4></div></summary><div class="docblock"><p>Yield <code>name</code> of this command, or, if context menu command, the context menu entry label</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/main.rs.html#52&quot;,&quot;line 52&quot;],[[25,25],&quot;../src/framework_usage/main.rs.html#73&quot;,&quot;line 73&quot;],[[30,30],&quot;../src/framework_usage/main.rs.html#78&quot;,&quot;line 78&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#52">line 52</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>48</span>
-<span>49</span>
-<span>50</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[3,3],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[12,12],&quot;../src/serenity_example_port/main.rs.html#146&quot;,&quot;line 146&quot;],[[18,18],&quot;../src/serenity_example_port/main.rs.html#152&quot;,&quot;line 152&quot;],[[36,36],&quot;../src/serenity_example_port/main.rs.html#170&quot;,&quot;line 170&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>134</span>
+<span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
+<span>152</span>
+<span>153</span>
+<span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+<span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
+<span>171</span>
+<span>172</span>
+<span>173</span>
+<span>174</span>
+<span>175</span>
+<span>176</span>
+<span>177</span>
+<span>178</span>
+<span>179</span>
+<span>180</span>
+<span>181</span>
+<span>182</span>
+<span>183</span>
+<span>184</span>
+<span>185</span>
+<span>186</span>
+<span>187</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">pre_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
+    <span class="macro">println!</span>(
+        <span class="string">&quot;Got command &#39;{}&#39; by user &#39;{}&#39;&quot;</span>,
+        <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight focus"><span class="ident">name</span>()</span>,
+        <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>
+    );
+
+    <span class="comment">// Increment the number of times this command has been run once. If</span>
+    <span class="comment">// the command&#39;s name does not exist in the counter, add a default</span>
+    <span class="comment">// value of 0.</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">command_counter</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">data</span>().<span class="ident">command_counter</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">command_counter</span>
+        .<span class="ident">entry</span>(<span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight"><span class="ident">name</span>()</span>.<span class="ident">to_string</span>())
+        .<span class="ident">or_insert</span>(<span class="number">0</span>);
+    <span class="kw-2">*</span><span class="ident">entry</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+}
+
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">post_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
+    <span class="macro">println!</span>(<span class="string">&quot;Processed command &#39;{}&#39;&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight"><span class="ident">name</span>()</span>);
+}
+
+<span class="comment">// TODO: unify the command checks in poise::FrameworkOptions and then implement a command check here</span>
+<span class="comment">// with this in it:</span>
+<span class="comment">// ```</span>
+<span class="comment">// true // if `check` returns false, command processing doesn&#39;t happen.</span>
+<span class="comment">// ```</span>
+
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
+    <span class="kw">match</span> <span class="ident">error</span> {
+        <span class="ident">poise::FrameworkError::Command</span> {
+            <span class="ident">error</span>,
+            <span class="ident">ctx</span>,
+            <span class="ident">location</span>: <span class="kw">_</span>,
+        } =&gt; {
+            <span class="macro">println!</span>(
+                <span class="string">&quot;Command &#39;{}&#39; returned error {:?}&quot;</span>,
+                <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight"><span class="ident">name</span>()</span>,
+                <span class="ident">error</span>
+            );
+        }
+        <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; {
+            <span class="macro">println!</span>(
+                <span class="string">&quot;Listener returned error during {} event: {:?}&quot;</span>,
+                <span class="ident">event</span>.<span class="ident">name</span>(),
+                <span class="ident">error</span>
+            );
+        }
+        <span class="ident">error</span> =&gt; {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">poise::builtins::on_error</span>(<span class="ident">error</span>).<span class="kw">await</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Error while handling error: {}&quot;</span>, <span class="ident">e</span>)
+            }
+        }
+    }
+}</code></pre></div>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[13,13],&quot;../src/framework_usage/main.rs.html#63&quot;,&quot;line 63&quot;],[[41,41],&quot;../src/framework_usage/main.rs.html#91&quot;,&quot;line 91&quot;],[[46,46],&quot;../src/framework_usage/main.rs.html#96&quot;,&quot;line 96&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#63">line 63</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>50</span>
 <span>51</span>
 <span>52</span>
 <span>53</span>
@@ -68,13 +174,51 @@
 <span>106</span>
 <span>107</span>
 <span>108</span>
-</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">Error</span>, <span class="ident">ctx</span>: <span class="ident">poise::ErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
-    <span class="kw">match</span> <span class="ident">ctx</span> {
-        <span class="ident">poise::ErrorContext::Setup</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Failed to start bot: {:?}&quot;</span>, <span class="ident">error</span>),
-        <span class="ident">poise::ErrorContext::Command</span>(<span class="ident">ctx</span>) =&gt; {
-            <span class="macro">println!</span>(<span class="string">&quot;Error in command `{}`: {:?}&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight focus"><span class="ident">name</span>()</span>, <span class="ident">error</span>)
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+<span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
+    <span class="comment">// This is our custom error handler</span>
+    <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
+    <span class="comment">// and forward the rest to the default handler</span>
+    <span class="kw">match</span> <span class="ident">error</span> {
+        <span class="ident">poise::FrameworkError::Setup</span> { <span class="ident">error</span> } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Failed to start bot: {:?}&quot;</span>, <span class="ident">error</span>),
+        <span class="ident">poise::FrameworkError::Command</span> {
+            <span class="ident">error</span>,
+            <span class="ident">ctx</span>,
+            <span class="ident">location</span>,
+        } =&gt; {
+            <span class="macro">println!</span>(
+                <span class="string">&quot;Error in command `{}` in {:?}: {:?}&quot;</span>,
+                <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight focus"><span class="ident">name</span>()</span>,
+                <span class="ident">error</span>,
+                <span class="ident">location</span>
+            );
         }
-        <span class="kw">_</span> =&gt; <span class="macro">println!</span>(<span class="string">&quot;Other error: {:?}&quot;</span>, <span class="ident">error</span>),
+        <span class="ident">error</span> =&gt; {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">poise::builtins::on_error</span>(<span class="ident">error</span>).<span class="kw">await</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Error while handling error: {}&quot;</span>, <span class="ident">e</span>)
+            }
+        }
     }
 }
 
@@ -90,15 +234,15 @@
             ],
             ..<span class="ident">Default::default</span>()
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="highlight"><span class="ident">name</span>()</span>);
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight"><span class="ident">name</span>()</span>);
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="highlight"><span class="ident">name</span>()</span>);
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight"><span class="ident">name</span>()</span>);
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -125,101 +269,13 @@
         .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
+        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
-}</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../src/serenity_example_port/main.rs.html#134&quot;,&quot;line 134&quot;],[[18,18],&quot;../src/serenity_example_port/main.rs.html#151&quot;,&quot;line 151&quot;],[[32,32],&quot;../src/serenity_example_port/main.rs.html#165&quot;,&quot;line 165&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#134">line 134</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>133</span>
-<span>134</span>
-<span>135</span>
-<span>136</span>
-<span>137</span>
-<span>138</span>
-<span>139</span>
-<span>140</span>
-<span>141</span>
-<span>142</span>
-<span>143</span>
-<span>144</span>
-<span>145</span>
-<span>146</span>
-<span>147</span>
-<span>148</span>
-<span>149</span>
-<span>150</span>
-<span>151</span>
-<span>152</span>
-<span>153</span>
-<span>154</span>
-<span>155</span>
-<span>156</span>
-<span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
-<span>166</span>
-<span>167</span>
-<span>168</span>
-<span>169</span>
-<span>170</span>
-<span>171</span>
-<span>172</span>
-<span>173</span>
-<span>174</span>
-<span>175</span>
-<span>176</span>
-<span>177</span>
-<span>178</span>
-</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">pre_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
-    <span class="kw">let</span> <span class="ident">command_name</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">map_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>, <span class="op">|</span><span class="ident">cmd</span><span class="op">|</span> <span class="ident">cmd</span>.<span class="highlight focus"><span class="ident">name</span>()</span>);
-
-    <span class="macro">println!</span>(
-        <span class="string">&quot;Got command &#39;{}&#39; by user &#39;{}&#39;&quot;</span>,
-        <span class="ident">command_name</span>,
-        <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>
-    );
-
-    <span class="comment">// Increment the number of times this command has been run once. If</span>
-    <span class="comment">// the command&#39;s name does not exist in the counter, add a default</span>
-    <span class="comment">// value of 0.</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">command_counter</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">data</span>().<span class="ident">command_counter</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">command_counter</span>.<span class="ident">entry</span>(<span class="ident">command_name</span>.<span class="ident">to_string</span>()).<span class="ident">or_insert</span>(<span class="number">0</span>);
-    <span class="kw-2">*</span><span class="ident">entry</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-}
-
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">post_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
-    <span class="macro">println!</span>(<span class="string">&quot;Processed command &#39;{}&#39;&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="highlight"><span class="ident">name</span>()</span>);
-}
-
-<span class="comment">// TODO: unify the command checks in poise::FrameworkOptions and then implement a command check here</span>
-<span class="comment">// with this in it:</span>
-<span class="comment">// ```</span>
-<span class="comment">// true // if `check` returns false, command processing doesn&#39;t happen.</span>
-<span class="comment">// ```</span>
-
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">Error</span>, <span class="ident">ctx</span>: <span class="ident">poise::ErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
-    <span class="kw">match</span> <span class="ident">ctx</span> {
-        <span class="ident">poise::ErrorContext::Command</span>(<span class="ident">ctx</span>) =&gt; {
-            <span class="macro">println!</span>(
-                <span class="string">&quot;Command &#39;{}&#39; returned error {:?}&quot;</span>,
-                <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="highlight"><span class="ident">name</span>()</span>,
-                <span class="ident">error</span>
-            );
-        }
-        <span class="ident">poise::ErrorContext::Listener</span>(<span class="ident">event</span>) =&gt; {
-            <span class="macro">println!</span>(
-                <span class="string">&quot;Listener returned error during {} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">name</span>(),
-                <span class="ident">error</span>
-            );
-        }
-        <span class="kw">_</span> =&gt; {}
-    }
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/mod.rs.html#51-56" title="goto source code">[src]</a></div><a href="#method.id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.id" class="fnname">id</a>(self) -&gt; &amp;'a <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="struct.CommandId.html" title="struct poise::CommandId">CommandId</a>&lt;U, E&gt;&gt;</h4></div></summary><div class="docblock"><p>Yield <code>id</code> of this command.</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/mod.rs.html#30-37" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="enum" href="enum.CommandRef.html" title="enum poise::CommandRef">CommandRef</a>&lt;'_, U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/mod.rs.html#31-36" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; Self</h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
@@ -245,5 +301,5 @@
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_current_subscriber" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.29/src/tracing/instrument.rs.html#221" title="goto source code">[src]</a></div><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></div></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.29/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.21/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
 </body></html>
