@@ -73,7 +73,7 @@ commands. See [<code>examples/framework_usage</code>] for examples on that as we
 <p>See <a href="attr.command.html"><code>#[poise::command]</code></a> for detailed information.</p>
 <h4 id="big-example-to-showcase-many-command-features" class="section-header"><a href="#big-example-to-showcase-many-command-features">Big example to showcase many command features</a></h4>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
-<span class="kw">struct</span> <span class="ident">Data</span> {}
+<span class="kw">type</span> <span class="ident">Data</span> <span class="op">=</span> ();
 <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::error::Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>;
 <span class="kw">type</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">poise::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>;
 
@@ -112,7 +112,7 @@ Example usage:
 }
 
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">error_handler</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
-    <span class="macro">println!</span>(<span class="string">&quot;Oh noes, we got an error: {}&quot;</span>, <span class="ident">error</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;Oh noes, we got an error: {:?}&quot;</span>, <span class="ident">error</span>);
 }</code></pre></div>
 <h3 id="create-and-configure-framework" class="section-header"><a href="#create-and-configure-framework">Create and configure framework</a></h3>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>
@@ -128,7 +128,7 @@ Example usage:
     <span class="comment">// a struct literal (hint: use `..Default::default()` to fill uninitialized</span>
     <span class="comment">// settings with their default value):</span>
     .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">err</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">my_error_function</span>(<span class="ident">err</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">my_error_function</span>(<span class="ident">err</span>)),
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
             <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">std::time::Duration::from_secs</span>(<span class="number">3600</span>))),

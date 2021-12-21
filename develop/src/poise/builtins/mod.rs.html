@@ -263,6 +263,7 @@
 <span id="261">261</span>
 <span id="262">262</span>
 <span id="263">263</span>
+<span id="264">264</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -281,10 +282,11 @@
 <span class="doccomment">/// Can return an error if sending the Discord error message failed. You can decide for yourself</span>
 <span class="doccomment">/// how to handle this, for example:</span>
 <span class="doccomment">/// ```rust,no_run</span>
-<span class="doccomment">/// # let error = todo!();</span>
+<span class="doccomment">/// # async { let error: poise::FrameworkError&lt;&#39;_, (), &amp;str&gt; = todo!();</span>
 <span class="doccomment">/// if let Err(e) = poise::builtins::on_error(error).await {</span>
 <span class="doccomment">///     println!(&quot;Fatal error while sending error message: {}&quot;, e);</span>
 <span class="doccomment">/// }</span>
+<span class="doccomment">/// # };</span>
 <span class="doccomment">/// ```</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Display</span> <span class="op">+</span> <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span>(
     <span class="ident">error</span>: <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
