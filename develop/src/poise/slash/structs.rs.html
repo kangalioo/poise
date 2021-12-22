@@ -241,6 +241,7 @@
 <span id="239">239</span>
 <span id="240">240</span>
 <span id="241">241</span>
+<span id="242">242</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -430,8 +431,9 @@
     <span class="kw">pub</span> <span class="ident">type_setter</span>: <span class="kw">fn</span>(
         <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
     ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
-    <span class="doccomment">/// Optionally, a callback on autocomplete interactions. If the focused option in the</span>
-    <span class="doccomment">/// autocomplete interaction matches this parameter, an autocomplete response should be sent</span>
+    <span class="doccomment">/// Optionally, a callback that is invoked on autocomplete interactions. This closure should</span>
+    <span class="doccomment">/// extract the partial argument from the given JSON value and generate the autocomplete</span>
+    <span class="doccomment">/// response which contains the list of autocomplete suggestions.</span>
     <span class="kw">pub</span> <span class="ident">autocomplete_callback</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
         <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
             <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,

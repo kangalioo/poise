@@ -260,7 +260,6 @@
 <span id="258">258</span>
 <span id="259">259</span>
 <span id="260">260</span>
-<span id="261">261</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -285,10 +284,9 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">/// # };</span>
 <span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Display</span> <span class="op">+</span> <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span>(
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Display</span> <span class="op">+</span> <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span>(
     <span class="ident">error</span>: <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
-    <span class="macro">println!</span>(<span class="string">&quot;Encountered an error: {:?}&quot;</span>, <span class="ident">error</span>);
     <span class="kw">match</span> <span class="ident">error</span> {
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Setup</span> { <span class="ident">error</span> } =&gt; <span class="macro">println!</span>(<span class="string">&quot;Error in user data setup: {}&quot;</span>, <span class="ident">error</span>),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; <span class="macro">println!</span>(

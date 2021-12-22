@@ -664,7 +664,6 @@
 <span id="662">662</span>
 <span id="663">663</span>
 <span id="664">664</span>
-<span id="665">665</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Requires the &#39;framework&#39; feature flag be enabled in your project&#39;s</span>
 <span class="doccomment">//! `Cargo.toml`.</span>
 <span class="doccomment">//!</span>
@@ -679,7 +678,6 @@
 <span class="kw">use</span> <span class="ident">std::fmt::Write</span> <span class="kw">as</span> <span class="kw">_</span>;
 
 <span class="doccomment">/// A shared instance of this struct is available across all events and framework commands</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">struct</span> <span class="ident">Data</span> {
     <span class="ident">command_counter</span>: <span class="ident">std::sync::Mutex</span><span class="op">&lt;</span><span class="ident">std::collections::HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">u64</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
