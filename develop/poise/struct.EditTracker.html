@@ -6,7 +6,16 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/main.rs.html#81&quot;,&quot;line 81&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#81">line 81</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[26,26],&quot;../src/framework_usage/main.rs.html#94&quot;,&quot;line 94&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#94">line 94</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -58,12 +67,30 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>126</span>
 <span>127</span>
 <span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="ident">help</span>(),
+            <span class="ident">register</span>(),
+            <span class="ident">commands::vote</span>(),
+            <span class="ident">commands::getvotes</span>(),
+            <span class="ident">commands::add</span>(),
+            <span class="ident">commands::choice</span>(),
+            <span class="ident">commands::boop</span>(),
+            <span class="ident">commands::delete</span>(),
+            <span class="ident">context_menu::user_info</span>(),
+            <span class="ident">context_menu::echo</span>(),
+            <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
+                    <span class="ident">subcommands::child1</span>(),
+                    <span class="ident">subcommands::child2</span>(),
+                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
+                    <span class="ident">subcommands::parent</span>(),
+                ],
+                ..<span class="ident">subcommands::parent</span>()
+            },
+        ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
             <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="highlight focus"><span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">Duration::from_secs</span>(<span class="number">3600</span>))</span>),
@@ -97,28 +124,15 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::vote</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::getvotes</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::add</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::choice</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::boop</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::delete</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[19,21],&quot;../src/serenity_example_port/main.rs.html#261-263&quot;,&quot;lines 261-263&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#261-263">lines 261-263</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[48,50],&quot;../src/serenity_example_port/main.rs.html#286-288&quot;,&quot;lines 286-288&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#286-288">lines 286-288</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -215,10 +229,37 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>336</span>
 <span>337</span>
 <span>338</span>
-<span>339</span>
-<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
+            <span class="comment">// `fn() -&gt; poise::Command`.</span>
+            <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
+            <span class="comment">// command definition instance to pass to the framework</span>
+            <span class="ident">help</span>(),
+            <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
+            <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
+            <span class="comment">// changing a parameter type, you should call this function.</span>
+            <span class="ident">register</span>(),
+            <span class="ident">about</span>(),
+            <span class="ident">am_i_admin</span>(),
+            <span class="ident">say</span>(),
+            <span class="ident">commands</span>(),
+            <span class="ident">ping</span>(),
+            <span class="ident">latency</span>(),
+            <span class="ident">some_long_command</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
+                ..<span class="ident">upper_command</span>()
+            },
+            <span class="ident">bird</span>(),
+            <span class="ident">cat</span>(),
+            <span class="ident">dog</span>(),
+            <span class="ident">multiply</span>(),
+            <span class="ident">slow_mode</span>(),
+        ],
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
@@ -258,33 +299,6 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
                 })
             })
         })
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::Command`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })
-        .<span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);

@@ -9,10 +9,19 @@
 </ul>
 <p>Before starting, the builder will make an HTTP request to retrieve the bot’s application ID and
 owner.</p>
-</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#45-198" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.prefix" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#48-50" title="goto source code">[src]</a></div><a href="#method.prefix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.prefix" class="fnname">prefix</a>(self, _prefix: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div><div class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please set the prefix via FrameworkOptions::prefix_options::prefix</p>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#45-200" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.prefix" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#48-50" title="goto source code">[src]</a></div><a href="#method.prefix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.prefix" class="fnname">prefix</a>(self, _prefix: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div><div class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please set the prefix via FrameworkOptions::prefix_options::prefix</p>
 </div></div></summary><div class="docblock"><p>Set a prefix for commands</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.user_data_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#53-66" title="goto source code">[src]</a></div><a href="#method.user_data_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.user_data_setup" class="fnname">user_data_setup</a>&lt;F&gt;(self, user_data_setup: F) -&gt; Self <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + for&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a>, &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/gateway/struct.Ready.html" title="struct serenity::model::gateway::Ready">Ready</a>, &amp;'a <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;) -&gt; <a class="type" href="type.BoxFuture.html" title="type poise::BoxFuture">BoxFuture</a>&lt;'a, <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, E&gt;&gt;,&nbsp;</span></h4></div></summary><div class="docblock"><p>Set a callback to be invoked to create the user data instance</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[27,33],&quot;../src/framework_usage/main.rs.html#104-110&quot;,&quot;lines 104-110&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#104-110">lines 104-110</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[49,55],&quot;../src/framework_usage/main.rs.html#117-123&quot;,&quot;lines 117-123&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#117-123">lines 117-123</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -64,12 +73,30 @@ owner.</p>
 <span>126</span>
 <span>127</span>
 <span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="ident">help</span>(),
+            <span class="ident">register</span>(),
+            <span class="ident">commands::vote</span>(),
+            <span class="ident">commands::getvotes</span>(),
+            <span class="ident">commands::add</span>(),
+            <span class="ident">commands::choice</span>(),
+            <span class="ident">commands::boop</span>(),
+            <span class="ident">commands::delete</span>(),
+            <span class="ident">context_menu::user_info</span>(),
+            <span class="ident">context_menu::echo</span>(),
+            <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
+                    <span class="ident">subcommands::child1</span>(),
+                    <span class="ident">subcommands::child2</span>(),
+                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
+                    <span class="ident">subcommands::parent</span>(),
+                ],
+                ..<span class="ident">subcommands::parent</span>()
+            },
+        ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
             <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">Duration::from_secs</span>(<span class="number">3600</span>))),
@@ -103,28 +130,15 @@ owner.</p>
             })
         })</span>
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::vote</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::getvotes</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::add</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::choice</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::boop</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::delete</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[34,40],&quot;../src/serenity_example_port/main.rs.html#276-282&quot;,&quot;lines 276-282&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#276-282">lines 276-282</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[63,69],&quot;../src/serenity_example_port/main.rs.html#301-307&quot;,&quot;lines 301-307&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#301-307">lines 301-307</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -221,10 +235,37 @@ owner.</p>
 <span>336</span>
 <span>337</span>
 <span>338</span>
-<span>339</span>
-<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
+            <span class="comment">// `fn() -&gt; poise::Command`.</span>
+            <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
+            <span class="comment">// command definition instance to pass to the framework</span>
+            <span class="ident">help</span>(),
+            <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
+            <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
+            <span class="comment">// changing a parameter type, you should call this function.</span>
+            <span class="ident">register</span>(),
+            <span class="ident">about</span>(),
+            <span class="ident">am_i_admin</span>(),
+            <span class="ident">say</span>(),
+            <span class="ident">commands</span>(),
+            <span class="ident">ping</span>(),
+            <span class="ident">latency</span>(),
+            <span class="ident">some_long_command</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
+                ..<span class="ident">upper_command</span>()
+            },
+            <span class="ident">bird</span>(),
+            <span class="ident">cat</span>(),
+            <span class="ident">dog</span>(),
+            <span class="ident">multiply</span>(),
+            <span class="ident">slow_mode</span>(),
+        ],
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
@@ -264,33 +305,6 @@ owner.</p>
                 })
             })
         })</span>
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::Command`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })
-        .<span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);
@@ -323,7 +337,16 @@ owner.</p>
     */</span>
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.options" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#69-72" title="goto source code">[src]</a></div><a href="#method.options" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.options" class="fnname">options</a>(self, options: <a class="struct" href="struct.FrameworkOptions.html" title="struct poise::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;) -&gt; Self</h4></div></summary><div class="docblock"><p>Configure framework options</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[34,34],&quot;../src/framework_usage/main.rs.html#111&quot;,&quot;line 111&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#111">line 111</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[56,56],&quot;../src/framework_usage/main.rs.html#124&quot;,&quot;line 124&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#124">line 124</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -375,12 +398,30 @@ owner.</p>
 <span>126</span>
 <span>127</span>
 <span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="ident">help</span>(),
+            <span class="ident">register</span>(),
+            <span class="ident">commands::vote</span>(),
+            <span class="ident">commands::getvotes</span>(),
+            <span class="ident">commands::add</span>(),
+            <span class="ident">commands::choice</span>(),
+            <span class="ident">commands::boop</span>(),
+            <span class="ident">commands::delete</span>(),
+            <span class="ident">context_menu::user_info</span>(),
+            <span class="ident">context_menu::echo</span>(),
+            <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
+                    <span class="ident">subcommands::child1</span>(),
+                    <span class="ident">subcommands::child2</span>(),
+                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
+                    <span class="ident">subcommands::parent</span>(),
+                ],
+                ..<span class="ident">subcommands::parent</span>()
+            },
+        ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
             <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">Duration::from_secs</span>(<span class="number">3600</span>))),
@@ -414,28 +455,15 @@ owner.</p>
             })
         })
         .<span class="highlight focus"><span class="ident">options</span>(<span class="ident">options</span>)</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::vote</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::getvotes</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::add</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::choice</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::boop</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::delete</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[33,33],&quot;../src/serenity_example_port/main.rs.html#275&quot;,&quot;line 275&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#275">line 275</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[62,62],&quot;../src/serenity_example_port/main.rs.html#300&quot;,&quot;line 300&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#300">line 300</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -532,10 +560,37 @@ owner.</p>
 <span>336</span>
 <span>337</span>
 <span>338</span>
-<span>339</span>
-<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
+            <span class="comment">// `fn() -&gt; poise::Command`.</span>
+            <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
+            <span class="comment">// command definition instance to pass to the framework</span>
+            <span class="ident">help</span>(),
+            <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
+            <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
+            <span class="comment">// changing a parameter type, you should call this function.</span>
+            <span class="ident">register</span>(),
+            <span class="ident">about</span>(),
+            <span class="ident">am_i_admin</span>(),
+            <span class="ident">say</span>(),
+            <span class="ident">commands</span>(),
+            <span class="ident">ping</span>(),
+            <span class="ident">latency</span>(),
+            <span class="ident">some_long_command</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
+                ..<span class="ident">upper_command</span>()
+            },
+            <span class="ident">bird</span>(),
+            <span class="ident">cat</span>(),
+            <span class="ident">dog</span>(),
+            <span class="ident">multiply</span>(),
+            <span class="ident">slow_mode</span>(),
+        ],
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
@@ -575,33 +630,6 @@ owner.</p>
                 })
             })
         })
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::Command`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })
-        .<span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);
@@ -638,7 +666,16 @@ client builder</p>
 <p>Note: the builder’s token will be overridden by the
 <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a>; use <a href="struct.FrameworkBuilder.html#method.token" title="FrameworkBuilder::token"><code>FrameworkBuilder::token</code></a> to supply a token.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.token" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#88-91" title="goto source code">[src]</a></div><a href="#method.token" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.token" class="fnname">token</a>(self, token: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div></summary><div class="docblock"><p>The bot token</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[26,26],&quot;../src/framework_usage/main.rs.html#103&quot;,&quot;line 103&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#103">line 103</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[48,48],&quot;../src/framework_usage/main.rs.html#116&quot;,&quot;line 116&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#116">line 116</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -690,12 +727,30 @@ client builder</p>
 <span>126</span>
 <span>127</span>
 <span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="ident">help</span>(),
+            <span class="ident">register</span>(),
+            <span class="ident">commands::vote</span>(),
+            <span class="ident">commands::getvotes</span>(),
+            <span class="ident">commands::add</span>(),
+            <span class="ident">commands::choice</span>(),
+            <span class="ident">commands::boop</span>(),
+            <span class="ident">commands::delete</span>(),
+            <span class="ident">context_menu::user_info</span>(),
+            <span class="ident">context_menu::echo</span>(),
+            <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
+                    <span class="ident">subcommands::child1</span>(),
+                    <span class="ident">subcommands::child2</span>(),
+                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
+                    <span class="ident">subcommands::parent</span>(),
+                ],
+                ..<span class="ident">subcommands::parent</span>()
+            },
+        ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
             <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">Duration::from_secs</span>(<span class="number">3600</span>))),
@@ -729,28 +784,15 @@ client builder</p>
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::vote</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::getvotes</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::add</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::choice</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::boop</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::delete</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[32,32],&quot;../src/serenity_example_port/main.rs.html#274&quot;,&quot;line 274&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#274">line 274</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[61,61],&quot;../src/serenity_example_port/main.rs.html#299&quot;,&quot;line 299&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#299">line 299</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -847,10 +889,37 @@ client builder</p>
 <span>336</span>
 <span>337</span>
 <span>338</span>
-<span>339</span>
-<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
+            <span class="comment">// `fn() -&gt; poise::Command`.</span>
+            <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
+            <span class="comment">// command definition instance to pass to the framework</span>
+            <span class="ident">help</span>(),
+            <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
+            <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
+            <span class="comment">// changing a parameter type, you should call this function.</span>
+            <span class="ident">register</span>(),
+            <span class="ident">about</span>(),
+            <span class="ident">am_i_admin</span>(),
+            <span class="ident">say</span>(),
+            <span class="ident">commands</span>(),
+            <span class="ident">ping</span>(),
+            <span class="ident">latency</span>(),
+            <span class="ident">some_long_command</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
+                ..<span class="ident">upper_command</span>()
+            },
+            <span class="ident">bird</span>(),
+            <span class="ident">cat</span>(),
+            <span class="ident">dog</span>(),
+            <span class="ident">multiply</span>(),
+            <span class="ident">slow_mode</span>(),
+        ],
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
@@ -890,33 +959,6 @@ client builder</p>
                 })
             })
         })
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::Command`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })
-        .<span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);
@@ -948,318 +990,10 @@ client builder</p>
     ).await
     */</span>
 }</code></pre></div>
-</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.command" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#94-102" title="goto source code">[src]</a></div><a href="#method.command" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.command" class="fnname">command</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;command: <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;meta_builder: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;mut <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;) -&gt; &amp;mut <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt; + 'static<br>) -&gt; Self</h4></div></summary><div class="docblock"><p>Add a new command to the framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3" class="section-header"><a href="#scraped-examples-3">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[35,35],&quot;../src/framework_usage/main.rs.html#112&quot;,&quot;line 112&quot;],[[36,36],&quot;../src/framework_usage/main.rs.html#113&quot;,&quot;line 113&quot;],[[37,37],&quot;../src/framework_usage/main.rs.html#114&quot;,&quot;line 114&quot;],[[38,38],&quot;../src/framework_usage/main.rs.html#115&quot;,&quot;line 115&quot;],[[39,39],&quot;../src/framework_usage/main.rs.html#116&quot;,&quot;line 116&quot;],[[40,40],&quot;../src/framework_usage/main.rs.html#117&quot;,&quot;line 117&quot;],[[41,41],&quot;../src/framework_usage/main.rs.html#118&quot;,&quot;line 118&quot;],[[42,42],&quot;../src/framework_usage/main.rs.html#119&quot;,&quot;line 119&quot;],[[43,43],&quot;../src/framework_usage/main.rs.html#120&quot;,&quot;line 120&quot;],[[44,44],&quot;../src/framework_usage/main.rs.html#121&quot;,&quot;line 121&quot;],[[45,45],&quot;../src/framework_usage/main.rs.html#122&quot;,&quot;line 122&quot;],[[46,51],&quot;../src/framework_usage/main.rs.html#123-128&quot;,&quot;lines 123-128&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#112">line 112</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
-<span>78</span>
-<span>79</span>
-<span>80</span>
-<span>81</span>
-<span>82</span>
-<span>83</span>
-<span>84</span>
-<span>85</span>
-<span>86</span>
-<span>87</span>
-<span>88</span>
-<span>89</span>
-<span>90</span>
-<span>91</span>
-<span>92</span>
-<span>93</span>
-<span>94</span>
-<span>95</span>
-<span>96</span>
-<span>97</span>
-<span>98</span>
-<span>99</span>
-<span>100</span>
-<span>101</span>
-<span>102</span>
-<span>103</span>
-<span>104</span>
-<span>105</span>
-<span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
-<span>124</span>
-<span>125</span>
-<span>126</span>
-<span>127</span>
-<span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
-</pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
-        <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
-            <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
-            <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">Duration::from_secs</span>(<span class="number">3600</span>))),
-            <span class="ident">additional_prefixes</span>: <span class="macro">vec!</span>[
-                <span class="ident">poise::Prefix::Literal</span>(<span class="string">&quot;hey bot&quot;</span>),
-                <span class="ident">poise::Prefix::Literal</span>(<span class="string">&quot;hey bot,&quot;</span>),
-            ],
-            ..<span class="ident">Default::default</span>()
-        },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
-        <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
-            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>);
-            })
-        },
-        <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
-            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>);
-            })
-        },
-        ..<span class="ident">Default::default</span>()
-    };
-
-    <span class="ident">poise::Framework::build</span>()
-        .<span class="ident">token</span>(<span class="ident">var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Missing `TOKEN` env var, see README for more information.&quot;</span>))
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> {
-            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {
-                    <span class="ident">votes</span>: <span class="ident">Mutex::new</span>(<span class="ident">HashMap::new</span>()),
-                })
-            })
-        })
-        .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="highlight focus"><span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands::vote</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands::getvotes</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands::add</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands::choice</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands::boop</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands::delete</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-        })</span>
-        .<span class="ident">run</span>()
-        .<span class="kw">await</span>
-        .<span class="ident">unwrap</span>();
-}</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[45,45],&quot;../src/serenity_example_port/main.rs.html#287&quot;,&quot;line 287&quot;],[[49,49],&quot;../src/serenity_example_port/main.rs.html#291&quot;,&quot;line 291&quot;],[[50,50],&quot;../src/serenity_example_port/main.rs.html#292&quot;,&quot;line 292&quot;],[[51,51],&quot;../src/serenity_example_port/main.rs.html#293&quot;,&quot;line 293&quot;],[[52,52],&quot;../src/serenity_example_port/main.rs.html#294&quot;,&quot;line 294&quot;],[[53,53],&quot;../src/serenity_example_port/main.rs.html#295&quot;,&quot;line 295&quot;],[[54,54],&quot;../src/serenity_example_port/main.rs.html#296&quot;,&quot;line 296&quot;],[[55,55],&quot;../src/serenity_example_port/main.rs.html#297&quot;,&quot;line 297&quot;],[[56,56],&quot;../src/serenity_example_port/main.rs.html#298&quot;,&quot;line 298&quot;],[[57,62],&quot;../src/serenity_example_port/main.rs.html#299-304&quot;,&quot;lines 299-304&quot;],[[63,63],&quot;../src/serenity_example_port/main.rs.html#305&quot;,&quot;line 305&quot;],[[64,64],&quot;../src/serenity_example_port/main.rs.html#306&quot;,&quot;line 306&quot;],[[65,65],&quot;../src/serenity_example_port/main.rs.html#307&quot;,&quot;line 307&quot;],[[66,66],&quot;../src/serenity_example_port/main.rs.html#308&quot;,&quot;line 308&quot;],[[67,67],&quot;../src/serenity_example_port/main.rs.html#309&quot;,&quot;line 309&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#287">line 287</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
-<span>246</span>
-<span>247</span>
-<span>248</span>
-<span>249</span>
-<span>250</span>
-<span>251</span>
-<span>252</span>
-<span>253</span>
-<span>254</span>
-<span>255</span>
-<span>256</span>
-<span>257</span>
-<span>258</span>
-<span>259</span>
-<span>260</span>
-<span>261</span>
-<span>262</span>
-<span>263</span>
-<span>264</span>
-<span>265</span>
-<span>266</span>
-<span>267</span>
-<span>268</span>
-<span>269</span>
-<span>270</span>
-<span>271</span>
-<span>272</span>
-<span>273</span>
-<span>274</span>
-<span>275</span>
-<span>276</span>
-<span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-<span>283</span>
-<span>284</span>
-<span>285</span>
-<span>286</span>
-<span>287</span>
-<span>288</span>
-<span>289</span>
-<span>290</span>
-<span>291</span>
-<span>292</span>
-<span>293</span>
-<span>294</span>
-<span>295</span>
-<span>296</span>
-<span>297</span>
-<span>298</span>
-<span>299</span>
-<span>300</span>
-<span>301</span>
-<span>302</span>
-<span>303</span>
-<span>304</span>
-<span>305</span>
-<span>306</span>
-<span>307</span>
-<span>308</span>
-<span>309</span>
-<span>310</span>
-<span>311</span>
-<span>312</span>
-<span>313</span>
-<span>314</span>
-<span>315</span>
-<span>316</span>
-<span>317</span>
-<span>318</span>
-<span>319</span>
-<span>320</span>
-<span>321</span>
-<span>322</span>
-<span>323</span>
-<span>324</span>
-<span>325</span>
-<span>326</span>
-<span>327</span>
-<span>328</span>
-<span>329</span>
-<span>330</span>
-<span>331</span>
-<span>332</span>
-<span>333</span>
-<span>334</span>
-<span>335</span>
-<span>336</span>
-<span>337</span>
-<span>338</span>
-<span>339</span>
-<span>340</span>
-</pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
-        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
-            <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
-        },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
-        <span class="comment">// Set a function to be called prior to each command execution. This</span>
-        <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
-        <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
-        <span class="comment">// Similar to `pre_command`, except will be called directly _after_</span>
-        <span class="comment">// command execution.</span>
-        <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">post_command</span>(<span class="ident">ctx</span>)),
-
-        <span class="comment">// Options specific to prefix commands, i.e. commands invoked via chat messages</span>
-        <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
-            <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;~&quot;</span>)),
-
-            <span class="ident">mention_as_prefix</span>: <span class="bool-val">false</span>,
-            <span class="comment">// An edit tracker needs to be supplied here to make edit tracking in commands work</span>
-            <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(
-                <span class="ident">std::time::Duration::from_secs</span>(<span class="number">3600</span> <span class="op">*</span> <span class="number">3</span>),
-            )),
-            ..<span class="ident">Default::default</span>()
-        },
-
-        ..<span class="ident">Default::default</span>()
-    };
-
-    <span class="comment">// The Framework builder will automatically retrieve the bot owner and application ID via the</span>
-    <span class="comment">// passed token, so that information need not be passed here</span>
-    <span class="ident">poise::Framework::build</span>()
-        <span class="comment">// Configure the client with your Discord bot token in the environment.</span>
-        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Expected DISCORD_TOKEN in the environment&quot;</span>))
-        .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">user_data_setup</span>(<span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_data_about_bot</span>, <span class="ident">_framework</span><span class="op">|</span> {
-            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {
-                    <span class="ident">command_counter</span>: <span class="ident">std::sync::Mutex::new</span>(<span class="ident">std::collections::HashMap::new</span>()),
-                })
-            })
-        })
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::Command`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="highlight focus"><span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="highlight"><span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)</span>
-        .<span class="ident">run</span>()
-        .<span class="kw">await</span>
-        .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);
-
-    <span class="comment">// INFO: currently not supported by poise</span>
-    <span class="comment">/*
-    // Set a function that&#39;s called whenever an attempted command-call&#39;s
-    // command could not be found.
-    .unrecognised_command(unknown_command)
-    // Set a function that&#39;s called whenever a message is not a command.
-    .normal_message(normal_message)
-    // Set a function that&#39;s called whenever a command&#39;s execution didn&#39;t complete for one
-    // reason or another. For example, when a user has exceeded a rate-limit or a command
-    // can only be performed by the bot owner.
-    .on_dispatch_error(dispatch_error)
-    // Can&#39;t be used more than once per 5 seconds:
-    .bucket(&quot;emoji&quot;, |b| b.delay(5)).await
-    // Can&#39;t be used more than 2 times per 30 seconds, with a 5 second delay applying per channel.
-    // Optionally `await_ratelimits` will delay until the command can be executed instead of
-    // cancelling the command invocation.
-    .bucket(&quot;complicated&quot;, |b| b.limit(2).time_span(30).delay(5)
-        // The target each bucket will apply to.
-        .limit_for(LimitedFor::Channel)
-        // The maximum amount of command invocations that can be delayed per target.
-        // Setting this to 0 (default) will never await/delay commands and cancel the invocation.
-        .await_ratelimits(1)
-        // A function to call when a rate limit leads to a delay.
-        .delay_action(delay_action)
-    ).await
-    */</span>
-}</code></pre></div>
-</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.commands" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#120-131" title="goto source code">[src]</a></div><a href="#method.commands" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.commands" class="fnname">commands</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;commands: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/iter/traits/collect/trait.IntoIterator.html" title="trait core::iter::traits::collect::IntoIterator">IntoIterator</a>&lt;Item = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.fn.html">fn</a>() -&gt; <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;&gt; + 'static<br>) -&gt; Self</h4></div></summary><div class="docblock"><p>Add multiple new commands to the framework. Shorthand for calling <a href="struct.FrameworkBuilder.html#method.command" title="Self::command"><code>Self::command</code></a> multiple
+</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.command" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#95-103" title="goto source code">[src]</a></div><a href="#method.command" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.command" class="fnname">command</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;command: <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;meta_builder: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;mut <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;) -&gt; &amp;mut <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt; + 'static<br>) -&gt; Self</h4></div><div class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>supply commands in FrameworkOptions directly with <code>commands: vec![...]</code></p>
+</div></div></summary><div class="docblock"><p>Add a new command to the framework</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.commands" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#122-133" title="goto source code">[src]</a></div><a href="#method.commands" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.commands" class="fnname">commands</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;commands: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/iter/traits/collect/trait.IntoIterator.html" title="trait core::iter::traits::collect::IntoIterator">IntoIterator</a>&lt;Item = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.fn.html">fn</a>() -&gt; <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;&gt; + 'static<br>) -&gt; Self</h4></div><div class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>supply commands in FrameworkOptions directly with <code>commands: vec![...]</code></p>
+</div></div></summary><div class="docblock"><p>Add multiple new commands to the framework. Shorthand for calling <a href="struct.FrameworkBuilder.html#method.command" title="Self::command"><code>Self::command</code></a> multiple
 times with the builder left to defaults, i.e. no command category or subcommands</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>
@@ -1267,12 +1001,21 @@ times with the builder left to defaults, i.e. no command category or subcommands
     <span class="comment">// framework setup...</span>
     .<span class="ident">commands</span>([<span class="ident">command1</span>, <span class="ident">command2</span>])
     <span class="comment">// framework startup...</span></code></pre></div>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.build" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#136-176" title="goto source code">[src]</a></div><a href="#method.build" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.build" class="fnname">build</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Build the framework with the specified configuration.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.build" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#138-178" title="goto source code">[src]</a></div><a href="#method.build" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.build" class="fnname">build</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Build the framework with the specified configuration.</p>
 <p>For more information, see <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.run" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#182-188" title="goto source code">[src]</a></div><a href="#method.run" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run" class="fnname">run</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Start the framework with the specified configuration.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.run" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#184-190" title="goto source code">[src]</a></div><a href="#method.run" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run" class="fnname">run</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Start the framework with the specified configuration.</p>
 <p><a href="struct.FrameworkBuilder.html#method.run" title="FrameworkBuilder::run"><code>FrameworkBuilder::run</code></a> is just a shorthand that calls <a href="struct.FrameworkBuilder.html#method.build" title="FrameworkBuilder::build"><code>FrameworkBuilder::build</code></a> and
 starts the returned framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4" class="section-header"><a href="#scraped-examples-4">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[52,52],&quot;../src/framework_usage/main.rs.html#129&quot;,&quot;line 129&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#129">line 129</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>77</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3" class="section-header"><a href="#scraped-examples-3">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[57,57],&quot;../src/framework_usage/main.rs.html#125&quot;,&quot;line 125&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#125">line 125</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
 <span>78</span>
 <span>79</span>
 <span>80</span>
@@ -1324,12 +1067,30 @@ starts the returned framework</p>
 <span>126</span>
 <span>127</span>
 <span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="ident">help</span>(),
+            <span class="ident">register</span>(),
+            <span class="ident">commands::vote</span>(),
+            <span class="ident">commands::getvotes</span>(),
+            <span class="ident">commands::add</span>(),
+            <span class="ident">commands::choice</span>(),
+            <span class="ident">commands::boop</span>(),
+            <span class="ident">commands::delete</span>(),
+            <span class="ident">context_menu::user_info</span>(),
+            <span class="ident">context_menu::echo</span>(),
+            <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
+                    <span class="ident">subcommands::child1</span>(),
+                    <span class="ident">subcommands::child2</span>(),
+                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
+                    <span class="ident">subcommands::parent</span>(),
+                ],
+                ..<span class="ident">subcommands::parent</span>()
+            },
+        ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
             <span class="ident">edit_tracker</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::EditTracker::for_timespan</span>(<span class="ident">Duration::from_secs</span>(<span class="number">3600</span>))),
@@ -1363,28 +1124,15 @@ starts the returned framework</p>
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::vote</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::getvotes</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::add</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::choice</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::boop</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands::delete</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::user_info</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">context_menu::echo</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">autocomplete::greet</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
-        })
         .<span class="highlight focus"><span class="ident">run</span>()</span>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[68,68],&quot;../src/serenity_example_port/main.rs.html#310&quot;,&quot;line 310&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#310">line 310</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>242</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[70,70],&quot;../src/serenity_example_port/main.rs.html#308&quot;,&quot;line 308&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#308">line 308</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 <span>243</span>
 <span>244</span>
 <span>245</span>
@@ -1481,10 +1229,37 @@ starts the returned framework</p>
 <span>336</span>
 <span>337</span>
 <span>338</span>
-<span>339</span>
-<span>340</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
+            <span class="comment">// `fn() -&gt; poise::Command`.</span>
+            <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
+            <span class="comment">// command definition instance to pass to the framework</span>
+            <span class="ident">help</span>(),
+            <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
+            <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
+            <span class="comment">// changing a parameter type, you should call this function.</span>
+            <span class="ident">register</span>(),
+            <span class="ident">about</span>(),
+            <span class="ident">am_i_admin</span>(),
+            <span class="ident">say</span>(),
+            <span class="ident">commands</span>(),
+            <span class="ident">ping</span>(),
+            <span class="ident">latency</span>(),
+            <span class="ident">some_long_command</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
+                ..<span class="ident">upper_command</span>()
+            },
+            <span class="ident">bird</span>(),
+            <span class="ident">cat</span>(),
+            <span class="ident">dog</span>(),
+            <span class="ident">multiply</span>(),
+            <span class="ident">slow_mode</span>(),
+        ],
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
@@ -1524,33 +1299,6 @@ starts the returned framework</p>
                 })
             })
         })
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::Command`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })
-        .<span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="highlight focus"><span class="ident">run</span>()</span>
         .<span class="kw">await</span>
         .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);
@@ -1582,7 +1330,7 @@ starts the returned framework</p>
     ).await
     */</span>
 }</code></pre></div>
-</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.run_autosharded" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#191-197" title="goto source code">[src]</a></div><a href="#method.run_autosharded" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run_autosharded" class="fnname">run_autosharded</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Autosharded version of <a href="struct.FrameworkBuilder.html#method.run" title="Self::run"><code>Self::run</code></a></p>
+</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.run_autosharded" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#193-199" title="goto source code">[src]</a></div><a href="#method.run_autosharded" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run_autosharded" class="fnname">run_autosharded</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Autosharded version of <a href="struct.FrameworkBuilder.html#method.run" title="Self::run"><code>Self::run</code></a></p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Default" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#32-43" title="goto source code">[src]</a></div><a href="#impl-Default" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.default" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#33-42" title="goto source code">[src]</a></div><a href="#method.default" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default" class="fnname">default</a>() -&gt; Self</h4></div></summary><div class='docblock'><p>Returns the “default value” for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
 </div></details></div></details></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor"></a></h2><div id="synthetic-implementations-list"><div id="impl-RefUnwindSafe" class="impl has-srclink"><div class="rightside"></div><a href="#impl-RefUnwindSafe" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.RefUnwindSafe.html" title="trait core::panic::unwind_safe::RefUnwindSafe">RefUnwindSafe</a> for <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div><div id="impl-Send" class="impl has-srclink"><div class="rightside"></div><a href="#impl-Send" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div><div id="impl-Sync" class="impl has-srclink"><div class="rightside"></div><a href="#impl-Sync" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div><div id="impl-Unpin" class="impl has-srclink"><div class="rightside"></div><a href="#impl-Unpin" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Unpin.html" title="trait core::marker::Unpin">Unpin</a> for <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div><div id="impl-UnwindSafe" class="impl has-srclink"><div class="rightside"></div><a href="#impl-UnwindSafe" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.UnwindSafe.html" title="trait core::panic::unwind_safe::UnwindSafe">UnwindSafe</a> for <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor"></a></h2><div id="blanket-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Any" class="impl has-srclink"><div class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#132-136" title="goto source code">[src]</a></div><a href="#impl-Any" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: 'static + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,&nbsp;</span></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.type_id" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#133" title="goto source code">[src]</a></div><a href="#method.type_id" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id" class="fnname">type_id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/any/struct.TypeId.html" title="struct core::any::TypeId">TypeId</a></h4></div></summary><div class='docblock'><p>Gets the <code>TypeId</code> of <code>self</code>. <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id">Read more</a></p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Borrow%3CT%3E" class="impl has-srclink"><div class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#209-214" title="goto source code">[src]</a></div><a href="#impl-Borrow%3CT%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html" title="trait core::borrow::Borrow">Borrow</a>&lt;T&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,&nbsp;</span></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.borrow" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#211" title="goto source code">[src]</a></div><a href="#method.borrow" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow" class="fnname">borrow</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T</h4></div></summary><div class='docblock'><p>Immutably borrows from an owned value. <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow">Read more</a></p>

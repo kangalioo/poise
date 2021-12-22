@@ -198,6 +198,8 @@
 <span id="196">196</span>
 <span id="197">197</span>
 <span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BoxFuture</span>;
 
@@ -291,6 +293,7 @@
     }
 
     <span class="doccomment">/// Add a new command to the framework</span>
+    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;supply commands in FrameworkOptions directly with `commands: vec![...]`&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="kw-2">mut</span> <span class="ident">command</span>: <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
@@ -317,6 +320,7 @@
     <span class="doccomment">///     // framework startup...</span>
     <span class="doccomment">/// # ;</span>
     <span class="doccomment">/// ```</span>
+    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;supply commands in FrameworkOptions directly with `commands: vec![...]`&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">commands</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">commands</span>: <span class="kw">impl</span> <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw">fn</span>() -&gt; <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
