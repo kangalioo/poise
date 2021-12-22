@@ -54,7 +54,7 @@ are multiple attributes you can use on parameters:</p>
 </li>
 </ul>
 <h2 id="internals" class="section-header"><a href="#internals">Internals</a></h2>
-<p>Internally, this attribute macro generates a function with a single [<code>poise::CommandDefinition</code>]
+<p>Internally, this attribute macro generates a function with a single [<code>poise::Command</code>]
 return type, which contains all data about this command. For example, it transforms a function of
 this form:</p>
 
@@ -65,12 +65,12 @@ this form:</p>
 }</code></pre></div>
 <p>into something like</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn</span> <span class="ident">my_command</span>() -&gt; <span class="ident">poise::CommandDefinition</span><span class="op">&lt;</span><span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn</span> <span class="ident">my_command</span>() -&gt; <span class="ident">poise::Command</span><span class="op">&lt;</span><span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">inner</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="comment">// code</span>
     }
 
-    <span class="ident">poise::CommandDefinition</span> {
+    <span class="ident">poise::Command</span> {
         <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="ident">poise::PrefixCommand</span> {
             <span class="ident">name</span>: <span class="string">&quot;my_command&quot;</span>,
             <span class="ident">action</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
@@ -91,5 +91,5 @@ this form:</p>
 }</code></pre></div>
 <p>If you’re curious, you can use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to see the
 exact desugaring</p>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

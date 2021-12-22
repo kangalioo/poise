@@ -198,10 +198,6 @@
 <span id="196">196</span>
 <span id="197">197</span>
 <span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BoxFuture</span>;
 
@@ -230,10 +226,7 @@
     <span class="ident">client_settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="ident">serenity::ClientBuilder</span>) -&gt; <span class="ident">serenity::ClientBuilder</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="ident">intents</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::GatewayIntents</span><span class="op">&gt;</span>,
-    <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(
-        <span class="ident"><span class="kw">crate</span>::CommandDefinition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-        <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::CommandBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::CommandBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    )<span class="op">&gt;</span>,
+    <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FrameworkBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -300,11 +293,11 @@
     <span class="doccomment">/// Add a new command to the framework</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">definition</span>: <span class="ident"><span class="kw">crate</span>::CommandDefinition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-        <span class="ident">meta_builder</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::CommandBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::CommandBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>
-            <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="kw-2">mut</span> <span class="ident">command</span>: <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+        <span class="ident">meta_builder</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     ) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">commands</span>.<span class="ident">push</span>((<span class="ident">definition</span>, <span class="ident">Box::new</span>(<span class="ident">meta_builder</span>)));
+        <span class="ident">meta_builder</span>(<span class="kw-2">&amp;mut</span> <span class="ident">command</span>);
+        <span class="self">self</span>.<span class="ident">commands</span>.<span class="ident">push</span>(<span class="ident">command</span>);
         <span class="self">self</span>
     }
 
@@ -326,13 +319,14 @@
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">commands</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">commands</span>: <span class="kw">impl</span> <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw">fn</span>() -&gt; <span class="ident"><span class="kw">crate</span>::CommandDefinition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">commands</span>: <span class="kw">impl</span> <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw">fn</span>() -&gt; <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     ) -&gt; <span class="self">Self</span> {
-        <span class="comment">// Can&#39;t use Vec::extend() due to ??? compile errors</span>
-        <span class="kw">for</span> <span class="ident">command</span> <span class="kw">in</span> <span class="ident">commands</span> {
-            <span class="kw">let</span> <span class="ident">definition</span> <span class="op">=</span> (<span class="ident">command</span>)();
-            <span class="self">self</span>.<span class="ident">commands</span>.<span class="ident">push</span>((<span class="ident">definition</span>, <span class="ident">Box::new</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)));
-        }
+        <span class="self">self</span>.<span class="ident">commands</span>.<span class="ident">extend</span>(<span class="ident">commands</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>()));
+        <span class="comment">// // Can&#39;t use Vec::extend() due to ??? compile errors</span>
+        <span class="comment">// for command in commands {</span>
+        <span class="comment">//     let definition = (command)();</span>
+        <span class="comment">//     self.commands.push((definition, Box::new(|f| f)));</span>
+        <span class="comment">// }</span>
         <span class="self">self</span>
     }
 
@@ -357,9 +351,7 @@
             .<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="comment">// Build framework options by concatenating user-set options with commands and owner</span>
-        <span class="kw">for</span> (<span class="ident">command</span>, <span class="ident">meta_builder</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">commands</span> {
-            <span class="ident">options</span>.<span class="ident">command</span>(<span class="ident">command</span>, <span class="ident">meta_builder</span>);
-        }
+        <span class="ident">options</span>.<span class="ident">commands</span>.<span class="ident">extend</span>(<span class="self">self</span>.<span class="ident">commands</span>);
         <span class="ident">options</span>.<span class="ident">owners</span>.<span class="ident">insert</span>(<span class="ident">application_info</span>.<span class="ident">owner</span>.<span class="ident">id</span>);
 
         <span class="comment">// Create serenity client</span>
@@ -405,5 +397,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

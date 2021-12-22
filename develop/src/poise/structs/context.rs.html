@@ -391,10 +391,10 @@
     }
 
     <span class="doccomment">/// Returns a reference to the command.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="kw">crate</span>::CommandRef::Prefix</span>(<span class="ident">x</span>.<span class="ident">command</span>),
-            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="kw">crate</span>::CommandRef::Application</span>(<span class="ident">x</span>.<span class="ident">command</span>),
+            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">command</span>,
+            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">command</span>,
         }
     }
 
@@ -437,5 +437,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

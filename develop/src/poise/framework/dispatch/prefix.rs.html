@@ -223,24 +223,6 @@
 <span id="221">221</span>
 <span id="222">222</span>
 <span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="comment">// Returns tuple of stripped prefix and rest of the message, if any prefix matches</span>
@@ -316,37 +298,24 @@
     <span class="prelude-val">None</span>
 }
 
-<span class="doccomment">/// Find a command within nested PrefixCommandMeta&#39;s by the user message string. Also returns</span>
+<span class="doccomment">/// Find a command within nested Command&#39;s by the user message string. Also returns</span>
 <span class="doccomment">/// the arguments, i.e. the remaining string.</span>
 <span class="kw">fn</span> <span class="ident">find_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="ident">user_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">U</span>,
     <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
     <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
     <span class="ident">prefix</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="ident">commands</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>],
+    <span class="ident">commands</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>],
     <span class="ident">remaining_message</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-) -&gt; <span class="ident"><span class="kw">crate</span>::BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>)<span class="op">&gt;</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>,
-{
-    <span class="ident">Box::pin</span>(<span class="ident">_find_command</span>(
-        <span class="ident">framework</span>,
-        <span class="ident">ctx</span>,
-        <span class="ident">msg</span>,
-        <span class="ident">prefix</span>,
-        <span class="ident">commands</span>,
-        <span class="ident">remaining_message</span>,
-    ))
-}
-
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">_find_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
-    <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
-    <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
-    <span class="ident">prefix</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="ident">commands</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>],
-    <span class="ident">remaining_message</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>)<span class="op">&gt;</span>
+) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(
+    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="kw">fn</span>(
+        <span class="ident"><span class="kw">crate</span>::PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+        <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">str</span>,
+    ) -&gt; <span class="ident"><span class="kw">crate</span>::BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+)<span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>,
 {
@@ -361,10 +330,7 @@
         (<span class="ident">iter</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>(), <span class="ident">iter</span>.<span class="ident">next</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>).<span class="ident">trim_start</span>())
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">first_matching_command</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">for</span> <span class="ident">command_meta</span> <span class="kw">in</span> <span class="ident">commands</span> {
-        <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">command_meta</span>.<span class="ident">command</span>;
-
+    <span class="kw">for</span> <span class="ident">command</span> <span class="kw">in</span> <span class="ident">commands</span> {
         <span class="kw">let</span> <span class="ident">primary_name_matches</span> <span class="op">=</span> <span class="ident">considered_equal</span>(<span class="ident">command</span>.<span class="ident">name</span>, <span class="ident">command_name</span>);
         <span class="kw">let</span> <span class="ident">alias_matches</span> <span class="op">=</span> <span class="ident">command</span>
             .<span class="ident">aliases</span>
@@ -379,29 +345,30 @@
             <span class="ident">msg</span>,
             <span class="ident">prefix</span>,
             <span class="ident">framework</span>,
-            <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">get_user_data</span>().<span class="kw">await</span>,
-            <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident">command_meta</span>.<span class="ident">command</span>,
+            <span class="ident">data</span>: <span class="ident">user_data</span>,
+            <span class="ident">command</span>,
         };
 
-        <span class="ident">first_matching_command</span> <span class="op">=</span> <span class="prelude-val">Some</span>(
+        <span class="kw">return</span> <span class="prelude-val">Some</span>(
             <span class="kw">match</span> <span class="ident">find_command</span>(
                 <span class="ident">framework</span>,
+                <span class="ident">user_data</span>,
                 <span class="ident">ctx</span>.<span class="ident">discord</span>,
                 <span class="ident">msg</span>,
                 <span class="ident">prefix</span>,
-                <span class="kw-2">&amp;</span><span class="ident">command_meta</span>.<span class="ident">subcommands</span>,
+                <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">subcommands</span>,
                 <span class="ident">remaining_message</span>,
-            )
-            .<span class="kw">await</span>
-            {
-                <span class="prelude-val">Some</span>((<span class="ident">subcommand_meta</span>, <span class="ident">remaining_message</span>)) =&gt; (<span class="ident">subcommand_meta</span>, <span class="ident">remaining_message</span>),
-                <span class="prelude-val">None</span> =&gt; (<span class="ident">command_meta</span>, <span class="ident">remaining_message</span>),
+            ) {
+                <span class="prelude-val">Some</span>(<span class="ident">subcommand_result</span>) =&gt; <span class="ident">subcommand_result</span>,
+                <span class="prelude-val">None</span> =&gt; <span class="kw">match</span> <span class="ident">command</span>.<span class="ident">prefix_action</span> {
+                    <span class="prelude-val">Some</span>(<span class="ident">action</span>) =&gt; (<span class="ident">command</span>, <span class="ident">action</span>, <span class="ident">remaining_message</span>),
+                    <span class="prelude-val">None</span> =&gt; <span class="kw">continue</span>,
+                },
             },
         );
-        <span class="kw">break</span>;
     }
 
-    <span class="ident">first_matching_command</span>
+    <span class="prelude-val">None</span>
 }
 
 <span class="doccomment">/// Manually dispatches a message with the prefix framework.</span>
@@ -417,7 +384,7 @@
     <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
     <span class="ident">triggered_by_edit</span>: <span class="ident">bool</span>,
     <span class="ident">previously_tracked</span>: <span class="ident">bool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>,
 {
@@ -432,17 +399,16 @@
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="prelude-val">None</span>);
     }
 
-    <span class="kw">let</span> (<span class="ident">command_meta</span>, <span class="ident">args</span>) <span class="op">=</span> <span class="ident">find_command</span>(
+    <span class="kw">let</span> (<span class="ident">command</span>, <span class="ident">action</span>, <span class="ident">args</span>) <span class="op">=</span> <span class="ident">find_command</span>(
         <span class="ident">framework</span>,
+        <span class="ident">framework</span>.<span class="ident">get_user_data</span>().<span class="kw">await</span>,
         <span class="ident">ctx</span>,
         <span class="ident">msg</span>,
         <span class="ident">prefix</span>,
-        <span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">prefix_options</span>.<span class="ident">commands</span>,
+        <span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">commands</span>,
         <span class="ident">msg_content</span>,
     )
-    .<span class="kw">await</span>
     .<span class="ident">ok_or</span>(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">command_meta</span>.<span class="ident">command</span>;
 
     <span class="comment">// Check if we should disregard this invocation if it was triggered by an edit</span>
     <span class="kw">let</span> <span class="ident">should_execute_if_triggered_by_edit</span> <span class="op">=</span> <span class="ident">command</span>.<span class="ident">track_edits</span>
@@ -460,9 +426,9 @@
         <span class="ident">command</span>,
     };
 
-    <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">id</span>)
+    <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="ident">command</span>)
         .<span class="kw">await</span>
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">command</span>.<span class="ident">id</span>)))<span class="question-mark">?</span>;
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">command</span>)))<span class="question-mark">?</span>;
 
     <span class="comment">// Typing is broadcasted as long as this object is alive</span>
     <span class="kw">let</span> <span class="ident">_typing_broadcaster</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">broadcast_typing</span> {
@@ -474,14 +440,12 @@
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">pre_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 
     <span class="comment">// Execute command</span>
-    <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="ident">command</span>.<span class="ident">action</span>)(<span class="ident">ctx</span>, <span class="ident">args</span>)
-        .<span class="kw">await</span>
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">command</span>.<span class="ident">id</span>)));
+    <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="ident">action</span>)(<span class="ident">ctx</span>, <span class="ident">args</span>).<span class="kw">await</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">command</span>)));
 
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">post_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 
     <span class="ident">res</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

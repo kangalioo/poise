@@ -2232,7 +2232,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             })
         })
         <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::CommandDefinition`.</span>
+        <span class="comment">// `fn() -&gt; poise::Command`.</span>
         <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
         <span class="comment">// command definition instance to pass to the framework</span>
         .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
@@ -3611,7 +3611,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             })
         })
         <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::CommandDefinition`.</span>
+        <span class="comment">// `fn() -&gt; poise::Command`.</span>
         <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
         <span class="comment">// command definition instance to pass to the framework</span>
         .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
@@ -4093,7 +4093,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.command" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#174-179" title="goto source code">[src]</a></div><a href="#method.command" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.command" class="fnname">command</a>(&amp;self) -&gt; <a class="enum" href="enum.CommandRef.html" title="enum poise::CommandRef">CommandRef</a>&lt;'a, U, E&gt;</h4></div></summary><div class="docblock"><p>Returns a reference to the command.</p>
+</div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.command" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#174-179" title="goto source code">[src]</a></div><a href="#method.command" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.command" class="fnname">command</a>(&amp;self) -&gt; &amp;'a <a class="struct" href="struct.Command.html" title="struct poise::Command">Command</a>&lt;U, E&gt;</h4></div></summary><div class="docblock"><p>Returns a reference to the command.</p>
 </div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-10" class="section-header"><a href="#scraped-examples-10">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[3,3],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[12,12],&quot;../src/serenity_example_port/main.rs.html#146&quot;,&quot;line 146&quot;],[[18,18],&quot;../src/serenity_example_port/main.rs.html#152&quot;,&quot;line 152&quot;],[[36,36],&quot;../src/serenity_example_port/main.rs.html#170&quot;,&quot;line 170&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>134</span>
 <span>135</span>
 <span>136</span>
@@ -4283,6 +4283,8 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>128</span>
 <span>129</span>
 <span>130</span>
+<span>131</span>
+<span>132</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="comment">// This is our custom error handler</span>
     <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
@@ -4296,7 +4298,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Error in command `{}` in {:?}: {:?}&quot;</span>,
-                <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">command</span>()</span>.<span class="ident">name</span>(),
+                <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">command</span>()</span>.<span class="ident">name</span>,
                 <span class="ident">error</span>,
                 <span class="ident">location</span>
             );
@@ -4324,12 +4326,12 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="highlight"><span class="ident">command</span>()</span>.<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="highlight"><span class="ident">command</span>()</span>.<span class="ident">name</span>);
             })
         },
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="highlight"><span class="ident">command</span>()</span>.<span class="ident">name</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="highlight"><span class="ident">command</span>()</span>.<span class="ident">name</span>);
             })
         },
         ..<span class="ident">Default::default</span>()
@@ -4359,6 +4361,8 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         .<span class="ident">command</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
             <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">subcommands::child1</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
                 .<span class="ident">subcommand</span>(<span class="ident">subcommands::child2</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
+                <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
+                .<span class="ident">subcommand</span>(<span class="ident">subcommands::parent</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>)
         })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
@@ -4393,5 +4397,5 @@ application command.</p>
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_current_subscriber" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.29/src/tracing/instrument.rs.html#221" title="goto source code">[src]</a></div><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></div></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.29/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.21/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.29/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

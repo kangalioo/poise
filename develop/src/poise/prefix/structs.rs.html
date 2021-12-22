@@ -187,67 +187,9 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
-<span id="197">197</span>
-<span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds prefix-command definition structs.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
 
 <span class="doccomment">/// Prefix-specific context passed to command invocations.</span>
 <span class="doccomment">///</span>
@@ -262,9 +204,9 @@
     <span class="doccomment">/// Read-only reference to the framework</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Useful if you need the list of commands, for example for a custom help command</span>
-    <span class="kw">pub</span> <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The command object which is the current command</span>
-    <span class="kw">pub</span> <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Your custom user data</span>
     <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">U</span>,
 }
@@ -280,79 +222,26 @@
     <span class="kw">type</span> <span class="ident">E</span> <span class="op">=</span> <span class="ident">E</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
         <span class="kw">let</span> <span class="self">Self</span> {
             <span class="ident">discord</span>: <span class="kw">_</span>,
             <span class="ident">msg</span>,
             <span class="ident">prefix</span>,
             <span class="ident">framework</span>: <span class="kw">_</span>,
-            <span class="ident">command</span>,
+            <span class="ident">command</span>: <span class="kw">_</span>,
             <span class="ident">data</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixContext&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;discord&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;serenity::Context&gt;&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;discord&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;serenity Context&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;msg&quot;</span>, <span class="ident">msg</span>)
             .<span class="ident">field</span>(<span class="string">&quot;prefix&quot;</span>, <span class="ident">prefix</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;framework&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise::Framework&gt;&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;command&quot;</span>, <span class="ident">command</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;framework&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Framework&gt;&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;command&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Command&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="ident">data</span>)
             .<span class="ident">finish</span>()
     }
-}
-
-<span class="doccomment">/// Definition of a single command, excluding metadata which doesn&#39;t affect the command itself such</span>
-<span class="doccomment">/// as category.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Main name of the command. Aliases can be set in [`Self::aliases`].</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
-    <span class="doccomment">/// Callback to execute when this command is invoked.</span>
-    <span class="kw">pub</span> <span class="ident">action</span>: <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
-        <span class="ident">PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-        <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    ) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The command ID, shared across all command types that belong to the same implementation</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Alternative triggers for the command</span>
-    <span class="kw">pub</span> <span class="ident">aliases</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>],
-    <span class="doccomment">/// Whether to enable edit tracking for commands by default.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note: only has an effect if `Framework::edit_tracker` is set.</span>
-    <span class="kw">pub</span> <span class="ident">track_edits</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Whether to broadcast a typing indicator while executing this commmand.</span>
-    <span class="kw">pub</span> <span class="ident">broadcast_typing</span>: <span class="ident">bool</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">name</span>,
-            <span class="ident">action</span>,
-            <span class="ident">id</span>,
-            <span class="ident">aliases</span>,
-            <span class="ident">track_edits</span>,
-            <span class="ident">broadcast_typing</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixCommand&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;action&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">action</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
-            .<span class="ident">field</span>(<span class="string">&quot;id&quot;</span>, <span class="ident">id</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;aliases&quot;</span>, <span class="ident">aliases</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;track_edits&quot;</span>, <span class="ident">track_edits</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;broadcast_typing&quot;</span>, <span class="ident">broadcast_typing</span>)
-            .<span class="ident">finish</span>()
-    }
-}
-
-<span class="doccomment">/// Includes a command, plus metadata like associated sub-commands or category.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Core command data</span>
-    <span class="kw">pub</span> <span class="ident">command</span>: <span class="ident">PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Possible subcommands</span>
-    <span class="kw">pub</span> <span class="ident">subcommands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Possible ways to define a command prefix</span>
@@ -369,8 +258,6 @@
     <span class="doccomment">/// The main bot prefix. Can be set to None if the bot supports only</span>
     <span class="doccomment">/// [dynamic prefixes](Self::dynamic_prefix).</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// List of bot commands.</span>
-    <span class="kw">pub</span> <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// List of additional bot prefixes</span>
     <span class="comment">// TODO: maybe it would be nicer to have separate fields for literal and regex prefixes</span>
     <span class="comment">// That way, you don&#39;t need to wrap every single literal prefix in a long path which looks ugly</span>
@@ -411,7 +298,7 @@
     <span class="doccomment">/// need to be set for this.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// That does not mean that any subsequent edits will also trigger execution. For that,</span>
-    <span class="doccomment">/// see [`PrefixCommand::track_edits`].</span>
+    <span class="doccomment">/// see [`crate::Command::track_edits`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: only has an effect if [`Self::edit_tracker`] is set.</span>
     <span class="kw">pub</span> <span class="ident">execute_untracked_edits</span>: <span class="ident">bool</span>,
@@ -428,18 +315,17 @@
     /// Whether to invoke help command when someone sends a message with just a bot mention
     pub help_when_mentioned: bool,
     /// The bot&#39;s general help command. Currently used for [`Self::help_when_mentioned`].
-    pub help_commmand: Option&lt;PrefixCommand&lt;U, E&gt;&gt;,
+    pub help_commmand: Option&lt;Command&lt;U, E&gt;&gt;,
     // /// The bot&#39;s help command for individial commands. Currently used when a command group without
     // /// any specific subcommand is invoked. This command is expected to take the command name as a
     // /// single parameter
-    // pub command_specific_help_commmand: Option&lt;PrefixCommand&lt;U, E&gt;&gt;, */</span>
+    // pub command_specific_help_commmand: Option&lt;Command&lt;U, E&gt;&gt;, */</span>
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">PrefixFrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
         <span class="kw">let</span> <span class="self">Self</span> {
             <span class="ident">prefix</span>,
-            <span class="ident">commands</span>,
             <span class="ident">additional_prefixes</span>,
             <span class="ident">dynamic_prefix</span>,
             <span class="ident">stripped_dynamic_prefix</span>,
@@ -453,7 +339,6 @@
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixFrameworkOptions&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;prefix&quot;</span>, <span class="ident">prefix</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;commands&quot;</span>, <span class="ident">commands</span>)
             .<span class="ident">field</span>(<span class="string">&quot;additional_prefixes&quot;</span>, <span class="ident">additional_prefixes</span>)
             .<span class="ident">field</span>(<span class="string">&quot;dynamic_prefix&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">dynamic_prefix</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
             .<span class="ident">field</span>(
@@ -474,7 +359,6 @@
     <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">None</span>,
-            <span class="ident">commands</span>: <span class="ident">Vec::new</span>(),
             <span class="ident">additional_prefixes</span>: <span class="ident">Vec::new</span>(),
             <span class="ident">dynamic_prefix</span>: <span class="prelude-val">None</span>,
             <span class="ident">stripped_dynamic_prefix</span>: <span class="prelude-val">None</span>,
@@ -491,5 +375,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

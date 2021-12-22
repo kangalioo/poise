@@ -253,6 +253,44 @@
 <span id="251">251</span>
 <span id="252">252</span>
 <span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -274,77 +312,35 @@
     <span class="kw">type</span> <span class="ident">E</span> <span class="op">=</span> <span class="ident">E</span>;
 }
 
-<span class="doccomment">/// A reference to either a prefix or application command.</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Prefix command</span>
-    <span class="ident">Prefix</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// Application command</span>
-    <span class="ident">Application</span>(<span class="ident"><span class="kw">crate</span>::ApplicationCommand</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>),
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>),
-            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>),
-        }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Copy</span> <span class="kw">for</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">CommandRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Yield `name` of this command, or, if context menu command, the context menu entry label</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">name</span>,
-            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">slash_or_context_menu_name</span>(),
-        }
-    }
-
-    <span class="doccomment">/// Yield `id` of this command.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">x</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">x</span>.<span class="ident">id</span>,
-            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">id</span>(),
-        }
-    }
-}
-
 <span class="doccomment">/// Type returned from `#[poise::command]` annotated functions, which contains all of the generated</span>
 <span class="doccomment">/// prefix and application commands</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandDefinition</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Generated prefix command, if it was enabled</span>
-    <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::PrefixCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Generated slash command, if it was enabled</span>
-    <span class="kw">pub</span> <span class="ident">slash</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::SlashCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Generated context menu command, if it was enabled</span>
-    <span class="kw">pub</span> <span class="ident">context_menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ContextMenuCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Implementation type agnostic data that is always present</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-}
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span> <span class="comment">/* gah i hate how #[derive(Debug)] falls apart at the slightest touch */</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="comment">// =============</span>
+    <span class="doccomment">/// Callback to execute when this command is invoked in a prefix context</span>
+    <span class="kw">pub</span> <span class="ident">prefix_action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
+        <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
+            <span class="ident"><span class="kw">crate</span>::PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+            <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+        ) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="op">&gt;</span>,
+    <span class="doccomment">/// Callback to execute when this command is invoked in a slash context</span>
+    <span class="kw">pub</span> <span class="ident">slash_action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
+        <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
+            <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
+        ) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="op">&gt;</span>,
+    <span class="doccomment">/// Callback to execute when this command is invoked in a context menu context</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The enum variant shows which Discord item this context menu command works on</span>
+    <span class="kw">pub</span> <span class="ident">context_menu_action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 
-<span class="doccomment">/// A view into a command definition with its different implementations</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandDefinitionRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Prefix implementation of the command</span>
-    <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::PrefixCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Slash implementation of the command</span>
-    <span class="kw">pub</span> <span class="ident">slash</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::SlashCommandMeta</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Context menu implementation of the command</span>
-    <span class="kw">pub</span> <span class="ident">context_menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::ContextMenuCommand</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Implementation type agnostic data that is always present</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-}
-
-<span class="doccomment">/// This struct holds all data shared across different command types of the same implementation.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For example with a `#[command(prefix_command, slash_command)]`, the generated</span>
-<span class="doccomment">/// [`crate::PrefixCommand`] and [`crate::SlashCommand`] will both contain an `Arc&lt;CommandId&lt;U, E&gt;&gt;`</span>
-<span class="doccomment">/// pointing to the same [`CommandId`] instance.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="comment">// ============= Command type agnostic data</span>
+    <span class="doccomment">/// Subcommands of this command, if any</span>
+    <span class="kw">pub</span> <span class="ident">subcommands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Main name of the command. Aliases (prefix-only) can be set in [`Self::aliases`].</span>
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
     <span class="doccomment">/// A string to identify this particular command within a list of commands.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Can be configured via the [`crate::command`] macro (though it&#39;s probably not needed for most</span>
@@ -380,37 +376,117 @@
     <span class="kw">pub</span> <span class="ident">on_error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="ident">FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, ()<span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// If this function returns false, this command will not be executed.</span>
     <span class="kw">pub</span> <span class="ident">check</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+
+    <span class="comment">// ============= Prefix-specific data</span>
+    <span class="doccomment">/// Alternative triggers for the command (prefix-only)</span>
+    <span class="kw">pub</span> <span class="ident">aliases</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>],
+    <span class="doccomment">/// Whether to enable edit tracking for commands by default (prefix-only)</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note: only has an effect if `crate::PrefixFrameworkOptions::edit_tracker` is set.</span>
+    <span class="kw">pub</span> <span class="ident">track_edits</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Whether to broadcast a typing indicator while executing this commmand (prefix-only)</span>
+    <span class="kw">pub</span> <span class="ident">broadcast_typing</span>: <span class="ident">bool</span>,
+
+    <span class="comment">// ============= Application-specific data</span>
+    <span class="doccomment">/// Context menu specific name for this command, displayed in Discord&#39;s context menu</span>
+    <span class="kw">pub</span> <span class="ident">context_menu_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// List of parameters for this slash command (slash-only)</span>
+    <span class="kw">pub</span> <span class="ident">parameters</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::SlashCommandParameter</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Whether responses to this command should be ephemeral by default (application-only)</span>
+    <span class="kw">pub</span> <span class="ident">ephemeral</span>: <span class="ident">bool</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">identifying_name</span>,
-            <span class="ident">category</span>,
-            <span class="ident">hide_in_help</span>,
-            <span class="ident">inline_help</span>,
-            <span class="ident">multiline_help</span>,
-            <span class="ident">cooldowns</span>,
-            <span class="ident">required_permissions</span>,
-            <span class="ident">required_bot_permissions</span>,
-            <span class="ident">owners_only</span>,
-            <span class="ident">on_error</span>,
-            <span class="ident">check</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">create_as_subcommand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateApplicationCommandOption</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">slash_action</span><span class="question-mark">?</span>;
 
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CommandId&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;identifying_name&quot;</span>, <span class="ident">identifying_name</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;category&quot;</span>, <span class="ident">category</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;hide_in_help&quot;</span>, <span class="ident">hide_in_help</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;inline_help&quot;</span>, <span class="ident">inline_help</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;multiline_help&quot;</span>, <span class="ident">multiline_help</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;cooldowns&quot;</span>, <span class="ident">cooldowns</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;required_permissions&quot;</span>, <span class="ident">required_permissions</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;required_bot_permissions&quot;</span>, <span class="ident">required_bot_permissions</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;owners_only&quot;</span>, <span class="ident">owners_only</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;on_error&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">on_error</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
-            .<span class="ident">field</span>(<span class="string">&quot;check&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">check</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
-            .<span class="ident">finish</span>()
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommandOption::default</span>();
+        <span class="ident">builder</span>
+            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
+            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">is_empty</span>() {
+            <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::SubCommand</span>);
+
+            <span class="kw">for</span> <span class="ident">param</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parameters</span> {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">option</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommandOption::default</span>();
+                (<span class="ident">param</span>.<span class="ident">builder</span>)(<span class="kw-2">&amp;mut</span> <span class="ident">option</span>);
+                <span class="ident">builder</span>.<span class="ident">add_sub_option</span>(<span class="ident">option</span>);
+            }
+        } <span class="kw">else</span> {
+            <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::SubCommandGroup</span>);
+
+            <span class="kw">for</span> <span class="ident">subcommand</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subcommands</span> {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">subcommand</span>) <span class="op">=</span> <span class="ident">subcommand</span>.<span class="ident">create_as_subcommand</span>() {
+                    <span class="ident">builder</span>.<span class="ident">add_sub_option</span>(<span class="ident">subcommand</span>);
+                }
+            }
+        }
+
+        <span class="prelude-val">Some</span>(<span class="ident">builder</span>)
+    }
+
+    <span class="doccomment">/// Generates a slash command builder from this [`Command`] instance. This can be used</span>
+    <span class="doccomment">/// to register this command on Discord&#39;s servers</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_as_slash_command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateApplicationCommand</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">slash_action</span><span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommand::default</span>();
+        <span class="ident">builder</span>
+            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
+            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">is_empty</span>() {
+            <span class="kw">for</span> <span class="ident">param</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parameters</span> {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">option</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommandOption::default</span>();
+                (<span class="ident">param</span>.<span class="ident">builder</span>)(<span class="kw-2">&amp;mut</span> <span class="ident">option</span>);
+                <span class="ident">builder</span>.<span class="ident">add_option</span>(<span class="ident">option</span>);
+            }
+        } <span class="kw">else</span> {
+            <span class="kw">for</span> <span class="ident">subcommand</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subcommands</span> {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">subcommand</span>) <span class="op">=</span> <span class="ident">subcommand</span>.<span class="ident">create_as_subcommand</span>() {
+                    <span class="ident">builder</span>.<span class="ident">add_option</span>(<span class="ident">subcommand</span>);
+                }
+            }
+        }
+
+        <span class="prelude-val">Some</span>(<span class="ident">builder</span>)
+    }
+
+    <span class="doccomment">/// Generates a context menu command builder from this [`Command`] instance. This can be used</span>
+    <span class="doccomment">/// to register this command on Discord&#39;s servers</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_as_context_menu_command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateApplicationCommand</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">context_menu_action</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">context_menu_action</span><span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommand::default</span>();
+        <span class="ident">builder</span>
+            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">context_menu_name</span>.<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">name</span>))
+            .<span class="ident">kind</span>(<span class="kw">match</span> <span class="ident">context_menu_action</span> {
+                <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="kw">_</span>) =&gt; <span class="ident">serenity::ApplicationCommandType::User</span>,
+                <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="kw">_</span>) =&gt; {
+                    <span class="ident">serenity::ApplicationCommandType::Message</span>
+                }
+            });
+
+        <span class="prelude-val">Some</span>(<span class="ident">builder</span>)
+    }
+
+    <span class="doccomment">/// **Deprecated**</span>
+    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Please use `category = \&quot;...\&quot;` on the command attribute instead&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">category</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">category</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">category</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">category</span>);
+        <span class="self">self</span>
+    }
+
+    <span class="doccomment">/// Insert a subcommand</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subcommand</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="kw-2">mut</span> <span class="ident">subcommand</span>: <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+        <span class="ident">meta_builder</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="self">Self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span>,
+    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
+        <span class="ident">meta_builder</span>(<span class="kw-2">&amp;mut</span> <span class="ident">subcommand</span>);
+        <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">push</span>(<span class="ident">subcommand</span>);
+        <span class="self">self</span>
     }
 }
 
@@ -479,7 +555,7 @@
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Command was invoked but the bot is lacking the permissions specified in</span>
-    <span class="doccomment">/// `crate::CommandId::required_bot_permissions`</span>
+    <span class="doccomment">/// [`crate::Command::required_bot_permissions`]</span>
     <span class="ident">MissingBotPermissions</span> {
         <span class="doccomment">/// Which permissions in particular the bot is lacking for this command</span>
         <span class="ident">missing_permissions</span>: <span class="ident">serenity::Permissions</span>,
@@ -487,7 +563,7 @@
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Command was invoked but the user is lacking the permissions specified in</span>
-    <span class="doccomment">/// `crate::CommandId::required_bot_permissions`</span>
+    <span class="doccomment">/// [`crate::Command::required_bot_permissions`]</span>
     <span class="ident">MissingUserPermissions</span> {
         <span class="doccomment">/// List of permissions that the user is lacking. May be None if retrieving the user&#39;s</span>
         <span class="doccomment">/// permissions failed</span>
@@ -507,5 +583,5 @@
     },
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>

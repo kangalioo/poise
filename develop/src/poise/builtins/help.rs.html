@@ -199,19 +199,6 @@
 <span id="197">197</span>
 <span id="198">198</span>
 <span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// Optional configuration for how the help message from [`help()`] looks</span>
@@ -240,21 +227,12 @@
     <span class="ident">command_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     <span class="ident">config</span>: <span class="ident">HelpConfiguration</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">commands</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">cmd</span><span class="op">|</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">slash</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">slash</span> {
-            <span class="kw">if</span> <span class="ident">slash</span>.<span class="ident">name</span>().<span class="ident">eq_ignore_ascii_case</span>(<span class="ident">command_name</span>) {
-                <span class="kw">return</span> <span class="bool-val">true</span>;
-            }
+    <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">commands</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> {
+        <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="ident">command_name</span>) {
+            <span class="kw">return</span> <span class="bool-val">true</span>;
         }
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">prefix</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">prefix</span> {
-            <span class="kw">if</span> <span class="ident">prefix</span>.<span class="ident">command</span>.<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="ident">command_name</span>) {
-                <span class="kw">return</span> <span class="bool-val">true</span>;
-            }
-        }
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">context_menu</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">context_menu</span> {
-            <span class="kw">if</span> <span class="ident">context_menu</span>.<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="ident">command_name</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">context_menu_name</span>) <span class="op">=</span> <span class="ident">command</span>.<span class="ident">context_menu_name</span> {
+            <span class="kw">if</span> <span class="ident">context_menu_name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="ident">command_name</span>) {
                 <span class="kw">return</span> <span class="bool-val">true</span>;
             }
         }
@@ -263,10 +241,9 @@
     });
 
     <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">command</span>) <span class="op">=</span> <span class="ident">command</span> {
-        <span class="kw">match</span> <span class="ident">command</span>.<span class="ident">id</span>.<span class="ident">multiline_help</span> {
+        <span class="kw">match</span> <span class="ident">command</span>.<span class="ident">multiline_help</span> {
             <span class="prelude-val">Some</span>(<span class="ident">f</span>) =&gt; <span class="ident">f</span>(),
             <span class="prelude-val">None</span> =&gt; <span class="ident">command</span>
-                .<span class="ident">id</span>
                 .<span class="ident">inline_help</span>
                 .<span class="ident">unwrap_or</span>(<span class="string">&quot;No help available&quot;</span>)
                 .<span class="ident">to_owned</span>(),
@@ -284,11 +261,10 @@
     <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">config</span>: <span class="ident">HelpConfiguration</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">categories</span> <span class="op">=</span>
-        <span class="ident"><span class="kw">crate</span>::util::OrderedMap</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::CommandDefinitionRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::new</span>();
-    <span class="kw">for</span> <span class="ident">cmd</span> <span class="kw">in</span> <span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">commands</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">categories</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::util::OrderedMap</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::new</span>();
+    <span class="kw">for</span> <span class="ident">cmd</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">commands</span> {
         <span class="ident">categories</span>
-            .<span class="ident">get_or_insert_with</span>(<span class="ident">cmd</span>.<span class="ident">id</span>.<span class="ident">category</span>, <span class="ident">Vec::new</span>)
+            .<span class="ident">get_or_insert_with</span>(<span class="ident">cmd</span>.<span class="ident">category</span>, <span class="ident">Vec::new</span>)
             .<span class="ident">push</span>(<span class="ident">cmd</span>);
     }
 
@@ -297,16 +273,16 @@
         <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="ident">category_name</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;Commands&quot;</span>);
         <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;:\n&quot;</span>;
         <span class="kw">for</span> <span class="ident">command</span> <span class="kw">in</span> <span class="ident">commands</span> {
-            <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">id</span>.<span class="ident">hide_in_help</span> {
+            <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">hide_in_help</span> {
                 <span class="kw">continue</span>;
             }
 
-            <span class="kw">let</span> (<span class="ident">prefix</span>, <span class="ident">command_name</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">slash_command</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">slash</span> {
-                (<span class="ident">String::from</span>(<span class="string">&quot;/&quot;</span>), <span class="ident">slash_command</span>.<span class="ident">name</span>())
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">prefix_command</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">prefix</span> {
+            <span class="kw">let</span> <span class="ident">prefix</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">slash_action</span>.<span class="ident">is_some</span>() {
+                <span class="ident">String::from</span>(<span class="string">&quot;/&quot;</span>)
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">command</span>.<span class="ident">prefix_action</span>.<span class="ident">is_some</span>() {
                 <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">prefix_options</span>;
 
-                <span class="kw">let</span> <span class="ident">prefix</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">options</span>.<span class="ident">prefix</span> {
+                <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">options</span>.<span class="ident">prefix</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">fixed_prefix</span>) =&gt; <span class="ident">fixed_prefix</span>.<span class="ident">clone</span>(),
                     <span class="prelude-val">None</span> =&gt; <span class="kw">match</span> <span class="ident">options</span>.<span class="ident">dynamic_prefix</span> {
                         <span class="prelude-val">Some</span>(<span class="ident">dynamic_prefix_callback</span>) =&gt; {
@@ -317,23 +293,21 @@
                         }
                         <span class="prelude-val">None</span> =&gt; <span class="ident">String::from</span>(<span class="string">&quot;&quot;</span>),
                     },
-                };
-
-                (<span class="ident">prefix</span>, <span class="ident">prefix_command</span>.<span class="ident">command</span>.<span class="ident">name</span>)
+                }
             } <span class="kw">else</span> {
                 <span class="comment">// This is not a prefix or slash command, i.e. probably a context menu only command</span>
                 <span class="comment">// which we will only show later</span>
                 <span class="kw">continue</span>;
             };
 
-            <span class="kw">let</span> <span class="ident">total_command_name_length</span> <span class="op">=</span> <span class="ident">prefix</span>.<span class="ident">chars</span>().<span class="ident">count</span>() <span class="op">+</span> <span class="ident">command_name</span>.<span class="ident">chars</span>().<span class="ident">count</span>();
+            <span class="kw">let</span> <span class="ident">total_command_name_length</span> <span class="op">=</span> <span class="ident">prefix</span>.<span class="ident">chars</span>().<span class="ident">count</span>() <span class="op">+</span> <span class="ident">command</span>.<span class="ident">name</span>.<span class="ident">chars</span>().<span class="ident">count</span>();
             <span class="kw">let</span> <span class="ident">padding</span> <span class="op">=</span> <span class="number">12_usize</span>.<span class="ident">saturating_sub</span>(<span class="ident">total_command_name_length</span>) <span class="op">+</span> <span class="number">1</span>;
             <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(
                 <span class="string">&quot;  {}{}{}{}\n&quot;</span>,
                 <span class="ident">prefix</span>,
-                <span class="ident">command_name</span>,
+                <span class="ident">command</span>.<span class="ident">name</span>,
                 <span class="string">&quot; &quot;</span>.<span class="ident">repeat</span>(<span class="ident">padding</span>),
-                <span class="ident">command</span>.<span class="ident">id</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>)
+                <span class="ident">command</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>)
             );
         }
     }
@@ -341,14 +315,14 @@
     <span class="kw">if</span> <span class="ident">config</span>.<span class="ident">show_context_menu_commands</span> {
         <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;\nContext menu commands:\n&quot;</span>;
 
-        <span class="kw">for</span> <span class="ident">command</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">application_options</span>.<span class="ident">commands</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::ApplicationCommandTree::ContextMenu</span>(<span class="ident">command</span>) <span class="op">=</span> <span class="ident">command</span> {
-                <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">action</span> {
-                    <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;user&quot;</span>,
-                    <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;message&quot;</span>,
-                };
-                <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;  {} (on {})\n&quot;</span>, <span class="ident">command</span>.<span class="ident">name</span>, <span class="ident">kind</span>);
-            }
+        <span class="kw">for</span> <span class="ident">command</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">commands</span> {
+            <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">command</span>.<span class="ident">context_menu_action</span> {
+                <span class="prelude-val">Some</span>(<span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="kw">_</span>)) =&gt; <span class="string">&quot;user&quot;</span>,
+                <span class="prelude-val">Some</span>(<span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="kw">_</span>)) =&gt; <span class="string">&quot;message&quot;</span>,
+                <span class="prelude-val">None</span> =&gt; <span class="kw">continue</span>,
+            };
+            <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">command</span>.<span class="ident">context_menu_name</span>.<span class="ident">unwrap_or</span>(<span class="ident">command</span>.<span class="ident">name</span>);
+            <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;  {} (on {})\n&quot;</span>, <span class="ident">name</span>, <span class="ident">kind</span>);
         }
     }
 
@@ -425,5 +399,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (23f69235a 2021-12-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
 </body></html>
