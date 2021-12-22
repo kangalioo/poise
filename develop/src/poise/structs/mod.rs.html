@@ -287,10 +287,6 @@
 <span id="285">285</span>
 <span id="286">286</span>
 <span id="287">287</span>
-<span id="288">288</span>
-<span id="289">289</span>
-<span id="290">290</span>
-<span id="291">291</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -490,18 +486,6 @@
     }
 }
 
-<span class="doccomment">/// Used for command errors to store the specific operation in a command&#39;s execution where an</span>
-<span class="doccomment">/// error occured</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Hash</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CommandErrorLocation</span> {
-    <span class="doccomment">/// Error occured in the main command code</span>
-    <span class="ident">Body</span>,
-    <span class="doccomment">/// Error occured in one of the pre-command checks</span>
-    <span class="ident">Check</span>,
-    <span class="doccomment">/// Error occured in a parameter autocomplete callback</span>
-    <span class="ident">Autocomplete</span>,
-}
-
 <span class="doccomment">/// Any error that can occur while the bot runs. Either thrown by user code (those variants will</span>
 <span class="doccomment">/// have an `error` field with your error type `E` in it), or originating from within the framework.</span>
 <span class="doccomment">///</span>
@@ -520,14 +504,19 @@
         <span class="doccomment">/// Which event was being processed when the error occurred</span>
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Event</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     },
-    <span class="doccomment">/// User code threw an error in bot command</span>
+    <span class="doccomment">/// Error occured during command execution</span>
     <span class="ident">Command</span> {
         <span class="doccomment">/// Error which was thrown in the command code</span>
         <span class="ident">error</span>: <span class="ident">E</span>,
-        <span class="doccomment">/// In which part of the command execution the error occured</span>
-        <span class="ident">location</span>: <span class="ident"><span class="kw">crate</span>::CommandErrorLocation</span>,
         <span class="doccomment">/// General context</span>
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    },
+    <span class="doccomment">/// Error occured during parameter autocomplete callback</span>
+    <span class="ident">Autocomplete</span> {
+        <span class="doccomment">/// Error which was thrown in the autocomplete code</span>
+        <span class="ident">error</span>: <span class="ident">E</span>,
+        <span class="doccomment">/// General context</span>
+        <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// A command argument failed to parse from the Discord message or interaction content</span>
     <span class="ident">ArgumentParse</span> {
@@ -576,8 +565,11 @@
         <span class="doccomment">/// General context</span>
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },
-    <span class="doccomment">/// Provided pre-command check didn&#39;t succeed, so command execution aborted</span>
+    <span class="doccomment">/// Provided pre-command check either errored, or returned false, so command execution aborted</span>
     <span class="ident">CommandCheckFailed</span> {
+        <span class="doccomment">/// If execution wasn&#39;t aborted because of an error but because it successfully returned</span>
+        <span class="doccomment">/// false, this field is None</span>
+        <span class="ident">error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>,
         <span class="doccomment">/// General context</span>
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },

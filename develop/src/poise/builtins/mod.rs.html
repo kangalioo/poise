@@ -264,6 +264,10 @@
 <span id="262">262</span>
 <span id="263">263</span>
 <span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -299,11 +303,7 @@
             <span class="ident">event</span>.<span class="ident">name</span>(),
             <span class="ident">error</span>
         ),
-        <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> {
-            <span class="ident">ctx</span>,
-            <span class="ident">error</span>,
-            <span class="ident">location</span>: <span class="kw">_</span>,
-        } =&gt; {
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
             <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">to_string</span>();
             <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">error</span>).<span class="kw">await</span><span class="question-mark">?</span>;
         }
@@ -322,11 +322,19 @@
                 <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">name</span>, <span class="ident">error</span>,
             );
         }
-        <span class="ident"><span class="kw">crate</span>::FrameworkError::CommandCheckFailed</span> { <span class="ident">ctx</span> } =&gt; {
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::CommandCheckFailed</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
             <span class="macro">println!</span>(
-                <span class="string">&quot;A command check failed in command {} for user {}&quot;</span>,
+                <span class="string">&quot;A command check failed in command {} for user {}: {:?}&quot;</span>,
                 <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>,
-                <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>
+                <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>,
+                <span class="ident">error</span>,
+            );
+        }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::Autocomplete</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
+            <span class="macro">println!</span>(
+                <span class="string">&quot;Autocomplete callback failed in command `/{}`: {}&quot;</span>,
+                <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">name</span>,
+                <span class="ident">error</span>,
             );
         }
         <span class="ident"><span class="kw">crate</span>::FrameworkError::CooldownHit</span> {

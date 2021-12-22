@@ -163,10 +163,6 @@
 <span id="161">161</span>
 <span id="162">162</span>
 <span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="kw">fn</span> <span class="ident">find_matching_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
@@ -322,11 +318,7 @@
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">error</span>) <span class="op">=</span> <span class="ident">autocomplete_callback</span>(<span class="ident">ctx</span>, <span class="ident">interaction</span>, <span class="ident">options</span>).<span class="kw">await</span> {
             <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">on_error</span>.<span class="ident">unwrap_or</span>(<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">on_error</span>)(
-                <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> {
-                    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>),
-                    <span class="ident">error</span>,
-                    <span class="ident">location</span>: <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::Autocomplete</span>,
-                },
+                <span class="ident"><span class="kw">crate</span>::FrameworkError::Autocomplete</span> { <span class="ident">ctx</span>, <span class="ident">error</span> },
             )
             .<span class="kw">await</span>;
         }
