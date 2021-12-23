@@ -282,6 +282,67 @@
 <span id="280">280</span>
 <span id="281">281</span>
 <span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -305,7 +366,7 @@
 
 <span class="doccomment">/// Type returned from `#[poise::command]` annotated functions, which contains all of the generated</span>
 <span class="doccomment">/// prefix and application commands</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span> <span class="comment">/* gah i hate how #[derive(Debug)] falls apart at the slightest touch */</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="comment">// =============</span>
     <span class="doccomment">/// Callback to execute when this command is invoked in a prefix context</span>
@@ -389,6 +450,67 @@
     <span class="kw">pub</span> <span class="ident">ephemeral</span>: <span class="ident">bool</span>,
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="ident">std::ptr::eq</span>(<span class="self">self</span>, <span class="ident">other</span>)
+    }
+}
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="self">Self</span> {
+            <span class="ident">prefix_action</span>,
+            <span class="ident">slash_action</span>,
+            <span class="ident">context_menu_action</span>,
+            <span class="ident">subcommands</span>,
+            <span class="ident">name</span>,
+            <span class="ident">identifying_name</span>,
+            <span class="ident">category</span>,
+            <span class="ident">hide_in_help</span>,
+            <span class="ident">inline_help</span>,
+            <span class="ident">multiline_help</span>,
+            <span class="ident">cooldowns</span>,
+            <span class="ident">required_permissions</span>,
+            <span class="ident">required_bot_permissions</span>,
+            <span class="ident">owners_only</span>,
+            <span class="ident">on_error</span>,
+            <span class="ident">check</span>,
+            <span class="ident">parameters</span>,
+            <span class="ident">aliases</span>,
+            <span class="ident">track_edits</span>,
+            <span class="ident">broadcast_typing</span>,
+            <span class="ident">context_menu_name</span>,
+            <span class="ident">ephemeral</span>,
+        } <span class="op">=</span> <span class="self">self</span>;
+
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Command&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;prefix_action&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">prefix_action</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;slash_action&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">slash_action</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;context_menu_action&quot;</span>, <span class="ident">context_menu_action</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;subcommands&quot;</span>, <span class="ident">subcommands</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;identifying_name&quot;</span>, <span class="ident">identifying_name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;category&quot;</span>, <span class="ident">category</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;hide_in_help&quot;</span>, <span class="ident">hide_in_help</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;inline_help&quot;</span>, <span class="ident">inline_help</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;multiline_help&quot;</span>, <span class="ident">multiline_help</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;cooldowns&quot;</span>, <span class="ident">cooldowns</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;required_permissions&quot;</span>, <span class="ident">required_permissions</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;required_bot_permissions&quot;</span>, <span class="ident">required_bot_permissions</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;owners_only&quot;</span>, <span class="ident">owners_only</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;on_error&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">on_error</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;check&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">check</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;parameters&quot;</span>, <span class="ident">parameters</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;aliases&quot;</span>, <span class="ident">aliases</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;track_edits&quot;</span>, <span class="ident">track_edits</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;broadcast_typing&quot;</span>, <span class="ident">broadcast_typing</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;context_menu_name&quot;</span>, <span class="ident">context_menu_name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;ephemeral&quot;</span>, <span class="ident">ephemeral</span>)
+            .<span class="ident">finish</span>()
+    }
+}
+
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">create_as_subcommand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateApplicationCommandOption</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">slash_action</span><span class="question-mark">?</span>;
@@ -465,7 +587,7 @@
     }
 
     <span class="doccomment">/// **Deprecated**</span>
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Please use `category = \&quot;...\&quot;` on the command attribute instead&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Please use `crate::Command { category: \&quot;...\&quot;, ..command() }` instead&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">category</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">category</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">category</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">category</span>);
         <span class="self">self</span>
@@ -565,5 +687,5 @@
     },
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (34926f0a1 2021-12-22)" ></div>
 </body></html>

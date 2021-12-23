@@ -212,17 +212,6 @@
 <span id="210">210</span>
 <span id="211">211</span>
 <span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="comment">// Returns tuple of stripped prefix and rest of the message, if any prefix matches</span>
@@ -298,28 +287,42 @@
     <span class="prelude-val">None</span>
 }
 
-<span class="doccomment">/// Find a command within nested Command&#39;s by the user message string. Also returns</span>
-<span class="doccomment">/// the arguments, i.e. the remaining string.</span>
-<span class="kw">fn</span> <span class="ident">find_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
-    <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="ident">user_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">U</span>,
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
-    <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
-    <span class="ident">prefix</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+<span class="doccomment">/// Find a command or subcommand within `&amp;[Command]`, given a command invocation without a prefix.</span>
+<span class="doccomment">/// Also returns  the arguments, i.e. the remaining string.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```rust</span>
+<span class="doccomment">/// #[poise::command(prefix_command)] async fn command1(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
+<span class="doccomment">/// #[poise::command(prefix_command)] async fn command2(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
+<span class="doccomment">/// #[poise::command(prefix_command)] async fn command3(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
+<span class="doccomment">/// let commands = vec![</span>
+<span class="doccomment">///     command1(),    </span>
+<span class="doccomment">///     poise::Command {</span>
+<span class="doccomment">///         subcommands: vec![command3()],</span>
+<span class="doccomment">///         ..command2()</span>
+<span class="doccomment">///     },</span>
+<span class="doccomment">/// ];</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// assert_eq!(</span>
+<span class="doccomment">///     poise::find_command(&amp;commands, &quot;command1 my arguments&quot;, false),</span>
+<span class="doccomment">///     Some((&amp;commands[0], &quot;my arguments&quot;)),</span>
+<span class="doccomment">/// );</span>
+<span class="doccomment">/// assert_eq!(</span>
+<span class="doccomment">///     poise::find_command(&amp;commands, &quot;command2 command3 my arguments&quot;, false),</span>
+<span class="doccomment">///     Some((&amp;commands[1].subcommands[0], &quot;my arguments&quot;)),</span>
+<span class="doccomment">/// );</span>
+<span class="doccomment">/// assert_eq!(</span>
+<span class="doccomment">///     poise::find_command(&amp;commands, &quot;CoMmAnD2 cOmMaNd99 my arguments&quot;, true),</span>
+<span class="doccomment">///     Some((&amp;commands[1], &quot;cOmMaNd99 my arguments&quot;)),</span>
+<span class="doccomment">/// );</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">commands</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>],
     <span class="ident">remaining_message</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(
-    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="kw">fn</span>(
-        <span class="ident"><span class="kw">crate</span>::PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-        <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">str</span>,
-    ) -&gt; <span class="ident"><span class="kw">crate</span>::BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-)<span class="op">&gt;</span>
+    <span class="ident">case_insensitive</span>: <span class="ident">bool</span>,
+) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>)<span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>,
 {
-    <span class="kw">let</span> <span class="ident">considered_equal</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">prefix_options</span>.<span class="ident">case_insensitive_commands</span> {
+    <span class="kw">let</span> <span class="ident">string_equal</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">case_insensitive</span> {
         <span class="op">|</span><span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">|</span> <span class="ident">a</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="ident">b</span>)
     } <span class="kw">else</span> {
         <span class="op">|</span><span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">|</span> <span class="ident">a</span> <span class="op">==</span> <span class="ident">b</span>
@@ -331,40 +334,18 @@
     };
 
     <span class="kw">for</span> <span class="ident">command</span> <span class="kw">in</span> <span class="ident">commands</span> {
-        <span class="kw">let</span> <span class="ident">primary_name_matches</span> <span class="op">=</span> <span class="ident">considered_equal</span>(<span class="ident">command</span>.<span class="ident">name</span>, <span class="ident">command_name</span>);
+        <span class="kw">let</span> <span class="ident">primary_name_matches</span> <span class="op">=</span> <span class="ident">string_equal</span>(<span class="ident">command</span>.<span class="ident">name</span>, <span class="ident">command_name</span>);
         <span class="kw">let</span> <span class="ident">alias_matches</span> <span class="op">=</span> <span class="ident">command</span>
             .<span class="ident">aliases</span>
             .<span class="ident">iter</span>()
-            .<span class="ident">any</span>(<span class="op">|</span><span class="ident">alias</span><span class="op">|</span> <span class="ident">considered_equal</span>(<span class="ident">alias</span>, <span class="ident">command_name</span>));
+            .<span class="ident">any</span>(<span class="op">|</span><span class="ident">alias</span><span class="op">|</span> <span class="ident">string_equal</span>(<span class="ident">alias</span>, <span class="ident">command_name</span>));
         <span class="kw">if</span> <span class="op">!</span><span class="ident">primary_name_matches</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">alias_matches</span> {
             <span class="kw">continue</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::PrefixContext</span> {
-            <span class="ident">discord</span>: <span class="ident">ctx</span>,
-            <span class="ident">msg</span>,
-            <span class="ident">prefix</span>,
-            <span class="ident">framework</span>,
-            <span class="ident">data</span>: <span class="ident">user_data</span>,
-            <span class="ident">command</span>,
-        };
-
         <span class="kw">return</span> <span class="prelude-val">Some</span>(
-            <span class="kw">match</span> <span class="ident">find_command</span>(
-                <span class="ident">framework</span>,
-                <span class="ident">user_data</span>,
-                <span class="ident">ctx</span>.<span class="ident">discord</span>,
-                <span class="ident">msg</span>,
-                <span class="ident">prefix</span>,
-                <span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">subcommands</span>,
-                <span class="ident">remaining_message</span>,
-            ) {
-                <span class="prelude-val">Some</span>(<span class="ident">subcommand_result</span>) =&gt; <span class="ident">subcommand_result</span>,
-                <span class="prelude-val">None</span> =&gt; <span class="kw">match</span> <span class="ident">command</span>.<span class="ident">prefix_action</span> {
-                    <span class="prelude-val">Some</span>(<span class="ident">action</span>) =&gt; (<span class="ident">command</span>, <span class="ident">action</span>, <span class="ident">remaining_message</span>),
-                    <span class="prelude-val">None</span> =&gt; <span class="kw">continue</span>,
-                },
-            },
+            <span class="ident">find_command</span>(<span class="kw-2">&amp;</span><span class="ident">command</span>.<span class="ident">subcommands</span>, <span class="ident">remaining_message</span>, <span class="ident">case_insensitive</span>)
+                .<span class="ident">unwrap_or</span>((<span class="ident">command</span>, <span class="ident">remaining_message</span>)),
         );
     }
 
@@ -399,16 +380,13 @@
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="prelude-val">None</span>);
     }
 
-    <span class="kw">let</span> (<span class="ident">command</span>, <span class="ident">action</span>, <span class="ident">args</span>) <span class="op">=</span> <span class="ident">find_command</span>(
-        <span class="ident">framework</span>,
-        <span class="ident">framework</span>.<span class="ident">get_user_data</span>().<span class="kw">await</span>,
-        <span class="ident">ctx</span>,
-        <span class="ident">msg</span>,
-        <span class="ident">prefix</span>,
+    <span class="kw">let</span> (<span class="ident">command</span>, <span class="ident">args</span>) <span class="op">=</span> <span class="ident">find_command</span>(
         <span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">commands</span>,
         <span class="ident">msg_content</span>,
+        <span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">prefix_options</span>.<span class="ident">case_insensitive_commands</span>,
     )
     .<span class="ident">ok_or</span>(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">action</span> <span class="op">=</span> <span class="ident">command</span>.<span class="ident">prefix_action</span>.<span class="ident">ok_or</span>(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
 
     <span class="comment">// Check if we should disregard this invocation if it was triggered by an edit</span>
     <span class="kw">let</span> <span class="ident">should_execute_if_triggered_by_edit</span> <span class="op">=</span> <span class="ident">command</span>.<span class="ident">track_edits</span>
@@ -447,5 +425,5 @@
     <span class="ident">res</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e100ec5bc 2021-12-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (34926f0a1 2021-12-22)" ></div>
 </body></html>
