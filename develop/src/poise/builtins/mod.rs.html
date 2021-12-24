@@ -260,6 +260,13 @@
 <span id="258">258</span>
 <span id="259">259</span>
 <span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -271,9 +278,8 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// An error handler that prints the error into the console and also into the Discord chat.</span>
-<span class="doccomment">/// If the user invoked the command wrong</span>
-<span class="doccomment">/// (i.e. an [`crate::ArgumentParseError`]), the command help is displayed and the user is directed</span>
-<span class="doccomment">/// to the help menu.</span>
+<span class="doccomment">/// If the user invoked the command wrong ([`crate::FrameworkError::ArgumentParse`]), the command</span>
+<span class="doccomment">/// help is displayed and the user is directed to the help menu.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Can return an error if sending the Discord error message failed. You can decide for yourself</span>
 <span class="doccomment">/// how to handle this, for example:</span>
@@ -298,14 +304,22 @@
             <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">to_string</span>();
             <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">error</span>).<span class="kw">await</span><span class="question-mark">?</span>;
         }
-        <span class="ident"><span class="kw">crate</span>::FrameworkError::ArgumentParse</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::ArgumentParse</span> { <span class="ident">ctx</span>, <span class="ident">input</span>, <span class="ident">error</span> } =&gt; {
             <span class="comment">// If we caught an argument parse error, give a helpful error message with the</span>
             <span class="comment">// command explanation if available</span>
             <span class="kw">let</span> <span class="ident">usage</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">multiline_help</span> {
                 <span class="prelude-val">Some</span>(<span class="ident">multiline_help</span>) =&gt; <span class="ident">multiline_help</span>(),
                 <span class="prelude-val">None</span> =&gt; <span class="string">&quot;Please check the help menu for usage information&quot;</span>.<span class="ident">into</span>(),
             };
-            <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;**{}**\n{}&quot;</span>, <span class="ident">error</span>, <span class="ident">usage</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">input</span>) <span class="op">=</span> <span class="ident">input</span> {
+                <span class="macro">format!</span>(
+                    <span class="string">&quot;**Cannot parse `{}` as argument: {}**\n{}&quot;</span>,
+                    <span class="ident">input</span>, <span class="ident">error</span>, <span class="ident">usage</span>
+                )
+            } <span class="kw">else</span> {
+                <span class="macro">format!</span>(<span class="string">&quot;**{}**\n{}&quot;</span>, <span class="ident">error</span>, <span class="ident">usage</span>)
+            };
+            <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">response</span>).<span class="kw">await</span><span class="question-mark">?</span>;
         }
         <span class="ident"><span class="kw">crate</span>::FrameworkError::CommandStructureMismatch</span> { <span class="ident">ctx</span>, <span class="ident">description</span> } =&gt; {
             <span class="macro">println!</span>(
@@ -521,5 +535,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (34926f0a1 2021-12-22)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (c09a9529c 2021-12-23)" ></div>
 </body></html>

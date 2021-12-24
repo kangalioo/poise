@@ -79,35 +79,10 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
-<span id="80">80</span>
-<span id="81">81</span>
-<span id="82">82</span>
-<span id="83">83</span>
-<span id="84">84</span>
-<span id="85">85</span>
-<span id="86">86</span>
-<span id="87">87</span>
-<span id="88">88</span>
-<span id="89">89</span>
-<span id="90">90</span>
-<span id="91">91</span>
-<span id="92">92</span>
-<span id="93">93</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Error type when trying to parse a string parameter but the input is empty</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmptyArgs</span>;
-<span class="kw">impl</span> <span class="ident">std::fmt::Display</span> <span class="kw">for</span> <span class="ident">EmptyArgs</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;Not enough arguments were given&quot;</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">EmptyArgs</span> {}
-
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">PopArgument</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">String</span> {
-    <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">EmptyArgs</span>;
+    <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">std::convert::Infallible</span>;
 
     <span class="doccomment">/// Pop a whitespace-separated word from the front of the arguments. Supports quotes and quote</span>
     <span class="doccomment">/// escaping.</span>
@@ -115,32 +90,32 @@
     <span class="doccomment">/// Leading whitespace will be trimmed; trailing whitespace is not consumed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```rust</span>
-    <span class="doccomment">/// # use poise::{ArgString, PopArgument as _};</span>
+    <span class="doccomment">/// # use poise::PopArgument as _;</span>
     <span class="doccomment">/// assert_eq!(</span>
-    <span class="doccomment">///     String::pop_from(&amp;ArgString(r#&quot;&quot;first arg&quot; secondarg&quot;#)).unwrap().1,</span>
+    <span class="doccomment">///     String::pop_from(r#&quot;&quot;first arg&quot; secondarg&quot;#).unwrap().1,</span>
     <span class="doccomment">///     r#&quot;first arg&quot;#</span>
     <span class="doccomment">/// );</span>
     <span class="doccomment">/// assert_eq!(</span>
-    <span class="doccomment">///     String::pop_from(&amp;ArgString(r#&quot;&quot;arg \&quot; with \&quot; quotes \&quot; inside&quot;&quot;#)).unwrap().1,</span>
+    <span class="doccomment">///     String::pop_from(r#&quot;&quot;arg \&quot; with \&quot; quotes \&quot; inside&quot;&quot;#).unwrap().1,</span>
     <span class="doccomment">///     r#&quot;arg &quot; with &quot; quotes &quot; inside&quot;#</span>
     <span class="doccomment">/// );</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">pop_from</span>(<span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">ArgString</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">ArgString</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="self">Self</span>), <span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">pop_from</span>(<span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="self">Self</span>), <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="comment">// TODO: consider changing the behavior to parse quotes literally if they&#39;re in the middle</span>
         <span class="comment">// of the string:</span>
         <span class="comment">// - `&quot;hello world&quot;` =&gt; `hello world`</span>
         <span class="comment">// - `&quot;hello &quot;world&quot;` =&gt; `&quot;hello &quot;world`</span>
         <span class="comment">// - `&quot;hello&quot; world&quot;` =&gt; `hello`</span>
 
-        <span class="kw">if</span> <span class="ident">args</span>.<span class="number">0</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">EmptyArgs</span>);
+        <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">is_empty</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="prelude-val">None</span>);
         }
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">String::new</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inside_string</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">escaping</span> <span class="op">=</span> <span class="bool-val">false</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">args</span>.<span class="number">0</span>.<span class="ident">chars</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">args</span>.<span class="ident">chars</span>();
         <span class="comment">// .clone().next() is poor man&#39;s .peek(), but we can&#39;t do peekable because then we can&#39;t</span>
         <span class="comment">// call as_str on the Chars iterator</span>
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="ident">chars</span>.<span class="ident">clone</span>().<span class="ident">next</span>() {
@@ -160,7 +135,7 @@
             <span class="ident">chars</span>.<span class="ident">next</span>();
         }
 
-        <span class="prelude-val">Ok</span>((<span class="ident">ArgString</span>(<span class="ident">chars</span>.<span class="ident">as_str</span>()), <span class="ident">output</span>))
+        <span class="prelude-val">Ok</span>((<span class="ident">chars</span>.<span class="ident">as_str</span>(), <span class="ident">output</span>))
     }
 }
 
@@ -168,10 +143,7 @@
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_pop_string</span>() {
     <span class="comment">// Test that trailing whitespace is not consumed</span>
-    <span class="macro">assert_eq!</span>(
-        <span class="ident">String::pop_from</span>(<span class="kw-2">&amp;</span><span class="ident">ArgString</span>(<span class="string">&quot;AA BB&quot;</span>)).<span class="ident">unwrap</span>().<span class="number">0</span>,
-        <span class="ident">ArgString</span>(<span class="string">&quot; BB&quot;</span>)
-    );
+    <span class="macro">assert_eq!</span>(<span class="ident">String::pop_from</span>(<span class="string">&quot;AA BB&quot;</span>).<span class="ident">unwrap</span>().<span class="number">0</span>, <span class="string">&quot; BB&quot;</span>);
 
     <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="ident">string</span>, <span class="ident">arg</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span>[
         (<span class="string">r#&quot;AA BB&quot;#</span>, <span class="string">r#&quot;AA&quot;#</span>),
@@ -183,9 +155,9 @@
         (<span class="string">r#&quot;\&quot;AA\ BB\&quot;&quot;#</span>, <span class="string">r#&quot;&quot;AA BB&quot;&quot;#</span>),
         (<span class="string">r#&quot;&quot;\&quot;AA BB\&quot;&quot;&quot;#</span>, <span class="string">r#&quot;&quot;AA BB&quot;&quot;#</span>),
     ] {
-        <span class="macro">assert_eq!</span>(<span class="ident">String::pop_from</span>(<span class="kw-2">&amp;</span><span class="ident">ArgString</span>(<span class="ident">string</span>)).<span class="ident">unwrap</span>().<span class="number">1</span>, <span class="ident">arg</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">String::pop_from</span>(<span class="ident">string</span>).<span class="ident">unwrap</span>().<span class="number">1</span>, <span class="ident">arg</span>);
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (34926f0a1 2021-12-22)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (c09a9529c 2021-12-23)" ></div>
 </body></html>
