@@ -247,6 +247,8 @@
 <span id="245">245</span>
 <span id="246">246</span>
 <span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -438,9 +440,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// For example an integer [`CommandParameter`] will store</span>
     <span class="doccomment">/// `|b| b.kind(serenity::ApplicationCommandOptionType::Integer)` as the [`Self::type_setter`]</span>
-    <span class="kw">pub</span> <span class="ident">type_setter</span>: <span class="kw">fn</span>(
-        <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
+    <span class="kw">pub</span> <span class="ident">type_setter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
+        <span class="kw">fn</span>(
+            <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
+        ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
+    <span class="op">&gt;</span>,
     <span class="doccomment">/// Optionally, a callback that is invoked on autocomplete interactions. This closure should</span>
     <span class="doccomment">/// extract the partial argument from the given JSON value and generate the autocomplete</span>
     <span class="doccomment">/// response which contains the list of autocomplete suggestions.</span>
@@ -467,7 +471,7 @@
             .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
             .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">description</span><span class="question-mark">?</span>)
             .<span class="ident">set_autocomplete</span>(<span class="self">self</span>.<span class="ident">autocomplete_callback</span>.<span class="ident">is_some</span>());
-        (<span class="self">self</span>.<span class="ident">type_setter</span>)(<span class="kw-2">&amp;mut</span> <span class="ident">builder</span>);
+        (<span class="self">self</span>.<span class="ident">type_setter</span><span class="question-mark">?</span>)(<span class="kw-2">&amp;mut</span> <span class="ident">builder</span>);
         <span class="prelude-val">Some</span>(<span class="ident">builder</span>)
     }
 }
@@ -486,7 +490,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>)
             .<span class="ident">field</span>(<span class="string">&quot;description&quot;</span>, <span class="ident">description</span>)
             .<span class="ident">field</span>(<span class="string">&quot;required&quot;</span>, <span class="ident">required</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;type_setter&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">type_setter</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
+            .<span class="ident">field</span>(<span class="string">&quot;type_setter&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">type_setter</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
             .<span class="ident">field</span>(
                 <span class="string">&quot;autocomplete_callback&quot;</span>,
                 <span class="kw-2">&amp;</span><span class="ident">autocomplete_callback</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()),
@@ -495,5 +499,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (c09a9529c 2021-12-23)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
 </body></html>

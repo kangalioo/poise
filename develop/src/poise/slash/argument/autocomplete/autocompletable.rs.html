@@ -121,6 +121,8 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
 </pre><pre class="rust"><code><span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span> <span class="comment">// required if serenity simdjson feature is enabled</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity::json::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">SlashArgError</span>};
@@ -131,6 +133,8 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Includes almost all types that can be used as a slash command parameter in general,</span>
 <span class="doccomment">/// except some built-in model types (User, Member, Role...)</span>
+<span class="comment">// Note to self: this CANNOT be integrated into SlashArgumentHack because some types (User, Channel,</span>
+<span class="comment">// etc.) cannot be used for autocomplete!</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Autocompletable</span> {
     <span class="doccomment">/// Type of the partial input. This should be `Self` except in cases where a partial input</span>
     <span class="doccomment">/// cannot be parsed into `Self` (e.g. an IP address)</span>
@@ -243,5 +247,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (c09a9529c 2021-12-23)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
 </body></html>
