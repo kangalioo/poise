@@ -253,11 +253,15 @@
 <span id="251">251</span>
 <span id="252">252</span>
 <span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Tools for implementing automatic edit tracking, i.e. the bot automatically updating its response</span>
 <span class="doccomment">//! when the user edits their command invocation message.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
+<span class="doccomment">/// Updates the given message according to the update event</span>
 <span class="kw">fn</span> <span class="ident">update_message</span>(<span class="ident">message</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::Message</span>, <span class="ident">update</span>: <span class="ident">serenity::MessageUpdateEvent</span>) {
     <span class="ident">message</span>.<span class="ident">id</span> <span class="op">=</span> <span class="ident">update</span>.<span class="ident">id</span>;
     <span class="ident">message</span>.<span class="ident">channel_id</span> <span class="op">=</span> <span class="ident">update</span>.<span class="ident">channel_id</span>;
@@ -305,7 +309,9 @@
 <span class="doccomment">/// feature.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EditTracker</span> {
+    <span class="doccomment">/// Duration after which cached messages can be purged</span>
     <span class="ident">max_duration</span>: <span class="ident">std::time::Duration</span>,
+    <span class="doccomment">/// Cache, which associates user messages to the corresponding bot response message</span>
     <span class="ident">cache</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">serenity::Message</span>, <span class="ident">serenity::Message</span>)<span class="op">&gt;</span>,
 }
 
@@ -507,5 +513,5 @@
     }))
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

@@ -199,7 +199,13 @@
 <span id="197">197</span>
 <span id="198">198</span>
 <span id="199">199</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Contains the built-in help command and surrounding infrastructure</span>
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// Optional configuration for how the help message from [`help()`] looks</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HelpConfiguration</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -222,6 +228,7 @@
     }
 }
 
+<span class="doccomment">/// Code for printing help of a specific command (e.g. `~help my_command`)</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">help_single_command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">command_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
@@ -257,6 +264,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
+<span class="doccomment">/// Code for printing an overview of all commands (e.g. `~help`)</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">help_all_commands</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">config</span>: <span class="ident">HelpConfiguration</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
@@ -399,5 +407,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

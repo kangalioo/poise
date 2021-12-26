@@ -200,7 +200,11 @@
 <span id="198">198</span>
 <span id="199">199</span>
 <span id="200">200</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span id="201">201</span>
+<span id="202">202</span>
+</pre><pre class="rust"><code><span class="doccomment">//! A builder struct that allows easy and readable creation of a [`crate::Framework`]</span>
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BoxFuture</span>;
 
 <span class="doccomment">/// A builder to configure and run a framework.</span>
@@ -213,6 +217,7 @@
 <span class="doccomment">/// Before starting, the builder will make an HTTP request to retrieve the bot&#39;s application ID and</span>
 <span class="doccomment">/// owner.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FrameworkBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Callback for user data setup</span>
     <span class="ident">user_data_setup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
         <span class="ident">Box</span><span class="op">&lt;</span>
             <span class="kw">dyn</span> <span class="ident">Send</span>
@@ -224,10 +229,15 @@
                 ) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="op">&gt;</span>,
     <span class="op">&gt;</span>,
+    <span class="doccomment">/// Framework options</span>
     <span class="ident">options</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::FrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Client settings that will be applied to the ClientBuilder before initializing the framework</span>
     <span class="ident">client_settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="ident">serenity::ClientBuilder</span>) -&gt; <span class="ident">serenity::ClientBuilder</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Discord bot token</span>
     <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Requested gateway intents for the bot</span>
     <span class="ident">intents</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::GatewayIntents</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// List of framework commands</span>
     <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
@@ -370,13 +380,7 @@
         }
 
         <span class="comment">// Create framework with specified settings</span>
-        <span class="ident"><span class="kw">crate</span>::Framework::new</span>(
-            <span class="ident">serenity::ApplicationId</span>(<span class="ident">application_info</span>.<span class="ident">id</span>.<span class="number">0</span>),
-            <span class="ident">client_builder</span>,
-            <span class="ident">user_data_setup</span>,
-            <span class="ident">options</span>,
-        )
-        .<span class="kw">await</span>
+        <span class="ident"><span class="kw">crate</span>::Framework::new</span>(<span class="ident">client_builder</span>, <span class="ident">user_data_setup</span>, <span class="ident">options</span>).<span class="kw">await</span>
     }
 
     <span class="doccomment">/// Start the framework with the specified configuration.</span>
@@ -401,5 +405,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

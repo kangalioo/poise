@@ -132,6 +132,10 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Stores everything specific to application commands.</span>
 
 <span class="kw">mod</span> <span class="ident">structs</span>;
@@ -142,6 +146,8 @@
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
+<span class="doccomment">/// Sends the message, specified via [`crate::CreateReply`], to the interaction initial response</span>
+<span class="doccomment">/// endpoint</span>
 <span class="kw">fn</span> <span class="ident">send_as_initial_response</span>(
     <span class="ident">data</span>: <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="ident">allowed_mentions</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">serenity::CreateAllowedMentions</span><span class="op">&gt;</span>,
@@ -178,6 +184,8 @@
     }
 }
 
+<span class="doccomment">/// Sends the message, specified via [`crate::CreateReply`], to the interaction followup response</span>
+<span class="doccomment">/// endpoint</span>
 <span class="kw">fn</span> <span class="ident">send_as_followup_response</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
     <span class="ident">data</span>: <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="ident">allowed_mentions</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">serenity::CreateAllowedMentions</span><span class="op">&gt;</span>,
@@ -265,5 +273,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

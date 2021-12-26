@@ -183,8 +183,19 @@
 <span id="181">181</span>
 <span id="182">182</span>
 <span id="183">183</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Dispatches interactions onto framework commands</span>
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+
+<span class="doccomment">/// Check if the interaction with the given name and arguments matches any framework command</span>
 <span class="kw">fn</span> <span class="ident">find_matching_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">interaction_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     <span class="ident">interaction_options</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
@@ -213,6 +224,8 @@
     })
 }
 
+<span class="doccomment">/// Given an interaction, finds the matching framework command and checks if the user is allowed</span>
+<span class="doccomment">/// access</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">extract_command_and_run_checks</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
@@ -239,7 +252,7 @@
     })<span class="question-mark">?</span>;
 
     <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::ApplicationContext</span> {
-        <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">get_user_data</span>().<span class="kw">await</span>,
+        <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">user_data</span>().<span class="kw">await</span>,
         <span class="ident">discord</span>: <span class="ident">ctx</span>,
         <span class="ident">framework</span>,
         <span class="ident">interaction</span>,
@@ -254,6 +267,7 @@
     <span class="prelude-val">Ok</span>((<span class="ident">ctx</span>, <span class="ident">leaf_interaction_options</span>))
 }
 
+<span class="doccomment">/// Dispatches this interaction onto framework commands, i.e. runs the associated command</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">dispatch_interaction</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
@@ -315,6 +329,8 @@
     <span class="ident">action_result</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">ctx</span>.<span class="ident">command</span>)))
 }
 
+<span class="doccomment">/// Dispatches this interaction onto framework commands, i.e. runs the associated autocomplete</span>
+<span class="doccomment">/// callback</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">dispatch_autocomplete</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
@@ -367,5 +383,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

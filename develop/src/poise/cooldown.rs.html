@@ -102,7 +102,17 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Infrastructure for command cooldowns</span>
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="comment">// I usually don&#39;t really do imports, but these are very convenient</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::util::OrderedMap</span>;
 <span class="kw">use</span> <span class="ident">std::time</span>::{<span class="ident">Duration</span>, <span class="ident">Instant</span>};
@@ -128,12 +138,18 @@
 <span class="doccomment">/// cooldown handler.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Cooldowns</span> {
+    <span class="doccomment">/// Stores the cooldown durations</span>
     <span class="ident">cooldown</span>: <span class="ident">CooldownConfig</span>,
 
+    <span class="doccomment">/// Stores the timestamp of the last global invocation</span>
     <span class="ident">global_invocation</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Instant</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Stores the timestamps of the last invocation per user</span>
     <span class="ident">user_invocations</span>: <span class="ident">OrderedMap</span><span class="op">&lt;</span><span class="ident">serenity::UserId</span>, <span class="ident">Instant</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Stores the timestamps of the last invocation per guild</span>
     <span class="ident">guild_invocations</span>: <span class="ident">OrderedMap</span><span class="op">&lt;</span><span class="ident">serenity::GuildId</span>, <span class="ident">Instant</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Stores the timestamps of the last invocation per channel</span>
     <span class="ident">channel_invocations</span>: <span class="ident">OrderedMap</span><span class="op">&lt;</span><span class="ident">serenity::ChannelId</span>, <span class="ident">Instant</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Stores the timestamps of the last invocation per member (user and guild)</span>
     <span class="ident">member_invocations</span>: <span class="ident">OrderedMap</span><span class="op">&lt;</span>(<span class="ident">serenity::UserId</span>, <span class="ident">serenity::GuildId</span>), <span class="ident">Instant</span><span class="op">&gt;</span>,
 }
 
@@ -205,5 +221,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

@@ -286,10 +286,9 @@
 <span id="284">284</span>
 <span id="285">285</span>
 <span id="286">286</span>
-<span id="287">287</span>
-<span id="288">288</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
+<span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::missing_docs_in_private_items</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::type_complexity</span>)]</span>
 
 <span class="doccomment">/*!
@@ -508,9 +507,6 @@ underlying this framework, so that&#39;s what I chose.
 <span class="kw">mod</span> <span class="ident">slash</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slash</span>::<span class="kw-2">*</span>;
 
-<span class="kw">mod</span> <span class="ident">event</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::{<span class="ident">Event</span>, <span class="ident">EventWrapper</span>};
-
 <span class="kw">mod</span> <span class="ident">structs</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">structs</span>::<span class="kw-2">*</span>;
 
@@ -577,5 +573,5 @@ underlying this framework, so that&#39;s what I chose.
 <span class="doccomment">/// An owned future has the `&#39;static` lifetime.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

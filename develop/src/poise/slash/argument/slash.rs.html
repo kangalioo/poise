@@ -343,11 +343,6 @@
 <span id="341">341</span>
 <span id="342">342</span>
 <span id="343">343</span>
-<span id="344">344</span>
-<span id="345">345</span>
-<span id="346">346</span>
-<span id="347">347</span>
-<span id="348">348</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Parse received slash command arguments into Rust types.</span>
 
 <span class="kw">use</span> <span class="ident">std::convert</span>::{<span class="ident">TryFrom</span>, <span class="ident">TryInto</span>};
@@ -398,11 +393,6 @@
         }
     }
 }
-
-<span class="macro">macro_rules!</span> <span class="ident">specialized</span> {
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; {};
-}
-<span class="macro">specialized!</span> {}
 
 <span class="doccomment">/// Implement this trait on types that you want to use as a slash command parameter.</span>
 <span class="attribute">#[<span class="ident">async_trait::async_trait</span>]</span>
@@ -583,7 +573,7 @@
     }
 }
 
-<span class="comment">// Implement slash argument for a model type that is represented in interactions via an ID</span>
+<span class="doccomment">/// Implements SlashArgumentHack for a model type that is represented in interactions via an ID</span>
 <span class="macro">macro_rules!</span> <span class="ident">impl_slash_argument</span> {
     (<span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">slash_param_type</span>:<span class="ident">ident</span>) =&gt; {
         <span class="attribute">#[<span class="ident">async_trait::async_trait</span>]</span>
@@ -697,5 +687,5 @@ let (arg1, arg2) = poise::parse_slash_args!(
     };
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

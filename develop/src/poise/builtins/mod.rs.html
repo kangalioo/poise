@@ -267,6 +267,10 @@
 <span id="265">265</span>
 <span id="266">266</span>
 <span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -296,8 +300,8 @@
     <span class="kw">match</span> <span class="ident">error</span> {
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Setup</span> { <span class="ident">error</span> } =&gt; <span class="macro">println!</span>(<span class="string">&quot;Error in user data setup: {}&quot;</span>, <span class="ident">error</span>),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; <span class="macro">println!</span>(
-            <span class="string">&quot;User event listener encountered an error on {} event: {}&quot;</span>,
-            <span class="ident">event</span>.<span class="ident">name</span>(),
+            <span class="string">&quot;User event listener encountered an error on {:?} event: {}&quot;</span>,
+            <span class="ident">event</span>.<span class="ident">event_type</span>(),
             <span class="ident">error</span>
         ),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
@@ -488,9 +492,13 @@
         }
     }
 
+    <span class="doccomment">/// Stores details of a guild for the purposes of listing it in the bot guild list</span>
     <span class="kw">struct</span> <span class="ident">Guild</span> {
+        <span class="doccomment">/// Name of the guild</span>
         <span class="ident">name</span>: <span class="ident">String</span>,
+        <span class="doccomment">/// Number of members in the guild</span>
         <span class="ident">num_members</span>: <span class="ident">u64</span>,
+        <span class="doccomment">/// Whether the guild is public</span>
         <span class="ident">is_public</span>: <span class="ident">bool</span>,
     }
 
@@ -535,5 +543,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

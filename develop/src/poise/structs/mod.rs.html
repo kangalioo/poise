@@ -345,6 +345,8 @@
 <span id="343">343</span>
 <span id="344">344</span>
 <span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -514,6 +516,8 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Serializes this Command into an application command option, which is the form which Discord</span>
+    <span class="doccomment">/// requires subcommands to be in</span>
     <span class="kw">fn</span> <span class="ident">create_as_subcommand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateApplicationCommandOption</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">slash_action</span><span class="question-mark">?</span>;
 
@@ -623,7 +627,7 @@
         <span class="doccomment">/// Error which was thrown in the listener code</span>
         <span class="ident">error</span>: <span class="ident">E</span>,
         <span class="doccomment">/// Which event was being processed when the error occurred</span>
-        <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Event</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+        <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Event</span>,
     },
     <span class="doccomment">/// Error occured during command execution</span>
     <span class="ident">Command</span> {
@@ -691,5 +695,5 @@
     },
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>
