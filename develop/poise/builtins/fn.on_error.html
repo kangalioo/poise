@@ -76,7 +76,7 @@ how to handle this, for example:</p>
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">event_type</span>(),
+                <span class="ident">event</span>.<span class="ident">name</span>(),
                 <span class="ident">error</span>
             );
         }

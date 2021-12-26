@@ -187,6 +187,10 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds prefix-command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -199,6 +203,8 @@
     <span class="kw">pub</span> <span class="ident">discord</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
     <span class="doccomment">/// The invoking user message</span>
     <span class="kw">pub</span> <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
+    <span class="doccomment">/// Command name used by the user to invoke this command</span>
+    <span class="kw">pub</span> <span class="ident">invoked_command_name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
     <span class="doccomment">/// Prefix used by the user to invoke this command</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
     <span class="doccomment">/// Read-only reference to the framework</span>
@@ -227,6 +233,7 @@
         <span class="kw">let</span> <span class="self">Self</span> {
             <span class="ident">discord</span>: <span class="kw">_</span>,
             <span class="ident">msg</span>,
+            <span class="ident">invoked_command_name</span>,
             <span class="ident">prefix</span>,
             <span class="ident">framework</span>: <span class="kw">_</span>,
             <span class="ident">command</span>: <span class="kw">_</span>,
@@ -236,6 +243,7 @@
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixContext&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;discord&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;serenity Context&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;msg&quot;</span>, <span class="ident">msg</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;invoked_command_name&quot;</span>, <span class="ident">invoked_command_name</span>)
             .<span class="ident">field</span>(<span class="string">&quot;prefix&quot;</span>, <span class="ident">prefix</span>)
             .<span class="ident">field</span>(<span class="string">&quot;framework&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Framework&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;command&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Command&gt;&quot;</span>)

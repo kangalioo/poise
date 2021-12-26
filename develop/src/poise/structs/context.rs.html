@@ -220,6 +220,17 @@
 <span id="218">218</span>
 <span id="219">219</span>
 <span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Just contains Context and PartialContext structs</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -305,9 +316,7 @@
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
         <span class="ident"><span class="kw">crate</span>::send_reply</span>(<span class="self">self</span>, <span class="ident">builder</span>).<span class="kw">await</span>
     }
-}
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Return the stored [`serenity::Context`] within the underlying context type.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">discord</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span> {
         <span class="kw">match</span> <span class="self">self</span> {
@@ -408,6 +417,19 @@
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">Context::Prefix</span>(<span class="ident">ctx</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">prefix</span>,
             <span class="ident">Context::Application</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;/&quot;</span>,
+        }
+    }
+
+    <span class="doccomment">/// Returns the command name that this command was invoked with</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Mainly useful in prefix context, for example to check whether a command alias was used.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In slash contexts, the given command name will always be returned verbatim, since there are</span>
+    <span class="doccomment">/// no slash command aliases and the user has no control over spelling</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invoked_command_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">ctx</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">invoked_command_name</span>,
+            <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">ctx</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">interaction</span>.<span class="ident">data</span>().<span class="ident">name</span>,
         }
     }
 }

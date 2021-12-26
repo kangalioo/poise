@@ -286,6 +286,9 @@
 <span id="284">284</span>
 <span id="285">285</span>
 <span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::missing_docs_in_private_items</span>)]</span>
@@ -506,6 +509,9 @@ underlying this framework, so that&#39;s what I chose.
 
 <span class="kw">mod</span> <span class="ident">slash</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slash</span>::<span class="kw-2">*</span>;
+
+<span class="kw">mod</span> <span class="ident">event</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::{<span class="ident">Event</span>, <span class="ident">EventWrapper</span>};
 
 <span class="kw">mod</span> <span class="ident">structs</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">structs</span>::<span class="kw-2">*</span>;

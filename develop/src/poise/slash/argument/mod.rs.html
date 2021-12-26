@@ -13,10 +13,16 @@
 <span id="11">11</span>
 <span id="12">12</span>
 <span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Application command argument handling code</span>
 
-<span class="kw">mod</span> <span class="ident">slash</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slash</span>::<span class="kw-2">*</span>;
+<span class="kw">mod</span> <span class="ident">slash_macro</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slash_macro</span>::<span class="kw-2">*</span>;
+
+<span class="kw">mod</span> <span class="ident">slash_trait</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slash_trait</span>::<span class="kw-2">*</span>;
 
 <span class="kw">mod</span> <span class="ident">context_menu</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">context_menu</span>::<span class="kw-2">*</span>;

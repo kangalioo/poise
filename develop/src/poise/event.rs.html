@@ -102,6 +102,7 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
+<span id="103">103</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Provides a utility EventHandler that generates [`Event`] enum instances for incoming events.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -115,6 +116,7 @@
     <span class="comment">// gotta have this generic bound in the struct as well, or type inference will break down the line</span>
     <span class="ident">F</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Fn</span>(<span class="ident">serenity::Context</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, ()<span class="op">&gt;</span>;
 
+<span class="doccomment">/// Small macro to concisely generate the EventWrapper code while handling every possible event</span>
 <span class="macro">macro_rules!</span> <span class="ident">event</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lt1</span>:<span class="ident">lifetime</span> $(
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_name</span>:<span class="ident">ident</span> $(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lt2</span>:<span class="ident">lifetime</span><span class="op">&gt;</span>)<span class="question-mark">?</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant_name</span>:<span class="ident">ident</span> { $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg_name</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg_type</span>:<span class="ident">ty</span> ),<span class="op">*</span> },
@@ -205,5 +207,5 @@
     <span class="ident">interaction_create</span> =&gt; <span class="ident">InteractionCreate</span> { <span class="ident">interaction</span>: <span class="ident">serenity::Interaction</span> },
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (475b00aa4 2021-12-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (51e8031e1 2021-12-25)" ></div>
 </body></html>

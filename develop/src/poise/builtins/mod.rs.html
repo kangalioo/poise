@@ -300,8 +300,8 @@
     <span class="kw">match</span> <span class="ident">error</span> {
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Setup</span> { <span class="ident">error</span> } =&gt; <span class="macro">println!</span>(<span class="string">&quot;Error in user data setup: {}&quot;</span>, <span class="ident">error</span>),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; <span class="macro">println!</span>(
-            <span class="string">&quot;User event listener encountered an error on {:?} event: {}&quot;</span>,
-            <span class="ident">event</span>.<span class="ident">event_type</span>(),
+            <span class="string">&quot;User event listener encountered an error on {} event: {}&quot;</span>,
+            <span class="ident">event</span>.<span class="ident">name</span>(),
             <span class="ident">error</span>
         ),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
