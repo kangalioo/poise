@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `examples&#x2F;serenity_example_port&#x2F;main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href='../../serenity_example_port/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container rust-logo" href='../../serenity_example_port/index.html'><img src='../../rust-logo.png' alt='logo'></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href="../../serenity_example_port/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../serenity_example_port/index.html"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -657,6 +658,12 @@
 <span id="656">656</span>
 <span id="657">657</span>
 <span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Requires the &#39;framework&#39; feature flag be enabled in your project&#39;s</span>
 <span class="doccomment">//! `Cargo.toml`.</span>
 <span class="doccomment">//!</span>
@@ -790,11 +797,9 @@ If you want more information about a specific command, just pass the command as 
 }
 
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">pre_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
-    <span class="kw">let</span> <span class="ident">command_name</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">map_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>, <span class="op">|</span><span class="ident">cmd</span><span class="op">|</span> <span class="ident">cmd</span>.<span class="ident">name</span>());
-
     <span class="macro">println!</span>(
         <span class="string">&quot;Got command &#39;{}&#39; by user &#39;{}&#39;&quot;</span>,
-        <span class="ident">command_name</span>,
+        <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>,
         <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>
     );
 
@@ -802,12 +807,14 @@ If you want more information about a specific command, just pass the command as 
     <span class="comment">// the command&#39;s name does not exist in the counter, add a default</span>
     <span class="comment">// value of 0.</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">command_counter</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">data</span>().<span class="ident">command_counter</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">command_counter</span>.<span class="ident">entry</span>(<span class="ident">command_name</span>.<span class="ident">to_string</span>()).<span class="ident">or_insert</span>(<span class="number">0</span>);
+    <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">command_counter</span>
+        .<span class="ident">entry</span>(<span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>.<span class="ident">to_string</span>())
+        .<span class="ident">or_insert</span>(<span class="number">0</span>);
     <span class="kw-2">*</span><span class="ident">entry</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 }
 
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">post_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
-    <span class="macro">println!</span>(<span class="string">&quot;Processed command &#39;{}&#39;&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>());
+    <span class="macro">println!</span>(<span class="string">&quot;Processed command &#39;{}&#39;&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>);
 }
 
 <span class="comment">// TODO: unify the command checks in poise::FrameworkOptions and then implement a command check here</span>
@@ -816,23 +823,27 @@ If you want more information about a specific command, just pass the command as 
 <span class="comment">// true // if `check` returns false, command processing doesn&#39;t happen.</span>
 <span class="comment">// ```</span>
 
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">Error</span>, <span class="ident">ctx</span>: <span class="ident">poise::ErrorContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
-    <span class="kw">match</span> <span class="ident">ctx</span> {
-        <span class="ident">poise::ErrorContext::Command</span>(<span class="ident">ctx</span>) =&gt; {
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
+    <span class="kw">match</span> <span class="ident">error</span> {
+        <span class="ident">poise::FrameworkError::Command</span> { <span class="ident">error</span>, <span class="ident">ctx</span> } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Command &#39;{}&#39; returned error {:?}&quot;</span>,
-                <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>(),
+                <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">name</span>,
                 <span class="ident">error</span>
             );
         }
-        <span class="ident">poise::ErrorContext::Listener</span>(<span class="ident">event</span>) =&gt; {
+        <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; {
             <span class="macro">println!</span>(
-                <span class="string">&quot;Listener returned error during {} event: {:?}&quot;</span>,
+                <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
                 <span class="ident">event</span>.<span class="ident">name</span>(),
                 <span class="ident">error</span>
             );
         }
-        <span class="kw">_</span> =&gt; {}
+        <span class="ident">error</span> =&gt; {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">poise::builtins::on_error</span>(<span class="ident">error</span>).<span class="kw">await</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Error while handling error: {}&quot;</span>, <span class="ident">e</span>)
+            }
+        }
     }
 }
 
@@ -891,10 +902,39 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span class="attribute">#[<span class="ident">tokio::main</span>]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
+            <span class="comment">// `fn() -&gt; poise::Command`.</span>
+            <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
+            <span class="comment">// command definition instance to pass to the framework</span>
+            <span class="ident">help</span>(),
+            <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
+            <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
+            <span class="comment">// changing a parameter type, you should call this function.</span>
+            <span class="ident">register</span>(),
+            <span class="ident">about</span>(),
+            <span class="ident">am_i_admin</span>(),
+            <span class="ident">say</span>(),
+            <span class="ident">commands</span>(),
+            <span class="ident">ping</span>(),
+            <span class="ident">latency</span>(),
+            <span class="ident">some_long_command</span>(),
+            <span class="ident">poise::Command</span> {
+                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
+                ..<span class="ident">upper_command</span>()
+            },
+            <span class="ident">bird</span>(),
+            <span class="ident">cat</span>(),
+            <span class="ident">dog</span>(),
+            <span class="ident">multiply</span>(),
+            <span class="ident">slow_mode</span>(),
+        ],
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="ident">event_listener</span>(<span class="ident">ctx</span>, <span class="ident">event</span>, <span class="ident">framework</span>, <span class="ident">user_data</span>))
         },
-        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span>, <span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>, <span class="ident">ctx</span>)),
+        <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
         <span class="comment">// Set a function to be called prior to each command execution. This</span>
         <span class="comment">// provides all context of the command that would also be passed to the actual command code</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">pre_command</span>(<span class="ident">ctx</span>)),
@@ -930,33 +970,6 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
                 })
             })
         })
-        <span class="comment">// The `#[poise::command(prefix_command, slash_command)]` macro transforms the function into</span>
-        <span class="comment">// `fn() -&gt; poise::CommandDefinition`.</span>
-        <span class="comment">// Therefore, you need to call the command function without any arguments to get the</span>
-        <span class="comment">// command definition instance to pass to the framework</span>
-        .<span class="ident">command</span>(<span class="ident">help</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        <span class="comment">// This function registers slash commands on Discord. When you change something about a</span>
-        <span class="comment">// command signature, for example by changing its name, adding or removing parameters, or</span>
-        <span class="comment">// changing a parameter type, you should call this function.</span>
-        .<span class="ident">command</span>(<span class="ident">register</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">about</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">am_i_admin</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">say</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">commands</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">ping</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">latency</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">some_long_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">upper_command</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-            <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-            <span class="comment">// Subcommands are also specified here, inside the builder</span>
-            <span class="ident">f</span>.<span class="ident">subcommand</span>(<span class="ident">sub</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        })
-        .<span class="ident">command</span>(<span class="ident">bird</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">cat</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">dog</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">multiply</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">command</span>(<span class="ident">slow_mode</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">expect</span>(<span class="string">&quot;Client error&quot;</span>);
@@ -1316,5 +1329,5 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b42deacc 2021-12-09)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
 </body></html>

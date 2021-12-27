@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;framework&#x2F;dispatch&#x2F;common.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>common.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../scrape-examples.js"></script><script defer src="../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href='../../../../poise/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container rust-logo" href='../../../../poise/index.html'><img src='../../../../rust-logo.png' alt='logo'></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href="../../../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.png" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../poise/index.html"><img class="rust-logo" src="../../../../rust-logo.png" alt="logo"></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -131,28 +132,9 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+</pre><pre class="rust"><code><span class="doccomment">//! Prefix and slash agnostic utilities for dispatching incoming events onto framework commands</span>
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// Retrieves user permissions in the given channel. If unknown, returns None. If in DMs, returns</span>
 <span class="doccomment">/// `Permissions::all()`.</span>
@@ -195,116 +177,93 @@
     <span class="ident">guild</span>.<span class="ident">user_permissions_in</span>(<span class="ident">channel</span>, <span class="kw-2">&amp;</span><span class="ident">member</span>).<span class="ident">ok</span>()
 }
 
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">check_required_permissions_and_owners_only</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+<span class="doccomment">/// Retrieves the set of permissions that are lacking, relative to the given required permission set</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Returns None if permissions couldn&#39;t be retrieved</span>
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">missing_permissions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="ident">user</span>: <span class="ident">serenity::UserId</span>,
     <span class="ident">required_permissions</span>: <span class="ident">serenity::Permissions</span>,
-    <span class="ident">owners_only</span>: <span class="ident">bool</span>,
-) -&gt; <span class="ident">bool</span> {
-    <span class="kw">if</span> <span class="ident">owners_only</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">owners</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span>) {
-        <span class="kw">return</span> <span class="bool-val">false</span>;
+) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::Permissions</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="ident">required_permissions</span>.<span class="ident">is_empty</span>() {
+        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">serenity::Permissions::empty</span>());
     }
 
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">required_permissions</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">user_permissions</span> <span class="op">=</span> <span class="ident">user_permissions</span>(
-            <span class="ident">ctx</span>.<span class="ident">discord</span>(),
-            <span class="ident">ctx</span>.<span class="ident">guild_id</span>(),
-            <span class="ident">ctx</span>.<span class="ident">channel_id</span>(),
-            <span class="ident">ctx</span>.<span class="ident">discord</span>().<span class="ident">cache</span>.<span class="ident">current_user_id</span>(),
-        )
-        .<span class="kw">await</span>;
-        <span class="kw">match</span> <span class="ident">user_permissions</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">perms</span>) =&gt; {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">perms</span>.<span class="ident">contains</span>(<span class="ident">required_permissions</span>) {
-                    <span class="kw">return</span> <span class="bool-val">false</span>;
-                }
-            }
-            <span class="comment">// better safe than sorry: when perms are unknown, restrict access</span>
-            <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="bool-val">true</span>
+    <span class="kw">let</span> <span class="ident">permissions</span> <span class="op">=</span> <span class="ident">user_permissions</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="ident">ctx</span>.<span class="ident">guild_id</span>(), <span class="ident">ctx</span>.<span class="ident">channel_id</span>(), <span class="ident">user</span>).<span class="kw">await</span>;
+    <span class="prelude-val">Some</span>(<span class="ident">required_permissions</span> <span class="op">-</span> <span class="ident">permissions</span><span class="question-mark">?</span>)
 }
 
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">check_missing_bot_permissions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="ident">required_bot_permissions</span>: <span class="ident">serenity::Permissions</span>,
-) -&gt; <span class="ident">serenity::Permissions</span> {
-    <span class="kw">let</span> <span class="ident">user_permissions</span> <span class="op">=</span> <span class="ident">user_permissions</span>(
-        <span class="ident">ctx</span>.<span class="ident">discord</span>(),
-        <span class="ident">ctx</span>.<span class="ident">guild_id</span>(),
-        <span class="ident">ctx</span>.<span class="ident">channel_id</span>(),
-        <span class="ident">ctx</span>.<span class="ident">discord</span>().<span class="ident">cache</span>.<span class="ident">current_user_id</span>(),
-    )
-    .<span class="kw">await</span>;
-    <span class="kw">match</span> <span class="ident">user_permissions</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">perms</span>) =&gt; <span class="ident">required_bot_permissions</span> <span class="op">-</span> <span class="ident">perms</span>,
-        <span class="comment">// When in doubt, just let it run. Not getting fancy missing permissions errors is better</span>
-        <span class="comment">// than the command not executing at all</span>
-        <span class="prelude-val">None</span> =&gt; <span class="ident">serenity::Permissions::empty</span>(),
+<span class="doccomment">/// Checks if the invoker is allowed to execute this command at this point in time</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_lifetimes</span>)]</span> <span class="comment">// false positive (clippy issue 7271)</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">check_permissions_and_cooldown</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="ident">cmd</span>.<span class="ident">owners_only</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">owners</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span>) {
+        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::NotAnOwner</span> { <span class="ident">ctx</span> });
     }
-}
 
-<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">check_permissions_and_cooldown</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::CommandId</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, (<span class="ident">E</span>, <span class="ident"><span class="kw">crate</span>::CommandErrorLocation</span>)<span class="op">&gt;</span> {
     <span class="comment">// Make sure that user has required permissions</span>
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">check_required_permissions_and_owners_only</span>(<span class="ident">ctx</span>, <span class="ident">cmd</span>.<span class="ident">required_permissions</span>, <span class="ident">cmd</span>.<span class="ident">owners_only</span>)
-        .<span class="kw">await</span>
-    {
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+    <span class="kw">match</span> <span class="ident">missing_permissions</span>(<span class="ident">ctx</span>, <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span>, <span class="ident">cmd</span>.<span class="ident">required_permissions</span>).<span class="kw">await</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">missing_permissions</span>) <span class="kw">if</span> <span class="ident">missing_permissions</span>.<span class="ident">is_empty</span>() =&gt; {}
+        <span class="prelude-val">Some</span>(<span class="ident">missing_permissions</span>) =&gt; {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::MissingUserPermissions</span> {
+                <span class="ident">ctx</span>,
+                <span class="ident">missing_permissions</span>: <span class="prelude-val">Some</span>(<span class="ident">missing_permissions</span>),
+            })
+        }
+        <span class="comment">// Better safe than sorry: when perms are unknown, restrict access</span>
+        <span class="prelude-val">None</span> =&gt; {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::MissingUserPermissions</span> {
+                <span class="ident">ctx</span>,
+                <span class="ident">missing_permissions</span>: <span class="prelude-val">None</span>,
+            })
+        }
     }
 
     <span class="comment">// Before running any pre-command checks, make sure the bot has the permissions it needs</span>
-    <span class="kw">let</span> <span class="ident">missing_bot_permissions</span> <span class="op">=</span>
-        <span class="ident">check_missing_bot_permissions</span>(<span class="ident">ctx</span>, <span class="ident">cmd</span>.<span class="ident">required_bot_permissions</span>).<span class="kw">await</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">missing_bot_permissions</span>.<span class="ident">is_empty</span>() {
-        (<span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">missing_bot_permissions_handler</span>)(<span class="ident">ctx</span>, <span class="ident">missing_bot_permissions</span>)
-            .<span class="kw">await</span>
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                (
-                    <span class="ident">e</span>,
-                    <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::MissingBotPermissionsCallback</span>,
-                )
-            })<span class="question-mark">?</span>;
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+    <span class="kw">let</span> <span class="ident">bot_user_id</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">discord</span>().<span class="ident">cache</span>.<span class="ident">current_user_id</span>();
+    <span class="kw">match</span> <span class="ident">missing_permissions</span>(<span class="ident">ctx</span>, <span class="ident">bot_user_id</span>, <span class="ident">cmd</span>.<span class="ident">required_bot_permissions</span>).<span class="kw">await</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">missing_permissions</span>) <span class="kw">if</span> <span class="ident">missing_permissions</span>.<span class="ident">is_empty</span>() =&gt; {}
+        <span class="prelude-val">Some</span>(<span class="ident">missing_permissions</span>) =&gt; {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::MissingBotPermissions</span> {
+                <span class="ident">ctx</span>,
+                <span class="ident">missing_permissions</span>,
+            })
+        }
+        <span class="comment">// When in doubt, just let it run. Not getting fancy missing permissions errors is better</span>
+        <span class="comment">// than the command not executing at all</span>
+        <span class="prelude-val">None</span> =&gt; {}
     }
 
     <span class="comment">// Only continue if command checks returns true</span>
-    <span class="kw">let</span> <span class="ident">checks_passing</span> <span class="op">=</span> (<span class="op">|</span><span class="op">|</span> <span class="kw">async</span> {
-        <span class="kw">let</span> <span class="ident">global_check_passes</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">command_check</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">check</span>) =&gt; <span class="ident">check</span>(<span class="ident">ctx</span>).<span class="kw">await</span><span class="question-mark">?</span>,
-            <span class="prelude-val">None</span> =&gt; <span class="bool-val">true</span>,
-        };
-
-        <span class="kw">let</span> <span class="ident">command_specific_check_passes</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">check</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">check</span>) =&gt; <span class="ident">check</span>(<span class="ident">ctx</span>).<span class="kw">await</span><span class="question-mark">?</span>,
-            <span class="prelude-val">None</span> =&gt; <span class="bool-val">true</span>,
-        };
-
-        <span class="prelude-val">Ok</span>(<span class="ident">global_check_passes</span> <span class="op">&amp;&amp;</span> <span class="ident">command_specific_check_passes</span>)
-    })()
-    .<span class="kw">await</span>
-    .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> (<span class="ident">e</span>, <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::Check</span>))<span class="question-mark">?</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">checks_passing</span> {
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">check</span>) <span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">check</span>.<span class="ident">or</span>(<span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">command_check</span>) {
+        <span class="kw">match</span> <span class="ident">check</span>(<span class="ident">ctx</span>).<span class="kw">await</span> {
+            <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>) =&gt; {}
+            <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::CommandCheckFailed</span> { <span class="ident">ctx</span>, <span class="ident">error</span>: <span class="prelude-val">None</span> })
+            }
+            <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::CommandCheckFailed</span> {
+                    <span class="ident">error</span>: <span class="prelude-val">Some</span>(<span class="ident">error</span>),
+                    <span class="ident">ctx</span>,
+                })
+            }
+        }
     }
 
     <span class="kw">let</span> <span class="ident">cooldowns</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">cooldowns</span>;
-    <span class="kw">let</span> <span class="ident">cooldown_left</span> <span class="op">=</span> <span class="ident">cooldowns</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">get_wait_time</span>(<span class="ident">ctx</span>);
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cooldown_left</span>) <span class="op">=</span> <span class="ident">cooldown_left</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">callback</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">cooldown_hit</span> {
-            <span class="ident">callback</span>(<span class="ident">ctx</span>, <span class="ident">cooldown_left</span>)
-                .<span class="kw">await</span>
-                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> (<span class="ident">e</span>, <span class="ident"><span class="kw">crate</span>::CommandErrorLocation::CooldownCallback</span>))<span class="question-mark">?</span>;
-        }
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+    <span class="kw">let</span> <span class="ident">remaining_cooldown</span> <span class="op">=</span> <span class="ident">cooldowns</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">remaining_cooldown</span>(<span class="ident">ctx</span>);
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">remaining_cooldown</span>) <span class="op">=</span> <span class="ident">remaining_cooldown</span> {
+        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::CooldownHit</span> {
+            <span class="ident">ctx</span>,
+            <span class="ident">remaining_cooldown</span>,
+        });
     }
     <span class="ident">cooldowns</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">start_cooldown</span>(<span class="ident">ctx</span>);
 
-    <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+    <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b42deacc 2021-12-09)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
 </body></html>

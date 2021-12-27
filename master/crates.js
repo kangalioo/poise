@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["framework_usage","poise","serenity_example_port"];
+window.ALL_CRATES = ["poise"];
