@@ -246,6 +246,12 @@
 <span id="244">244</span>
 <span id="245">245</span>
 <span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -279,6 +285,10 @@
     <span class="kw">pub</span> <span class="ident">subcommands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Main name of the command. Aliases (prefix-only) can be set in [`Self::aliases`].</span>
     <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="doccomment">/// Full name including parent command names.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Initially set to just [`Self::name`] and properly populated when the framework is started.</span>
+    <span class="kw">pub</span> <span class="ident">qualified_name</span>: <span class="ident">String</span>,
     <span class="doccomment">/// A string to identify this particular command within a list of commands.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Can be configured via the [`crate::command`] macro (though it&#39;s probably not needed for most</span>
@@ -351,6 +361,7 @@
             <span class="ident">context_menu_action</span>,
             <span class="ident">subcommands</span>,
             <span class="ident">name</span>,
+            <span class="ident">qualified_name</span>,
             <span class="ident">identifying_name</span>,
             <span class="ident">category</span>,
             <span class="ident">hide_in_help</span>,
@@ -376,6 +387,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;context_menu_action&quot;</span>, <span class="ident">context_menu_action</span>)
             .<span class="ident">field</span>(<span class="string">&quot;subcommands&quot;</span>, <span class="ident">subcommands</span>)
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;qualified_name&quot;</span>, <span class="ident">qualified_name</span>)
             .<span class="ident">field</span>(<span class="string">&quot;identifying_name&quot;</span>, <span class="ident">identifying_name</span>)
             .<span class="ident">field</span>(<span class="string">&quot;category&quot;</span>, <span class="ident">category</span>)
             .<span class="ident">field</span>(<span class="string">&quot;hide_in_help&quot;</span>, <span class="ident">hide_in_help</span>)
@@ -493,5 +505,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (cfa3fe5af 2021-12-31)" ></div>
 </body></html>

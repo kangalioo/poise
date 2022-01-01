@@ -249,6 +249,11 @@
 <span id="247">247</span>
 <span id="248">248</span>
 <span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -436,15 +441,15 @@
     <span class="kw">pub</span> <span class="ident">description</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// `true` is this parameter is required, `false` if it&#39;s optional or variadic</span>
     <span class="kw">pub</span> <span class="ident">required</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If this parameter is a channel, users can only enter these channel types in a slash command</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Prefix commands are currently unaffected by this</span>
+    <span class="kw">pub</span> <span class="ident">channel_types</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">serenity::ChannelType</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Closure that sets this parameter&#39;s type in the given builder</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For example an integer [`CommandParameter`] will store</span>
     <span class="doccomment">/// `|b| b.kind(serenity::ApplicationCommandOptionType::Integer)` as the [`Self::type_setter`]</span>
-    <span class="kw">pub</span> <span class="ident">type_setter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
-        <span class="kw">fn</span>(
-            <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
-        ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>,
-    <span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">type_setter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>)<span class="op">&gt;</span>,
     <span class="doccomment">/// Optionally, a callback that is invoked on autocomplete interactions. This closure should</span>
     <span class="doccomment">/// extract the partial argument from the given JSON value and generate the autocomplete</span>
     <span class="doccomment">/// response which contains the list of autocomplete suggestions.</span>
@@ -471,6 +476,9 @@
             .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
             .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">description</span><span class="question-mark">?</span>)
             .<span class="ident">set_autocomplete</span>(<span class="self">self</span>.<span class="ident">autocomplete_callback</span>.<span class="ident">is_some</span>());
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">channel_types</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">channel_types</span> {
+            <span class="ident">builder</span>.<span class="ident">channel_types</span>(<span class="ident">channel_types</span>);
+        }
         (<span class="self">self</span>.<span class="ident">type_setter</span><span class="question-mark">?</span>)(<span class="kw-2">&amp;mut</span> <span class="ident">builder</span>);
         <span class="prelude-val">Some</span>(<span class="ident">builder</span>)
     }
@@ -482,6 +490,7 @@
             <span class="ident">name</span>,
             <span class="ident">description</span>,
             <span class="ident">required</span>,
+            <span class="ident">channel_types</span>,
             <span class="ident">type_setter</span>,
             <span class="ident">autocomplete_callback</span>,
         } <span class="op">=</span> <span class="self">self</span>;
@@ -490,6 +499,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>)
             .<span class="ident">field</span>(<span class="string">&quot;description&quot;</span>, <span class="ident">description</span>)
             .<span class="ident">field</span>(<span class="string">&quot;required&quot;</span>, <span class="ident">required</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;channel_types&quot;</span>, <span class="ident">channel_types</span>)
             .<span class="ident">field</span>(<span class="string">&quot;type_setter&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">type_setter</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*const</span> ()))
             .<span class="ident">field</span>(
                 <span class="string">&quot;autocomplete_callback&quot;</span>,
@@ -499,5 +509,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (cfa3fe5af 2021-12-31)" ></div>
 </body></html>
