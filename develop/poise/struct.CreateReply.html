@@ -15,24 +15,7 @@
 </div><span id="structfield.ephemeral" class="structfield small-section-header"><a href="#structfield.ephemeral" class="anchor field"></a><code>ephemeral: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><div class="docblock"><p>Whether the message is ephemeral (only has an effect in application commands)</p>
 </div><span id="structfield.components" class="structfield small-section-header"><a href="#structfield.components" class="anchor field"></a><code>components: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/builder/create_components/struct.CreateComponents.html" title="struct serenity::builder::create_components::CreateComponents">CreateComponents</a>&gt;</code></span><div class="docblock"><p>Message components, that is, buttons</p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/reply.rs.html#23-76" title="goto source code">source</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a&gt; <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'a&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.content" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/reply.rs.html#25-28" title="goto source code">source</a></div><a href="#method.content" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.content" class="fnname">content</a>(&amp;mut self, content: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>Self</h4></div></summary><div class="docblock"><p>Set the content of the message.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands.rs.html#110&quot;,&quot;line 110&quot;],[[86,86],&quot;../src/framework_usage/commands.rs.html#192&quot;,&quot;line 192&quot;],[[104,104],&quot;../src/framework_usage/commands.rs.html#210&quot;,&quot;line 210&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#110">line 110</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands.rs.html#127&quot;,&quot;line 127&quot;],[[86,86],&quot;../src/framework_usage/commands.rs.html#209&quot;,&quot;line 209&quot;],[[104,104],&quot;../src/framework_usage/commands.rs.html#227&quot;,&quot;line 227&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#127">line 127</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -135,6 +118,23 @@
 <span>223</span>
 <span>224</span>
 <span>225</span>
+<span>226</span>
+<span>227</span>
+<span>228</span>
+<span>229</span>
+<span>230</span>
+<span>231</span>
+<span>232</span>
+<span>233</span>
+<span>234</span>
+<span>235</span>
+<span>236</span>
+<span>237</span>
+<span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">id</span>();
 
@@ -257,24 +257,7 @@
 }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.embed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/reply.rs.html#33-41" title="goto source code">source</a></div><a href="#method.embed" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.embed" class="fnname">embed</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;mut <a class="struct" href="https://docs.rs/serenity/*/serenity/builder/create_embed/struct.CreateEmbed.html" title="struct serenity::builder::create_embed::CreateEmbed">CreateEmbed</a>) -&gt; &amp;mut <a class="struct" href="https://docs.rs/serenity/*/serenity/builder/create_embed/struct.CreateEmbed.html" title="struct serenity::builder::create_embed::CreateEmbed">CreateEmbed</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>Self</h4></div></summary><div class="docblock"><p>Set an embed for the message.</p>
 <p>Any previously set embed will be overwritten.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands.rs.html#193&quot;,&quot;line 193&quot;],[[22,22],&quot;../src/framework_usage/commands.rs.html#211&quot;,&quot;line 211&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#193">line 193</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>189</span>
-<span>190</span>
-<span>191</span>
-<span>192</span>
-<span>193</span>
-<span>194</span>
-<span>195</span>
-<span>196</span>
-<span>197</span>
-<span>198</span>
-<span>199</span>
-<span>200</span>
-<span>201</span>
-<span>202</span>
-<span>203</span>
-<span>204</span>
-<span>205</span>
-<span>206</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands.rs.html#210&quot;,&quot;line 210&quot;],[[22,22],&quot;../src/framework_usage/commands.rs.html#228&quot;,&quot;line 228&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#210">line 210</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>206</span>
 <span>207</span>
 <span>208</span>
 <span>209</span>
@@ -294,6 +277,23 @@
 <span>223</span>
 <span>224</span>
 <span>225</span>
+<span>226</span>
+<span>227</span>
+<span>228</span>
+<span>229</span>
+<span>230</span>
+<span>231</span>
+<span>232</span>
+<span>233</span>
+<span>234</span>
+<span>235</span>
+<span>236</span>
+<span>237</span>
+<span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_reuse_response</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">image_url</span> <span class="op">=</span> <span class="string">&quot;https://raw.githubusercontent.com/serenity-rs/serenity/current/logo.png&quot;</span>;
     <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
@@ -333,24 +333,7 @@
 }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.components" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/reply.rs.html#46-54" title="goto source code">source</a></div><a href="#method.components" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.components" class="fnname">components</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;mut <a class="struct" href="https://docs.rs/serenity/*/serenity/builder/create_components/struct.CreateComponents.html" title="struct serenity::builder::create_components::CreateComponents">CreateComponents</a>) -&gt; &amp;mut <a class="struct" href="https://docs.rs/serenity/*/serenity/builder/create_components/struct.CreateComponents.html" title="struct serenity::builder::create_components::CreateComponents">CreateComponents</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>Self</h4></div></summary><div class="docblock"><p>Set components (buttons) for this message.</p>
 <p>Any previously set components will be overwritten.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,12],&quot;../src/framework_usage/commands.rs.html#110-118&quot;,&quot;lines 110-118&quot;],[[88,96],&quot;../src/framework_usage/commands.rs.html#194-202&quot;,&quot;lines 194-202&quot;],[[106,114],&quot;../src/framework_usage/commands.rs.html#212-220&quot;,&quot;lines 212-220&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#110-118">lines 110-118</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,12],&quot;../src/framework_usage/commands.rs.html#127-135&quot;,&quot;lines 127-135&quot;],[[88,96],&quot;../src/framework_usage/commands.rs.html#211-219&quot;,&quot;lines 211-219&quot;],[[106,114],&quot;../src/framework_usage/commands.rs.html#229-237&quot;,&quot;lines 229-237&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#127-135">lines 127-135</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -453,6 +436,23 @@
 <span>223</span>
 <span>224</span>
 <span>225</span>
+<span>226</span>
+<span>227</span>
+<span>228</span>
+<span>229</span>
+<span>230</span>
+<span>231</span>
+<span>232</span>
+<span>233</span>
+<span>234</span>
+<span>235</span>
+<span>236</span>
+<span>237</span>
+<span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">id</span>();
 

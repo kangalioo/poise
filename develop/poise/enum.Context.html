@@ -736,7 +736,7 @@ dropped.</p>
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>.<span class="ident">content</span>)</span>.<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[15,15],&quot;../src/framework_usage/commands.rs.html#23&quot;,&quot;line 23&quot;],[[37,37],&quot;../src/framework_usage/commands.rs.html#45&quot;,&quot;line 45&quot;],[[48,48],&quot;../src/framework_usage/commands.rs.html#56&quot;,&quot;line 56&quot;],[[73,73],&quot;../src/framework_usage/commands.rs.html#81&quot;,&quot;line 81&quot;],[[92,92],&quot;../src/framework_usage/commands.rs.html#100&quot;,&quot;line 100&quot;],[[176,176],&quot;../src/framework_usage/commands.rs.html#184&quot;,&quot;line 184&quot;],[[225,225],&quot;../src/framework_usage/commands.rs.html#233&quot;,&quot;line 233&quot;],[[228,228],&quot;../src/framework_usage/commands.rs.html#236&quot;,&quot;line 236&quot;],[[240,240],&quot;../src/framework_usage/commands.rs.html#248&quot;,&quot;line 248&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#23">line 23</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>  8</span>
+</div></div><div class="scraped-example " data-locs="[[[15,15],&quot;../src/framework_usage/commands.rs.html#23&quot;,&quot;line 23&quot;],[[37,37],&quot;../src/framework_usage/commands.rs.html#45&quot;,&quot;line 45&quot;],[[48,48],&quot;../src/framework_usage/commands.rs.html#56&quot;,&quot;line 56&quot;],[[73,73],&quot;../src/framework_usage/commands.rs.html#81&quot;,&quot;line 81&quot;],[[89,89],&quot;../src/framework_usage/commands.rs.html#97&quot;,&quot;line 97&quot;],[[109,109],&quot;../src/framework_usage/commands.rs.html#117&quot;,&quot;line 117&quot;],[[193,193],&quot;../src/framework_usage/commands.rs.html#201&quot;,&quot;line 201&quot;],[[242,242],&quot;../src/framework_usage/commands.rs.html#250&quot;,&quot;line 250&quot;],[[245,245],&quot;../src/framework_usage/commands.rs.html#253&quot;,&quot;line 253&quot;],[[257,257],&quot;../src/framework_usage/commands.rs.html#265&quot;,&quot;line 265&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#23">line 23</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>  8</span>
 <span>  9</span>
 <span> 10</span>
 <span> 11</span>
@@ -980,6 +980,23 @@ dropped.</p>
 <span>249</span>
 <span>250</span>
 <span>251</span>
+<span>252</span>
+<span>253</span>
+<span>254</span>
+<span>255</span>
+<span>256</span>
+<span>257</span>
+<span>258</span>
+<span>259</span>
+<span>260</span>
+<span>261</span>
+<span>262</span>
+<span>263</span>
+<span>264</span>
+<span>265</span>
+<span>266</span>
+<span>267</span>
+<span>268</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">vote</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;What to vote for&quot;</span>]</span> <span class="ident">choice</span>: <span class="ident">String</span>,
@@ -1054,6 +1071,23 @@ dropped.</p>
     <span class="ident">b</span>: <span class="ident">f32</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;Result: {}&quot;</span>, <span class="ident">a</span> <span class="op">+</span> <span class="ident">b</span> <span class="kw">as</span> <span class="ident">f64</span>))</span>.<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="doccomment">/// Adds multiple numbers</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">addmultiple</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;An operand&quot;</span>]</span> <span class="ident">a</span>: <span class="ident">i8</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;An operand&quot;</span>]</span> <span class="ident">b</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;An operand&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">min</span> <span class="op">=</span> <span class="number">1234567890123456_i64</span>]</span>
+    <span class="attribute">#[<span class="ident">max</span> <span class="op">=</span> <span class="number">1234567890987654_i64</span>]</span>
+    <span class="ident">c</span>: <span class="ident">i64</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;Result: {}&quot;</span>, <span class="ident">a</span> <span class="kw">as</span> <span class="ident">i128</span> <span class="op">+</span> <span class="ident">b</span> <span class="kw">as</span> <span class="ident">i128</span> <span class="op">+</span> <span class="ident">c</span> <span class="kw">as</span> <span class="ident">i128</span>))</span>
+        .<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }
@@ -1261,24 +1295,7 @@ dropped.</p>
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.send" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#80-85" title="goto source code">source</a></div><a href="#method.send" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.send" class="fnname">send</a>&lt;'b&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;builder: impl for&lt;'c&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'c mut <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'b&gt;) -&gt; &amp;'c mut <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'b&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="enum.ReplyHandle.html" title="enum poise::ReplyHandle">ReplyHandle</a>&lt;'a&gt;&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt;</h4></div></summary><div class="docblock"><p>Shorthand of <a href="fn.send_reply.html" title="crate::send_reply"><code>crate::send_reply</code></a></p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[3,13],&quot;../src/framework_usage/commands.rs.html#109-119&quot;,&quot;lines 109-119&quot;],[[85,97],&quot;../src/framework_usage/commands.rs.html#191-203&quot;,&quot;lines 191-203&quot;],[[103,115],&quot;../src/framework_usage/commands.rs.html#209-221&quot;,&quot;lines 209-221&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#109-119">lines 109-119</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[3,13],&quot;../src/framework_usage/commands.rs.html#126-136&quot;,&quot;lines 126-136&quot;],[[85,97],&quot;../src/framework_usage/commands.rs.html#208-220&quot;,&quot;lines 208-220&quot;],[[103,115],&quot;../src/framework_usage/commands.rs.html#226-238&quot;,&quot;lines 226-238&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#126-136">lines 126-136</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -1381,6 +1398,23 @@ dropped.</p>
 <span>223</span>
 <span>224</span>
 <span>225</span>
+<span>226</span>
+<span>227</span>
+<span>228</span>
+<span>229</span>
+<span>230</span>
+<span>231</span>
+<span>232</span>
+<span>233</span>
+<span>234</span>
+<span>235</span>
+<span>236</span>
+<span>237</span>
+<span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">id</span>();
 
@@ -2064,24 +2098,7 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,17],&quot;../src/framework_usage/commands.rs.html#123&quot;,&quot;line 123&quot;],[[27,27],&quot;../src/framework_usage/commands.rs.html#133&quot;,&quot;line 133&quot;],[[32,32],&quot;../src/framework_usage/commands.rs.html#138&quot;,&quot;line 138&quot;],[[51,51],&quot;../src/framework_usage/commands.rs.html#157&quot;,&quot;line 157&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#123">line 123</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,17],&quot;../src/framework_usage/commands.rs.html#140&quot;,&quot;line 140&quot;],[[27,27],&quot;../src/framework_usage/commands.rs.html#150&quot;,&quot;line 150&quot;],[[32,32],&quot;../src/framework_usage/commands.rs.html#155&quot;,&quot;line 155&quot;],[[51,51],&quot;../src/framework_usage/commands.rs.html#174&quot;,&quot;line 174&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#140">line 140</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -2118,6 +2135,23 @@ dropped.</p>
 <span>157</span>
 <span>158</span>
 <span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+<span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
+<span>171</span>
+<span>172</span>
+<span>173</span>
+<span>174</span>
+<span>175</span>
+<span>176</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">id</span>();
 
@@ -2773,24 +2807,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.channel_id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#112-117" title="goto source code">source</a></div><a href="#method.channel_id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.channel_id" class="fnname">channel_id</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/serenity/*/serenity/model/id/struct.ChannelId.html" title="struct serenity::model::id::ChannelId">ChannelId</a></h4></div></summary><div class="docblock"><p>Return the channel ID of this context</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-5" class="section-header"><a href="#scraped-examples-5">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[19,19],&quot;../src/framework_usage/commands.rs.html#125&quot;,&quot;line 125&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#125">line 125</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-5" class="section-header"><a href="#scraped-examples-5">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[19,19],&quot;../src/framework_usage/commands.rs.html#142&quot;,&quot;line 142&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#142">line 142</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -2813,6 +2830,23 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>143</span>
 <span>144</span>
 <span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
+<span>152</span>
+<span>153</span>
+<span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">id</span>();
 
@@ -4390,24 +4424,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[18,18],&quot;../src/framework_usage/commands.rs.html#124&quot;,&quot;line 124&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#124">line 124</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[18,18],&quot;../src/framework_usage/commands.rs.html#141&quot;,&quot;line 141&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#141">line 141</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -4430,6 +4447,23 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>143</span>
 <span>144</span>
 <span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
+<span>152</span>
+<span>153</span>
+<span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">id</span>();
 
@@ -4471,24 +4505,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#152-171" title="goto source code">source</a></div><a href="#method.id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.id" class="fnname">id</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></h4></div></summary><div class="docblock"><p>Return a ID that uniquely identifies this command invocation.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-9" class="section-header"><a href="#scraped-examples-9">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands.rs.html#107&quot;,&quot;line 107&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#107">line 107</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-9" class="section-header"><a href="#scraped-examples-9">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands.rs.html#124&quot;,&quot;line 124&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#124">line 124</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>123</span>
 <span>124</span>
 <span>125</span>
 <span>126</span>
@@ -4511,6 +4528,23 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>143</span>
 <span>144</span>
 <span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
+<span>152</span>
+<span>153</span>
+<span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">boop</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">uuid_boop</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">id</span>()</span>;
 
@@ -4652,7 +4686,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         }
     }
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../src/framework_usage/main.rs.html#56&quot;,&quot;line 56&quot;],[[58,58],&quot;../src/framework_usage/main.rs.html#107&quot;,&quot;line 107&quot;],[[63,63],&quot;../src/framework_usage/main.rs.html#112&quot;,&quot;line 112&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#56">line 56</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../src/framework_usage/main.rs.html#56&quot;,&quot;line 56&quot;],[[59,59],&quot;../src/framework_usage/main.rs.html#108&quot;,&quot;line 108&quot;],[[64,64],&quot;../src/framework_usage/main.rs.html#113&quot;,&quot;line 113&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#56">line 56</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -4735,6 +4769,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>129</span>
 <span>130</span>
 <span>131</span>
+<span>132</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="comment">// This is our custom error handler</span>
     <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
@@ -4761,6 +4796,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
             <span class="ident">commands::add</span>(),
+            <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
             <span class="ident">commands::delete</span>(),
