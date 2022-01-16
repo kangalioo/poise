@@ -175,12 +175,6 @@
 <span id="172">172</span>
 <span id="173">173</span>
 <span id="174">174</span>
-<span id="175">175</span>
-<span id="176">176</span>
-<span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Stores everything specific to application commands.</span>
 
 <span class="kw">mod</span> <span class="ident">structs</span>;
@@ -200,7 +194,7 @@
 ) {
     <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
         <span class="ident">content</span>,
-        <span class="ident">embed</span>,
+        <span class="ident">embeds</span>,
         <span class="ident">attachments</span>: <span class="kw">_</span>, <span class="comment">// serenity doesn&#39;t support attachments in initial response yet</span>
         <span class="ident">components</span>,
         <span class="ident">ephemeral</span>,
@@ -209,9 +203,7 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>) <span class="op">=</span> <span class="ident">content</span> {
         <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>);
     }
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">embed</span>) <span class="op">=</span> <span class="ident">embed</span> {
-        <span class="ident">f</span>.<span class="ident">add_embed</span>(<span class="ident">embed</span>);
-    }
+    <span class="ident">f</span>.<span class="ident">embeds</span>(<span class="ident">embeds</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">allowed_mentions</span>) <span class="op">=</span> <span class="ident">allowed_mentions</span> {
         <span class="ident">f</span>.<span class="ident">allowed_mentions</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
             <span class="kw-2">*</span><span class="ident">f</span> <span class="op">=</span> <span class="ident">allowed_mentions</span>.<span class="ident">clone</span>();
@@ -238,7 +230,7 @@
 ) {
     <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
         <span class="ident">content</span>,
-        <span class="ident">embed</span>,
+        <span class="ident">embeds</span>,
         <span class="ident">attachments</span>,
         <span class="ident">components</span>,
         <span class="ident">ephemeral</span>,
@@ -247,9 +239,7 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>) <span class="op">=</span> <span class="ident">content</span> {
         <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>);
     }
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">embed</span>) <span class="op">=</span> <span class="ident">embed</span> {
-        <span class="ident">f</span>.<span class="ident">add_embed</span>(<span class="ident">embed</span>);
-    }
+    <span class="ident">f</span>.<span class="ident">embeds</span>(<span class="ident">embeds</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">components</span>) <span class="op">=</span> <span class="ident">components</span> {
         <span class="ident">f</span>.<span class="ident">components</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> {
             <span class="ident">c</span>.<span class="number">0</span> <span class="op">=</span> <span class="ident">components</span>.<span class="number">0</span>;
@@ -277,7 +267,7 @@
 ) {
     <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
         <span class="ident">content</span>,
-        <span class="ident">embed</span>,
+        <span class="ident">embeds</span>,
         <span class="ident">attachments</span>: <span class="kw">_</span>, <span class="comment">// no support for attachment edits in serenity yet</span>
         <span class="ident">components</span>,
         <span class="ident">ephemeral</span>: <span class="kw">_</span>, <span class="comment">// can&#39;t edit ephemerality in retrospect</span>
@@ -286,9 +276,7 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>) <span class="op">=</span> <span class="ident">content</span> {
         <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>);
     }
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">embed</span>) <span class="op">=</span> <span class="ident">embed</span> {
-        <span class="ident">f</span>.<span class="ident">add_embed</span>(<span class="ident">embed</span>);
-    }
+    <span class="ident">f</span>.<span class="ident">set_embeds</span>(<span class="ident">embeds</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">components</span>) <span class="op">=</span> <span class="ident">components</span> {
         <span class="ident">f</span>.<span class="ident">components</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> {
             <span class="ident">c</span>.<span class="number">0</span> <span class="op">=</span> <span class="ident">components</span>.<span class="number">0</span>;

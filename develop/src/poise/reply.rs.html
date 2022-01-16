@@ -174,8 +174,8 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Message content</span>
     <span class="kw">pub</span> <span class="ident">content</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Embed, if present</span>
-    <span class="kw">pub</span> <span class="ident">embed</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::CreateEmbed</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Embeds, if present</span>
+    <span class="kw">pub</span> <span class="ident">embeds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">serenity::CreateEmbed</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Message attachments</span>
     <span class="kw">pub</span> <span class="ident">attachments</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">serenity::AttachmentType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Whether the message is ephemeral (only has an effect in application commands)</span>
@@ -191,16 +191,16 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Set an embed for the message.</span>
+    <span class="doccomment">/// Adds an embed to the message.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Any previously set embed will be overwritten.</span>
+    <span class="doccomment">/// Existing embeds are kept.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">embed</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateEmbed</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateEmbed</span>,
     ) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">embed</span> <span class="op">=</span> <span class="ident">serenity::CreateEmbed::default</span>();
         <span class="ident">f</span>(<span class="kw-2">&amp;mut</span> <span class="ident">embed</span>);
-        <span class="self">self</span>.<span class="ident">embed</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">embed</span>);
+        <span class="self">self</span>.<span class="ident">embeds</span>.<span class="ident">push</span>(<span class="ident">embed</span>);
         <span class="self">self</span>
     }
 
