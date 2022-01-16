@@ -269,6 +269,9 @@
 <span id="266">266</span>
 <span id="267">267</span>
 <span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Context</span>, <span class="ident">Error</span>};
 <span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
@@ -376,7 +379,10 @@
     <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;The first choice&quot;</span>]</span>
     <span class="ident">ChoiceA</span>,
     <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;The second choice&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;A single choice can have multiple names&quot;</span>]</span>
     <span class="ident">ChoiceB</span>,
+    <span class="comment">// If no name is given, the variant name is used</span>
+    <span class="ident">ChoiceC</span>,
 }
 
 <span class="doccomment">/// Dummy command to test slash command choice parameters</span>
@@ -538,5 +544,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (ad46af247 2022-01-14)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (ec4bcaac4 2022-01-15)" ></div>
 </body></html>
