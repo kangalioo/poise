@@ -291,6 +291,7 @@
 <span id="288">288</span>
 <span id="289">289</span>
 <span id="290">290</span>
+<span id="291">291</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
@@ -539,7 +540,8 @@ underlying this framework, so that&#39;s what I chose.
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">async_trait::async_trait</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">futures</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">futures_core</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">futures_util</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">poise_macros</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">serenity</span>;
 
