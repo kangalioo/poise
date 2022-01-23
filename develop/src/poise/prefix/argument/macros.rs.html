@@ -390,7 +390,7 @@
                     <span class="kw">let</span> <span class="ident">token</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>);
                     <span class="macro-nonterminal">$</span><span class="macro">crate::_parse_prefix!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">msg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span> =&gt; [ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">error</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">preamble</span>)<span class="op">*</span> <span class="ident">token</span> ]);
                 },
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">error</span> <span class="op">=</span> (<span class="ident">e</span>.<span class="ident">into</span>(), <span class="prelude-val">Some</span>(<span class="ident">input</span>.<span class="ident">to_string</span>())),
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">error</span> <span class="op">=</span> (<span class="ident">e</span>.<span class="ident">into</span>(), <span class="prelude-val">Some</span>(<span class="ident">input</span>.<span class="ident">to_owned</span>())),
             }
         }
     };
@@ -445,7 +445,7 @@
                     <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>;
                     <span class="macro-nonterminal">$</span><span class="macro">crate::_parse_prefix!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">msg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span> =&gt; [ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">error</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">preamble</span>)<span class="op">*</span> <span class="ident">token</span> ]);
                 },
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">error</span> <span class="op">=</span> (<span class="ident">e</span>.<span class="ident">into</span>(), <span class="prelude-val">Some</span>(<span class="ident">input</span>.<span class="ident">to_string</span>())),
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">error</span> <span class="op">=</span> (<span class="ident">e</span>.<span class="ident">into</span>(), <span class="prelude-val">Some</span>(<span class="ident">input</span>.<span class="ident">to_owned</span>())),
             }
         }
     };
@@ -651,5 +651,5 @@ assert_eq!(
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (5e57faa78 2022-01-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (bfe156467 2022-01-22)" ></div>
 </body></html>

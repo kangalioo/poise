@@ -201,6 +201,29 @@
 <span id="195">195</span>
 <span id="196">196</span>
 <span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A builder struct that allows easy and readable creation of a [`crate::Framework`]</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -236,6 +259,8 @@
     <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// List of framework commands</span>
     <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// See [`Self::initialize_owners()`]</span>
+    <span class="ident">initialize_owners</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FrameworkBuilder</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -246,6 +271,7 @@
             <span class="ident">client_settings</span>: <span class="ident">Default::default</span>(),
             <span class="ident">token</span>: <span class="ident">Default::default</span>(),
             <span class="ident">commands</span>: <span class="ident">Default::default</span>(),
+            <span class="ident">initialize_owners</span>: <span class="bool-val">true</span>,
         }
     }
 }
@@ -342,6 +368,15 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to add this bot application&#39;s owner and team members to</span>
+    <span class="doccomment">/// [`crate::FrameworkOptions::owners`] automatically</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `true` by default</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">initialize_owners</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">initialize_owners</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">initialize_owners</span> <span class="op">=</span> <span class="ident">initialize_owners</span>;
+        <span class="self">self</span>
+    }
+
     <span class="doccomment">/// Build the framework with the specified configuration.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For more information, see [`FrameworkBuilder`]</span>
@@ -362,9 +397,20 @@
             .<span class="ident">get_current_application_info</span>()
             .<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="comment">// Build framework options by concatenating user-set options with commands and owner</span>
+        <span class="comment">// Build framework options by concatenating user-set options with commands and owners</span>
         <span class="ident">options</span>.<span class="ident">commands</span>.<span class="ident">extend</span>(<span class="self">self</span>.<span class="ident">commands</span>);
-        <span class="ident">options</span>.<span class="ident">owners</span>.<span class="ident">insert</span>(<span class="ident">application_info</span>.<span class="ident">owner</span>.<span class="ident">id</span>);
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">initialize_owners</span> {
+            <span class="ident">options</span>.<span class="ident">owners</span>.<span class="ident">insert</span>(<span class="ident">application_info</span>.<span class="ident">owner</span>.<span class="ident">id</span>);
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">team</span>) <span class="op">=</span> <span class="ident">application_info</span>.<span class="ident">team</span> {
+                <span class="kw">for</span> <span class="ident">member</span> <span class="kw">in</span> <span class="ident">team</span>.<span class="ident">members</span> {
+                    <span class="comment">// This `if` currently always evaluates to true but it becomes important once</span>
+                    <span class="comment">// Discord implements more team roles than Admin</span>
+                    <span class="kw">if</span> <span class="ident">member</span>.<span class="ident">permissions</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span> <span class="op">==</span> <span class="string">&quot;*&quot;</span>) {
+                        <span class="ident">options</span>.<span class="ident">owners</span>.<span class="ident">insert</span>(<span class="ident">member</span>.<span class="ident">user</span>.<span class="ident">id</span>);
+                    }
+                }
+            }
+        }
 
         <span class="comment">// Create serenity client</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">client_builder</span> <span class="op">=</span>
@@ -399,5 +445,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (5e57faa78 2022-01-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (bfe156467 2022-01-22)" ></div>
 </body></html>

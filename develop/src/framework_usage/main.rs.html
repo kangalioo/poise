@@ -136,7 +136,12 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
-</pre><pre class="rust"><code><span class="kw">mod</span> <span class="ident">autocomplete</span>;
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::str_to_string</span>)]</span>
+
+<span class="kw">mod</span> <span class="ident">autocomplete</span>;
 <span class="kw">mod</span> <span class="ident">commands</span>;
 <span class="kw">mod</span> <span class="ident">context_menu</span>;
 <span class="kw">mod</span> <span class="ident">subcommands</span>;
@@ -218,6 +223,7 @@ This is an example bot made to showcase features of my custom Discord bot framew
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
             <span class="ident">commands::code</span>(),
+            <span class="ident">commands::say</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -269,5 +275,5 @@ This is an example bot made to showcase features of my custom Discord bot framew
         .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (5e57faa78 2022-01-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (bfe156467 2022-01-22)" ></div>
 </body></html>
