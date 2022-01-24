@@ -3,8 +3,7 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../serenity_example_port/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../serenity_example_port/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div>
-                                <input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../serenity_example_port/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -663,11 +662,6 @@
 <span id="657">657</span>
 <span id="658">658</span>
 <span id="659">659</span>
-<span id="660">660</span>
-<span id="661">661</span>
-<span id="662">662</span>
-<span id="663">663</span>
-<span id="664">664</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Requires the &#39;framework&#39; feature flag be enabled in your project&#39;s</span>
 <span class="doccomment">//! `Cargo.toml`.</span>
 <span class="doccomment">//!</span>
@@ -1279,25 +1273,20 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 )]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">slow_mode</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;How long users have to wait inbetween sending messages&quot;</span>]</span>
-    <span class="ident">slow_mode_rate_seconds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Minimum time between sending messages per user&quot;</span>]</span> <span class="ident">rate_limit</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">say_content</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">slow_mode_rate_seconds</span>) <span class="op">=</span> <span class="ident">slow_mode_rate_seconds</span> {
+    <span class="kw">let</span> <span class="ident">say_content</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">rate_limit</span>) <span class="op">=</span> <span class="ident">rate_limit</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">why</span>) <span class="op">=</span> <span class="ident">ctx</span>
             .<span class="ident">channel_id</span>()
-            .<span class="ident">edit</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">slow_mode_rate</span>(<span class="ident">slow_mode_rate_seconds</span>))
+            .<span class="ident">edit</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">rate_limit_per_user</span>(<span class="ident">rate_limit</span>))
             .<span class="kw">await</span>
         {
             <span class="macro">println!</span>(<span class="string">&quot;Error setting channel&#39;s slow mode rate: {:?}&quot;</span>, <span class="ident">why</span>);
-
-            <span class="macro">format!</span>(
-                <span class="string">&quot;Failed to set slow mode to `{}` seconds.&quot;</span>,
-                <span class="ident">slow_mode_rate_seconds</span>
-            )
+            <span class="macro">format!</span>(<span class="string">&quot;Failed to set slow mode to `{}` seconds.&quot;</span>, <span class="ident">rate_limit</span>)
         } <span class="kw">else</span> {
             <span class="macro">format!</span>(
                 <span class="string">&quot;Successfully set slow mode rate to `{}` seconds.&quot;</span>,
-                <span class="ident">slow_mode_rate_seconds</span>
+                <span class="ident">rate_limit</span>
             )
         }
     } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">serenity::Channel::Guild</span>(<span class="ident">channel</span>)) <span class="op">=</span>
@@ -1305,7 +1294,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     {
         <span class="macro">format!</span>(
             <span class="string">&quot;Current slow mode rate is `{}` seconds.&quot;</span>,
-            <span class="ident">channel</span>.<span class="ident">slow_mode_rate</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>)
+            <span class="ident">channel</span>.<span class="ident">rate_limit_per_user</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>)
         )
     } <span class="kw">else</span> {
         <span class="string">&quot;Failed to find channel in cache.&quot;</span>.<span class="ident">to_string</span>()
@@ -1333,5 +1322,5 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (5e57faa78 2022-01-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (84322efad 2022-01-23)" ></div>
 </body></html>
