@@ -662,7 +662,6 @@
 <span id="657">657</span>
 <span id="658">658</span>
 <span id="659">659</span>
-<span id="660">660</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Requires the &#39;framework&#39; feature flag be enabled in your project&#39;s</span>
 <span class="doccomment">//! `Cargo.toml`.</span>
 <span class="doccomment">//!</span>
@@ -1276,7 +1275,6 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Minimum time between sending messages per user&quot;</span>]</span> <span class="ident">rate_limit</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span> <span class="comment">// slow_mode_rate has no alternative right now</span>
     <span class="kw">let</span> <span class="ident">say_content</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">rate_limit</span>) <span class="op">=</span> <span class="ident">rate_limit</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">why</span>) <span class="op">=</span> <span class="ident">ctx</span>
             .<span class="ident">channel_id</span>()
@@ -1296,7 +1294,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     {
         <span class="macro">format!</span>(
             <span class="string">&quot;Current slow mode rate is `{}` seconds.&quot;</span>,
-            <span class="ident">channel</span>.<span class="ident">slow_mode_rate</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>)
+            <span class="ident">channel</span>.<span class="ident">rate_limit_per_user</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>)
         )
     } <span class="kw">else</span> {
         <span class="string">&quot;Failed to find channel in cache.&quot;</span>.<span class="ident">to_string</span>()
