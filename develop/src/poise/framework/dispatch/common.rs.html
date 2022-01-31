@@ -157,15 +157,15 @@
         <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>, <span class="comment">// Guild not in cache</span>
     };
 
-    <span class="kw">let</span> <span class="ident">channel</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">guild</span>.<span class="ident">channels</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">channel_id</span>) {
-        <span class="prelude-val">Some</span>(<span class="ident">serenity::Channel::Guild</span>(<span class="ident">channel</span>)) =&gt; <span class="ident">channel</span>,
-        <span class="prelude-val">Some</span>(<span class="ident">_other_channel</span>) =&gt; {
+    <span class="kw">let</span> <span class="ident">channel</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">channel_id</span>.<span class="ident">to_channel</span>(<span class="ident">ctx</span>).<span class="kw">await</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">serenity::Channel::Guild</span>(<span class="ident">channel</span>)) =&gt; <span class="ident">channel</span>,
+        <span class="prelude-val">Ok</span>(<span class="ident">_other_channel</span>) =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Warning: guild message was supposedly sent in a non-guild channel. Denying invocation&quot;</span>
             );
             <span class="kw">return</span> <span class="prelude-val">None</span>;
         }
-        <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
     };
 
     <span class="comment">// If member not in cache (probably because presences intent is not enabled), retrieve via HTTP</span>
@@ -177,7 +177,7 @@
         },
     };
 
-    <span class="ident">guild</span>.<span class="ident">user_permissions_in</span>(<span class="ident">channel</span>, <span class="kw-2">&amp;</span><span class="ident">member</span>).<span class="ident">ok</span>()
+    <span class="ident">guild</span>.<span class="ident">user_permissions_in</span>(<span class="kw-2">&amp;</span><span class="ident">channel</span>, <span class="kw-2">&amp;</span><span class="ident">member</span>).<span class="ident">ok</span>()
 }
 
 <span class="doccomment">/// Retrieves the set of permissions that are lacking, relative to the given required permission set</span>
@@ -268,5 +268,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (6abb6385b 2022-01-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (08df8b81d 2022-01-30)" ></div>
 </body></html>
