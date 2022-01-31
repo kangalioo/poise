@@ -135,6 +135,7 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
+<span id="133">133</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Prefix and slash agnostic utilities for dispatching incoming events onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -157,6 +158,7 @@
         <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>, <span class="comment">// Guild not in cache</span>
     };
 
+    <span class="comment">// Use to_channel so that it can fallback on HTTP for threads (which aren&#39;t in cache usually)</span>
     <span class="kw">let</span> <span class="ident">channel</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">channel_id</span>.<span class="ident">to_channel</span>(<span class="ident">ctx</span>).<span class="kw">await</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">serenity::Channel::Guild</span>(<span class="ident">channel</span>)) =&gt; <span class="ident">channel</span>,
         <span class="prelude-val">Ok</span>(<span class="ident">_other_channel</span>) =&gt; {
