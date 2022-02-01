@@ -16,8 +16,7 @@ owner.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#53-220">source</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.prefix" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#57-59">source</a></div><a href="#method.prefix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.prefix" class="fnname">prefix</a>(self, _prefix: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div><div class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please set the prefix via FrameworkOptions::prefix_options::prefix</p>
 </div></div></summary><div class="docblock"><p>Set a prefix for commands</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.user_data_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#63-76">source</a></div><a href="#method.user_data_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.user_data_setup" class="fnname">user_data_setup</a>&lt;F&gt;(self, user_data_setup: F) -&gt; Self <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + for&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a>, &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/gateway/struct.Ready.html" title="struct serenity::model::gateway::Ready">Ready</a>, &amp;'a <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;) -&gt; <a class="type" href="type.BoxFuture.html" title="type poise::BoxFuture">BoxFuture</a>&lt;'a, <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, E&gt;&gt;,&nbsp;</span></h4></div></summary><div class="docblock"><p>Set a callback to be invoked to create the user data instance</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[55,61],&quot;../src/framework_usage/main.rs.html#124-130&quot;,&quot;lines 124-130&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#124-130">lines 124-130</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>69</span>
-<span>70</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[70,76],&quot;../src/framework_usage/main.rs.html#140-146&quot;,&quot;lines 140-146&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#140-146">lines 140-146</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
 <span>71</span>
 <span>72</span>
 <span>73</span>
@@ -83,6 +82,22 @@ owner.</p>
 <span>133</span>
 <span>134</span>
 <span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -90,11 +105,9 @@ owner.</p>
             <span class="ident">register</span>(),
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::add</span>(),
             <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::delete</span>(),
             <span class="ident">commands::voiceinfo</span>(),
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
@@ -103,6 +116,11 @@ owner.</p>
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">checks::shutdown</span>(),
+            <span class="ident">checks::modonly</span>(),
+            <span class="ident">checks::delete</span>(),
+            <span class="ident">checks::ferrisparty</span>(),
+            <span class="ident">checks::add</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -122,17 +140,29 @@ owner.</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
+        <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
+        <span class="doccomment">/// This code is ran before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// Every command invocation must pass this check to continue execution</span>
+        <span class="ident">command_check</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="number">123456789</span> {
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+                }
+                <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+            })
+        }),
         ..<span class="ident">Default::default</span>()
     };
 
@@ -353,8 +383,7 @@ owner.</p>
     */</span>
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.options" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#80-83">source</a></div><a href="#method.options" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.options" class="fnname">options</a>(self, options: <a class="struct" href="struct.FrameworkOptions.html" title="struct poise::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;) -&gt; Self</h4></div></summary><div class="docblock"><p>Configure framework options</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[62,62],&quot;../src/framework_usage/main.rs.html#131&quot;,&quot;line 131&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#131">line 131</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>69</span>
-<span>70</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1" class="section-header"><a href="#scraped-examples-1">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[77,77],&quot;../src/framework_usage/main.rs.html#147&quot;,&quot;line 147&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#147">line 147</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
 <span>71</span>
 <span>72</span>
 <span>73</span>
@@ -420,6 +449,22 @@ owner.</p>
 <span>133</span>
 <span>134</span>
 <span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -427,11 +472,9 @@ owner.</p>
             <span class="ident">register</span>(),
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::add</span>(),
             <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::delete</span>(),
             <span class="ident">commands::voiceinfo</span>(),
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
@@ -440,6 +483,11 @@ owner.</p>
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">checks::shutdown</span>(),
+            <span class="ident">checks::modonly</span>(),
+            <span class="ident">checks::delete</span>(),
+            <span class="ident">checks::ferrisparty</span>(),
+            <span class="ident">checks::add</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -459,17 +507,29 @@ owner.</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
+        <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
+        <span class="doccomment">/// This code is ran before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// Every command invocation must pass this check to continue execution</span>
+        <span class="ident">command_check</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="number">123456789</span> {
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+                }
+                <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+            })
+        }),
         ..<span class="ident">Default::default</span>()
     };
 
@@ -694,8 +754,7 @@ client builder</p>
 <p>Note: the builder’s token will be overridden by the
 <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a>; use <a href="struct.FrameworkBuilder.html#method.token" title="FrameworkBuilder::token"><code>FrameworkBuilder::token</code></a> to supply a token.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.token" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#101-104">source</a></div><a href="#method.token" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.token" class="fnname">token</a>(self, token: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></div></summary><div class="docblock"><p>The bot token</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[54,54],&quot;../src/framework_usage/main.rs.html#123&quot;,&quot;line 123&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#123">line 123</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>69</span>
-<span>70</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2" class="section-header"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[69,69],&quot;../src/framework_usage/main.rs.html#139&quot;,&quot;line 139&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#139">line 139</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
 <span>71</span>
 <span>72</span>
 <span>73</span>
@@ -761,6 +820,22 @@ client builder</p>
 <span>133</span>
 <span>134</span>
 <span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -768,11 +843,9 @@ client builder</p>
             <span class="ident">register</span>(),
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::add</span>(),
             <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::delete</span>(),
             <span class="ident">commands::voiceinfo</span>(),
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
@@ -781,6 +854,11 @@ client builder</p>
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">checks::shutdown</span>(),
+            <span class="ident">checks::modonly</span>(),
+            <span class="ident">checks::delete</span>(),
+            <span class="ident">checks::ferrisparty</span>(),
+            <span class="ident">checks::add</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -800,17 +878,29 @@ client builder</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
+        <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
+        <span class="doccomment">/// This code is ran before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// Every command invocation must pass this check to continue execution</span>
+        <span class="ident">command_check</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="number">123456789</span> {
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+                }
+                <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+            })
+        }),
         ..<span class="ident">Default::default</span>()
     };
 
@@ -1049,8 +1139,7 @@ times with the builder left to defaults, i.e. no command category or subcommands
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.run" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#204-210">source</a></div><a href="#method.run" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run" class="fnname">run</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></div></summary><div class="docblock"><p>Start the framework with the specified configuration.</p>
 <p><a href="struct.FrameworkBuilder.html#method.run" title="FrameworkBuilder::run"><code>FrameworkBuilder::run</code></a> is just a shorthand that calls <a href="struct.FrameworkBuilder.html#method.build" title="FrameworkBuilder::build"><code>FrameworkBuilder::build</code></a> and
 starts the returned framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3" class="section-header"><a href="#scraped-examples-3">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[63,63],&quot;../src/framework_usage/main.rs.html#132&quot;,&quot;line 132&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#132">line 132</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>69</span>
-<span>70</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3" class="section-header"><a href="#scraped-examples-3">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[78,78],&quot;../src/framework_usage/main.rs.html#148&quot;,&quot;line 148&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#148">line 148</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
 <span>71</span>
 <span>72</span>
 <span>73</span>
@@ -1116,6 +1205,22 @@ starts the returned framework</p>
 <span>133</span>
 <span>134</span>
 <span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1123,11 +1228,9 @@ starts the returned framework</p>
             <span class="ident">register</span>(),
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::add</span>(),
             <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::delete</span>(),
             <span class="ident">commands::voiceinfo</span>(),
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
@@ -1136,6 +1239,11 @@ starts the returned framework</p>
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">checks::shutdown</span>(),
+            <span class="ident">checks::modonly</span>(),
+            <span class="ident">checks::delete</span>(),
+            <span class="ident">checks::ferrisparty</span>(),
+            <span class="ident">checks::add</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -1155,17 +1263,29 @@ starts the returned framework</p>
             ],
             ..<span class="ident">Default::default</span>()
         },
+        <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
+        <span class="doccomment">/// This code is ran before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// Every command invocation must pass this check to continue execution</span>
+        <span class="ident">command_check</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="number">123456789</span> {
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+                }
+                <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+            })
+        }),
         ..<span class="ident">Default::default</span>()
     };
 

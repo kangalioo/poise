@@ -10,8 +10,7 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[32,32],&quot;../src/framework_usage/main.rs.html#101&quot;,&quot;line 101&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#101">line 101</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>69</span>
-<span>70</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples" class="section-header"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[35,35],&quot;../src/framework_usage/main.rs.html#105&quot;,&quot;line 105&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#105">line 105</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
 <span>71</span>
 <span>72</span>
 <span>73</span>
@@ -77,6 +76,22 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>133</span>
 <span>134</span>
 <span>135</span>
+<span>136</span>
+<span>137</span>
+<span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+<span>144</span>
+<span>145</span>
+<span>146</span>
+<span>147</span>
+<span>148</span>
+<span>149</span>
+<span>150</span>
+<span>151</span>
 </pre><pre class="rust"><code><span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -84,11 +99,9 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             <span class="ident">register</span>(),
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::add</span>(),
             <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::delete</span>(),
             <span class="ident">commands::voiceinfo</span>(),
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
@@ -97,6 +110,11 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">checks::shutdown</span>(),
+            <span class="ident">checks::modonly</span>(),
+            <span class="ident">checks::delete</span>(),
+            <span class="ident">checks::ferrisparty</span>(),
+            <span class="ident">checks::add</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -116,17 +134,29 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             ],
             ..<span class="ident">Default::default</span>()
         },
+        <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
+        <span class="doccomment">/// This code is ran before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// Every command invocation must pass this check to continue execution</span>
+        <span class="ident">command_check</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="number">123456789</span> {
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+                }
+                <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+            })
+        }),
         ..<span class="ident">Default::default</span>()
     };
 
