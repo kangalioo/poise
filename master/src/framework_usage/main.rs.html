@@ -3,7 +3,7 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../framework_usage/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../framework_usage/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../framework_usage/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -138,9 +138,26 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::str_to_string</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">autocomplete</span>;
+<span class="kw">mod</span> <span class="ident">checks</span>;
 <span class="kw">mod</span> <span class="ident">commands</span>;
 <span class="kw">mod</span> <span class="ident">context_menu</span>;
 <span class="kw">mod</span> <span class="ident">subcommands</span>;
@@ -213,11 +230,9 @@ This is an example bot made to showcase features of my custom Discord bot framew
             <span class="ident">register</span>(),
             <span class="ident">commands::vote</span>(),
             <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::add</span>(),
             <span class="ident">commands::addmultiple</span>(),
             <span class="ident">commands::choice</span>(),
             <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::delete</span>(),
             <span class="ident">commands::voiceinfo</span>(),
             <span class="ident">commands::test_reuse_response</span>(),
             <span class="ident">commands::oracle</span>(),
@@ -226,6 +241,11 @@ This is an example bot made to showcase features of my custom Discord bot framew
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
+            <span class="ident">checks::shutdown</span>(),
+            <span class="ident">checks::modonly</span>(),
+            <span class="ident">checks::delete</span>(),
+            <span class="ident">checks::ferrisparty</span>(),
+            <span class="ident">checks::add</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -245,17 +265,29 @@ This is an example bot made to showcase features of my custom Discord bot framew
             ],
             ..<span class="ident">Default::default</span>()
         },
+        <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
+        <span class="doccomment">/// This code is ran before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
+        <span class="doccomment">/// Every command invocation must pass this check to continue execution</span>
+        <span class="ident">command_check</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="number">123456789</span> {
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+                }
+                <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
+            })
+        }),
         ..<span class="ident">Default::default</span>()
     };
 
@@ -274,5 +306,5 @@ This is an example bot made to showcase features of my custom Discord bot framew
         .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (84322efad 2022-01-23)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
 </body></html>

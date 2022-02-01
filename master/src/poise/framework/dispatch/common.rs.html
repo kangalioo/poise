@@ -3,7 +3,7 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../poise/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../poise/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -135,6 +135,11 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Prefix and slash agnostic utilities for dispatching incoming events onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -157,15 +162,16 @@
         <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>, <span class="comment">// Guild not in cache</span>
     };
 
-    <span class="kw">let</span> <span class="ident">channel</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">guild</span>.<span class="ident">channels</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">channel_id</span>) {
-        <span class="prelude-val">Some</span>(<span class="ident">serenity::Channel::Guild</span>(<span class="ident">channel</span>)) =&gt; <span class="ident">channel</span>,
-        <span class="prelude-val">Some</span>(<span class="ident">_other_channel</span>) =&gt; {
+    <span class="comment">// Use to_channel so that it can fallback on HTTP for threads (which aren&#39;t in cache usually)</span>
+    <span class="kw">let</span> <span class="ident">channel</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">channel_id</span>.<span class="ident">to_channel</span>(<span class="ident">ctx</span>).<span class="kw">await</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">serenity::Channel::Guild</span>(<span class="ident">channel</span>)) =&gt; <span class="ident">channel</span>,
+        <span class="prelude-val">Ok</span>(<span class="ident">_other_channel</span>) =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Warning: guild message was supposedly sent in a non-guild channel. Denying invocation&quot;</span>
             );
             <span class="kw">return</span> <span class="prelude-val">None</span>;
         }
-        <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
     };
 
     <span class="comment">// If member not in cache (probably because presences intent is not enabled), retrieve via HTTP</span>
@@ -177,7 +183,7 @@
         },
     };
 
-    <span class="ident">guild</span>.<span class="ident">user_permissions_in</span>(<span class="ident">channel</span>, <span class="kw-2">&amp;</span><span class="ident">member</span>).<span class="ident">ok</span>()
+    <span class="ident">guild</span>.<span class="ident">user_permissions_in</span>(<span class="kw-2">&amp;</span><span class="ident">channel</span>, <span class="kw-2">&amp;</span><span class="ident">member</span>).<span class="ident">ok</span>()
 }
 
 <span class="doccomment">/// Retrieves the set of permissions that are lacking, relative to the given required permission set</span>
@@ -239,8 +245,12 @@
         <span class="prelude-val">None</span> =&gt; {}
     }
 
-    <span class="comment">// Only continue if command checks returns true</span>
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">check</span>) <span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">check</span>.<span class="ident">or</span>(<span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">command_check</span>) {
+    <span class="comment">// Only continue if command checks returns true. First perform global checks, then command</span>
+    <span class="comment">// checks (if necessary)</span>
+    <span class="kw">for</span> <span class="ident">check</span> <span class="kw">in</span> [<span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">command_check</span>, <span class="ident">cmd</span>.<span class="ident">check</span>]
+        .<span class="ident">iter</span>()
+        .<span class="ident">flatten</span>()
+    {
         <span class="kw">match</span> <span class="ident">check</span>(<span class="ident">ctx</span>).<span class="kw">await</span> {
             <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>) =&gt; {}
             <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
@@ -268,5 +278,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (84322efad 2022-01-23)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
 </body></html>

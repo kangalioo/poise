@@ -3,7 +3,7 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
-        </a><div class="sidebar-elems"><h2 class="location">In <a href="index.html">poise</a></h2><div id="sidebar-vars" data-name="command" data-ty="attr" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+        </a><div class="sidebar-elems"><h2 class="location">In <a href="index.html">poise</a></h2><div id="sidebar-vars" data-name="command" data-ty="attr" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Attribute Macro <a href="index.html">poise</a>::<wbr><a class="attr" href="#">command</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust attr"><code>#[command]</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>This macro transforms plain functions into poise bot commands.</p>
 <p>Documentation comments are used as help text. The first line is a single-line description,
 displayed in listings of your bot’s commands (i.e. <code>~help</code>). Following paragraphs are detailed explanations,
@@ -58,10 +58,14 @@ access data present in both PrefixContext and SlashContext, like <code>author()<
 You can also wrap types in <code>Option</code> or <code>Vec</code> to make them optional or variadic. In addition, there
 are multiple attributes you can use on parameters:</p>
 <ul>
-<li><code>#[description]</code>: Required for slash commands; a description of the parameter</li>
-<li><code>#[rest]</code>: Relevant for prefix commands; means that the entire rest of the message is parsed as the parameter even without quotes</li>
-<li><code>#[lazy]</code>: Relevant for prefix commands; can be used on Option and Vec parameters and is equivalent to regular expressions’ laziness</li>
-<li><code>#[flag]</code>: Relevant for prefix commands; can be used on a bool parameter to set the bool to true if the user typed the parameter name literally
+<li><code>#[description = &quot;&quot;]</code>: Sets description of the parameter (slash-only)</li>
+<li><code>#[autocomplete = &quot;&quot;]</code>: Sets the autocomplete callback (slash-only)</li>
+<li><code>#[channel_types(&quot;&quot;, &quot;&quot;)]</code>: For channel parameters, restricts allowed channel types (slash-only)</li>
+<li><code>#[min = 0]</code>: Minimum value for this number parameter (slash-only)</li>
+<li><code>#[max = 0]</code>: Minimum value for this number parameter (slash-only)</li>
+<li><code>#[rest]</code>: Use the entire rest of the message for this parameter (prefix-only)</li>
+<li><code>#[lazy]</code>: Can be used on Option and Vec parameters and is equivalent to regular expressions’ laziness (prefix-only)</li>
+<li><code>#[flag]</code>: Can be used on a bool parameter to set the bool to true if the user typed the parameter name literally (prefix-only)
 <ul>
 <li>For example with <code>async fn my_command(ctx: Context&lt;'_&gt;, #[flag] my_flag: bool)</code>, <code>~my_command</code> would set my_flag to false, and <code>~my_command my_flag</code> would set my_flag to true</li>
 </ul>
@@ -99,5 +103,5 @@ this form:</p>
 }</code></pre></div>
 <p>If you’re curious, you can use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to see the
 exact desugaring</p>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (84322efad 2022-01-23)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
 </body></html>
