@@ -276,6 +276,9 @@
 <span id="271">271</span>
 <span id="272">272</span>
 <span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Tools for implementing automatic edit tracking, i.e. the bot automatically updating its response</span>
 <span class="doccomment">//! when the user edits their command invocation message.</span>
 
@@ -449,6 +452,9 @@
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">serenity::Message</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::CreateReply::default</span>();
     <span class="ident">builder</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reply</span>);
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">callback</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">reply_callback</span> {
+        <span class="ident">callback</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">reply</span>);
+    }
     <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
         <span class="ident">content</span>,
         <span class="ident">embeds</span>,
@@ -550,5 +556,5 @@
     }))
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (71226d717 2022-02-04)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (f624427f8 2022-02-06)" ></div>
 </body></html>
