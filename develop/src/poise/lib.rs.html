@@ -311,7 +311,13 @@
 <span id="306">306</span>
 <span id="307">307</span>
 <span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
+<span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::missing_docs_in_private_items</span>)]</span>
@@ -360,9 +366,9 @@ async fn main() {
                 prefix: Some(&quot;~&quot;.into()),
                 ..Default::default()
             },
+            commands: vec![age()],
             ..Default::default()
         })
-        .command(age(), |f| f)
         .run().await.unwrap();
 }
 ```
@@ -489,7 +495,7 @@ poise::Framework::build()
         Ok(())
     }))
 
-    // A lot of configuration is done via the `FrameworkOptions` struct, which you can define with
+    // Most configuration is done via the `FrameworkOptions` struct, which you can define with
     // a struct literal (hint: use `..Default::default()` to fill uninitialized
     // settings with their default value):
     .options(poise::FrameworkOptions {
@@ -500,16 +506,20 @@ poise::Framework::build()
             case_insensitive_commands: true,
             ..Default::default()
         },
+        // This is also where commands go
+        commands: vec![
+            command1(),
+            command2(),
+            // To add subcommands, modify the `subcommands` field of the `Command` struct returned
+            // by the command functions
+            poise::Command {
+                subcommands: vec![command3_1(), command3_2()],
+                ..command3()
+            }
+        ],
         ..Default::default()
     })
 
-    // Finally, add commands and start the framework. You can add subcommands to a command.
-    .command(command1(), |f| f)
-    .command(command2(), |f| f)
-    .command(command3(), |f| f
-        .subcommand(command3_1(), |f| f)
-        .subcommand(command3_2(), |f| f)
-    )
     .run().await?;
 # Ok::&lt;(), Error&gt;(()) };
 ```

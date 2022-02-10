@@ -224,6 +224,7 @@
 <span id="219">219</span>
 <span id="220">220</span>
 <span id="221">221</span>
+<span id="222">222</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A builder struct that allows easy and readable creation of a [`crate::Framework`]</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -353,6 +354,7 @@
     <span class="doccomment">/// # #[poise::command(prefix_command)]</span>
     <span class="doccomment">/// # async fn command2(ctx: poise::Context&lt;&#39;_, (), Error&gt;) -&gt; Result&lt;(), Error&gt; { Ok(()) }</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// # #[allow(deprecated)] // just for this example</span>
     <span class="doccomment">/// poise::Framework::build()</span>
     <span class="doccomment">///     // framework setup...</span>
     <span class="doccomment">///     .commands([command1, command2])</span>
