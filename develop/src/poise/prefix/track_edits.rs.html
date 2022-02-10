@@ -268,8 +268,6 @@
 <span id="263">263</span>
 <span id="264">264</span>
 <span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Tools for implementing automatic edit tracking, i.e. the bot automatically updating its response</span>
 <span class="doccomment">//! when the user edits their command invocation message.</span>
 
@@ -412,10 +410,8 @@
         <span class="ident">bot_response</span>: <span class="ident">serenity::Message</span>,
     ) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="kw">_</span>, <span class="ident">r</span>)) <span class="op">=</span> <span class="self">self</span>.<span class="ident">cache</span>.<span class="ident">iter_mut</span>().<span class="ident">find</span>(<span class="op">|</span>(<span class="ident">m</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">m</span>.<span class="ident">id</span> <span class="op">==</span> <span class="ident">user_msg</span>.<span class="ident">id</span>) {
-            <span class="macro">println!</span>(<span class="string">&quot;overwriting&quot;</span>);
             <span class="kw-2">*</span><span class="ident">r</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">bot_response</span>);
         } <span class="kw">else</span> {
-            <span class="macro">println!</span>(<span class="string">&quot;making new&quot;</span>);
             <span class="self">self</span>.<span class="ident">cache</span>.<span class="ident">push</span>((<span class="ident">user_msg</span>.<span class="ident">clone</span>(), <span class="prelude-val">Some</span>(<span class="ident">bot_response</span>)));
         }
     }
