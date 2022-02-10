@@ -148,7 +148,7 @@ owner.</p>
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
-        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
+        <span class="doccomment">/// This code is ran after a command if it was successful (returned Ok)</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
@@ -515,7 +515,7 @@ owner.</p>
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
-        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
+        <span class="doccomment">/// This code is ran after a command if it was successful (returned Ok)</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
@@ -886,7 +886,7 @@ client builder</p>
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
-        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
+        <span class="doccomment">/// This code is ran after a command if it was successful (returned Ok)</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
@@ -1271,7 +1271,7 @@ starts the returned framework</p>
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
-        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
+        <span class="doccomment">/// This code is ran after a command if it was successful (returned Ok)</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);

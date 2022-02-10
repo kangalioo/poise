@@ -194,6 +194,7 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches interactions onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -326,10 +327,11 @@
         }
         <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="prelude-val">None</span>),
     };
+    <span class="ident">action_result</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">ctx</span>.<span class="ident">command</span>)))<span class="question-mark">?</span>;
 
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">post_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 
-    <span class="ident">action_result</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">ctx</span>.<span class="ident">command</span>)))
+    <span class="prelude-val">Ok</span>(())
 }
 
 <span class="doccomment">/// Dispatches this interaction onto framework commands, i.e. runs the associated autocomplete</span>
