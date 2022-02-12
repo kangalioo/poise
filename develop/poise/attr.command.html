@@ -8,7 +8,7 @@
 <p>Documentation comments are used as help text. The first line is a single-line description,
 displayed in listings of your bot’s commands (i.e. <code>~help</code>). Following paragraphs are detailed explanations,
 for example for command-specific help (i.e. <code>~help command_name</code>). Escape newlines with <code>\</code></p>
-<h2 id="macro-arguments" class="section-header"><a href="#macro-arguments">Macro arguments</a></h2>
+<h2 id="macro-arguments"><a href="#macro-arguments">Macro arguments</a></h2>
 <p><code>#[poise::command]</code> accepts a number of arguments to configure the command:</p>
 <ul>
 <li><code>prefix_command</code>: Generate a prefix command</li>
@@ -49,7 +49,7 @@ for example for command-specific help (i.e. <code>~help command_name</code>). Es
 <li><code>channel_cooldown</code>: Minimum duration between invocations, per channel</li>
 <li><code>member_cooldown</code>: Minimum duration between invocations, per guild member</li>
 </ul>
-<h2 id="function-parameters" class="section-header"><a href="#function-parameters">Function parameters</a></h2>
+<h2 id="function-parameters"><a href="#function-parameters">Function parameters</a></h2>
 <p><code>Context</code> is the first parameter of all command functions. It’s an enum over either PrefixContext or
 SlashContext, which contain a variety of context data each. Context provides some utility methods to
 access data present in both PrefixContext and SlashContext, like <code>author()</code> or <code>created_at()</code>.</p>
@@ -71,7 +71,7 @@ are multiple attributes you can use on parameters:</p>
 </ul>
 </li>
 </ul>
-<h2 id="internals" class="section-header"><a href="#internals">Internals</a></h2>
+<h2 id="internals"><a href="#internals">Internals</a></h2>
 <p>Internally, this attribute macro generates a function with a single [<code>poise::Command</code>]
 return type, which contains all data about this command. For example, it transforms a function of
 this form:</p>
@@ -103,5 +103,5 @@ this form:</p>
 }</code></pre></div>
 <p>If you’re curious, you can use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to see the
 exact desugaring</p>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e789f3a3a 2022-02-11)" ></div>
 </body></html>

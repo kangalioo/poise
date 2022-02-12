@@ -11,7 +11,7 @@
 }
 </code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Use this derive macro on an enum to easily generate a <em>choice parameter</em> type. A <em>choice parameter</em>
 is mainly useful in slash commands. It allows you to constrain input to a fixed set of choices.</p>
-<h2 id="example" class="section-header"><a href="#example">Example</a></h2>
+<h2 id="example"><a href="#example">Example</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">poise::SlashChoiceParameter</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MyStringChoice</span> {
     <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;The first choice&quot;</span>]</span>
@@ -29,5 +29,5 @@ is mainly useful in slash commands. It allows you to constrain input to a fixed 
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;You entered {:?}&quot;</span>, <span class="ident">choice</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e789f3a3a 2022-02-11)" ></div>
 </body></html>
