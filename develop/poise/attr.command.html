@@ -91,10 +91,10 @@ this form:</p>
     <span class="ident">poise::Command</span> {
         <span class="ident">name</span>: <span class="string">&quot;my_command&quot;</span>,
         <span class="ident">inline_help</span>: <span class="string">&quot;This is a command&quot;</span>,
-        <span class="ident">prefix_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+        <span class="ident">prefix_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
             <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
         })),
-        <span class="ident">slash_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+        <span class="ident">slash_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
             <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
         })),
         <span class="ident">context_menu_action</span>: <span class="prelude-val">None</span>,

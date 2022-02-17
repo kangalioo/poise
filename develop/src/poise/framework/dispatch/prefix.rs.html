@@ -231,6 +231,7 @@
 <span id="226">226</span>
 <span id="227">227</span>
 <span id="228">228</span>
+<span id="229">229</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches incoming messages and message edits onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -426,6 +427,7 @@
         <span class="ident">msg</span>,
         <span class="ident">prefix</span>,
         <span class="ident">invoked_command_name</span>,
+        <span class="ident">args</span>,
         <span class="ident">framework</span>,
         <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">user_data</span>().<span class="kw">await</span>,
         <span class="ident">command</span>,
@@ -453,7 +455,7 @@
     }
 
     <span class="comment">// Execute command</span>
-    (<span class="ident">action</span>)(<span class="ident">ctx</span>, <span class="ident">args</span>).<span class="kw">await</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">command</span>)))<span class="question-mark">?</span>;
+    (<span class="ident">action</span>)(<span class="ident">ctx</span>).<span class="kw">await</span>.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">command</span>)))<span class="question-mark">?</span>;
 
     (<span class="ident">framework</span>.<span class="ident">options</span>.<span class="ident">post_command</span>)(<span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>)).<span class="kw">await</span>;
 

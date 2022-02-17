@@ -259,8 +259,6 @@
 <span id="254">254</span>
 <span id="255">255</span>
 <span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -274,14 +272,12 @@
     <span class="kw">pub</span> <span class="ident">prefix_action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
         <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
             <span class="ident"><span class="kw">crate</span>::PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-            <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
         ) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="op">&gt;</span>,
     <span class="doccomment">/// Callback to execute when this command is invoked in a slash context</span>
     <span class="kw">pub</span> <span class="ident">slash_action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
         <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
             <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
         ) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="op">&gt;</span>,
     <span class="doccomment">/// Callback to execute when this command is invoked in a context menu context</span>

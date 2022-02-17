@@ -193,8 +193,6 @@
 <span id="188">188</span>
 <span id="189">189</span>
 <span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches interactions onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -236,10 +234,7 @@
     <span class="ident">interaction</span>: <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="ident">has_sent_initial_response</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::atomic::AtomicBool</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>
-    (
-        <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
-    ),
+    <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
 <span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">search_result</span> <span class="op">=</span> <span class="ident">find_matching_command</span>(
@@ -260,6 +255,7 @@
         <span class="ident">discord</span>: <span class="ident">ctx</span>,
         <span class="ident">framework</span>,
         <span class="ident">interaction</span>,
+        <span class="ident">args</span>: <span class="ident">leaf_interaction_options</span>,
         <span class="ident">command</span>,
         <span class="ident">has_sent_initial_response</span>,
     };
@@ -268,7 +264,7 @@
         .<span class="kw">await</span>
         .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">e</span>, <span class="ident">command</span>)))<span class="question-mark">?</span>;
 
-    <span class="prelude-val">Ok</span>((<span class="ident">ctx</span>, <span class="ident">leaf_interaction_options</span>))
+    <span class="prelude-val">Ok</span>(<span class="ident">ctx</span>)
 }
 
 <span class="doccomment">/// Dispatches this interaction onto framework commands, i.e. runs the associated command</span>
@@ -279,7 +275,7 @@
     <span class="comment">// Need to pass this in from outside because of lifetime issues</span>
     <span class="ident">has_sent_initial_response</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::atomic::AtomicBool</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> (<span class="ident">ctx</span>, <span class="ident">options</span>) <span class="op">=</span> <span class="ident">extract_command_and_run_checks</span>(
+    <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">extract_command_and_run_checks</span>(
         <span class="ident">framework</span>,
         <span class="ident">ctx</span>,
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::ApplicationCommand</span>(<span class="ident">interaction</span>),
@@ -305,7 +301,7 @@
                 .<span class="ident">command</span>
                 .<span class="ident">slash_action</span>
                 .<span class="ident">ok_or</span>(<span class="ident">command_structure_mismatch_error</span>)<span class="question-mark">?</span>;
-            <span class="ident">action</span>(<span class="ident">ctx</span>, <span class="ident">options</span>).<span class="kw">await</span>
+            <span class="ident">action</span>(<span class="ident">ctx</span>).<span class="kw">await</span>
         }
         <span class="ident">serenity::ApplicationCommandType::User</span> =&gt; {
             <span class="kw">match</span> (<span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">context_menu_action</span>, <span class="kw-2">&amp;</span><span class="ident">interaction</span>.<span class="ident">data</span>.<span class="ident">target</span>) {
@@ -343,7 +339,7 @@
     <span class="comment">// Need to pass this in from outside because of lifetime issues</span>
     <span class="ident">has_sent_initial_response</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::atomic::AtomicBool</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> (<span class="ident">ctx</span>, <span class="ident">options</span>) <span class="op">=</span> <span class="ident">extract_command_and_run_checks</span>(
+    <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">extract_command_and_run_checks</span>(
         <span class="ident">framework</span>,
         <span class="ident">ctx</span>,
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::Autocomplete</span>(<span class="ident">interaction</span>),
@@ -352,7 +348,7 @@
     .<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="comment">// Find which parameter is focused by the user</span>
-    <span class="kw">let</span> <span class="ident">focused_option</span> <span class="op">=</span> <span class="ident">options</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">o</span><span class="op">|</span> <span class="ident">o</span>.<span class="ident">focused</span>).<span class="ident">ok_or</span>(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">focused_option</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">args</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">o</span><span class="op">|</span> <span class="ident">o</span>.<span class="ident">focused</span>).<span class="ident">ok_or</span>(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
 
     <span class="comment">// Find the matching parameter from our Command object</span>
     <span class="kw">let</span> <span class="ident">parameters</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">parameters</span>;

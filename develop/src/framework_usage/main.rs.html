@@ -271,13 +271,13 @@ This is an example bot made to showcase features of my custom Discord bot framew
         },
         <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
-        <span class="doccomment">/// This code is ran before every command</span>
+        <span class="doccomment">/// This code is run before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
-        <span class="doccomment">/// This code is ran after a command if it was successful (returned Ok)</span>
+        <span class="doccomment">/// This code is run after a command if it was successful (returned Ok)</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
