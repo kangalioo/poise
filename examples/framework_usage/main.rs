@@ -6,15 +6,27 @@ mod commands;
 mod context_menu;
 mod subcommands;
 
+use poise::serenity_prelude as serenity;
 use std::{collections::HashMap, env::var, sync::Mutex, time::Duration};
 
 // Types used by all command functions
 type Error = Box<dyn std::error::Error + Send + Sync>;
 type Context<'a> = poise::Context<'a, Data, Error>;
 
+struct RecordedCommand<U, E> {
+    action: for<'a> fn(
+        poise::ApplicationContext<'a, U, E>,
+        &'a [serenity::ApplicationCommandInteractionDataOption],
+    ) -> poise::BoxFuture<'a, Result<(), poise::FrameworkError<'a, U, E>>>,
+    options: Vec<serenity::ApplicationCommandInteractionDataOption>,
+}
+
 // Custom user data passed to all command functions
 pub struct Data {
     votes: Mutex<HashMap<String, u32>>,
+
+    is_recording: Mutex<bool>,
+    recorded_commands: Mutex<Vec<RecordedCommand<Data, Error>>>,
 }
 
 /// Show this help menu
@@ -49,6 +61,42 @@ async fn register(ctx: Context<'_>, #[flag] global: bool) -> Result<(), Error> {
     Ok(())
 }
 
+#[derive(poise::SlashChoiceParameter)]
+enum MacroOperation {
+    Record,
+    StopRecord,
+    Play,
+}
+
+/// Macro functionality to record and replay commands
+#[poise::command(slash_command, rename = "macro")]
+async fn macro_(
+    ctx: poise::ApplicationContext<'_, Data, Error>,
+    #[description = "Which macro operation to execute"] operation: MacroOperation,
+) -> Result<(), Error> {
+    match operation {
+        MacroOperation::Record => *ctx.data.is_recording.lock().unwrap() = true,
+        MacroOperation::StopRecord => *ctx.data.is_recording.lock().unwrap() = false,
+        MacroOperation::Play => {
+            let recorded_commands =
+                std::mem::take(&mut *ctx.data.recorded_commands.lock().unwrap());
+            for command in recorded_commands {
+                (command.action)(
+                    poise::ApplicationContext {
+                        options: &command.options,
+                        ..ctx
+                    },
+                    &command.options,
+                )
+                .await
+                .ok()
+                .unwrap();
+            }
+        }
+    }
+    Ok(())
+}
+
 async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
     // This is our custom error handler
     // They are many errors that can occur, so we only handle the ones we want to customize
@@ -72,6 +120,7 @@ async fn main() {
         commands: vec![
             help(),
             register(),
+            macro_(),
             commands::vote(),
             commands::getvotes(),
             commands::addmultiple(),
@@ -113,13 +162,23 @@ async fn main() {
         },
         /// The global error handler for all error cases that may occur
         on_error: |error| Box::pin(on_error(error)),
-        /// This code is ran before every command
+        /// This code is run before every command
         pre_command: |ctx| {
             Box::pin(async move {
                 println!("Executing command {}...", ctx.command().qualified_name);
+
+                if *ctx.data().is_recording.lock().unwrap() {
+                    if let Context::Application(ctx) = ctx {
+                        let command = RecordedCommand {
+                            action: ctx.command.slash_action.unwrap(),
+                            options: ctx.options.to_vec(),
+                        };
+                        ctx.data.recorded_commands.lock().unwrap().push(command);
+                    }
+                }
             })
         },
-        /// This code is ran after a command if it was successful (returned Ok)
+        /// This code is run after a command if it was successful (returned Ok)
         post_command: |ctx| {
             Box::pin(async move {
                 println!("Executed command {}!", ctx.command().qualified_name);
@@ -143,6 +202,8 @@ async fn main() {
             Box::pin(async move {
                 Ok(Data {
                     votes: Mutex::new(HashMap::new()),
+                    is_recording: Mutex::new(false),
+                    recorded_commands: Mutex::new(Vec::new()),
                 })
             })
         })
