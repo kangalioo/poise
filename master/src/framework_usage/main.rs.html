@@ -154,6 +154,8 @@
 <span id="149">149</span>
 <span id="150">150</span>
 <span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::str_to_string</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">autocomplete</span>;
@@ -238,6 +240,8 @@ This is an example bot made to showcase features of my custom Discord bot framew
             <span class="ident">commands::oracle</span>(),
             <span class="ident">commands::code</span>(),
             <span class="ident">commands::say</span>(),
+            <span class="ident">commands::file_details</span>(),
+            <span class="ident">commands::totalsize</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -267,13 +271,13 @@ This is an example bot made to showcase features of my custom Discord bot framew
         },
         <span class="doccomment">/// The global error handler for all error cases that may occur</span>
         <span class="ident">on_error</span>: <span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="ident">on_error</span>(<span class="ident">error</span>)),
-        <span class="doccomment">/// This code is ran before every command</span>
+        <span class="doccomment">/// This code is run before every command</span>
         <span class="ident">pre_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executing command {}...&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
             })
         },
-        <span class="doccomment">/// This code is ran after every command, regardless of whether it returned an error</span>
+        <span class="doccomment">/// This code is run after a command if it was successful (returned Ok)</span>
         <span class="ident">post_command</span>: <span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Executed command {}!&quot;</span>, <span class="ident">ctx</span>.<span class="ident">command</span>().<span class="ident">qualified_name</span>);
@@ -306,5 +310,5 @@ This is an example bot made to showcase features of my custom Discord bot framew
         .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (30b3f35c4 2022-02-17)" ></div>
 </body></html>

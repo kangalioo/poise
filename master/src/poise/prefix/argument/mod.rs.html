@@ -124,6 +124,16 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Everything related to parsing command arguments from a text message</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused</span>)]</span> <span class="comment">// false positive from inside macro expansions</span>
@@ -205,6 +215,16 @@
 }
 <span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">TooFewArguments</span> {}
 
+<span class="doccomment">/// Error thrown in prefix invocation when there&#39;s too few attachments</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MissingAttachment</span>;
+<span class="kw">impl</span> <span class="ident">std::fmt::Display</span> <span class="kw">for</span> <span class="ident">MissingAttachment</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;A required attachment is missing&quot;</span>)
+    }
+}
+<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">MissingAttachment</span> {}
+
 <span class="doccomment">/// Error thrown when the user enters a string that is not recognized by a</span>
 <span class="doccomment">/// SlashChoiceParameter-derived enum</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -246,5 +266,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (30b3f35c4 2022-02-17)" ></div>
 </body></html>

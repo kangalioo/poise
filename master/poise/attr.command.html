@@ -3,12 +3,12 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
-        </a><div class="sidebar-elems"><h2 class="location">In <a href="index.html">poise</a></h2><div id="sidebar-vars" data-name="command" data-ty="attr" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+        </a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In poise</a></h2><div id="sidebar-vars" data-name="command" data-ty="attr" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Attribute Macro <a href="index.html">poise</a>::<wbr><a class="attr" href="#">command</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust attr"><code>#[command]</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>This macro transforms plain functions into poise bot commands.</p>
 <p>Documentation comments are used as help text. The first line is a single-line description,
 displayed in listings of your bot’s commands (i.e. <code>~help</code>). Following paragraphs are detailed explanations,
 for example for command-specific help (i.e. <code>~help command_name</code>). Escape newlines with <code>\</code></p>
-<h2 id="macro-arguments" class="section-header"><a href="#macro-arguments">Macro arguments</a></h2>
+<h2 id="macro-arguments"><a href="#macro-arguments">Macro arguments</a></h2>
 <p><code>#[poise::command]</code> accepts a number of arguments to configure the command:</p>
 <ul>
 <li><code>prefix_command</code>: Generate a prefix command</li>
@@ -49,7 +49,7 @@ for example for command-specific help (i.e. <code>~help command_name</code>). Es
 <li><code>channel_cooldown</code>: Minimum duration between invocations, per channel</li>
 <li><code>member_cooldown</code>: Minimum duration between invocations, per guild member</li>
 </ul>
-<h2 id="function-parameters" class="section-header"><a href="#function-parameters">Function parameters</a></h2>
+<h2 id="function-parameters"><a href="#function-parameters">Function parameters</a></h2>
 <p><code>Context</code> is the first parameter of all command functions. It’s an enum over either PrefixContext or
 SlashContext, which contain a variety of context data each. Context provides some utility methods to
 access data present in both PrefixContext and SlashContext, like <code>author()</code> or <code>created_at()</code>.</p>
@@ -62,7 +62,7 @@ are multiple attributes you can use on parameters:</p>
 <li><code>#[autocomplete = &quot;&quot;]</code>: Sets the autocomplete callback (slash-only)</li>
 <li><code>#[channel_types(&quot;&quot;, &quot;&quot;)]</code>: For channel parameters, restricts allowed channel types (slash-only)</li>
 <li><code>#[min = 0]</code>: Minimum value for this number parameter (slash-only)</li>
-<li><code>#[max = 0]</code>: Minimum value for this number parameter (slash-only)</li>
+<li><code>#[max = 0]</code>: Maximum value for this number parameter (slash-only)</li>
 <li><code>#[rest]</code>: Use the entire rest of the message for this parameter (prefix-only)</li>
 <li><code>#[lazy]</code>: Can be used on Option and Vec parameters and is equivalent to regular expressions’ laziness (prefix-only)</li>
 <li><code>#[flag]</code>: Can be used on a bool parameter to set the bool to true if the user typed the parameter name literally (prefix-only)
@@ -71,7 +71,7 @@ are multiple attributes you can use on parameters:</p>
 </ul>
 </li>
 </ul>
-<h2 id="internals" class="section-header"><a href="#internals">Internals</a></h2>
+<h2 id="internals"><a href="#internals">Internals</a></h2>
 <p>Internally, this attribute macro generates a function with a single [<code>poise::Command</code>]
 return type, which contains all data about this command. For example, it transforms a function of
 this form:</p>
@@ -91,10 +91,10 @@ this form:</p>
     <span class="ident">poise::Command</span> {
         <span class="ident">name</span>: <span class="string">&quot;my_command&quot;</span>,
         <span class="ident">inline_help</span>: <span class="string">&quot;This is a command&quot;</span>,
-        <span class="ident">prefix_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+        <span class="ident">prefix_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
             <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
         })),
-        <span class="ident">slash_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span>, <span class="ident">args</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+        <span class="ident">slash_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
             <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
         })),
         <span class="ident">context_menu_action</span>: <span class="prelude-val">None</span>,
@@ -103,5 +103,5 @@ this form:</p>
 }</code></pre></div>
 <p>If you’re curious, you can use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to see the
 exact desugaring</p>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (30b3f35c4 2022-02-17)" ></div>
 </body></html>

@@ -3,8 +3,8 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"><a href="#">Crate poise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><div id="sidebar-vars" data-name="poise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">poise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/lib.rs.html#1-291">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Poise is an opinionated Discord bot framework with a few distinctive features:</p>
+        </a><h2 class="location"><a href="#">Crate poise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li><li><a href="#attributes">Attribute Macros</a></li><li><a href="#derives">Derive Macros</a></li></ul></div><div id="sidebar-vars" data-name="poise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">poise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/lib.rs.html#1-313">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Poise is an opinionated Discord bot framework with a few distinctive features:</p>
 <ul>
 <li>edit tracking: when user edits their message, automatically update bot response</li>
 <li>slash commands: completely define both normal and slash commands with a single function</li>
@@ -12,9 +12,9 @@
 </ul>
 <p>I created this framework mainly for personal use (<a href="https://github.com/kangalioo/rustbot">rustbot</a>
 and <a href="https://github.com/kangalioo/etternabot">etternabot</a>). Features are added on demand, since
-it’s easy to draft a good design when you know exactly what the feature will be used for.</p>
+it’s easier to draft a good design when you know exactly which practical needs it should cover.</p>
 <p><strong>Warning: API details are subject to change</strong></p>
-<h2 id="quickstart" class="section-header"><a href="#quickstart">Quickstart</a></h2>
+<h2 id="quickstart"><a href="#quickstart">Quickstart</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="kw">type</span> <span class="ident">Data</span> <span class="op">=</span> ();
@@ -44,20 +44,32 @@ it’s easy to draft a good design when you know exactly what the feature will b
                 <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
                 ..<span class="ident">Default::default</span>()
             },
+            <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">command</span>(<span class="ident">age</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
         .<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
 <p>A full functioning bot would contain a help command as well as a register command to register slash
 commands. See [<code>examples/framework_usage</code>] for examples on that as well as other features of poise.</p>
 <p>You can run the framework_usage example with
 <code>cargo run --example=framework_usage --features collector</code></p>
-<h3 id="crate-features" class="section-header"><a href="#crate-features">Crate features</a></h3>
+<h2 id="introduction-to-slash-commands"><a href="#introduction-to-slash-commands">Introduction to slash commands</a></h2>
+<p>Discord slash commands can be a bit unintuitive at first. If you’re unfamiliar, please read this</p>
+<p>To activate a slash command, your bot
+needs to <em>register</em> in on Discord. You may want to do this manually, with a <code>register</code> command
+(poise provides <a href="builtins/fn.register_application_commands.html" title="builtins::register_application_commands"><code>builtins::register_application_commands</code></a> as a starting point for that), or you
+may want to re-register commands automatically on every bot startup. Choose what you prefer</p>
+<p>Commands can be registered <em>globally</em> or <em>per guild</em>. Global commands are available on every guild
+your bot is invited on, but it takes up to an hour for global registration to roll out. Per guild
+registration only updates a single guild, but it happens instantly, which is useful for testing.</p>
+<p>Your bot also needs to be invited with the <code>applications.commands</code> scope. For example, in Discord’s
+invite link generator (discord.com/developers/applications/XXX/oauth2/url-generator),
+tick the <code>applications.commands</code> box.</p>
+<h3 id="crate-features"><a href="#crate-features">Crate features</a></h3>
 <ul>
 <li>collector: enables serenity’s <code>collector</code> feature</li>
 </ul>
-<h2 id="how-to-use" class="section-header"><a href="#how-to-use">How to use</a></h2><h3 id="create-commands" class="section-header"><a href="#create-commands">Create commands</a></h3>
+<h2 id="how-to-use"><a href="#how-to-use">How to use</a></h2><h3 id="create-commands"><a href="#create-commands">Create commands</a></h3>
 <p>Every command is represented by a function annotated with <a href="attr.command.html"><code>#[poise::command]</code></a>:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// Description of the command here</span>
@@ -75,7 +87,7 @@ commands. See [<code>examples/framework_usage</code>] for examples on that as we
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 <p>See <a href="attr.command.html"><code>#[poise::command]</code></a> for detailed information.</p>
-<h4 id="big-example-to-showcase-many-command-features" class="section-header"><a href="#big-example-to-showcase-many-command-features">Big example to showcase many command features</a></h4>
+<h4 id="big-example-to-showcase-many-command-features"><a href="#big-example-to-showcase-many-command-features">Big example to showcase many command features</a></h4>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="kw">type</span> <span class="ident">Data</span> <span class="op">=</span> ();
 <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::error::Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>;
@@ -118,7 +130,7 @@ Example usage:
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">error_handler</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="macro">println!</span>(<span class="string">&quot;Oh noes, we got an error: {:?}&quot;</span>, <span class="ident">error</span>);
 }</code></pre></div>
-<h3 id="create-and-configure-framework" class="section-header"><a href="#create-and-configure-framework">Create and configure framework</a></h3>
+<h3 id="create-and-configure-framework"><a href="#create-and-configure-framework">Create and configure framework</a></h3>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>
 <span class="comment">// Use `Framework::build()` to create a framework builder and supply basic data to the framework:</span>
 <span class="ident">poise::Framework::build</span>()
@@ -128,7 +140,7 @@ Example usage:
         <span class="prelude-val">Ok</span>(())
     }))
 
-    <span class="comment">// A lot of configuration is done via the `FrameworkOptions` struct, which you can define with</span>
+    <span class="comment">// Most configuration is done via the `FrameworkOptions` struct, which you can define with</span>
     <span class="comment">// a struct literal (hint: use `..Default::default()` to fill uninitialized</span>
     <span class="comment">// settings with their default value):</span>
     .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
@@ -139,23 +151,27 @@ Example usage:
             <span class="ident">case_insensitive_commands</span>: <span class="bool-val">true</span>,
             ..<span class="ident">Default::default</span>()
         },
+        <span class="comment">// This is also where commands go</span>
+        <span class="ident">commands</span>: <span class="macro">vec!</span>[
+            <span class="ident">command1</span>(),
+            <span class="ident">command2</span>(),
+            <span class="comment">// To add subcommands, modify the `subcommands` field of the `Command` struct returned</span>
+            <span class="comment">// by the command functions</span>
+            <span class="ident">poise::Command</span> {
+                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">command3_1</span>(), <span class="ident">command3_2</span>()],
+                ..<span class="ident">command3</span>()
+            }
+        ],
         ..<span class="ident">Default::default</span>()
     })
 
-    <span class="comment">// Finally, add commands and start the framework. You can add subcommands to a command.</span>
-    .<span class="ident">command</span>(<span class="ident">command1</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-    .<span class="ident">command</span>(<span class="ident">command2</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-    .<span class="ident">command</span>(<span class="ident">command3</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>
-        .<span class="ident">subcommand</span>(<span class="ident">command3_1</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-        .<span class="ident">subcommand</span>(<span class="ident">command3_2</span>(), <span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>)
-    )
     .<span class="ident">run</span>().<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>
-<h2 id="tips-and-tricks" class="section-header"><a href="#tips-and-tricks">Tips and tricks</a></h2><h3 id="type-aliases" class="section-header"><a href="#type-aliases">Type aliases</a></h3>
+<h2 id="tips-and-tricks"><a href="#tips-and-tricks">Tips and tricks</a></h2><h3 id="type-aliases"><a href="#type-aliases">Type aliases</a></h3>
 <p>As seen in the examples, it’s useful to define type aliases for <code>Context</code> with
 your bot’s error type and user data type filled in:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">type</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">poise::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">UserData</span>, <span class="ident">ErrorType</span><span class="op">&gt;</span>;</code></pre></div>
-<h3 id="serenity-prelude" class="section-header"><a href="#serenity-prelude">Serenity prelude</a></h3>
+<h3 id="serenity-prelude"><a href="#serenity-prelude">Serenity prelude</a></h3>
 <p>When you’re too lazy to import serenity items from their full path which can be quite lengthy at
 times, you can use <code>poise::serenity_prelude</code>: a module which reexports almost all items from
 serenity.</p>
@@ -164,7 +180,7 @@ serenity.</p>
 
 <span class="comment">// Short paths!</span>
 <span class="ident">serenity::Member</span>, <span class="ident">serenity::UserId</span>, <span class="ident">serenity::ReactionType</span>, <span class="ident">serenity::GatewayIntents</span></code></pre></div>
-<h2 id="about-the-weird-name" class="section-header"><a href="#about-the-weird-name">About the weird name</a></h2>
+<h2 id="about-the-weird-name"><a href="#about-the-weird-name">About the weird name</a></h2>
 <p>I’m bad at names. Google lists “poise” as a synonym to “serenity” which is the Discord library
 underlying this framework, so that’s what I chose.</p>
 </div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
@@ -204,6 +220,7 @@ enum and propagates it to a callback.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.InvalidChoice.html" title="poise::InvalidChoice struct">InvalidChoice</a></div><div class="item-right docblock-short"><p>Error thrown when the user enters a string that is not recognized by a
 SlashChoiceParameter-derived enum</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.KeyValueArgs.html" title="poise::KeyValueArgs struct">KeyValueArgs</a></div><div class="item-right docblock-short"><p>A command parameter type for key-value args</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.MissingAttachment.html" title="poise::MissingAttachment struct">MissingAttachment</a></div><div class="item-right docblock-short"><p>Error thrown in prefix invocation when there’s too few attachments</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.PartialContext.html" title="poise::PartialContext struct">PartialContext</a></div><div class="item-right docblock-short"><p>Trimmed down, more general version of <a href="enum.Context.html" title="Context"><code>Context</code></a></p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.PrefixContext.html" title="poise::PrefixContext struct">PrefixContext</a></div><div class="item-right docblock-short"><p>Prefix-specific context passed to command invocations.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.PrefixFrameworkOptions.html" title="poise::PrefixFrameworkOptions struct">PrefixFrameworkOptions</a></div><div class="item-right docblock-short"><p>Prefix-specific framework configuration</p>
@@ -242,5 +259,5 @@ if application command.</p>
 </div></div></div><h2 id="derives" class="small-section-header"><a href="#derives">Derive Macros</a></h2>
 <div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="derive" href="derive.SlashChoiceParameter.html" title="poise::SlashChoiceParameter derive">SlashChoiceParameter</a></div><div class="item-right docblock-short"><p>Use this derive macro on an enum to easily generate a <em>choice parameter</em> type. A <em>choice parameter</em>
 is mainly useful in slash commands. It allows you to constrain input to a fixed set of choices.</p>
-</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
+</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (30b3f35c4 2022-02-17)" ></div>
 </body></html>

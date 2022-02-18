@@ -194,6 +194,14 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds prefix-command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -206,10 +214,12 @@
     <span class="kw">pub</span> <span class="ident">discord</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
     <span class="doccomment">/// The invoking user message</span>
     <span class="kw">pub</span> <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Message</span>,
-    <span class="doccomment">/// Command name used by the user to invoke this command</span>
-    <span class="kw">pub</span> <span class="ident">invoked_command_name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
     <span class="doccomment">/// Prefix used by the user to invoke this command</span>
     <span class="kw">pub</span> <span class="ident">prefix</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="doccomment">/// Command name used by the user to invoke this command</span>
+    <span class="kw">pub</span> <span class="ident">invoked_command_name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="doccomment">/// Entire argument string</span>
+    <span class="kw">pub</span> <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
     <span class="doccomment">/// Read-only reference to the framework</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Useful if you need the list of commands, for example for a custom help command</span>
@@ -236,8 +246,9 @@
         <span class="kw">let</span> <span class="self">Self</span> {
             <span class="ident">discord</span>: <span class="kw">_</span>,
             <span class="ident">msg</span>,
-            <span class="ident">invoked_command_name</span>,
             <span class="ident">prefix</span>,
+            <span class="ident">invoked_command_name</span>,
+            <span class="ident">args</span>,
             <span class="ident">framework</span>: <span class="kw">_</span>,
             <span class="ident">command</span>: <span class="kw">_</span>,
             <span class="ident">data</span>,
@@ -246,8 +257,9 @@
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixContext&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;discord&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;serenity Context&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;msg&quot;</span>, <span class="ident">msg</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;invoked_command_name&quot;</span>, <span class="ident">invoked_command_name</span>)
             .<span class="ident">field</span>(<span class="string">&quot;prefix&quot;</span>, <span class="ident">prefix</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;invoked_command_name&quot;</span>, <span class="ident">invoked_command_name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;args&quot;</span>, <span class="ident">args</span>)
             .<span class="ident">field</span>(<span class="string">&quot;framework&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Framework&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;command&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Command&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="ident">data</span>)
@@ -313,10 +325,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: only has an effect if [`Self::edit_tracker`] is set.</span>
     <span class="kw">pub</span> <span class="ident">execute_untracked_edits</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Wether or not to ignore message edits on messages outside the cache.</span>
-    <span class="doccomment">/// This can happen if the message edit happens while the command is being invoked, or the</span>
-    <span class="doccomment">/// original message wasn&#39;t a command.</span>
-    <span class="kw">pub</span> <span class="ident">ignore_edit_tracker_cache</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Whether to ignore message edits on messages that have not yet been responded to.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is the case if the message edit happens before a command has sent a response, or if the</span>
+    <span class="doccomment">/// command does not send a response at all.</span>
+    <span class="kw">pub</span> <span class="ident">ignore_edits_if_not_yet_responded</span>: <span class="ident">bool</span>,
 
     <span class="doccomment">/// Whether commands in messages emitted by the bot itself should be executed as well.</span>
     <span class="kw">pub</span> <span class="ident">execute_self_messages</span>: <span class="ident">bool</span>,
@@ -343,7 +356,7 @@
             <span class="ident">mention_as_prefix</span>,
             <span class="ident">edit_tracker</span>,
             <span class="ident">execute_untracked_edits</span>,
-            <span class="ident">ignore_edit_tracker_cache</span>,
+            <span class="ident">ignore_edits_if_not_yet_responded</span>,
             <span class="ident">execute_self_messages</span>,
             <span class="ident">case_insensitive_commands</span>,
         } <span class="op">=</span> <span class="self">self</span>;
@@ -359,7 +372,10 @@
             .<span class="ident">field</span>(<span class="string">&quot;mention_as_prefix&quot;</span>, <span class="ident">mention_as_prefix</span>)
             .<span class="ident">field</span>(<span class="string">&quot;edit_tracker&quot;</span>, <span class="ident">edit_tracker</span>)
             .<span class="ident">field</span>(<span class="string">&quot;execute_untracked_edits&quot;</span>, <span class="ident">execute_untracked_edits</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;ignore_edit_tracker_cache&quot;</span>, <span class="ident">ignore_edit_tracker_cache</span>)
+            .<span class="ident">field</span>(
+                <span class="string">&quot;ignore_edits_if_not_yet_responded&quot;</span>,
+                <span class="ident">ignore_edits_if_not_yet_responded</span>,
+            )
             .<span class="ident">field</span>(<span class="string">&quot;execute_self_messages&quot;</span>, <span class="ident">execute_self_messages</span>)
             .<span class="ident">field</span>(<span class="string">&quot;case_insensitive_commands&quot;</span>, <span class="ident">case_insensitive_commands</span>)
             .<span class="ident">finish</span>()
@@ -376,7 +392,7 @@
             <span class="ident">mention_as_prefix</span>: <span class="bool-val">true</span>,
             <span class="ident">edit_tracker</span>: <span class="prelude-val">None</span>,
             <span class="ident">execute_untracked_edits</span>: <span class="bool-val">true</span>,
-            <span class="ident">ignore_edit_tracker_cache</span>: <span class="bool-val">false</span>,
+            <span class="ident">ignore_edits_if_not_yet_responded</span>: <span class="bool-val">false</span>,
             <span class="ident">execute_self_messages</span>: <span class="bool-val">false</span>,
             <span class="ident">case_insensitive_commands</span>: <span class="bool-val">true</span>,
             <span class="comment">// help_when_mentioned: true,</span>
@@ -386,5 +402,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (498eeb72f 2022-01-31)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (30b3f35c4 2022-02-17)" ></div>
 </body></html>
