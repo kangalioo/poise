@@ -262,7 +262,7 @@
         <span class="macro">format!</span>(<span class="string">&quot;No such command `{}`&quot;</span>, <span class="ident">command_name</span>)
     };
 
-    <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">reply</span>).<span class="ident">ephemeral</span>(<span class="ident">config</span>.<span class="ident">ephemeral</span>))
+    <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">reply</span>).<span class="ident">ephemeral</span>(<span class="ident">config</span>.<span class="ident">ephemeral</span>))
         .<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
@@ -341,7 +341,7 @@
     <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config</span>.<span class="ident">extra_text_at_bottom</span>;
     <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;\n```&quot;</span>;
 
-    <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">menu</span>).<span class="ident">ephemeral</span>(<span class="ident">config</span>.<span class="ident">ephemeral</span>))
+    <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">menu</span>).<span class="ident">ephemeral</span>(<span class="ident">config</span>.<span class="ident">ephemeral</span>))
         .<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
@@ -410,5 +410,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (75d9a0ae2 2022-02-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (b17226fcc 2022-02-18)" ></div>
 </body></html>
