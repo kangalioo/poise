@@ -270,6 +270,11 @@
 <span id="265">265</span>
 <span id="266">266</span>
 <span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -411,14 +416,19 @@
             <span class="ident">flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">serenity::InteractionApplicationCommandCallbackDataFlags::EPHEMERAL</span>;
         }
 
-        <span class="ident">interaction</span>
-            .<span class="ident">create_interaction_response</span>(<span class="self">self</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-                <span class="ident">f</span>.<span class="ident">kind</span>(<span class="ident">serenity::InteractionResponseType::DeferredChannelMessageWithSource</span>)
-                    .<span class="ident">interaction_response_data</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">flags</span>(<span class="ident">flags</span>))
-            })
-            .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">has_sent_initial_response</span>
-            .<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">std::sync::atomic::Ordering::SeqCst</span>);
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>
+            .<span class="ident">has_sent_initial_response</span>
+            .<span class="ident">load</span>(<span class="ident">std::sync::atomic::Ordering::SeqCst</span>)
+        {
+            <span class="ident">interaction</span>
+                .<span class="ident">create_interaction_response</span>(<span class="self">self</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+                    <span class="ident">f</span>.<span class="ident">kind</span>(<span class="ident">serenity::InteractionResponseType::DeferredChannelMessageWithSource</span>)
+                        .<span class="ident">interaction_response_data</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">flags</span>(<span class="ident">flags</span>))
+                })
+                .<span class="kw">await</span><span class="question-mark">?</span>;
+            <span class="self">self</span>.<span class="ident">has_sent_initial_response</span>
+                .<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">std::sync::atomic::Ordering::SeqCst</span>);
+        }
         <span class="prelude-val">Ok</span>(())
     }
 }
