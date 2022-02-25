@@ -309,6 +309,24 @@
 <span id="304">304</span>
 <span id="305">305</span>
 <span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Just contains Context and PartialContext structs</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -585,6 +603,24 @@
             <span class="prelude-val">Err</span>(<span class="ident">_other</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;unexpected error before entering command&quot;</span>),
         }
     }
+
+    <span class="comment">// TODO: implement invocation_string. Needs hierarchy of parent commands available, e.g. as</span>
+    <span class="comment">// `parent_commands: Vec&lt;&amp;&#39;a Command&gt;` field. But... do I want to do that?</span>
+    <span class="comment">/* pub fn invocation_string(&amp;self) -&gt; String {
+        match self {
+            Context::Application(ctx) =&gt; {
+                let mut string = String::from(&quot;/&quot;);
+                string += ctx.interaction.data().name; // ... ah crap we need to traverse hierarchy of parent commands
+                for arg in ctx.args {
+                    string += &quot; &quot;;
+                    string += arg.name;
+                    string += &quot;:&quot;;
+                    strińg +=
+                }
+            },
+            Context::Prefix(ctx) =&gt; ctx.msg.content.clone(),
+        }
+    } */</span>
 }
 
 <span class="doccomment">/// Trimmed down, more general version of [`Context`]</span>
@@ -616,5 +652,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (30b3f35c4 2022-02-17)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4b043faba 2022-02-24)" ></div>
 </body></html>
