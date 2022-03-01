@@ -302,6 +302,10 @@
 <span id="297">297</span>
 <span id="298">298</span>
 <span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -442,6 +446,10 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_application_commands</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">commands</span>: <span class="kw-2">&amp;</span>[<span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>],
 ) -&gt; <span class="ident">serenity::CreateApplicationCommands</span> {
+    <span class="doccomment">/// We decided to extract context menu commands recursively, despite the subcommand hierarchy</span>
+    <span class="doccomment">/// not being preserved. Because it&#39;s more confusing to just silently discard context menu</span>
+    <span class="doccomment">/// commands if they&#39;re not top-level commands.</span>
+    <span class="doccomment">/// https://discord.com/channels/381880193251409931/919310428344029265/947970605985189989</span>
     <span class="kw">fn</span> <span class="ident">recursively_add_context_menu_commands</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
         <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommands</span>,
         <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
