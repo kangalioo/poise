@@ -212,7 +212,7 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>) <span class="op">=</span> <span class="ident">content</span> {
         <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>);
     }
-    <span class="ident">f</span>.<span class="ident">embeds</span>(<span class="ident">embeds</span>);
+    <span class="ident">f</span>.<span class="ident">set_embeds</span>(<span class="ident">embeds</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">allowed_mentions</span>) <span class="op">=</span> <span class="ident">allowed_mentions</span> {
         <span class="ident">f</span>.<span class="ident">allowed_mentions</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
             <span class="kw-2">*</span><span class="ident">f</span> <span class="op">=</span> <span class="ident">allowed_mentions</span>.<span class="ident">clone</span>();
@@ -249,7 +249,7 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>) <span class="op">=</span> <span class="ident">content</span> {
         <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>);
     }
-    <span class="ident">f</span>.<span class="ident">embeds</span>(<span class="ident">embeds</span>);
+    <span class="ident">f</span>.<span class="ident">set_embeds</span>(<span class="ident">embeds</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">components</span>) <span class="op">=</span> <span class="ident">components</span> {
         <span class="ident">f</span>.<span class="ident">components</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> {
             <span class="ident">c</span>.<span class="number">0</span> <span class="op">=</span> <span class="ident">components</span>.<span class="number">0</span>;
@@ -364,5 +364,5 @@
     }))
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (8769f4ef2 2022-03-02)" ></div>
 </body></html>
