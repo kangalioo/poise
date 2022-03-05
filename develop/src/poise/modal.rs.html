@@ -118,6 +118,9 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Modal trait and utility items for implementing it (mainly for the derive macro)</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -183,7 +186,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// #[poise::command(slash_command)]</span>
 <span class="doccomment">/// pub async fn modal(ctx: ApplicationContext&lt;&#39;_&gt;) -&gt; Result&lt;(), Error&gt; {</span>
-<span class="doccomment">///     let data = MyModal::execute(ctx.discord, ctx.interaction.unwrap()).await?;</span>
+<span class="doccomment">///     let data = MyModal::execute(ctx).await?;</span>
 <span class="doccomment">///     println!(&quot;Got data: {:?}&quot;, data);</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///     Ok(())</span>
@@ -205,27 +208,30 @@
     <span class="doccomment">/// 2. waits for the user to submit via [`serenity::CollectModalInteraction`]</span>
     <span class="doccomment">/// 3. acknowledges the submitted data so that Discord closes the pop-up for the user</span>
     <span class="doccomment">/// 4. parses the submitted data via [`Self::parse()`], wrapping errors in [`serenity::Error::Other`]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">execute</span>(
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">serenity::Context</span>,
-        <span class="ident">interaction</span>: <span class="kw-2">&amp;</span><span class="ident">serenity::ApplicationCommandInteraction</span>,
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">execute</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+        <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">interaction</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">interaction</span>.<span class="ident">unwrap</span>();
+
         <span class="comment">// Send modal</span>
         <span class="ident">interaction</span>
-            .<span class="ident">create_interaction_response</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+            .<span class="ident">create_interaction_response</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                 <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::create</span>();
                 <span class="ident">b</span>
             })
             .<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="ident">ctx</span>.<span class="ident">has_sent_initial_response</span>
+            .<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">std::sync::atomic::Ordering::SeqCst</span>);
 
         <span class="comment">// Wait for user to submit</span>
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">serenity::CollectModalInteraction::new</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">shard</span>)
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">serenity::CollectModalInteraction::new</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">discord</span>.<span class="ident">shard</span>)
             .<span class="ident">author_id</span>(<span class="ident">interaction</span>.<span class="ident">user</span>.<span class="ident">id</span>)
             .<span class="kw">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="comment">// Send acknowledgement so that the pop-up is closed</span>
         <span class="ident">response</span>
-            .<span class="ident">create_interaction_response</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+            .<span class="ident">create_interaction_response</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                 <span class="ident">b</span>.<span class="ident">kind</span>(<span class="ident">serenity::InteractionResponseType::DeferredUpdateMessage</span>)
             })
             .<span class="kw">await</span><span class="question-mark">?</span>;
