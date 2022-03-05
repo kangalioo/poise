@@ -110,6 +110,12 @@
 <span id="105">105</span>
 <span id="106">106</span>
 <span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -216,7 +222,13 @@
         <span class="doccomment">/// General context</span>
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },
+    <span class="doccomment">/// [`crate::PrefixFrameworkOptions::dynamic_prefix`] or</span>
+    <span class="doccomment">/// [`crate::PrefixFrameworkOptions::stripped_dynamic_prefix`] returned an error</span>
+    <span class="ident">DynamicPrefix</span> {
+        <span class="doccomment">/// Error which was thrown in the dynamic prefix code</span>
+        <span class="ident">error</span>: <span class="ident">E</span>,
+    },
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (8769f4ef2 2022-03-02)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (9fcbc3205 2022-03-04)" ></div>
 </body></html>

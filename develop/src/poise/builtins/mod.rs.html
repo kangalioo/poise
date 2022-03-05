@@ -306,6 +306,9 @@
 <span id="301">301</span>
 <span id="302">302</span>
 <span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -417,6 +420,9 @@
         <span class="ident"><span class="kw">crate</span>::FrameworkError::NotAnOwner</span> { <span class="ident">ctx</span> } =&gt; {
             <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;Only bot owners can call this command&quot;</span>;
             <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::DynamicPrefix</span> { <span class="ident">error</span> } =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Dynamic prefix failed: {}&quot;</span>, <span class="ident">error</span>);
         }
     }
 
@@ -610,5 +616,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (8769f4ef2 2022-03-02)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (9fcbc3205 2022-03-04)" ></div>
 </body></html>
