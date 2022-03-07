@@ -4,7 +4,7 @@
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"><a href="#">Crate poise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li><li><a href="#attributes">Attribute Macros</a></li><li><a href="#derives">Derive Macros</a></li></ul></div></section><div id="sidebar-vars" data-name="poise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">poise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/lib.rs.html#1-320">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Poise is an opinionated Discord bot framework with a few distinctive features:</p>
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">poise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/lib.rs.html#1-314">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Poise is an opinionated Discord bot framework with a few distinctive features:</p>
 <ul>
 <li>edit tracking: when user edits their message, automatically update bot response</li>
 <li>slash commands: completely define both normal and slash commands with a single function</li>
@@ -54,7 +54,7 @@ it’s easier to draft a good design when you know exactly which practical needs
 <p>A full functioning bot would contain a help command as well as a register command to register slash
 commands. See [<code>examples/framework_usage</code>] for examples on that as well as other features of poise.</p>
 <p>You can run the framework_usage example with
-<code>cargo run --example=framework_usage --features collector</code></p>
+<code>cargo run --example=framework_usage</code></p>
 <h2 id="introduction-to-slash-commands"><a href="#introduction-to-slash-commands">Introduction to slash commands</a></h2>
 <p>Discord slash commands can be a bit unintuitive at first. If you’re unfamiliar, please read this</p>
 <p>To activate a slash command, your bot
@@ -67,10 +67,6 @@ registration only updates a single guild, but it happens instantly, which is use
 <p>Your bot also needs to be invited with the <code>applications.commands</code> scope. For example, in Discord’s
 invite link generator (discord.com/developers/applications/XXX/oauth2/url-generator),
 tick the <code>applications.commands</code> box.</p>
-<h3 id="crate-features"><a href="#crate-features">Crate features</a></h3>
-<ul>
-<li>collector: enables serenity’s <code>collector</code> feature</li>
-</ul>
 <h2 id="how-to-use"><a href="#how-to-use">How to use</a></h2><h3 id="create-commands"><a href="#create-commands">Create commands</a></h3>
 <p>Every command is represented by a function annotated with <a href="attr.command.html"><code>#[poise::command]</code></a>:</p>
 
@@ -264,5 +260,5 @@ if application command.</p>
 is mainly useful in slash commands. It allows you to constrain input to a fixed set of choices.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="derive" href="derive.Modal.html" title="poise::Modal derive">Modal</a></div><div class="item-right docblock-short"><p>See <code>Modal</code> trait documentation</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="derive" href="derive.SlashChoiceParameter.html" title="poise::SlashChoiceParameter derive">SlashChoiceParameter</a></div><div class="item-right docblock-short"><p>See <a href="derive.ChoiceParameter.html" title="ChoiceParameter"><code>ChoiceParameter</code></a></p>
-</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (9fcbc3205 2022-03-04)" ></div>
+</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (38a0b81b1 2022-03-06)" ></div>
 </body></html>
