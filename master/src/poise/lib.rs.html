@@ -317,12 +317,6 @@
 <span id="312">312</span>
 <span id="313">313</span>
 <span id="314">314</span>
-<span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
-<span id="320">320</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -386,7 +380,7 @@ A full functioning bot would contain a help command as well as a register comman
 commands. See [`examples/framework_usage`] for examples on that as well as other features of poise.
 
 You can run the framework_usage example with
-`cargo run --example=framework_usage --features collector`
+`cargo run --example=framework_usage`
 
 # Introduction to slash commands
 
@@ -404,10 +398,6 @@ registration only updates a single guild, but it happens instantly, which is use
 Your bot also needs to be invited with the `applications.commands` scope. For example, in Discord&#39;s
 invite link generator (discord.com/developers/applications/XXX/oauth2/url-generator),
 tick the `applications.commands` box.
-
-## Crate features
-
-- collector: enables serenity&#39;s `collector` feature
 
 # How to use
 
@@ -611,9 +601,6 @@ underlying this framework, so that&#39;s what I chose.
 <span class="doccomment">/// use poise::serenity_prelude as serenity;</span>
 <span class="doccomment">/// ```</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">serenity_prelude</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;collector&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">serenity::collector</span>::<span class="kw-2">*</span>;
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span>
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">serenity</span>::{
         <span class="ident">async_trait</span>,
@@ -622,6 +609,7 @@ underlying this framework, so that&#39;s what I chose.
             <span class="ident">bridge::gateway</span>::{<span class="ident">event</span>::<span class="kw-2">*</span>, <span class="kw-2">*</span>},
             <span class="kw-2">*</span>,
         },
+        <span class="ident">collector</span>::<span class="kw-2">*</span>,
         <span class="ident">http</span>::<span class="kw-2">*</span>,
         <span class="ident">model</span>::{
             <span class="ident">event</span>::<span class="kw-2">*</span>,
