@@ -9,25 +9,25 @@
     // Attributes available to this derive:
     #[name]
 }
-</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Use this derive macro on an enum to easily generate a <em>choice parameter</em> type. A <em>choice parameter</em>
+</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Use this derive macro on an enum to easily generate a choice parameter type. A choice parameter
 is mainly useful in slash commands. It allows you to constrain input to a fixed set of choices.</p>
-<h2 id="example"><a href="#example">Example</a></h2>
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">poise::ChoiceParameter</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MyStringChoice</span> {
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">poise::ChoiceParameter</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MyChoice</span> {
     <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;The first choice&quot;</span>]</span>
     <span class="ident">ChoiceA</span>,
+    <span class="comment">// A choice can have multiple names</span>
     <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;The second choice&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;ChoiceB&quot;</span>]</span>
     <span class="ident">ChoiceB</span>,
-}
-
-<span class="doccomment">/// Dummy command to test slash command choice parameters</span>
-<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>)]</span>
-<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">choice</span>(
-    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;The choice you want to choose&quot;</span>]</span> <span class="ident">choice</span>: <span class="ident">MyStringChoice</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;You entered {:?}&quot;</span>, <span class="ident">choice</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(())
+    <span class="comment">// Or no name, in which case it falls back to the variant name &quot;ChoiceC&quot;</span>
+    <span class="ident">ChoiceC</span>,
 }</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4b043faba 2022-02-24)" ></div>
+<p>Example invocations:</p>
+<ul>
+<li><code>~yourcommand &quot;The first choice&quot;</code> - without the quotes, each word would count as a separate argument</li>
+<li><code>~yourcommand ChoiceB</code></li>
+<li><code>~yourcommand cHoIcEb</code> - names are case-insensitive</li>
+</ul>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (38a0b81b1 2022-03-06)" ></div>
 </body></html>

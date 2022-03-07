@@ -298,8 +298,8 @@
                     <span class="prelude-val">None</span> =&gt; <span class="kw">match</span> <span class="ident">options</span>.<span class="ident">dynamic_prefix</span> {
                         <span class="prelude-val">Some</span>(<span class="ident">dynamic_prefix_callback</span>) =&gt; {
                             <span class="kw">match</span> <span class="ident">dynamic_prefix_callback</span>(<span class="ident"><span class="kw">crate</span>::PartialContext::from</span>(<span class="ident">ctx</span>)).<span class="kw">await</span> {
-                                <span class="prelude-val">Some</span>(<span class="ident">dynamic_prefix</span>) =&gt; <span class="ident">dynamic_prefix</span>,
-                                <span class="prelude-val">None</span> =&gt; <span class="ident">String::from</span>(<span class="string">&quot;&quot;</span>),
+                                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">dynamic_prefix</span>)) =&gt; <span class="ident">dynamic_prefix</span>,
+                                <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; <span class="ident">String::from</span>(<span class="string">&quot;&quot;</span>),
                             }
                         }
                         <span class="prelude-val">None</span> =&gt; <span class="ident">String::from</span>(<span class="string">&quot;&quot;</span>),
@@ -410,5 +410,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4b043faba 2022-02-24)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (38a0b81b1 2022-03-06)" ></div>
 </body></html>
