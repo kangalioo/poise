@@ -157,6 +157,19 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::str_to_string</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">autocomplete</span>;
@@ -165,6 +178,7 @@
 <span class="kw">mod</span> <span class="ident">context_menu</span>;
 <span class="kw">mod</span> <span class="ident">subcommands</span>;
 
+<span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">env::var</span>, <span class="ident">sync::Mutex</span>, <span class="ident">time::Duration</span>};
 
 <span class="comment">// Types used by all command functions</span>
@@ -294,6 +308,12 @@ This is an example bot made to showcase features of my custom Discord bot framew
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="prelude-val">Ok</span>(())
+            })
+        },
         ..<span class="ident">Default::default</span>()
     };
 
@@ -307,6 +327,12 @@ This is an example bot made to showcase features of my custom Discord bot framew
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
+        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+            <span class="ident">b</span>.<span class="ident">intents</span>(
+                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
+                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+            )
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();

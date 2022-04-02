@@ -10,8 +10,7 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[38,38],&quot;../src/framework_usage/main.rs.html#108&quot;,&quot;line 108&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#108">line 108</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
-<span>71</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[38,38],&quot;../src/framework_usage/main.rs.html#109&quot;,&quot;line 109&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#109">line 109</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -95,6 +94,19 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>152</span>
 <span>153</span>
 <span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+<span>167</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -163,6 +175,12 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="prelude-val">Ok</span>(())
+            })
+        },
         ..<span class="ident">Default::default</span>()
     };
 
@@ -176,6 +194,12 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
+        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+            <span class="ident">b</span>.<span class="ident">intents</span>(
+                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
+                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+            )
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();

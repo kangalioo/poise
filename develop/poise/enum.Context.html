@@ -4674,8 +4674,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[62,62],&quot;../src/framework_usage/main.rs.html#132&quot;,&quot;line 132&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#132">line 132</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>70</span>
-<span>71</span>
+</div></div><div class="scraped-example " data-locs="[[[62,62],&quot;../src/framework_usage/main.rs.html#133&quot;,&quot;line 133&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#133">line 133</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -4759,6 +4758,19 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>152</span>
 <span>153</span>
 <span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+<span>167</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -4827,6 +4839,12 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="prelude-val">Ok</span>(())
+            })
+        },
         ..<span class="ident">Default::default</span>()
     };
 
@@ -4840,6 +4858,12 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
+        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+            <span class="ident">b</span>.<span class="ident">intents</span>(
+                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
+                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+            )
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
@@ -5026,8 +5050,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         }
     }
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../src/framework_usage/main.rs.html#59&quot;,&quot;line 59&quot;],[[68,68],&quot;../src/framework_usage/main.rs.html#120&quot;,&quot;line 120&quot;],[[74,74],&quot;../src/framework_usage/main.rs.html#126&quot;,&quot;line 126&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#59">line 59</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>52</span>
-<span>53</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../src/framework_usage/main.rs.html#60&quot;,&quot;line 60&quot;],[[68,68],&quot;../src/framework_usage/main.rs.html#121&quot;,&quot;line 121&quot;],[[74,74],&quot;../src/framework_usage/main.rs.html#127&quot;,&quot;line 127&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#60">line 60</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>53</span>
 <span>54</span>
 <span>55</span>
 <span>56</span>
@@ -5129,6 +5152,19 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>152</span>
 <span>153</span>
 <span>154</span>
+<span>155</span>
+<span>156</span>
+<span>157</span>
+<span>158</span>
+<span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+<span>167</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="comment">// This is our custom error handler</span>
     <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
@@ -5215,6 +5251,12 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="prelude-val">Ok</span>(())
+            })
+        },
         ..<span class="ident">Default::default</span>()
     };
 
@@ -5228,6 +5270,12 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
+        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+            <span class="ident">b</span>.<span class="ident">intents</span>(
+                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
+                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+            )
+        })
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();

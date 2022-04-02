@@ -165,9 +165,9 @@
         <span class="ident">error</span>: <span class="ident">E</span>,
         <span class="doccomment">/// The serenity Context passed to the event</span>
         <span class="attribute">#[<span class="ident">derivative</span>(<span class="ident">Debug</span> <span class="op">=</span> <span class="string">&quot;ignore&quot;</span>)]</span>
-        <span class="ident">ctx</span>: <span class="ident">serenity::Context</span>,
+        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
         <span class="doccomment">/// Which event was being processed when the error occurred</span>
-        <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Event</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+        <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Event</span>,
         <span class="doccomment">/// The Framework passed to the event</span>
         <span class="attribute">#[<span class="ident">derivative</span>(<span class="ident">Debug</span> <span class="op">=</span> <span class="string">&quot;ignore&quot;</span>)]</span>
         <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
