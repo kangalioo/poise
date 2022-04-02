@@ -50,5 +50,21 @@ or the modal will fail</p>
 <li>acknowledges the submitted data so that Discord closes the pop-up for the user</li>
 <li>parses the submitted data via <a href="trait.Modal.html#tymethod.parse" title="Self::parse()"><code>Self::parse()</code></a>, wrapping errors in <a href="https://docs.rs/serenity/*/serenity/error/enum.Error.html#variant.Other" title="serenity::Error::Other"><code>serenity::Error::Other</code></a></li>
 </ol>
-</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"></div><script type="text/javascript" src="../implementors/poise/trait.Modal.js" async></script></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (1bfe40d11 2022-03-18)" ></div>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example expanded" data-locs="[[[3,3],&quot;../src/framework_usage/commands.rs.html#288&quot;,&quot;line 288&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#288">line 288</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>285</span>
+<span>286</span>
+<span>287</span>
+<span>288</span>
+<span>289</span>
+<span>290</span>
+<span>291</span>
+<span>292</span>
+</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">modal</span>(
+    <span class="ident">ctx</span>: <span class="ident">poise::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident"><span class="kw">crate</span>::Data</span>, <span class="ident"><span class="kw">crate</span>::Error</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="highlight focus"><span class="op">&lt;</span><span class="ident">MyModal</span> <span class="kw">as</span> <span class="ident">poise::Modal</span><span class="op">&gt;</span><span class="ident">::execute</span>(<span class="ident">ctx</span>)</span>.<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;Got data: {:?}&quot;</span>, <span class="ident">data</span>);
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></div></div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"></div><script type="text/javascript" src="../implementors/poise/trait.Modal.js" async></script></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (eb82facb1 2022-04-01)" ></div>
 </body></html>

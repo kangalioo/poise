@@ -285,6 +285,10 @@
 <span id="280">280</span>
 <span id="281">281</span>
 <span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -387,6 +391,8 @@
     <span class="kw">pub</span> <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Your custom user data</span>
     <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">U</span>,
+    <span class="doccomment">/// Custom user data carried across a single command invocation</span>
+    <span class="kw">pub</span> <span class="ident">invocation_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">std::sync::Mutex</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::any::Any</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
@@ -409,6 +415,7 @@
             <span class="ident">framework</span>: <span class="kw">_</span>,
             <span class="ident">command</span>: <span class="kw">_</span>,
             <span class="ident">data</span>,
+            <span class="ident">invocation_data</span>: <span class="kw">_</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ApplicationContext&quot;</span>)
@@ -419,6 +426,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;framework&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Framework&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;command&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;poise Command&gt;&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="ident">data</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;invocation_data&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;Box&lt;dyn Any&gt;&gt;&quot;</span>)
             .<span class="ident">finish</span>()
     }
 }
@@ -568,5 +576,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (1bfe40d11 2022-03-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (eb82facb1 2022-04-01)" ></div>
 </body></html>

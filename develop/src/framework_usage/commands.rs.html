@@ -280,6 +280,21 @@
 <span id="275">275</span>
 <span id="276">276</span>
 <span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Context</span>, <span class="ident">Error</span>};
 <span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
@@ -557,6 +572,21 @@
 
     <span class="prelude-val">Ok</span>(())
 }
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">poise::Modal</span>)]</span>
+<span class="kw">struct</span> <span class="ident">MyModal</span> {
+    <span class="ident">first_input</span>: <span class="ident">String</span>,
+    <span class="ident">second_input</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+}
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">slash_command</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">modal</span>(
+    <span class="ident">ctx</span>: <span class="ident">poise::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident"><span class="kw">crate</span>::Data</span>, <span class="ident"><span class="kw">crate</span>::Error</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">MyModal</span> <span class="kw">as</span> <span class="ident">poise::Modal</span><span class="op">&gt;</span><span class="ident">::execute</span>(<span class="ident">ctx</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;Got data: {:?}&quot;</span>, <span class="ident">data</span>);
+
+    <span class="prelude-val">Ok</span>(())
+}
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (1bfe40d11 2022-03-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (eb82facb1 2022-04-01)" ></div>
 </body></html>

@@ -830,7 +830,7 @@ If you want more information about a specific command, just pass the command as 
                 <span class="ident">error</span>
             );
         }
-        <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span> } =&gt; {
+        <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
                 <span class="ident">event</span>.<span class="ident">name</span>(),
@@ -1322,5 +1322,5 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (1bfe40d11 2022-03-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (eb82facb1 2022-04-01)" ></div>
 </body></html>
