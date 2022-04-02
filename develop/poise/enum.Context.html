@@ -2759,7 +2759,7 @@ dropped.</p>
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">name</span>(),
+                <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
                 <span class="ident">error</span>
             );
         }
@@ -4164,7 +4164,7 @@ request failed</p>
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">name</span>(),
+                <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
                 <span class="ident">error</span>
             );
         }
@@ -4839,7 +4839,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
-        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">event</span>, <span class="ident">_framework</span>, <span class="ident">_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
                 <span class="prelude-val">Ok</span>(())
@@ -5039,7 +5039,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">name</span>(),
+                <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
                 <span class="ident">error</span>
             );
         }
@@ -5251,7 +5251,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
-        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">event</span>, <span class="ident">_framework</span>, <span class="ident">_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
                 <span class="prelude-val">Ok</span>(())

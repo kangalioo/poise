@@ -175,7 +175,7 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             })
         }),
-        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> {
+        <span class="ident">listener</span>: <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">event</span>, <span class="ident">_framework</span>, <span class="ident">_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
                 <span class="prelude-val">Ok</span>(())
