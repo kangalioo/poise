@@ -200,7 +200,7 @@
 <span class="attribute">#[<span class="ident">async_trait::async_trait</span>]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Modal</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// Returns an interaction response builder which creates the modal for this type</span>
-    <span class="kw">fn</span> <span class="ident">create</span>() -&gt; <span class="ident">serenity::CreateInteractionResponse</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">create</span>() -&gt; <span class="ident">serenity::CreateInteractionResponse</span>;
 
     <span class="doccomment">/// Parses a received modal submit interaction into this type</span>
     <span class="doccomment">///</span>
