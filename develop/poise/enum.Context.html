@@ -199,7 +199,7 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[7,7],&quot;../src/serenity_example_port/main.rs.html#355&quot;,&quot;line 355&quot;],[[42,42],&quot;../src/serenity_example_port/main.rs.html#390&quot;,&quot;line 390&quot;],[[72,72],&quot;../src/serenity_example_port/main.rs.html#420&quot;,&quot;line 420&quot;],[[92,92],&quot;../src/serenity_example_port/main.rs.html#440&quot;,&quot;line 440&quot;],[[124,124],&quot;../src/serenity_example_port/main.rs.html#472&quot;,&quot;line 472&quot;],[[132,132],&quot;../src/serenity_example_port/main.rs.html#480&quot;,&quot;line 480&quot;],[[154,154],&quot;../src/serenity_example_port/main.rs.html#502&quot;,&quot;line 502&quot;],[[173,173],&quot;../src/serenity_example_port/main.rs.html#521&quot;,&quot;line 521&quot;],[[194,194],&quot;../src/serenity_example_port/main.rs.html#542&quot;,&quot;line 542&quot;],[[212,212],&quot;../src/serenity_example_port/main.rs.html#560&quot;,&quot;line 560&quot;],[[228,228],&quot;../src/serenity_example_port/main.rs.html#576&quot;,&quot;line 576&quot;],[[243,243],&quot;../src/serenity_example_port/main.rs.html#591&quot;,&quot;line 591&quot;],[[250,250],&quot;../src/serenity_example_port/main.rs.html#598&quot;,&quot;line 598&quot;],[[291,291],&quot;../src/serenity_example_port/main.rs.html#639&quot;,&quot;line 639&quot;],[[299,299],&quot;../src/serenity_example_port/main.rs.html#647&quot;,&quot;line 647&quot;],[[308,308],&quot;../src/serenity_example_port/main.rs.html#656&quot;,&quot;line 656&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#355">line 355</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>348</span>
+</div></div><div class="scraped-example " data-locs="[[[7,7],&quot;../src/serenity_example_port/main.rs.html#355&quot;,&quot;line 355&quot;],[[50,50],&quot;../src/serenity_example_port/main.rs.html#398&quot;,&quot;line 398&quot;],[[80,80],&quot;../src/serenity_example_port/main.rs.html#428&quot;,&quot;line 428&quot;],[[100,100],&quot;../src/serenity_example_port/main.rs.html#448&quot;,&quot;line 448&quot;],[[132,132],&quot;../src/serenity_example_port/main.rs.html#480&quot;,&quot;line 480&quot;],[[140,140],&quot;../src/serenity_example_port/main.rs.html#488&quot;,&quot;line 488&quot;],[[162,162],&quot;../src/serenity_example_port/main.rs.html#510&quot;,&quot;line 510&quot;],[[181,181],&quot;../src/serenity_example_port/main.rs.html#529&quot;,&quot;line 529&quot;],[[202,202],&quot;../src/serenity_example_port/main.rs.html#550&quot;,&quot;line 550&quot;],[[220,220],&quot;../src/serenity_example_port/main.rs.html#568&quot;,&quot;line 568&quot;],[[236,236],&quot;../src/serenity_example_port/main.rs.html#584&quot;,&quot;line 584&quot;],[[251,251],&quot;../src/serenity_example_port/main.rs.html#599&quot;,&quot;line 599&quot;],[[258,258],&quot;../src/serenity_example_port/main.rs.html#606&quot;,&quot;line 606&quot;],[[299,299],&quot;../src/serenity_example_port/main.rs.html#647&quot;,&quot;line 647&quot;],[[307,307],&quot;../src/serenity_example_port/main.rs.html#655&quot;,&quot;line 655&quot;],[[316,316],&quot;../src/serenity_example_port/main.rs.html#664&quot;,&quot;line 664&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#355">line 355</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>348</span>
 <span>349</span>
 <span>350</span>
 <span>351</span>
@@ -511,6 +511,14 @@ dropped.</p>
 <span>657</span>
 <span>658</span>
 <span>659</span>
+<span>660</span>
+<span>661</span>
+<span>662</span>
+<span>663</span>
+<span>664</span>
+<span>665</span>
+<span>666</span>
+<span>667</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">commands</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="string">&quot;Commands used:\n&quot;</span>.<span class="ident">to_string</span>();
 
@@ -551,7 +559,15 @@ dropped.</p>
             .<span class="ident">clean_role</span>(<span class="bool-val">false</span>)
     };
 
-    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>);
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>, {
+        <span class="comment">// If we are in a prefix command, we pass the Users that were mentioned in the message</span>
+        <span class="comment">// to avoid them needing to be fetched from cache</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">poise::Context::Prefix</span>(<span class="ident">ctx</span>) <span class="op">=</span> <span class="ident">ctx</span> {
+            <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">msg</span>.<span class="ident">mentions</span>
+        } <span class="kw">else</span> {
+            <span class="kw-2">&amp;</span>[]
+        }
+    });
 
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span>(<span class="ident">content</span>)</span>.<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -1696,7 +1712,7 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[21,21],&quot;../src/serenity_example_port/main.rs.html#388&quot;,&quot;line 388&quot;],[[132,132],&quot;../src/serenity_example_port/main.rs.html#499&quot;,&quot;line 499&quot;],[[220,220],&quot;../src/serenity_example_port/main.rs.html#587&quot;,&quot;line 587&quot;],[[221,221],&quot;../src/serenity_example_port/main.rs.html#588&quot;,&quot;line 588&quot;],[[250,250],&quot;../src/serenity_example_port/main.rs.html#617&quot;,&quot;line 617&quot;],[[262,262],&quot;../src/serenity_example_port/main.rs.html#629&quot;,&quot;line 629&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#388">line 388</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>367</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[21,21],&quot;../src/serenity_example_port/main.rs.html#388&quot;,&quot;line 388&quot;],[[140,140],&quot;../src/serenity_example_port/main.rs.html#507&quot;,&quot;line 507&quot;],[[228,228],&quot;../src/serenity_example_port/main.rs.html#595&quot;,&quot;line 595&quot;],[[229,229],&quot;../src/serenity_example_port/main.rs.html#596&quot;,&quot;line 596&quot;],[[258,258],&quot;../src/serenity_example_port/main.rs.html#625&quot;,&quot;line 625&quot;],[[270,270],&quot;../src/serenity_example_port/main.rs.html#637&quot;,&quot;line 637&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#388">line 388</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>367</span>
 <span>368</span>
 <span>369</span>
 <span>370</span>
@@ -1972,6 +1988,14 @@ dropped.</p>
 <span>640</span>
 <span>641</span>
 <span>642</span>
+<span>643</span>
+<span>644</span>
+<span>645</span>
+<span>646</span>
+<span>647</span>
+<span>648</span>
+<span>649</span>
+<span>650</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">say</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Text to repeat&quot;</span>]</span>
@@ -1993,7 +2017,15 @@ dropped.</p>
             .<span class="ident">clean_role</span>(<span class="bool-val">false</span>)
     };
 
-    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">discord</span>()</span>, <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>);
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">discord</span>()</span>, <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>, {
+        <span class="comment">// If we are in a prefix command, we pass the Users that were mentioned in the message</span>
+        <span class="comment">// to avoid them needing to be fetched from cache</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">poise::Context::Prefix</span>(<span class="ident">ctx</span>) <span class="op">=</span> <span class="ident">ctx</span> {
+            <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">msg</span>.<span class="ident">mentions</span>
+        } <span class="kw">else</span> {
+            <span class="kw-2">&amp;</span>[]
+        }
+    });
 
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">content</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -2347,15 +2379,7 @@ dropped.</p>
         .<span class="kw">await</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,3],&quot;../src/serenity_example_port/main.rs.html#490&quot;,&quot;line 490&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#490">line 490</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>487</span>
-<span>488</span>
-<span>489</span>
-<span>490</span>
-<span>491</span>
-<span>492</span>
-<span>493</span>
-<span>494</span>
-<span>495</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,3],&quot;../src/serenity_example_port/main.rs.html#498&quot;,&quot;line 498&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#498">line 498</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>495</span>
 <span>496</span>
 <span>497</span>
 <span>498</span>
@@ -2367,6 +2391,14 @@ dropped.</p>
 <span>504</span>
 <span>505</span>
 <span>506</span>
+<span>507</span>
+<span>508</span>
+<span>509</span>
+<span>510</span>
+<span>511</span>
+<span>512</span>
+<span>513</span>
+<span>514</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">latency</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="comment">// The shard manager is an interface for mutating, stopping, restarting, and</span>
     <span class="comment">// retrieving information about shards.</span>
@@ -2947,15 +2979,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.channel_id" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#116-121">source</a></span><a href="#method.channel_id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.channel_id" class="fnname">channel_id</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/serenity/*/serenity/model/id/struct.ChannelId.html" title="struct serenity::model::id::ChannelId">ChannelId</a></h4></section></summary><div class="docblock"><p>Return the channel ID of this context</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-5"><a href="#scraped-examples-5">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[6,6],&quot;../src/serenity_example_port/main.rs.html#616&quot;,&quot;line 616&quot;],[[19,19],&quot;../src/serenity_example_port/main.rs.html#629&quot;,&quot;line 629&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#616">line 616</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>610</span>
-<span>611</span>
-<span>612</span>
-<span>613</span>
-<span>614</span>
-<span>615</span>
-<span>616</span>
-<span>617</span>
-<span>618</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-5"><a href="#scraped-examples-5">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[6,6],&quot;../src/serenity_example_port/main.rs.html#624&quot;,&quot;line 624&quot;],[[19,19],&quot;../src/serenity_example_port/main.rs.html#637&quot;,&quot;line 637&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#624">line 624</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>618</span>
 <span>619</span>
 <span>620</span>
 <span>621</span>
@@ -2980,6 +3004,14 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>640</span>
 <span>641</span>
 <span>642</span>
+<span>643</span>
+<span>644</span>
+<span>645</span>
+<span>646</span>
+<span>647</span>
+<span>648</span>
+<span>649</span>
+<span>650</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">slow_mode</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Minimum time between sending messages per user&quot;</span>]</span> <span class="ident">rate_limit</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
@@ -3112,7 +3144,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,6],&quot;../src/serenity_example_port/main.rs.html#373&quot;,&quot;line 373&quot;],[[219,219],&quot;../src/serenity_example_port/main.rs.html#586&quot;,&quot;line 586&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#373">line 373</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>367</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,6],&quot;../src/serenity_example_port/main.rs.html#373&quot;,&quot;line 373&quot;],[[227,227],&quot;../src/serenity_example_port/main.rs.html#594&quot;,&quot;line 594&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#373">line 373</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>367</span>
 <span>368</span>
 <span>369</span>
 <span>370</span>
@@ -3347,6 +3379,14 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>599</span>
 <span>600</span>
 <span>601</span>
+<span>602</span>
+<span>603</span>
+<span>604</span>
+<span>605</span>
+<span>606</span>
+<span>607</span>
+<span>608</span>
+<span>609</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">say</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Text to repeat&quot;</span>]</span>
@@ -3368,7 +3408,15 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             .<span class="ident">clean_role</span>(<span class="bool-val">false</span>)
     };
 
-    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>);
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>, {
+        <span class="comment">// If we are in a prefix command, we pass the Users that were mentioned in the message</span>
+        <span class="comment">// to avoid them needing to be fetched from cache</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">poise::Context::Prefix</span>(<span class="ident">ctx</span>) <span class="op">=</span> <span class="ident">ctx</span> {
+            <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">msg</span>.<span class="ident">mentions</span>
+        } <span class="kw">else</span> {
+            <span class="kw-2">&amp;</span>[]
+        }
+    });
 
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">content</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -3584,15 +3632,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.guild" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#135-137">source</a></span><a href="#method.guild" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.guild" class="fnname">guild</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/guild/struct.Guild.html" title="struct serenity::model::guild::Guild">Guild</a>&gt;</h4></section></summary><div class="docblock"><p>Return the guild of this context, if we are inside a guild.</p>
 <p>Warning: clones the entire Guild instance out of the cache</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-7"><a href="#scraped-examples-7">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#436&quot;,&quot;line 436&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#436">line 436</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>432</span>
-<span>433</span>
-<span>434</span>
-<span>435</span>
-<span>436</span>
-<span>437</span>
-<span>438</span>
-<span>439</span>
-<span>440</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-7"><a href="#scraped-examples-7">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#444&quot;,&quot;line 444&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#444">line 444</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>440</span>
 <span>441</span>
 <span>442</span>
 <span>443</span>
@@ -3608,6 +3648,14 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>453</span>
 <span>454</span>
 <span>455</span>
+<span>456</span>
+<span>457</span>
+<span>458</span>
+<span>459</span>
+<span>460</span>
+<span>461</span>
+<span>462</span>
+<span>463</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">about_role</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Name of the role&quot;</span>]</span> <span class="ident">potential_role_name</span>: <span class="ident">String</span>,
@@ -3656,7 +3704,7 @@ request failed</p>
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[272,272],&quot;../src/serenity_example_port/main.rs.html#405&quot;,&quot;line 405&quot;],[[454,454],&quot;../src/serenity_example_port/main.rs.html#587&quot;,&quot;line 587&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>133</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[280,280],&quot;../src/serenity_example_port/main.rs.html#413&quot;,&quot;line 413&quot;],[[462,462],&quot;../src/serenity_example_port/main.rs.html#595&quot;,&quot;line 595&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>133</span>
 <span>134</span>
 <span>135</span>
 <span>136</span>
@@ -4125,6 +4173,14 @@ request failed</p>
 <span>599</span>
 <span>600</span>
 <span>601</span>
+<span>602</span>
+<span>603</span>
+<span>604</span>
+<span>605</span>
+<span>606</span>
+<span>607</span>
+<span>608</span>
+<span>609</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">pre_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
     <span class="macro">println!</span>(
         <span class="string">&quot;Got command &#39;{}&#39; by user &#39;{}&#39;&quot;</span>,
@@ -4380,7 +4436,15 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             .<span class="ident">clean_role</span>(<span class="bool-val">false</span>)
     };
 
-    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>);
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">serenity::content_safe</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="kw-2">&amp;</span><span class="ident">content</span>, <span class="kw-2">&amp;</span><span class="ident">settings</span>, {
+        <span class="comment">// If we are in a prefix command, we pass the Users that were mentioned in the message</span>
+        <span class="comment">// to avoid them needing to be fetched from cache</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">poise::Context::Prefix</span>(<span class="ident">ctx</span>) <span class="op">=</span> <span class="ident">ctx</span> {
+            <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">msg</span>.<span class="ident">mentions</span>
+        } <span class="kw">else</span> {
+            <span class="kw-2">&amp;</span>[]
+        }
+    });
 
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">content</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -5698,5 +5762,5 @@ execution.</p>
 <a href="https://docs.rs/tracing/0.1.32/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.32/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.32/src/tracing/instrument.rs.html#221">source</a></span><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.32/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.32/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.32/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.22/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.32/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.32/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (6af09d250 2022-04-03)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (306ba8357 2022-04-05)" ></div>
 </body></html>
