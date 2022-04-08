@@ -10,7 +10,7 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[38,38],&quot;../src/framework_usage/main.rs.html#109&quot;,&quot;line 109&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#109">line 109</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[41,41],&quot;../src/framework_usage/main.rs.html#112&quot;,&quot;line 112&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#112">line 112</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -107,6 +107,9 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -133,6 +136,9 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),

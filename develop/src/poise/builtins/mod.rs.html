@@ -309,6 +309,18 @@
 <span id="304">304</span>
 <span id="305">305</span>
 <span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -419,6 +431,18 @@
         }
         <span class="ident"><span class="kw">crate</span>::FrameworkError::NotAnOwner</span> { <span class="ident">ctx</span> } =&gt; {
             <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;Only bot owners can call this command&quot;</span>;
+            <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::GuildOnly</span> { <span class="ident">ctx</span> } =&gt; {
+            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;You cannot run this command in DMs.&quot;</span>;
+            <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::DmOnly</span> { <span class="ident">ctx</span> } =&gt; {
+            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;You cannot run this command outside DMs.&quot;</span>;
+            <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::NsfwOnly</span> { <span class="ident">ctx</span> } =&gt; {
+            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;You cannot run this command outside NSFW channels.&quot;</span>;
             <span class="ident">ctx</span>.<span class="ident">send</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">content</span>(<span class="ident">response</span>).<span class="ident">ephemeral</span>(<span class="bool-val">true</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
         }
         <span class="ident"><span class="kw">crate</span>::FrameworkError::DynamicPrefix</span> { <span class="ident">error</span> } =&gt; {

@@ -123,6 +123,21 @@
 <span id="118">118</span>
 <span id="119">119</span>
 <span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Plain data structs that define the framework configuration.</span>
 
 <span class="kw">mod</span> <span class="ident">context</span>;
@@ -225,6 +240,21 @@
     },
     <span class="doccomment">/// A non-owner tried to invoke an owners-only command</span>
     <span class="ident">NotAnOwner</span> {
+        <span class="doccomment">/// General context</span>
+        <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    },
+    <span class="doccomment">/// Command was invoked but the channel was a DM channel</span>
+    <span class="ident">GuildOnly</span> {
+        <span class="doccomment">/// General context</span>
+        <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    },
+    <span class="doccomment">/// Command was invoked but the channel was a non-DM channel</span>
+    <span class="ident">DmOnly</span> {
+        <span class="doccomment">/// General context</span>
+        <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    },
+    <span class="doccomment">/// Command was invoked but the channel wasn&#39;t a NSFW channel</span>
+    <span class="ident">NsfwOnly</span> {
         <span class="doccomment">/// General context</span>
         <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     },

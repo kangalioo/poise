@@ -155,7 +155,7 @@
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[77,77],&quot;../src/framework_usage/main.rs.html#148&quot;,&quot;line 148&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#148">line 148</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[80,80],&quot;../src/framework_usage/main.rs.html#151&quot;,&quot;line 151&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#151">line 151</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -252,6 +252,9 @@
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -278,6 +281,9 @@
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),

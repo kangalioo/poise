@@ -164,7 +164,7 @@ owner.</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[79,85],&quot;../src/framework_usage/main.rs.html#150-156&quot;,&quot;lines 150-156&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#150-156">lines 150-156</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[82,88],&quot;../src/framework_usage/main.rs.html#153-159&quot;,&quot;lines 153-159&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#153-159">lines 153-159</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -261,6 +261,9 @@ owner.</p>
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -287,6 +290,9 @@ owner.</p>
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -709,7 +715,7 @@ owner.</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[86,86],&quot;../src/framework_usage/main.rs.html#157&quot;,&quot;line 157&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#157">line 157</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[89,89],&quot;../src/framework_usage/main.rs.html#160&quot;,&quot;line 160&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#160">line 160</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -806,6 +812,9 @@ owner.</p>
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -832,6 +841,9 @@ owner.</p>
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -1109,7 +1121,7 @@ owner.</p>
 client builder</p>
 <p>Note: the builder’s token will be overridden by the
 <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a>; use <a href="struct.FrameworkBuilder.html#method.token" title="FrameworkBuilder::token"><code>FrameworkBuilder::token</code></a> to supply a token.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[87,92],&quot;../src/framework_usage/main.rs.html#158-163&quot;,&quot;lines 158-163&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#158-163">lines 158-163</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[90,95],&quot;../src/framework_usage/main.rs.html#161-166&quot;,&quot;lines 161-166&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#161-166">lines 161-166</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -1206,6 +1218,9 @@ client builder</p>
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1232,6 +1247,9 @@ client builder</p>
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -1452,7 +1470,7 @@ client builder</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[78,78],&quot;../src/framework_usage/main.rs.html#149&quot;,&quot;line 149&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#149">line 149</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[81,81],&quot;../src/framework_usage/main.rs.html#152&quot;,&quot;line 152&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#152">line 152</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -1549,6 +1567,9 @@ client builder</p>
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1575,6 +1596,9 @@ client builder</p>
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
@@ -2015,7 +2039,7 @@ starts the returned framework</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[93,93],&quot;../src/framework_usage/main.rs.html#164&quot;,&quot;line 164&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#164">line 164</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[96,96],&quot;../src/framework_usage/main.rs.html#167&quot;,&quot;line 167&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#167">line 167</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -2112,6 +2136,9 @@ starts the returned framework</p>
 <span>165</span>
 <span>166</span>
 <span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -2138,6 +2165,9 @@ starts the returned framework</p>
             <span class="ident">checks::delete</span>(),
             <span class="ident">checks::ferrisparty</span>(),
             <span class="ident">checks::add</span>(),
+            <span class="ident">checks::get_guild_name</span>(),
+            <span class="ident">checks::only_in_dms</span>(),
+            <span class="ident">checks::lennyface</span>(),
             <span class="ident">poise::Command</span> {
                 <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
                     <span class="ident">subcommands::child1</span>(),
