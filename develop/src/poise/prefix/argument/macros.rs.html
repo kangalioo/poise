@@ -511,7 +511,7 @@ to use this macro directly.
 #         futures::channel::mpsc::unbounded().0,
 #     ),
 #     shard_id: Default::default(),
-#     http: Default::default(),
+#     http: std::sync::Arc::new(::serenity::http::Http::new(&quot;example&quot;)),
 #     cache: Default::default(),
 # };
 # let msg = serenity::CustomMessage::new().build();
@@ -586,7 +586,7 @@ assert_eq!(
                 <span class="ident">futures::channel::mpsc::unbounded</span>().<span class="number">0</span>,
             ),
             <span class="ident">shard_id</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">http</span>: <span class="ident">Default::default</span>(),
+            <span class="ident">http</span>: <span class="ident">std::sync::Arc::new</span>(<span class="ident">::serenity::http::Http::new</span>(<span class="string">&quot;example&quot;</span>)),
             <span class="ident">cache</span>: <span class="ident">Default::default</span>(),
         };
         <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">serenity::CustomMessage::new</span>().<span class="ident">build</span>();
@@ -662,5 +662,5 @@ assert_eq!(
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e745b4ddb 2022-04-07)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
 </body></html>

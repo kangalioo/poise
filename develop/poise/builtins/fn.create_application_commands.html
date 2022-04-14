@@ -8,7 +8,7 @@
 to register the commands on Discord</p>
 <p>See <a href="fn.register_application_commands.html" title="register_application_commands"><code>register_application_commands</code></a> for an example usage of the returned
 <a href="https://docs.rs/serenity/*/serenity/builder/create_application_command/struct.CreateApplicationCommands.html" title="serenity::CreateApplicationCommands"><code>serenity::CreateApplicationCommands</code></a> builder</p>
-</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[7,9],&quot;../../src/invocation_data/main.rs.html#56-58&quot;,&quot;lines 56-58&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../../src/invocation_data/main.rs.html#56-58">lines 56-58</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[7,9],&quot;../../src/invocation_data/main.rs.html#56-58&quot;,&quot;lines 56-58&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../../src/invocation_data/main.rs.html#56-58">lines 56-58</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -89,9 +89,9 @@ to register the commands on Discord</p>
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
                 <span class="ident">poise::serenity_prelude::GuildId</span>(<span class="number">703332075914264606</span>)
                     .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
-                        <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="highlight focus"><span class="ident">poise::samples::create_application_commands</span>(
+                        <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="highlight focus"><span class="ident">poise::samples::create_application_commands</span></span>(
                             <span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>,
-                        )</span>;
+                        );
                         <span class="ident">b</span>
                     })
                     .<span class="kw">await</span>
@@ -156,5 +156,5 @@ to register the commands on Discord</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e745b4ddb 2022-04-07)" ></div>
+</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
 </body></html>

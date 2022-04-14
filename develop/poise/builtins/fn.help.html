@@ -50,7 +50,7 @@ Miscellaneous:
   /help        Show this menu
 
 Type ?help command for more info on a command.
-You can edit your message to the bot and the bot will edit its response.</code></pre></div></div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a></h5><div class="scraped-example " data-locs="[[[12,12],&quot;../../src/serenity_example_port/main.rs.html#118&quot;,&quot;line 118&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../../src/serenity_example_port/main.rs.html#118">line 118</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
+You can edit your message to the bot and the bot will edit its response.</code></pre></div></div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[12,12],&quot;../../src/serenity_example_port/main.rs.html#118&quot;,&quot;line 118&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../../src/serenity_example_port/main.rs.html#118">line 118</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>106</span>
 <span>107</span>
 <span>108</span>
 <span>109</span>
@@ -78,11 +78,11 @@ If you want more information about a specific command, just pass the command as 
         ..<span class="ident">Default::default</span>()
     };
 
-    <span class="highlight focus"><span class="ident">poise::builtins::help</span>(<span class="ident">ctx</span>, <span class="ident">command</span>.<span class="ident">as_deref</span>(), <span class="ident">config</span>)</span>.<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="highlight focus"><span class="ident">poise::builtins::help</span></span>(<span class="ident">ctx</span>, <span class="ident">command</span>.<span class="ident">as_deref</span>(), <span class="ident">config</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,15],&quot;../../src/framework_usage/main.rs.html#29-38&quot;,&quot;lines 29-38&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../../src/framework_usage/main.rs.html#29-38">lines 29-38</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>23</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,15],&quot;../../src/framework_usage/main.rs.html#29-38&quot;,&quot;lines 29-38&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../../src/framework_usage/main.rs.html#29-38">lines 29-38</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>23</span>
 <span>24</span>
 <span>25</span>
 <span>26</span>
@@ -107,7 +107,7 @@ If you want more information about a specific command, just pass the command as 
     <span class="attribute">#[<span class="ident">autocomplete</span> <span class="op">=</span> <span class="string">&quot;poise::builtins::autocomplete_command&quot;</span>]</span>
     <span class="ident">command</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="highlight focus"><span class="ident">poise::builtins::help</span>(
+    <span class="highlight focus"><span class="ident">poise::builtins::help</span></span>(
         <span class="ident">ctx</span>,
         <span class="ident">command</span>.<span class="ident">as_deref</span>(),
         <span class="ident">poise::builtins::HelpConfiguration</span> {
@@ -116,9 +116,9 @@ This is an example bot made to showcase features of my custom Discord bot framew
             <span class="ident">show_context_menu_commands</span>: <span class="bool-val">true</span>,
             ..<span class="ident">Default::default</span>()
         },
-    )</span>
+    )
     .<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div></div></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e745b4ddb 2022-04-07)" ></div>
+</div></div></div></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
 </body></html>
