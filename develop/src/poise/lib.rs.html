@@ -284,36 +284,6 @@
 <span id="279">279</span>
 <span id="280">280</span>
 <span id="281">281</span>
-<span id="282">282</span>
-<span id="283">283</span>
-<span id="284">284</span>
-<span id="285">285</span>
-<span id="286">286</span>
-<span id="287">287</span>
-<span id="288">288</span>
-<span id="289">289</span>
-<span id="290">290</span>
-<span id="291">291</span>
-<span id="292">292</span>
-<span id="293">293</span>
-<span id="294">294</span>
-<span id="295">295</span>
-<span id="296">296</span>
-<span id="297">297</span>
-<span id="298">298</span>
-<span id="299">299</span>
-<span id="300">300</span>
-<span id="301">301</span>
-<span id="302">302</span>
-<span id="303">303</span>
-<span id="304">304</span>
-<span id="305">305</span>
-<span id="306">306</span>
-<span id="307">307</span>
-<span id="308">308</span>
-<span id="309">309</span>
-<span id="310">310</span>
-<span id="311">311</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -335,42 +305,9 @@ it&#39;s easier to draft a good design when you know exactly which practical nee
 
 # Quickstart
 ```rust,no_run
-use poise::serenity_prelude as serenity;
-
-struct Data {}
-type Error = Box&lt;dyn std::error::Error + Send + Sync&gt;;
-type Context&lt;&#39;a&gt; = poise::Context&lt;&#39;a, Data, Error&gt;;
-
-/// Display your or another user&#39;s account creation date
-#[poise::command(prefix_command, slash_command, track_edits)]
-async fn age(
-    ctx: Context&lt;&#39;_&gt;,
-    #[description = &quot;Selected user&quot;] user: Option&lt;serenity::User&gt;,
-) -&gt; Result&lt;(), Error&gt; {
-    let user = user.as_ref().unwrap_or(ctx.author());
-    ctx.say(format!(&quot;{}&#39;s account was created at {}&quot;, user.name, user.created_at())).await?;
-
-    Ok(())
-}
-
-#[tokio::main]
-async fn main() {
-    poise::Framework::build()
-        .token(std::env::var(&quot;DISCORD_BOT_TOKEN&quot;).unwrap())
-        .user_data_setup(move |_ctx, _ready, _framework| Box::pin(async move {
-            Ok(Data {})
-        }))
-        .options(poise::FrameworkOptions {
-            // configure framework here
-            prefix_options: poise::PrefixFrameworkOptions {
-                prefix: Some(&quot;~&quot;.into()),
-                ..Default::default()
-            },
-            commands: vec![age()],
-            ..Default::default()
-        })
-        .run().await.unwrap();
-}
+*/</span>
+<span class="attribute">#![<span class="ident">doc</span> <span class="op">=</span> <span class="macro">include_str!</span>(<span class="string">&quot;../examples/quickstart/main.rs&quot;</span>)]</span>
+<span class="doccomment">/*!
 ```
 
 A full functioning bot would contain a help command as well as a register command to register slash
@@ -556,6 +493,9 @@ underlying this framework, so that&#39;s what I chose.
 <span class="kw">mod</span> <span class="ident">slash</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slash</span>::<span class="kw-2">*</span>;
 
+<span class="kw">mod</span> <span class="ident">event</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::{<span class="ident">Event</span>, <span class="ident">EventWrapper</span>};
+
 <span class="kw">mod</span> <span class="ident">structs</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">structs</span>::<span class="kw-2">*</span>;
 
@@ -626,5 +566,5 @@ underlying this framework, so that&#39;s what I chose.
 <span class="doccomment">/// An owned future has the `&#39;static` lifetime.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

@@ -399,6 +399,13 @@
 <span id="394">394</span>
 <span id="395">395</span>
 <span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Infrastructure for replying, i.e. sending a message in a command context</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file dispatches to command-type specific reply code, which is in the prefix and slash</span>
@@ -699,6 +706,9 @@
         <span class="doccomment">/// message object</span>
         <span class="ident">interaction</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::ApplicationCommandInteraction</span>,
     },
+    <span class="doccomment">/// Reply was attempted to be sent in autocomplete context, resulting in a no-op. Calling</span>
+    <span class="doccomment">/// methods on this variant will panic</span>
+    <span class="ident">Autocomplete</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
@@ -709,6 +719,9 @@
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident"><span class="self">Self</span>::Known</span>(<span class="ident">msg</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="kw-2">*</span><span class="ident">msg</span>),
             <span class="ident"><span class="self">Self</span>::Unknown</span> { <span class="ident">http</span>, <span class="ident">interaction</span> } =&gt; <span class="ident">interaction</span>.<span class="ident">get_interaction_response</span>(<span class="ident">http</span>).<span class="kw">await</span>,
+            <span class="ident"><span class="self">Self</span>::Autocomplete</span> =&gt; {
+                <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context; can&#39;t retrieve message&quot;</span>)
+            }
         }
     }
 
@@ -747,6 +760,9 @@
                     })
                     .<span class="kw">await</span><span class="question-mark">?</span>;
             }
+            <span class="ident"><span class="self">Self</span>::Autocomplete</span> =&gt; {
+                <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context; can&#39;t edit message&quot;</span>)
+            }
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -780,9 +796,7 @@
         <span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>) =&gt; {
             <span class="ident">ReplyHandle::Known</span>(<span class="ident"><span class="kw">crate</span>::send_prefix_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>)
         }
-        <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>) =&gt; <span class="ident"><span class="kw">crate</span>::send_application_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>)
-            .<span class="kw">await</span><span class="question-mark">?</span>
-            .<span class="ident">expect</span>(<span class="string">&quot;cannot send a reply in autocomplete context&quot;</span>),
+        <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>) =&gt; <span class="ident"><span class="kw">crate</span>::send_application_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>,
     })
 }
 
@@ -796,5 +810,5 @@
     <span class="ident">send_reply</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">content</span>(<span class="ident">text</span>.<span class="ident">into</span>())).<span class="kw">await</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

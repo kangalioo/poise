@@ -15,11 +15,11 @@ actually send the registration HTTP request to Discord</p>
 bot. So if you want, you can copy paste this help message for the command:</p>
 <div class="example-wrap"><pre class="language-text"><code>Registers application commands in this guild or globally
 
-Run with no arguments to register in guild, run with argument &quot;global&quot; to register globally.</code></pre></div></div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../../src/framework_usage/main.rs.html#48&quot;,&quot;line 48&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../../src/framework_usage/main.rs.html#48">line 48</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>47</span>
+Run with no arguments to register in guild, run with argument &quot;global&quot; to register globally.</code></pre></div></div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../../src/framework_usage/main.rs.html#45&quot;,&quot;line 45&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../../src/framework_usage/main.rs.html#45">line 45</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
 <span>48</span>
-<span>49</span>
-<span>50</span>
-<span>51</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="attribute">#[<span class="ident">flag</span>]</span> <span class="ident">global</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="highlight focus"><span class="ident">poise::builtins::register_application_commands</span></span>(<span class="ident">ctx</span>, <span class="ident">global</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -35,5 +35,5 @@ Run with no arguments to register in guild, run with argument &quot;global&quot;
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div></div></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</div></div></div></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

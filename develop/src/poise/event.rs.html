@@ -106,6 +106,17 @@
 <span id="101">101</span>
 <span id="102">102</span>
 <span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Provides a utility EventHandler that generates [`Event`] enum instances for incoming events.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -154,6 +165,17 @@
                 <span class="kw">match</span> <span class="self">self</span> {
                     $(
                         <span class="self">Self</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant_name</span> { .. } =&gt; <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant_name</span>),
+                    )<span class="op">*</span>
+                }
+            }
+
+            <span class="doccomment">/// Runs this event in the given [`serenity::EventHandler`]</span>
+            <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">dispatch</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">serenity::Context</span>, <span class="ident">handler</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">serenity::EventHandler</span>) {
+                <span class="kw">match</span> <span class="self">self</span> {
+                    $(
+                        <span class="self">Self</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant_name</span> { $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg_name</span> ),<span class="op">*</span> } =&gt; {
+                            <span class="ident">handler</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_name</span>( <span class="ident">ctx</span>, $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg_name</span> ),<span class="op">*</span> ).<span class="kw">await</span>;
+                        }
                     )<span class="op">*</span>
                 }
             }
@@ -210,5 +232,5 @@
     <span class="ident">interaction_create</span> =&gt; <span class="ident">InteractionCreate</span> { <span class="ident">interaction</span>: <span class="ident">serenity::Interaction</span> },
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (eb82facb1 2022-04-01)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

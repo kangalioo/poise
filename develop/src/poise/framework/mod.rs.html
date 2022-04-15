@@ -209,9 +209,6 @@
 <span id="204">204</span>
 <span id="205">205</span>
 <span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
 <span class="kw">mod</span> <span class="ident">dispatch</span>;
@@ -297,41 +294,38 @@
             <span class="ident">set_qualified_names</span>(<span class="ident">command</span>);
         }
 
+        <span class="comment">// Gateway intents sanity check</span>
+        <span class="kw">let</span> <span class="ident">is_prefix_configured</span> <span class="op">=</span> <span class="ident">options</span>.<span class="ident">prefix_options</span>.<span class="ident">prefix</span>.<span class="ident">is_some</span>()
+            <span class="op">|</span><span class="op">|</span> <span class="ident">options</span>.<span class="ident">prefix_options</span>.<span class="ident">dynamic_prefix</span>.<span class="ident">is_some</span>()
+            <span class="op">|</span><span class="op">|</span> <span class="ident">options</span>.<span class="ident">prefix_options</span>.<span class="ident">stripped_dynamic_prefix</span>.<span class="ident">is_some</span>();
+        <span class="kw">let</span> <span class="ident">can_receive_message_content</span> <span class="op">=</span> <span class="ident">client_builder</span>
+            .<span class="ident">get_intents</span>()
+            .<span class="ident">contains</span>(<span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>);
+        <span class="kw">if</span> <span class="ident">is_prefix_configured</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">can_receive_message_content</span> {
+            <span class="macro">eprintln!</span>(
+                <span class="string">&quot;Warning: MESSAGE_CONTENT intent not set; prefix commands will not be received&quot;</span>
+            );
+        }
+
         <span class="kw">let</span> <span class="ident">framework_cell</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">once_cell::sync::OnceCell</span>::<span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::new</span>());
+        <span class="kw">let</span> <span class="ident">framework_cell_2</span> <span class="op">=</span> <span class="ident">framework_cell</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="ident">existing_event_handler</span> <span class="op">=</span> <span class="ident">client_builder</span>.<span class="ident">get_event_handler</span>();
+        <span class="kw">let</span> <span class="ident">event_handler</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::EventWrapper</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">event</span><span class="op">|</span> {
+            <span class="comment">// unwrap_used: we will only receive events once the client has been started, by which</span>
+            <span class="comment">// point framework_cell has been initialized</span>
+            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::unwrap_used</span>)]</span>
+            <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">framework_cell_2</span>.<span class="ident">get</span>().<span class="ident">unwrap</span>().<span class="ident">clone</span>();
+            <span class="kw">let</span> <span class="ident">existing_event_handler</span> <span class="op">=</span> <span class="ident">existing_event_handler</span>.<span class="ident">clone</span>();
 
-        <span class="doccomment">/// Small raw event handler that forwards received events to dispatch_event and the previous</span>
-        <span class="doccomment">/// user-registered raw event handler we overwrote, if any</span>
-        <span class="kw">struct</span> <span class="ident">EventHandler</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-            <span class="doccomment">/// Reference to the framework</span>
-            <span class="ident">framework</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">once_cell::sync::OnceCell</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-            <span class="doccomment">/// Reference to the existing user-registered raw event handler we overwrote, if any</span>
-            <span class="ident">existing_event_handler</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">serenity::RawEventHandler</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        }
-        <span class="attribute">#[<span class="ident">async_trait::async_trait</span>]</span>
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">E</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">serenity::RawEventHandler</span> <span class="kw">for</span> <span class="ident">EventHandler</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
-            <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">raw_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">serenity::Context</span>, <span class="ident">event</span>: <span class="ident">serenity::Event</span>) {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">handler</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">existing_event_handler</span> {
-                    <span class="ident">handler</span>.<span class="ident">raw_event</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">event</span>.<span class="ident">clone</span>()).<span class="kw">await</span>;
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="ident">dispatch::dispatch_event</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">framework</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="ident">event</span>).<span class="kw">await</span>;
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">handler</span>) <span class="op">=</span> <span class="ident">existing_event_handler</span> {
+                    <span class="ident">event</span>.<span class="ident">dispatch</span>(<span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">handler</span>).<span class="kw">await</span>;
                 }
+            }) <span class="kw">as</span> <span class="kw">_</span>
+        });
 
-                <span class="comment">// unwrap_used: we will only receive events once the client has been started, by which</span>
-                <span class="comment">// point framework_cell has been initialized</span>
-                <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::unwrap_used</span>)]</span>
-                <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">framework</span>.<span class="ident">get</span>().<span class="ident">unwrap</span>().<span class="ident">clone</span>();
-                <span class="comment">// serenity runs RawEventHandler directly on its event loop which we must not block!</span>
-                <span class="ident">tokio::spawn</span>(
-                    <span class="kw">async</span> <span class="kw">move</span> { <span class="ident">dispatch::dispatch_event</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">framework</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="ident">event</span>).<span class="kw">await</span> },
-                );
-            }
-        }
-
-        <span class="kw">let</span> <span class="ident">existing_event_handler</span> <span class="op">=</span> <span class="ident">client_builder</span>.<span class="ident">get_raw_event_handler</span>();
-        <span class="kw">let</span> <span class="ident">client</span>: <span class="ident">serenity::Client</span> <span class="op">=</span> <span class="ident">client_builder</span>
-            .<span class="ident">raw_event_handler</span>(<span class="ident">EventHandler</span> {
-                <span class="ident">framework</span>: <span class="ident">framework_cell</span>.<span class="ident">clone</span>(),
-                <span class="ident">existing_event_handler</span>,
-            })
-            .<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">client</span>: <span class="ident">serenity::Client</span> <span class="op">=</span> <span class="ident">client_builder</span>.<span class="ident">event_handler</span>(<span class="ident">event_handler</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="self">Self</span> {
             <span class="ident">user_data</span>: <span class="ident">once_cell::sync::OnceCell::new</span>(),
@@ -422,5 +416,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

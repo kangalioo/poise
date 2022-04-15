@@ -351,7 +351,7 @@
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Setup</span> { <span class="ident">error</span> } =&gt; <span class="macro">println!</span>(<span class="string">&quot;Error in user data setup: {}&quot;</span>, <span class="ident">error</span>),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; <span class="macro">println!</span>(
             <span class="string">&quot;User event listener encountered an error on {} event: {}&quot;</span>,
-            <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
+            <span class="ident">event</span>.<span class="ident">name</span>(),
             <span class="ident">error</span>
         ),
         <span class="ident"><span class="kw">crate</span>::FrameworkError::Command</span> { <span class="ident">ctx</span>, <span class="ident">error</span> } =&gt; {
@@ -640,5 +640,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

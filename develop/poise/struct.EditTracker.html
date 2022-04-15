@@ -10,7 +10,10 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[41,41],&quot;../src/framework_usage/main.rs.html#112&quot;,&quot;line 112&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#112">line 112</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[41,41],&quot;../src/framework_usage/main.rs.html#109&quot;,&quot;line 109&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#109">line 109</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -104,30 +107,24 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>162</span>
 <span>163</span>
 <span>164</span>
-<span>165</span>
-<span>166</span>
-<span>167</span>
-<span>168</span>
-<span>169</span>
-<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
             <span class="ident">help</span>(),
             <span class="ident">register</span>(),
-            <span class="ident">commands::vote</span>(),
-            <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::addmultiple</span>(),
-            <span class="ident">commands::choice</span>(),
-            <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::voiceinfo</span>(),
-            <span class="ident">commands::test_reuse_response</span>(),
-            <span class="ident">commands::oracle</span>(),
-            <span class="ident">commands::code</span>(),
-            <span class="ident">commands::say</span>(),
-            <span class="ident">commands::file_details</span>(),
-            <span class="ident">commands::totalsize</span>(),
-            <span class="ident">commands::modal</span>(),
+            <span class="ident">general::vote</span>(),
+            <span class="ident">general::getvotes</span>(),
+            <span class="ident">general::addmultiple</span>(),
+            <span class="ident">general::choice</span>(),
+            <span class="ident">general::boop</span>(),
+            <span class="ident">general::voiceinfo</span>(),
+            <span class="ident">general::test_reuse_response</span>(),
+            <span class="ident">general::oracle</span>(),
+            <span class="ident">general::code</span>(),
+            <span class="ident">general::say</span>(),
+            <span class="ident">general::file_details</span>(),
+            <span class="ident">general::totalsize</span>(),
+            <span class="ident">general::modal</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -183,7 +180,7 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
         }),
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">event</span>, <span class="ident">_framework</span>, <span class="ident">_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">name</span>());
                 <span class="prelude-val">Ok</span>(())
             })
         },
@@ -200,12 +197,9 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
-            <span class="ident">b</span>.<span class="ident">intents</span>(
-                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
-                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
-            )
-        })
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
@@ -435,5 +429,5 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.33/src/tracing/instrument.rs.html#221">source</a></span><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.33/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.33/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.22/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>

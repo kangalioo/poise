@@ -23,7 +23,7 @@ responses will be sent in the correct manner.</p>
 dropped.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.say" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#74-79">source</a></span><a href="#method.say" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.say" class="fnname">say</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;text: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="enum.ReplyHandle.html" title="enum poise::ReplyHandle">ReplyHandle</a>&lt;'a&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Shorthand of <a href="fn.say_reply.html" title="crate::say_reply"><code>crate::say_reply</code></a></p>
 <p>Note: panics when called in an autocomplete context!</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/subcommands.rs.html#13&quot;,&quot;line 13&quot;],[[8,8],&quot;../src/framework_usage/subcommands.rs.html#20&quot;,&quot;line 20&quot;],[[15,15],&quot;../src/framework_usage/subcommands.rs.html#27&quot;,&quot;line 27&quot;]]"><div class="scraped-example-title">examples/framework_usage/subcommands.rs (<a href="../src/framework_usage/subcommands.rs.html#13">line 13</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>12</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/subcommands.rs.html#13&quot;,&quot;line 13&quot;],[[8,8],&quot;../src/framework_usage/commands/subcommands.rs.html#20&quot;,&quot;line 20&quot;],[[15,15],&quot;../src/framework_usage/commands/subcommands.rs.html#27&quot;,&quot;line 27&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/subcommands.rs (<a href="../src/framework_usage/commands/subcommands.rs.html#13">line 13</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>12</span>
 <span>13</span>
 <span>14</span>
 <span>15</span>
@@ -59,7 +59,7 @@ dropped.</p>
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span></span>(<span class="string">&quot;You invoked `parent child2`!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/checks.rs.html#32&quot;,&quot;line 32&quot;],[[42,42],&quot;../src/framework_usage/checks.rs.html#73&quot;,&quot;line 73&quot;],[[66,66],&quot;../src/framework_usage/checks.rs.html#97&quot;,&quot;line 97&quot;],[[74,77],&quot;../src/framework_usage/checks.rs.html#105-108&quot;,&quot;lines 105-108&quot;],[[86,86],&quot;../src/framework_usage/checks.rs.html#117&quot;,&quot;line 117&quot;],[[94,94],&quot;../src/framework_usage/checks.rs.html#125&quot;,&quot;line 125&quot;]]"><div class="scraped-example-title">examples/framework_usage/checks.rs (<a href="../src/framework_usage/checks.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>31</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#32&quot;,&quot;line 32&quot;],[[42,42],&quot;../src/framework_usage/commands/checks.rs.html#73&quot;,&quot;line 73&quot;],[[66,66],&quot;../src/framework_usage/commands/checks.rs.html#97&quot;,&quot;line 97&quot;],[[74,77],&quot;../src/framework_usage/commands/checks.rs.html#105-108&quot;,&quot;lines 105-108&quot;],[[86,86],&quot;../src/framework_usage/commands/checks.rs.html#117&quot;,&quot;line 117&quot;],[[94,94],&quot;../src/framework_usage/commands/checks.rs.html#125&quot;,&quot;line 125&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>31</span>
 <span>32</span>
 <span>33</span>
 <span>34</span>
@@ -252,6 +252,24 @@ dropped.</p>
 <span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">nsfw_only</span>)]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">lennyface</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span></span>(<span class="string">&quot;( ͡° ͜ʖ ͡°)&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></div><div class="scraped-example expanded" data-locs="[[[5,5],&quot;../src/quickstart/main.rs.html#14&quot;,&quot;line 14&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#14">line 14</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">age</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="ident">author</span>());
+    <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="macro">format!</span>(<span class="string">&quot;{}&#39;s account was created at {}&quot;</span>, <span class="ident">user</span>.<span class="ident">name</span>, <span class="ident">user</span>.<span class="ident">created_at</span>())).<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
@@ -895,7 +913,7 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[10,10],&quot;../src/framework_usage/context_menu.rs.html#16&quot;,&quot;line 16&quot;],[[20,20],&quot;../src/framework_usage/context_menu.rs.html#26&quot;,&quot;line 26&quot;]]"><div class="scraped-example-title">examples/framework_usage/context_menu.rs (<a href="../src/framework_usage/context_menu.rs.html#16">line 16</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>6</span>
+</div></div><div class="scraped-example " data-locs="[[[10,10],&quot;../src/framework_usage/commands/context_menu.rs.html#16&quot;,&quot;line 16&quot;],[[20,20],&quot;../src/framework_usage/commands/context_menu.rs.html#26&quot;,&quot;line 26&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/context_menu.rs (<a href="../src/framework_usage/commands/context_menu.rs.html#16">line 16</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>6</span>
 <span>7</span>
 <span>8</span>
 <span>9</span>
@@ -941,7 +959,7 @@ dropped.</p>
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span></span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>.<span class="ident">content</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[15,15],&quot;../src/framework_usage/commands.rs.html#23&quot;,&quot;line 23&quot;],[[37,37],&quot;../src/framework_usage/commands.rs.html#45&quot;,&quot;line 45&quot;],[[48,48],&quot;../src/framework_usage/commands.rs.html#56&quot;,&quot;line 56&quot;],[[65,65],&quot;../src/framework_usage/commands.rs.html#73&quot;,&quot;line 73&quot;],[[88,88],&quot;../src/framework_usage/commands.rs.html#96&quot;,&quot;line 96&quot;],[[158,158],&quot;../src/framework_usage/commands.rs.html#166&quot;,&quot;line 166&quot;],[[207,207],&quot;../src/framework_usage/commands.rs.html#215&quot;,&quot;line 215&quot;],[[210,210],&quot;../src/framework_usage/commands.rs.html#218&quot;,&quot;line 218&quot;],[[222,222],&quot;../src/framework_usage/commands.rs.html#230&quot;,&quot;line 230&quot;],[[234,234],&quot;../src/framework_usage/commands.rs.html#242&quot;,&quot;line 242&quot;],[[245,249],&quot;../src/framework_usage/commands.rs.html#253-257&quot;,&quot;lines 253-257&quot;],[[261,265],&quot;../src/framework_usage/commands.rs.html#269-273&quot;,&quot;lines 269-273&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#23">line 23</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>8</span>
+</div></div><div class="scraped-example " data-locs="[[[15,15],&quot;../src/framework_usage/commands/general.rs.html#23&quot;,&quot;line 23&quot;],[[37,37],&quot;../src/framework_usage/commands/general.rs.html#45&quot;,&quot;line 45&quot;],[[48,48],&quot;../src/framework_usage/commands/general.rs.html#56&quot;,&quot;line 56&quot;],[[65,65],&quot;../src/framework_usage/commands/general.rs.html#73&quot;,&quot;line 73&quot;],[[88,88],&quot;../src/framework_usage/commands/general.rs.html#96&quot;,&quot;line 96&quot;],[[158,158],&quot;../src/framework_usage/commands/general.rs.html#166&quot;,&quot;line 166&quot;],[[207,207],&quot;../src/framework_usage/commands/general.rs.html#215&quot;,&quot;line 215&quot;],[[210,210],&quot;../src/framework_usage/commands/general.rs.html#218&quot;,&quot;line 218&quot;],[[222,222],&quot;../src/framework_usage/commands/general.rs.html#230&quot;,&quot;line 230&quot;],[[234,234],&quot;../src/framework_usage/commands/general.rs.html#242&quot;,&quot;line 242&quot;],[[245,249],&quot;../src/framework_usage/commands/general.rs.html#253-257&quot;,&quot;lines 253-257&quot;],[[261,265],&quot;../src/framework_usage/commands/general.rs.html#269-273&quot;,&quot;lines 269-273&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#23">line 23</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>8</span>
 <span>9</span>
 <span>10</span>
 <span>11</span>
@@ -1481,45 +1499,9 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[15,15],&quot;../src/framework_usage/autocomplete.rs.html#56&quot;,&quot;line 56&quot;]]"><div class="scraped-example-title">examples/framework_usage/autocomplete.rs (<a href="../src/framework_usage/autocomplete.rs.html#56">line 56</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>41</span>
-<span>42</span>
-<span>43</span>
-<span>44</span>
-<span>45</span>
-<span>46</span>
-<span>47</span>
-<span>48</span>
-<span>49</span>
-<span>50</span>
-<span>51</span>
-<span>52</span>
-<span>53</span>
-<span>54</span>
-<span>55</span>
-<span>56</span>
-<span>57</span>
-<span>58</span>
-</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">greet</span>(
-    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Who to greet&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">autocomplete</span> <span class="op">=</span> <span class="string">&quot;autocomplete_name&quot;</span>]</span>
-    <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;A number... idk I wanted to test number autocomplete&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">autocomplete</span> <span class="op">=</span> <span class="string">&quot;autocomplete_number&quot;</span>]</span>
-    <span class="ident">number</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;Hello {}&quot;</span>, <span class="ident">name</span>);
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">number</span>) <span class="op">=</span> <span class="ident">number</span> {
-        <span class="ident">response</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;#{}&quot;</span>, <span class="ident">number</span>);
-    }
-    <span class="ident">response</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;!&quot;</span>;
-
-    <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="ident">response</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(())
-}</code></pre></div>
-</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.send" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#84-89">source</a></span><a href="#method.send" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.send" class="fnname">send</a>&lt;'b&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;builder: impl for&lt;'c&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'c mut <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'b&gt;) -&gt; &amp;'c mut <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'b&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="enum.ReplyHandle.html" title="enum poise::ReplyHandle">ReplyHandle</a>&lt;'a&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Shorthand of <a href="fn.send_reply.html" title="crate::send_reply"><code>crate::send_reply</code></a></p>
+</div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../src/framework_usage/commands/autocomplete.rs.html#56">examples/framework_usage/commands/autocomplete.rs</a></li></ul></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.send" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#84-89">source</a></span><a href="#method.send" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.send" class="fnname">send</a>&lt;'b&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;builder: impl for&lt;'c&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'c mut <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'b&gt;) -&gt; &amp;'c mut <a class="struct" href="struct.CreateReply.html" title="struct poise::CreateReply">CreateReply</a>&lt;'b&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="enum.ReplyHandle.html" title="enum poise::ReplyHandle">ReplyHandle</a>&lt;'a&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Shorthand of <a href="fn.send_reply.html" title="crate::send_reply"><code>crate::send_reply</code></a></p>
 <p>Note: panics when called in an autocomplete context!</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[3,13],&quot;../src/framework_usage/commands.rs.html#105-115&quot;,&quot;lines 105-115&quot;],[[71,83],&quot;../src/framework_usage/commands.rs.html#173-185&quot;,&quot;lines 173-185&quot;],[[89,101],&quot;../src/framework_usage/commands.rs.html#191-203&quot;,&quot;lines 191-203&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#105-115">lines 105-115</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[3,13],&quot;../src/framework_usage/commands/general.rs.html#105-115&quot;,&quot;lines 105-115&quot;],[[71,83],&quot;../src/framework_usage/commands/general.rs.html#173-185&quot;,&quot;lines 173-185&quot;],[[89,101],&quot;../src/framework_usage/commands/general.rs.html#191-203&quot;,&quot;lines 191-203&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#105-115">lines 105-115</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
 <span>103</span>
 <span>104</span>
 <span>105</span>
@@ -1732,7 +1714,7 @@ dropped.</p>
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.discord" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#92-97">source</a></span><a href="#method.discord" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.discord" class="fnname">discord</a>(&amp;self) -&gt; &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a></h4></section></summary><div class="docblock"><p>Return the stored <a href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="serenity::Context"><code>serenity::Context</code></a> within the underlying context type.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/checks.rs.html#47&quot;,&quot;line 47&quot;],[[11,11],&quot;../src/framework_usage/checks.rs.html#54&quot;,&quot;line 54&quot;]]"><div class="scraped-example-title">examples/framework_usage/checks.rs (<a href="../src/framework_usage/checks.rs.html#47">line 47</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>43</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands/checks.rs.html#47&quot;,&quot;line 47&quot;],[[11,11],&quot;../src/framework_usage/commands/checks.rs.html#54&quot;,&quot;line 54&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#47">line 47</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>43</span>
 <span>44</span>
 <span>45</span>
 <span>46</span>
@@ -2336,7 +2318,7 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[17,17],&quot;../src/framework_usage/commands.rs.html#119&quot;,&quot;line 119&quot;],[[27,27],&quot;../src/framework_usage/commands.rs.html#129&quot;,&quot;line 129&quot;],[[32,32],&quot;../src/framework_usage/commands.rs.html#134&quot;,&quot;line 134&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#119">line 119</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
+</div></div><div class="scraped-example " data-locs="[[[17,17],&quot;../src/framework_usage/commands/general.rs.html#119&quot;,&quot;line 119&quot;],[[27,27],&quot;../src/framework_usage/commands/general.rs.html#129&quot;,&quot;line 129&quot;],[[32,32],&quot;../src/framework_usage/commands/general.rs.html#134&quot;,&quot;line 134&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#119">line 119</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
 <span>103</span>
 <span>104</span>
 <span>105</span>
@@ -2417,7 +2399,7 @@ dropped.</p>
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.framework" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#100-105">source</a></span><a href="#method.framework" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.framework" class="fnname">framework</a>(&amp;self) -&gt; &amp;'a <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;</h4></section></summary><div class="docblock"><p>Return a read-only reference to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../src/framework_usage/checks.rs.html#15&quot;,&quot;line 15&quot;]]"><div class="scraped-example-title">examples/framework_usage/checks.rs (<a href="../src/framework_usage/checks.rs.html#15">line 15</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>14</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#15&quot;,&quot;line 15&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#15">line 15</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>14</span>
 <span>15</span>
 <span>16</span>
 <span>17</span>
@@ -2476,7 +2458,7 @@ dropped.</p>
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.data" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#108-113">source</a></span><a href="#method.data" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.data" class="fnname">data</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;'a </a>U</h4></section></summary><div class="docblock"><p>Return a reference to your custom user data</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[5,5],&quot;../src/framework_usage/commands.rs.html#13&quot;,&quot;line 13&quot;],[[32,32],&quot;../src/framework_usage/commands.rs.html#40&quot;,&quot;line 40&quot;],[[40,40],&quot;../src/framework_usage/commands.rs.html#48&quot;,&quot;line 48&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#13">line 13</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>8</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[5,5],&quot;../src/framework_usage/commands/general.rs.html#13&quot;,&quot;line 13&quot;],[[32,32],&quot;../src/framework_usage/commands/general.rs.html#40&quot;,&quot;line 40&quot;],[[40,40],&quot;../src/framework_usage/commands/general.rs.html#48&quot;,&quot;line 48&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#13">line 13</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>8</span>
 <span>9</span>
 <span>10</span>
 <span>11</span>
@@ -2847,7 +2829,7 @@ dropped.</p>
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
+                <span class="ident">event</span>.<span class="ident">name</span>(),
                 <span class="ident">error</span>
             );
         }
@@ -3101,7 +3083,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[19,19],&quot;../src/framework_usage/commands.rs.html#121&quot;,&quot;line 121&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#121">line 121</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[19,19],&quot;../src/framework_usage/commands/general.rs.html#121&quot;,&quot;line 121&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#121">line 121</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
 <span>103</span>
 <span>104</span>
 <span>105</span>
@@ -3182,7 +3164,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.guild_id" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#124-129">source</a></span><a href="#method.guild_id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.guild_id" class="fnname">guild_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/id/struct.GuildId.html" title="struct serenity::model::id::GuildId">GuildId</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the guild ID of this context, if we are inside a guild</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-6"><a href="#scraped-examples-6">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../src/framework_usage/checks.rs.html#53&quot;,&quot;line 53&quot;]]"><div class="scraped-example-title">examples/framework_usage/checks.rs (<a href="../src/framework_usage/checks.rs.html#53">line 53</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>52</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-6"><a href="#scraped-examples-6">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#53&quot;,&quot;line 53&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#53">line 53</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>52</span>
 <span>53</span>
 <span>54</span>
 <span>55</span>
@@ -3688,7 +3670,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.guild" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#135-137">source</a></span><a href="#method.guild" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.guild" class="fnname">guild</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/guild/struct.Guild.html" title="struct serenity::model::guild::Guild">Guild</a>&gt;</h4></section></summary><div class="docblock"><p>Return the guild of this context, if we are inside a guild.</p>
 <p>Warning: clones the entire Guild instance out of the cache</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-7"><a href="#scraped-examples-7">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[3,3],&quot;../src/framework_usage/checks.rs.html#107&quot;,&quot;line 107&quot;]]"><div class="scraped-example-title">examples/framework_usage/checks.rs (<a href="../src/framework_usage/checks.rs.html#107">line 107</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>104</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-7"><a href="#scraped-examples-7">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[3,3],&quot;../src/framework_usage/commands/checks.rs.html#107&quot;,&quot;line 107&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#107">line 107</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>104</span>
 <span>105</span>
 <span>106</span>
 <span>107</span>
@@ -3760,7 +3742,25 @@ request failed</p>
 <p>Warning: clones the entire Member instance out of the cache</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.created_at" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#154-159">source</a></span><a href="#method.created_at" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.created_at" class="fnname">created_at</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/serenity/*/serenity/model/timestamp/struct.Timestamp.html" title="struct serenity::model::timestamp::Timestamp">Timestamp</a></h4></section></summary><div class="docblock"><p>Return the datetime of the invoking message or interaction</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.author" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#162-167">source</a></span><a href="#method.author" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.author" class="fnname">author</a>(&amp;self) -&gt; &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/user/struct.User.html" title="struct serenity::model::user::User">User</a></h4></section></summary><div class="docblock"><p>Get the author of the command message or application command.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-8"><a href="#scraped-examples-8">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/framework_usage/checks.rs.html#54&quot;,&quot;line 54&quot;],[[5,5],&quot;../src/framework_usage/checks.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/framework_usage/checks.rs (<a href="../src/framework_usage/checks.rs.html#54">line 54</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><div class="example-wrap"><pre class="line-numbers"><span>52</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-8"><a href="#scraped-examples-8">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[4,4],&quot;../src/quickstart/main.rs.html#13&quot;,&quot;line 13&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#13">line 13</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">age</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">author</span></span>());
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&#39;s account was created at {}&quot;</span>, <span class="ident">user</span>.<span class="ident">name</span>, <span class="ident">user</span>.<span class="ident">created_at</span>())).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/framework_usage/commands/checks.rs.html#54&quot;,&quot;line 54&quot;],[[5,5],&quot;../src/framework_usage/commands/checks.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#54">line 54</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><div class="example-wrap"><pre class="line-numbers"><span>52</span>
 <span>53</span>
 <span>54</span>
 <span>55</span>
@@ -3778,7 +3778,7 @@ request failed</p>
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[280,280],&quot;../src/serenity_example_port/main.rs.html#413&quot;,&quot;line 413&quot;],[[462,462],&quot;../src/serenity_example_port/main.rs.html#595&quot;,&quot;line 595&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>133</span>
+</div></div><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[280,280],&quot;../src/serenity_example_port/main.rs.html#413&quot;,&quot;line 413&quot;],[[462,462],&quot;../src/serenity_example_port/main.rs.html#595&quot;,&quot;line 595&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>133</span>
 <span>134</span>
 <span>135</span>
 <span>136</span>
@@ -4294,7 +4294,7 @@ request failed</p>
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
+                <span class="ident">event</span>.<span class="ident">name</span>(),
                 <span class="ident">error</span>
             );
         }
@@ -4732,7 +4732,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[18,18],&quot;../src/framework_usage/commands.rs.html#120&quot;,&quot;line 120&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#120">line 120</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
+</div></div><div class="scraped-example " data-locs="[[[18,18],&quot;../src/framework_usage/commands/general.rs.html#120&quot;,&quot;line 120&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#120">line 120</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
 <span>103</span>
 <span>104</span>
 <span>105</span>
@@ -4812,7 +4812,10 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[65,65],&quot;../src/framework_usage/main.rs.html#136&quot;,&quot;line 136&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#136">line 136</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>71</span>
+</div></div><div class="scraped-example " data-locs="[[[65,65],&quot;../src/framework_usage/main.rs.html#133&quot;,&quot;line 133&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#133">line 133</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
 <span>72</span>
 <span>73</span>
 <span>74</span>
@@ -4906,30 +4909,24 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>162</span>
 <span>163</span>
 <span>164</span>
-<span>165</span>
-<span>166</span>
-<span>167</span>
-<span>168</span>
-<span>169</span>
-<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
             <span class="ident">help</span>(),
             <span class="ident">register</span>(),
-            <span class="ident">commands::vote</span>(),
-            <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::addmultiple</span>(),
-            <span class="ident">commands::choice</span>(),
-            <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::voiceinfo</span>(),
-            <span class="ident">commands::test_reuse_response</span>(),
-            <span class="ident">commands::oracle</span>(),
-            <span class="ident">commands::code</span>(),
-            <span class="ident">commands::say</span>(),
-            <span class="ident">commands::file_details</span>(),
-            <span class="ident">commands::totalsize</span>(),
-            <span class="ident">commands::modal</span>(),
+            <span class="ident">general::vote</span>(),
+            <span class="ident">general::getvotes</span>(),
+            <span class="ident">general::addmultiple</span>(),
+            <span class="ident">general::choice</span>(),
+            <span class="ident">general::boop</span>(),
+            <span class="ident">general::voiceinfo</span>(),
+            <span class="ident">general::test_reuse_response</span>(),
+            <span class="ident">general::oracle</span>(),
+            <span class="ident">general::code</span>(),
+            <span class="ident">general::say</span>(),
+            <span class="ident">general::file_details</span>(),
+            <span class="ident">general::totalsize</span>(),
+            <span class="ident">general::modal</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -4985,7 +4982,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         }),
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">event</span>, <span class="ident">_framework</span>, <span class="ident">_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">name</span>());
                 <span class="prelude-val">Ok</span>(())
             })
         },
@@ -5002,18 +4999,15 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
-            <span class="ident">b</span>.<span class="ident">intents</span>(
-                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
-                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
-            )
-        })
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.id" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#170-189">source</a></span><a href="#method.id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.id" class="fnname">id</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></h4></section></summary><div class="docblock"><p>Return a ID that uniquely identifies this command invocation.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-9"><a href="#scraped-examples-9">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands.rs.html#103&quot;,&quot;line 103&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands.rs (<a href="../src/framework_usage/commands.rs.html#103">line 103</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-9"><a href="#scraped-examples-9">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/general.rs.html#103&quot;,&quot;line 103&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/general.rs (<a href="../src/framework_usage/commands/general.rs.html#103">line 103</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>102</span>
 <span>103</span>
 <span>104</span>
 <span>105</span>
@@ -5183,7 +5177,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         <span class="ident">poise::FrameworkError::Listener</span> { <span class="ident">error</span>, <span class="ident">event</span>, .. } =&gt; {
             <span class="macro">println!</span>(
                 <span class="string">&quot;Listener returned error during {:?} event: {:?}&quot;</span>,
-                <span class="ident">event</span>.<span class="ident">event_type</span>().<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&lt;unknown&gt;&quot;</span>),
+                <span class="ident">event</span>.<span class="ident">name</span>(),
                 <span class="ident">error</span>
             );
         }
@@ -5194,7 +5188,10 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         }
     }
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../src/framework_usage/main.rs.html#60&quot;,&quot;line 60&quot;],[[71,71],&quot;../src/framework_usage/main.rs.html#124&quot;,&quot;line 124&quot;],[[77,77],&quot;../src/framework_usage/main.rs.html#130&quot;,&quot;line 130&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#60">line 60</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>53</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../src/framework_usage/main.rs.html#57&quot;,&quot;line 57&quot;],[[71,71],&quot;../src/framework_usage/main.rs.html#121&quot;,&quot;line 121&quot;],[[77,77],&quot;../src/framework_usage/main.rs.html#127&quot;,&quot;line 127&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#57">line 57</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
 <span>54</span>
 <span>55</span>
 <span>56</span>
@@ -5306,12 +5303,6 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>162</span>
 <span>163</span>
 <span>164</span>
-<span>165</span>
-<span>166</span>
-<span>167</span>
-<span>168</span>
-<span>169</span>
-<span>170</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="comment">// This is our custom error handler</span>
     <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
@@ -5335,19 +5326,19 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
             <span class="ident">help</span>(),
             <span class="ident">register</span>(),
-            <span class="ident">commands::vote</span>(),
-            <span class="ident">commands::getvotes</span>(),
-            <span class="ident">commands::addmultiple</span>(),
-            <span class="ident">commands::choice</span>(),
-            <span class="ident">commands::boop</span>(),
-            <span class="ident">commands::voiceinfo</span>(),
-            <span class="ident">commands::test_reuse_response</span>(),
-            <span class="ident">commands::oracle</span>(),
-            <span class="ident">commands::code</span>(),
-            <span class="ident">commands::say</span>(),
-            <span class="ident">commands::file_details</span>(),
-            <span class="ident">commands::totalsize</span>(),
-            <span class="ident">commands::modal</span>(),
+            <span class="ident">general::vote</span>(),
+            <span class="ident">general::getvotes</span>(),
+            <span class="ident">general::addmultiple</span>(),
+            <span class="ident">general::choice</span>(),
+            <span class="ident">general::boop</span>(),
+            <span class="ident">general::voiceinfo</span>(),
+            <span class="ident">general::test_reuse_response</span>(),
+            <span class="ident">general::oracle</span>(),
+            <span class="ident">general::code</span>(),
+            <span class="ident">general::say</span>(),
+            <span class="ident">general::file_details</span>(),
+            <span class="ident">general::totalsize</span>(),
+            <span class="ident">general::modal</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -5403,7 +5394,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         }),
         <span class="ident">listener</span>: <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">event</span>, <span class="ident">_framework</span>, <span class="ident">_data</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">event_type</span>());
+                <span class="macro">println!</span>(<span class="string">&quot;Got an event in listener: {:?}&quot;</span>, <span class="ident">event</span>.<span class="ident">name</span>());
                 <span class="prelude-val">Ok</span>(())
             })
         },
@@ -5420,12 +5411,9 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             })
         })
         .<span class="ident">options</span>(<span class="ident">options</span>)
-        .<span class="ident">client_settings</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
-            <span class="ident">b</span>.<span class="ident">intents</span>(
-                <span class="ident">serenity::GatewayIntents::non_privileged</span>()
-                    <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
-            )
-        })
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
         .<span class="ident">run</span>()
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
@@ -5823,7 +5811,7 @@ execution.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#133-135">source</a></span><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></section></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Debug" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#6">source</a></span><a href="#impl-Debug" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>, E:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.fmt" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#6">source</a></span><a href="#method.fmt" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fnname">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></h4></section></summary><div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-From%3CApplicationContext%3C%27a%2C%20U%2C%20E%3E%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#19-23">source</a></span><a href="#impl-From%3CApplicationContext%3C%27a%2C%20U%2C%20E%3E%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="struct" href="struct.ApplicationContext.html" title="struct poise::ApplicationContext">ApplicationContext</a>&lt;'a, U, E&gt;&gt; for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.from" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#20-22">source</a></span><a href="#method.from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fnname">from</a>(x: <a class="struct" href="struct.ApplicationContext.html" title="struct poise::ApplicationContext">ApplicationContext</a>&lt;'a, U, E&gt;) -&gt; Self</h4></section></summary><div class='docblock'><p>Converts to this type from the input type.</p>
-</div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-From%3CContext%3C%27a%2C%20U%2C%20E%3E%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#360-371">source</a></span><a href="#impl-From%3CContext%3C%27a%2C%20U%2C%20E%3E%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;&gt; for <a class="struct" href="struct.PartialContext.html" title="struct poise::PartialContext">PartialContext</a>&lt;'a, U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.from-2" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#361-370">source</a></span><a href="#method.from-2" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fnname">from</a>(ctx: <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;) -&gt; Self</h4></section></summary><div class='docblock'><p>Converts to this type from the input type.</p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-From%3CContext%3C%27a%2C%20U%2C%20E%3E%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#361-372">source</a></span><a href="#impl-From%3CContext%3C%27a%2C%20U%2C%20E%3E%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;&gt; for <a class="struct" href="struct.PartialContext.html" title="struct poise::PartialContext">PartialContext</a>&lt;'a, U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.from-2" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#362-371">source</a></span><a href="#method.from-2" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fnname">from</a>(ctx: <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;) -&gt; Self</h4></section></summary><div class='docblock'><p>Converts to this type from the input type.</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-From%3CPrefixContext%3C%27a%2C%20U%2C%20E%3E%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#24-28">source</a></span><a href="#impl-From%3CPrefixContext%3C%27a%2C%20U%2C%20E%3E%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="struct" href="struct.PrefixContext.html" title="struct poise::PrefixContext">PrefixContext</a>&lt;'a, U, E&gt;&gt; for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.from-1" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#25-27">source</a></span><a href="#method.from-1" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fnname">from</a>(x: <a class="struct" href="struct.PrefixContext.html" title="struct poise::PrefixContext">PrefixContext</a>&lt;'a, U, E&gt;) -&gt; Self</h4></section></summary><div class='docblock'><p>Converts to this type from the input type.</p>
 </div></details></div></details><section id="impl-Copy" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#18">source</a></span><a href="#impl-Copy" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'_, U, E&gt;</h3></section></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor"></a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe" class="impl has-srclink"><a href="#impl-RefUnwindSafe" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.RefUnwindSafe.html" title="trait core::panic::unwind_safe::RefUnwindSafe">RefUnwindSafe</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;</h3></section><section id="impl-Send" class="impl has-srclink"><a href="#impl-Send" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>,&nbsp;</span></h3></section><section id="impl-Sync" class="impl has-srclink"><a href="#impl-Sync" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>,&nbsp;</span></h3></section><section id="impl-Unpin" class="impl has-srclink"><a href="#impl-Unpin" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Unpin.html" title="trait core::marker::Unpin">Unpin</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;</h3></section><section id="impl-UnwindSafe" class="impl has-srclink"><a href="#impl-UnwindSafe" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, U, E&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.UnwindSafe.html" title="trait core::panic::unwind_safe::UnwindSafe">UnwindSafe</a> for <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'a, U, E&gt;</h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor"></a></h2><div id="blanket-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Any" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#132-136">source</a></span><a href="#impl-Any" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: 'static + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#133">source</a></span><a href="#method.type_id" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id" class="fnname">type_id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/any/struct.TypeId.html" title="struct core::any::TypeId">TypeId</a></h4></section></summary><div class='docblock'><p>Gets the <code>TypeId</code> of <code>self</code>. <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id">Read more</a></p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#209-214">source</a></span><a href="#impl-Borrow%3CT%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html" title="trait core::borrow::Borrow">Borrow</a>&lt;T&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/91522" title="Tracking issue for const_borrow">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#211">source</a></span><a href="#method.borrow" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow" class="fnname">borrow</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T</h4></section></summary><div class='docblock'><p>Immutably borrows from an owned value. <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow">Read more</a></p>
@@ -5848,5 +5836,5 @@ execution.</p>
 <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://docs.rs/tracing/0.1.33/src/tracing/instrument.rs.html#221">source</a></span><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="https://docs.rs/tracing/0.1.33/tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'><p>Attaches the current <a href="https://docs.rs/tracing/0.1.33/tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="https://docs.rs/tracing-core/0.1.22/tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="https://docs.rs/tracing/0.1.33/tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (34a6c9f26 2022-04-13)" ></div>
+</div></details></div></details></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>
