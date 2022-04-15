@@ -16,8 +16,8 @@ for example for command-specific help (i.e. <code>~help command_name</code>). Es
 <li><code>context_menu_command</code>: Generate a context menu command</li>
 <li><code>aliases</code>: Command name aliases (only applies to prefix commands)</li>
 <li><code>invoke_on_edit</code>: Reruns the command if an existing invocation message is edited (prefix only)</li>
-<li><code>reuse_response</code>: After the first response, post subsequent responses as edits to the initial message</li>
-<li><code>track_edits</code>: Shorthand for <code>invoke_on_edit</code> and <code>reuse_response</code></li>
+<li><code>reuse_response</code>: After the first response, post subsequent responses as edits to the initial message (prefix only)</li>
+<li><code>track_edits</code>: Shorthand for <code>invoke_on_edit</code> and <code>reuse_response</code> (prefix only)</li>
 <li><code>broadcast_typing</code>: Trigger a typing indicator while command runs (only applies to prefix commands I think)</li>
 <li><code>explanation_fn</code>: Path to a string-returning function which is used for the detailed explanations instead of documentation comments
 <ul>
@@ -41,6 +41,9 @@ for example for command-specific help (i.e. <code>~help command_name</code>). Es
 <li><code>required_permissions</code>: Permissions which the command caller needs to have</li>
 <li><code>required_bot_permissions</code>: Permissions which the bot is known to need</li>
 <li><code>owners_only</code>: Restricts command callers to a configurable list of owners (see FrameworkOptions)</li>
+<li><code>guild_only</code>: Restricts command callers to only run on a guild</li>
+<li><code>dm_only</code>: Restricts command callers to only run on a DM</li>
+<li><code>nsfw_only</code>: Restricts command callers to only run on a NSFW channel</li>
 <li><code>identifying_name</code>: Optionally, a unique identifier for this command for your personal usage</li>
 <li><code>category</code>: Category of this command which affects placement in the help command</li>
 <li><code>global_cooldown</code>: Minimum duration between invocations, globally</li>
@@ -61,6 +64,7 @@ are multiple attributes you can use on parameters:</p>
 <li><code>#[description = &quot;&quot;]</code>: Sets description of the parameter (slash-only)</li>
 <li><code>#[autocomplete = &quot;&quot;]</code>: Sets the autocomplete callback (slash-only)</li>
 <li><code>#[channel_types(&quot;&quot;, &quot;&quot;)]</code>: For channel parameters, restricts allowed channel types (slash-only)</li>
+<li><code>#[rename = &quot;&quot;]</code>: Changes the user-facing name of the parameter (slash-only)</li>
 <li><code>#[min = 0]</code>: Minimum value for this number parameter (slash-only)</li>
 <li><code>#[max = 0]</code>: Maximum value for this number parameter (slash-only)</li>
 <li><code>#[rest]</code>: Use the entire rest of the message for this parameter (prefix-only)</li>
@@ -103,5 +107,5 @@ this form:</p>
 }</code></pre></div>
 <p>If you’re curious, you can use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to see the
 exact desugaring</p>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (38a0b81b1 2022-03-06)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
 </body></html>
