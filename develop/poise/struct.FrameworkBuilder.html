@@ -204,7 +204,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[82,88],&quot;../src/framework_usage/main.rs.html#150-156&quot;,&quot;lines 150-156&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#150-156">lines 150-156</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+</div></div><div class="scraped-example " data-locs="[[[83,89],&quot;../src/framework_usage/main.rs.html#151-157&quot;,&quot;lines 151-157&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#151-157">lines 151-157</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
 <span>69</span>
 <span>70</span>
 <span>71</span>
@@ -301,6 +301,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>162</span>
 <span>163</span>
 <span>164</span>
+<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -319,6 +320,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">general::file_details</span>(),
             <span class="ident">general::totalsize</span>(),
             <span class="ident">general::modal</span>(),
+            <span class="ident">general::punish</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -789,7 +791,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[89,89],&quot;../src/framework_usage/main.rs.html#157&quot;,&quot;line 157&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#157">line 157</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+</div></div><div class="scraped-example " data-locs="[[[90,90],&quot;../src/framework_usage/main.rs.html#158&quot;,&quot;line 158&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#158">line 158</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
 <span>69</span>
 <span>70</span>
 <span>71</span>
@@ -886,6 +888,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>162</span>
 <span>163</span>
 <span>164</span>
+<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -904,6 +907,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">general::file_details</span>(),
             <span class="ident">general::totalsize</span>(),
             <span class="ident">general::modal</span>(),
+            <span class="ident">general::punish</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -1378,7 +1382,7 @@ client builder</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[81,81],&quot;../src/framework_usage/main.rs.html#149&quot;,&quot;line 149&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#149">line 149</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+</div></div><div class="scraped-example " data-locs="[[[82,82],&quot;../src/framework_usage/main.rs.html#150&quot;,&quot;line 150&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#150">line 150</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
 <span>69</span>
 <span>70</span>
 <span>71</span>
@@ -1475,6 +1479,7 @@ client builder</p>
 <span>162</span>
 <span>163</span>
 <span>164</span>
+<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1493,6 +1498,7 @@ client builder</p>
             <span class="ident">general::file_details</span>(),
             <span class="ident">general::totalsize</span>(),
             <span class="ident">general::modal</span>(),
+            <span class="ident">general::punish</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -1815,7 +1821,7 @@ client builder</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[90,92],&quot;../src/framework_usage/main.rs.html#158-160&quot;,&quot;lines 158-160&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#158-160">lines 158-160</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[91,93],&quot;../src/framework_usage/main.rs.html#159-161&quot;,&quot;lines 159-161&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#159-161">lines 159-161</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
 <span>69</span>
 <span>70</span>
 <span>71</span>
@@ -1912,6 +1918,7 @@ client builder</p>
 <span>162</span>
 <span>163</span>
 <span>164</span>
+<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1930,6 +1937,7 @@ client builder</p>
             <span class="ident">general::file_details</span>(),
             <span class="ident">general::totalsize</span>(),
             <span class="ident">general::modal</span>(),
+            <span class="ident">general::punish</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
@@ -2216,7 +2224,7 @@ starts the returned framework</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[93,93],&quot;../src/framework_usage/main.rs.html#161&quot;,&quot;line 161&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#161">line 161</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
+</div></div><div class="scraped-example " data-locs="[[[94,94],&quot;../src/framework_usage/main.rs.html#162&quot;,&quot;line 162&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#162">line 162</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
 <span>69</span>
 <span>70</span>
 <span>71</span>
@@ -2313,6 +2321,7 @@ starts the returned framework</p>
 <span>162</span>
 <span>163</span>
 <span>164</span>
+<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -2331,6 +2340,7 @@ starts the returned framework</p>
             <span class="ident">general::file_details</span>(),
             <span class="ident">general::totalsize</span>(),
             <span class="ident">general::modal</span>(),
+            <span class="ident">general::punish</span>(),
             <span class="ident">context_menu::user_info</span>(),
             <span class="ident">context_menu::echo</span>(),
             <span class="ident">autocomplete::greet</span>(),
