@@ -255,24 +255,6 @@ dropped.</p>
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example expanded" data-locs="[[[5,5],&quot;../src/quickstart/main.rs.html#14&quot;,&quot;line 14&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#14">line 14</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>9</span>
-<span>10</span>
-<span>11</span>
-<span>12</span>
-<span>13</span>
-<span>14</span>
-<span>15</span>
-<span>16</span>
-<span>17</span>
-</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">age</span>(
-    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="ident">author</span>());
-    <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="macro">format!</span>(<span class="string">&quot;{}&#39;s account was created at {}&quot;</span>, <span class="ident">user</span>.<span class="ident">name</span>, <span class="ident">user</span>.<span class="ident">created_at</span>())).<span class="kw">await</span><span class="question-mark">?</span>;
-
-    <span class="prelude-val">Ok</span>(())
-}</code></pre></div>
 </div></div><div class="scraped-example " data-locs="[[[7,7],&quot;../src/serenity_example_port/main.rs.html#355&quot;,&quot;line 355&quot;],[[50,50],&quot;../src/serenity_example_port/main.rs.html#398&quot;,&quot;line 398&quot;],[[80,80],&quot;../src/serenity_example_port/main.rs.html#428&quot;,&quot;line 428&quot;],[[100,100],&quot;../src/serenity_example_port/main.rs.html#448&quot;,&quot;line 448&quot;],[[132,132],&quot;../src/serenity_example_port/main.rs.html#480&quot;,&quot;line 480&quot;],[[140,140],&quot;../src/serenity_example_port/main.rs.html#488&quot;,&quot;line 488&quot;],[[162,162],&quot;../src/serenity_example_port/main.rs.html#510&quot;,&quot;line 510&quot;],[[181,181],&quot;../src/serenity_example_port/main.rs.html#529&quot;,&quot;line 529&quot;],[[202,202],&quot;../src/serenity_example_port/main.rs.html#550&quot;,&quot;line 550&quot;],[[220,220],&quot;../src/serenity_example_port/main.rs.html#568&quot;,&quot;line 568&quot;],[[236,236],&quot;../src/serenity_example_port/main.rs.html#584&quot;,&quot;line 584&quot;],[[251,251],&quot;../src/serenity_example_port/main.rs.html#599&quot;,&quot;line 599&quot;],[[258,258],&quot;../src/serenity_example_port/main.rs.html#606&quot;,&quot;line 606&quot;],[[299,299],&quot;../src/serenity_example_port/main.rs.html#647&quot;,&quot;line 647&quot;],[[307,307],&quot;../src/serenity_example_port/main.rs.html#655&quot;,&quot;line 655&quot;],[[316,316],&quot;../src/serenity_example_port/main.rs.html#664&quot;,&quot;line 664&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#355">line 355</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>348</span>
 <span>349</span>
 <span>350</span>
@@ -910,6 +892,34 @@ dropped.</p>
 <span class="comment">// This will only be called if preceded by the `upper`-command.</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sub</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span></span>(<span class="string">&quot;This is a sub function!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[5,9],&quot;../src/quickstart/main.rs.html#14-18&quot;,&quot;lines 14-18&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#14-18">lines 14-18</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">age</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="ident">author</span>());
+    <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="macro">format!</span>(
+        <span class="string">&quot;{}&#39;s account was created at {}&quot;</span>,
+        <span class="ident">user</span>.<span class="ident">name</span>,
+        <span class="ident">user</span>.<span class="ident">created_at</span>()
+    ))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
@@ -3742,25 +3752,7 @@ request failed</p>
 <p>Warning: clones the entire Member instance out of the cache</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.created_at" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#154-159">source</a></span><a href="#method.created_at" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.created_at" class="fnname">created_at</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/serenity/*/serenity/model/timestamp/struct.Timestamp.html" title="struct serenity::model::timestamp::Timestamp">Timestamp</a></h4></section></summary><div class="docblock"><p>Return the datetime of the invoking message or interaction</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.author" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#162-167">source</a></span><a href="#method.author" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.author" class="fnname">author</a>(&amp;self) -&gt; &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/user/struct.User.html" title="struct serenity::model::user::User">User</a></h4></section></summary><div class="docblock"><p>Get the author of the command message or application command.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-8"><a href="#scraped-examples-8">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[4,4],&quot;../src/quickstart/main.rs.html#13&quot;,&quot;line 13&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#13">line 13</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>9</span>
-<span>10</span>
-<span>11</span>
-<span>12</span>
-<span>13</span>
-<span>14</span>
-<span>15</span>
-<span>16</span>
-<span>17</span>
-</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">age</span>(
-    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">author</span></span>());
-    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&#39;s account was created at {}&quot;</span>, <span class="ident">user</span>.<span class="ident">name</span>, <span class="ident">user</span>.<span class="ident">created_at</span>())).<span class="kw">await</span><span class="question-mark">?</span>;
-
-    <span class="prelude-val">Ok</span>(())
-}</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/framework_usage/commands/checks.rs.html#54&quot;,&quot;line 54&quot;],[[5,5],&quot;../src/framework_usage/commands/checks.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#54">line 54</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><div class="example-wrap"><pre class="line-numbers"><span>52</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-8"><a href="#scraped-examples-8">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/framework_usage/commands/checks.rs.html#54&quot;,&quot;line 54&quot;],[[5,5],&quot;../src/framework_usage/commands/checks.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#54">line 54</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><div class="example-wrap"><pre class="line-numbers"><span>52</span>
 <span>53</span>
 <span>54</span>
 <span>55</span>
@@ -3777,6 +3769,34 @@ request failed</p>
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">nickname</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="highlight"><span class="ident">author</span></span>().<span class="ident">name</span>);
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
+}</code></pre></div>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../src/quickstart/main.rs.html#13&quot;,&quot;line 13&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#13">line 13</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">age</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">author</span></span>());
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
+        <span class="string">&quot;{}&#39;s account was created at {}&quot;</span>,
+        <span class="ident">user</span>.<span class="ident">name</span>,
+        <span class="ident">user</span>.<span class="ident">created_at</span>()
+    ))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#137&quot;,&quot;line 137&quot;],[[280,280],&quot;../src/serenity_example_port/main.rs.html#413&quot;,&quot;line 413&quot;],[[462,462],&quot;../src/serenity_example_port/main.rs.html#595&quot;,&quot;line 595&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#137">line 137</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>133</span>
 <span>134</span>

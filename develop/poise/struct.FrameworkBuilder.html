@@ -16,12 +16,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#57-243">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.prefix" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#61-63">source</a></span><a href="#method.prefix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.prefix" class="fnname">prefix</a>(self, _prefix: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please set the prefix via FrameworkOptions::prefix_options::prefix</p>
 </div></span></summary><div class="docblock"><p>Set a prefix for commands</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.user_data_setup" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#67-80">source</a></span><a href="#method.user_data_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.user_data_setup" class="fnname">user_data_setup</a>&lt;F&gt;(self, user_data_setup: F) -&gt; Self <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + for&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a>, &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/gateway/struct.Ready.html" title="struct serenity::model::gateway::Ready">Ready</a>, &amp;'a <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;) -&gt; <a class="type" href="type.BoxFuture.html" title="type poise::BoxFuture">BoxFuture</a>&lt;'a, <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, E&gt;&gt;,&nbsp;</span></h4></section></summary><div class="docblock"><p>Set a callback to be invoked to create the user data instance</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[4,6],&quot;../src/quickstart/main.rs.html#24-26&quot;,&quot;lines 24-26&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#24-26">lines 24-26</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>20</span>
-<span>21</span>
-<span>22</span>
-<span>23</span>
-<span>24</span>
-<span>25</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[6,6],&quot;../src/quickstart/main.rs.html#31&quot;,&quot;line 31&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#31">line 31</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>25</span>
 <span>26</span>
 <span>27</span>
 <span>28</span>
@@ -34,13 +29,20 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>35</span>
 <span>36</span>
 <span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">poise::Framework::build</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>)
-        .<span class="highlight focus"><span class="ident">user_data_setup</span></span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
-        }))
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
+        .<span class="highlight focus"><span class="ident">user_data_setup</span></span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="comment">// configure framework here</span>
             <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -50,7 +52,9 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,16],&quot;../src/invocation_data/main.rs.html#52-65&quot;,&quot;lines 52-65&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#52-65">lines 52-65</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
@@ -597,12 +601,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
     */</span>
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.options" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#84-87">source</a></span><a href="#method.options" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.options" class="fnname">options</a>(self, options: <a class="struct" href="struct.FrameworkOptions.html" title="struct poise::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;) -&gt; Self</h4></section></summary><div class="docblock"><p>Configure framework options</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[7,15],&quot;../src/quickstart/main.rs.html#27-35&quot;,&quot;lines 27-35&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#27-35">lines 27-35</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>20</span>
-<span>21</span>
-<span>22</span>
-<span>23</span>
-<span>24</span>
-<span>25</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[7,15],&quot;../src/quickstart/main.rs.html#32-40&quot;,&quot;lines 32-40&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#32-40">lines 32-40</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>25</span>
 <span>26</span>
 <span>27</span>
 <span>28</span>
@@ -615,13 +614,20 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>35</span>
 <span>36</span>
 <span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">poise::Framework::build</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>)
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
-        }))
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
         .<span class="highlight focus"><span class="ident">options</span></span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="comment">// configure framework here</span>
             <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -631,7 +637,9 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,69],&quot;../src/invocation_data/main.rs.html#66-118&quot;,&quot;lines 66-118&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#66-118">lines 66-118</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
@@ -1182,12 +1190,7 @@ client builder</p>
 <p>Note: the builder’s token will be overridden by the
 <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a>; use <a href="struct.FrameworkBuilder.html#method.token" title="FrameworkBuilder::token"><code>FrameworkBuilder::token</code></a> to supply a token.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.token" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#105-108">source</a></span><a href="#method.token" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.token" class="fnname">token</a>(self, token: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></section></summary><div class="docblock"><p>The bot token</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[2,2],&quot;../src/quickstart/main.rs.html#22&quot;,&quot;line 22&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#22">line 22</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>20</span>
-<span>21</span>
-<span>22</span>
-<span>23</span>
-<span>24</span>
-<span>25</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[2,2],&quot;../src/quickstart/main.rs.html#27&quot;,&quot;line 27&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#27">line 27</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>25</span>
 <span>26</span>
 <span>27</span>
 <span>28</span>
@@ -1200,13 +1203,20 @@ client builder</p>
 <span>35</span>
 <span>36</span>
 <span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">poise::Framework::build</span>()
         .<span class="highlight focus"><span class="ident">token</span></span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>)
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
-        }))
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="comment">// configure framework here</span>
             <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -1216,7 +1226,9 @@ client builder</p>
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[2,2],&quot;../src/invocation_data/main.rs.html#51&quot;,&quot;line 51&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#51">line 51</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
@@ -1763,12 +1775,7 @@ client builder</p>
     */</span>
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.intents" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#112-115">source</a></span><a href="#method.intents" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.intents" class="fnname">intents</a>(self, intents: <a class="struct" href="https://docs.rs/serenity/*/serenity/model/gateway/struct.GatewayIntents.html" title="struct serenity::model::gateway::GatewayIntents">GatewayIntents</a>) -&gt; Self</h4></section></summary><div class="docblock"><p>The gateway intents</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[3,3],&quot;../src/quickstart/main.rs.html#23&quot;,&quot;line 23&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#23">line 23</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>20</span>
-<span>21</span>
-<span>22</span>
-<span>23</span>
-<span>24</span>
-<span>25</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[3,5],&quot;../src/quickstart/main.rs.html#28-30&quot;,&quot;lines 28-30&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#28-30">lines 28-30</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>25</span>
 <span>26</span>
 <span>27</span>
 <span>28</span>
@@ -1781,13 +1788,20 @@ client builder</p>
 <span>35</span>
 <span>36</span>
 <span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">poise::Framework::build</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="highlight focus"><span class="ident">intents</span></span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>)
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
-        }))
+        .<span class="highlight focus"><span class="ident">intents</span></span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="comment">// configure framework here</span>
             <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -1797,7 +1811,9 @@ client builder</p>
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[90,92],&quot;../src/framework_usage/main.rs.html#158-160&quot;,&quot;lines 158-160&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#158-160">lines 158-160</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>68</span>
 <span>69</span>
@@ -2012,12 +2028,7 @@ times with the builder left to defaults, i.e. no command category or subcommands
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.run" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#227-233">source</a></span><a href="#method.run" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run" class="fnname">run</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></section></summary><div class="docblock"><p>Start the framework with the specified configuration.</p>
 <p><a href="struct.FrameworkBuilder.html#method.run" title="FrameworkBuilder::run"><code>FrameworkBuilder::run</code></a> is just a shorthand that calls <a href="struct.FrameworkBuilder.html#method.build" title="FrameworkBuilder::build"><code>FrameworkBuilder::build</code></a> and
 starts the returned framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[16,16],&quot;../src/quickstart/main.rs.html#36&quot;,&quot;line 36&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#36">line 36</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>20</span>
-<span>21</span>
-<span>22</span>
-<span>23</span>
-<span>24</span>
-<span>25</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[16,16],&quot;../src/quickstart/main.rs.html#41&quot;,&quot;line 41&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#41">line 41</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>25</span>
 <span>26</span>
 <span>27</span>
 <span>28</span>
@@ -2030,13 +2041,20 @@ starts the returned framework</p>
 <span>35</span>
 <span>36</span>
 <span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">poise::Framework::build</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>)
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
-        }))
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="comment">// configure framework here</span>
             <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -2046,7 +2064,9 @@ starts the returned framework</p>
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="highlight focus"><span class="ident">run</span></span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        .<span class="highlight focus"><span class="ident">run</span></span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[70,70],&quot;../src/invocation_data/main.rs.html#119&quot;,&quot;line 119&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#119">line 119</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>

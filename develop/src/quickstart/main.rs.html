@@ -40,6 +40,13 @@
 <span id="35">35</span>
 <span id="36">36</span>
 <span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">poise::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 
 <span class="kw">struct</span> <span class="ident">Data</span> {}
@@ -53,7 +60,12 @@
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Selected user&quot;</span>]</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::User</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">user</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="ident">ctx</span>.<span class="ident">author</span>());
-    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&#39;s account was created at {}&quot;</span>, <span class="ident">user</span>.<span class="ident">name</span>, <span class="ident">user</span>.<span class="ident">created_at</span>())).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
+        <span class="string">&quot;{}&#39;s account was created at {}&quot;</span>,
+        <span class="ident">user</span>.<span class="ident">name</span>,
+        <span class="ident">user</span>.<span class="ident">created_at</span>()
+    ))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }
@@ -62,10 +74,10 @@
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">poise::Framework::build</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>)
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
-        }))
+        .<span class="ident">intents</span>(
+            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
+        )
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="comment">// configure framework here</span>
             <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
@@ -75,7 +87,9 @@
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="quickstart" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
