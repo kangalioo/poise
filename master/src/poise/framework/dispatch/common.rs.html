@@ -165,6 +165,15 @@
 <span id="160">160</span>
 <span id="161">161</span>
 <span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Prefix and slash agnostic utilities for dispatching incoming events onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -237,8 +246,17 @@
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::NotAnOwner</span> { <span class="ident">ctx</span> });
     }
 
-    <span class="kw">if</span> <span class="ident">cmd</span>.<span class="ident">guild_only</span> <span class="op">&amp;&amp;</span> <span class="ident">ctx</span>.<span class="ident">guild_id</span>().<span class="ident">is_none</span>() {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::GuildOnly</span> { <span class="ident">ctx</span> });
+    <span class="kw">if</span> <span class="ident">cmd</span>.<span class="ident">guild_only</span> {
+        <span class="kw">let</span> <span class="ident">should_abort</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">guild_id</span>() {
+            <span class="prelude-val">None</span> =&gt; <span class="bool-val">true</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">guild_id</span>) =&gt; {
+                <span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">require_cache_for_guild_check</span>
+                    <span class="op">&amp;&amp;</span> <span class="ident">ctx</span>.<span class="ident">discord</span>().<span class="ident">cache</span>.<span class="ident">guild_field</span>(<span class="ident">guild_id</span>, <span class="op">|</span><span class="kw">_</span><span class="op">|</span> ()).<span class="ident">is_none</span>()
+            }
+        };
+        <span class="kw">if</span> <span class="ident">should_abort</span> {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::FrameworkError::GuildOnly</span> { <span class="ident">ctx</span> });
+        }
     }
 
     <span class="kw">if</span> <span class="ident">cmd</span>.<span class="ident">dm_only</span> <span class="op">&amp;&amp;</span> <span class="ident">ctx</span>.<span class="ident">guild_id</span>().<span class="ident">is_some</span>() {
@@ -328,5 +346,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
 </body></html>

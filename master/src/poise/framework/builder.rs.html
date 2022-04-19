@@ -245,7 +245,6 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
-<span id="243">243</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A builder struct that allows easy and readable creation of a [`crate::Framework`]</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -457,9 +456,8 @@ and enable MESSAGE_CONTENT in your Discord bot dashboard
         }
 
         <span class="comment">// Create serenity client</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">client_builder</span> <span class="op">=</span> <span class="ident">serenity::ClientBuilder::new</span>(<span class="ident">token</span>)
-            .<span class="ident">application_id</span>(<span class="ident">application_info</span>.<span class="ident">id</span>.<span class="number">0</span>)
-            .<span class="ident">intents</span>(<span class="ident">intents</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">client_builder</span> <span class="op">=</span>
+            <span class="ident">serenity::ClientBuilder::new</span>(<span class="ident">token</span>, <span class="ident">intents</span>).<span class="ident">application_id</span>(<span class="ident">application_info</span>.<span class="ident">id</span>.<span class="number">0</span>);
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">client_settings</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">client_settings</span> {
             <span class="ident">client_builder</span> <span class="op">=</span> <span class="ident">client_settings</span>(<span class="ident">client_builder</span>);
         }
@@ -490,5 +488,5 @@ and enable MESSAGE_CONTENT in your Discord bot dashboard
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e7575f967 2022-04-14)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
 </body></html>
