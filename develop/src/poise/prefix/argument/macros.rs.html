@@ -332,6 +332,8 @@
 <span id="327">327</span>
 <span id="328">328</span>
 <span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A macro that generates backtracking-capable argument parsing code, given a list of parameter</span>
 <span class="doccomment">//! types and attributes</span>
 
@@ -512,6 +514,7 @@ to use this macro directly.
 #     ),
 #     shard_id: Default::default(),
 #     http: std::sync::Arc::new(::serenity::http::Http::new(&quot;example&quot;)),
+#     #[cfg(feature = &quot;cache&quot;)]
 #     cache: Default::default(),
 # };
 # let msg = serenity::CustomMessage::new().build();
@@ -587,6 +590,7 @@ assert_eq!(
             ),
             <span class="ident">shard_id</span>: <span class="ident">Default::default</span>(),
             <span class="ident">http</span>: <span class="ident">std::sync::Arc::new</span>(<span class="ident">::serenity::http::Http::new</span>(<span class="string">&quot;example&quot;</span>)),
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
             <span class="ident">cache</span>: <span class="ident">Default::default</span>(),
         };
         <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">serenity::CustomMessage::new</span>().<span class="ident">build</span>();
