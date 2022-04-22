@@ -139,6 +139,8 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Just contains FrameworkOptions</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -173,6 +175,8 @@
     <span class="kw">pub</span> <span class="ident">manual_cooldowns</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// If `true`, changes behavior of guild_only command check to abort execution if the guild is</span>
     <span class="doccomment">/// not in cache.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// **If `cache` feature is disabled, this has no effect!**</span>
     <span class="kw">pub</span> <span class="ident">require_cache_for_guild_check</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Called on every Discord event. Can be used to react to non-command events, like messages</span>
     <span class="doccomment">/// deletions or guild updates.</span>
@@ -276,5 +280,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (4ca19e09d 2022-04-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (de1bc0008 2022-04-21)" ></div>
 </body></html>

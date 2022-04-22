@@ -209,6 +209,9 @@
 <span id="204">204</span>
 <span id="205">205</span>
 <span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
 <span class="kw">mod</span> <span class="ident">dispatch</span>;
@@ -224,6 +227,8 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Stores user data. Is initialized on first Ready event</span>
     <span class="ident">user_data</span>: <span class="ident">once_cell::sync::OnceCell</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Stores bot ID. Is initialized on first Ready event</span>
+    <span class="ident">bot_id</span>: <span class="ident">once_cell::sync::OnceCell</span><span class="op">&lt;</span><span class="ident">serenity::UserId</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Stores the framework options</span>
     <span class="ident">options</span>: <span class="ident"><span class="kw">crate</span>::FrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
 
@@ -329,6 +334,7 @@
 
         <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="self">Self</span> {
             <span class="ident">user_data</span>: <span class="ident">once_cell::sync::OnceCell::new</span>(),
+            <span class="ident">bot_id</span>: <span class="ident">once_cell::sync::OnceCell::new</span>(),
             <span class="ident">user_data_setup</span>: <span class="ident">Mutex::new</span>(<span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">user_data_setup</span>))),
             <span class="ident">options</span>,
             <span class="ident">shard_manager</span>: <span class="ident">client</span>.<span class="ident">shard_manager</span>.<span class="ident">clone</span>(),
@@ -416,5 +422,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (4ca19e09d 2022-04-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (de1bc0008 2022-04-21)" ></div>
 </body></html>

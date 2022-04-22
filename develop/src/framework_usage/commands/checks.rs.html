@@ -131,6 +131,8 @@
 <span id="126">126</span>
 <span id="127">127</span>
 <span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
 </pre><pre class="rust"><code><span class="doccomment">/**
 Poise supports several pre-command checks (sorted by order of execution):
 - owners_only
@@ -237,6 +239,8 @@ Poise supports several pre-command checks (sorted by order of execution):
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_guild_name</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
         <span class="string">&quot;The name of this guild is: {}&quot;</span>,
+        <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
+        <span class="comment">// ctx.partial_guild().await.unwrap().name</span>
         <span class="ident">ctx</span>.<span class="ident">guild</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>
     ))
     .<span class="kw">await</span><span class="question-mark">?</span>;
@@ -260,5 +264,5 @@ Poise supports several pre-command checks (sorted by order of execution):
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (4ca19e09d 2022-04-19)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (de1bc0008 2022-04-21)" ></div>
 </body></html>
