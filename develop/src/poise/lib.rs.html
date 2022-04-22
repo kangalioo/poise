@@ -284,9 +284,7 @@
 <span id="279">279</span>
 <span id="280">280</span>
 <span id="281">281</span>
-<span id="282">282</span>
-<span id="283">283</span>
-</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
+</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc_auto_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_docs</span>)]</span>
@@ -303,14 +301,12 @@ I initially this framework mainly for personal use ([rustbot](&lt;https://github
 and [etternabot](&lt;https://github.com/kangalioo/etternabot&gt;)). Features are added on demand, since
 it&#39;s easier to draft a good design when you know exactly which practical needs it should cover.
 
-**Warning: API details are subject to change**
-
 # Quickstart
 ```rust,no_run
 */</span>
 <span class="comment">// Nested cfg_attr is needed for some reason</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span> <span class="op">=</span> <span class="macro">include_str!</span>(<span class="string">&quot;../examples/quickstart/main.rs&quot;</span>)))]</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">docsrs</span>), <span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;// See ../examples/quickstart/main.rs&quot;</span>)]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">doc</span> <span class="op">=</span> <span class="macro">include_str!</span>(<span class="string">&quot;../examples/quickstart/main.rs&quot;</span>)))]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">doc_nightly</span>), <span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;// See ../examples/quickstart/main.rs&quot;</span>)]</span>
 <span class="doccomment">/*!
 ```
 

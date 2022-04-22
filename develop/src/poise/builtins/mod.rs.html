@@ -322,6 +322,7 @@
 <span id="317">317</span>
 <span id="318">318</span>
 <span id="319">319</span>
+<span id="320">320</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -449,6 +450,7 @@
         <span class="ident"><span class="kw">crate</span>::FrameworkError::DynamicPrefix</span> { <span class="ident">error</span> } =&gt; {
             <span class="macro">println!</span>(<span class="string">&quot;Dynamic prefix failed: {}&quot;</span>, <span class="ident">error</span>);
         }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::__NonExhaustive</span> =&gt; <span class="macro">panic!</span>(),
     }
 
     <span class="prelude-val">Ok</span>(())

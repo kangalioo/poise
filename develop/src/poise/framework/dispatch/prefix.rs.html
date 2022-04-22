@@ -258,6 +258,7 @@
 <span id="253">253</span>
 <span id="254">254</span>
 <span id="255">255</span>
+<span id="256">256</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches incoming messages and message edits onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -483,6 +484,7 @@
         <span class="ident">data</span>: <span class="ident">framework</span>.<span class="ident">user_data</span>().<span class="kw">await</span>,
         <span class="ident">command</span>,
         <span class="ident">invocation_data</span>,
+        <span class="ident">__non_exhaustive</span>: (),
     };
 
     <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="ident">command</span>)

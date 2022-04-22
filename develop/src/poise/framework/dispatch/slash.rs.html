@@ -201,6 +201,7 @@
 <span id="196">196</span>
 <span id="197">197</span>
 <span id="198">198</span>
+<span id="199">199</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches interactions onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -268,6 +269,7 @@
         <span class="ident">command</span>,
         <span class="ident">has_sent_initial_response</span>,
         <span class="ident">invocation_data</span>,
+        <span class="ident">__non_exhaustive</span>: (),
     };
 
     <span class="ident"><span class="kw">super</span>::common::check_permissions_and_cooldown</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="ident">command</span>)

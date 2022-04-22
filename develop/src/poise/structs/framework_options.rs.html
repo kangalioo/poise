@@ -141,6 +141,11 @@
 <span id="136">136</span>
 <span id="137">137</span>
 <span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Just contains FrameworkOptions</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -194,6 +199,9 @@
     <span class="doccomment">/// If using [`crate::FrameworkBuilder`], automatically initialized with the bot application</span>
     <span class="doccomment">/// owner and team members</span>
     <span class="kw">pub</span> <span class="ident">owners</span>: <span class="ident">std::collections::HashSet</span><span class="op">&lt;</span><span class="ident">serenity::UserId</span><span class="op">&gt;</span>,
+    <span class="comment">// #[non_exhaustive] forbids struct update syntax for ?? reason</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">__non_exhaustive</span>: (),
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">FrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -224,6 +232,7 @@
             <span class="ident">listener</span>,
             <span class="ident">prefix_options</span>,
             <span class="ident">owners</span>,
+            <span class="ident">__non_exhaustive</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;FrameworkOptions&quot;</span>)
@@ -276,6 +285,7 @@
             <span class="ident">require_cache_for_guild_check</span>: <span class="bool-val">false</span>,
             <span class="ident">prefix_options</span>: <span class="ident">Default::default</span>(),
             <span class="ident">owners</span>: <span class="ident">Default::default</span>(),
+            <span class="ident">__non_exhaustive</span>: (),
         }
     }
 }
