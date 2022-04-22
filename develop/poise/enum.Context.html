@@ -59,7 +59,7 @@ dropped.</p>
     <span class="ident">ctx</span>.<span class="highlight"><span class="ident">say</span></span>(<span class="string">&quot;You invoked `parent child2`!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#32&quot;,&quot;line 32&quot;],[[42,42],&quot;../src/framework_usage/commands/checks.rs.html#73&quot;,&quot;line 73&quot;],[[66,66],&quot;../src/framework_usage/commands/checks.rs.html#97&quot;,&quot;line 97&quot;],[[74,79],&quot;../src/framework_usage/commands/checks.rs.html#105-110&quot;,&quot;lines 105-110&quot;],[[88,88],&quot;../src/framework_usage/commands/checks.rs.html#119&quot;,&quot;line 119&quot;],[[96,96],&quot;../src/framework_usage/commands/checks.rs.html#127&quot;,&quot;line 127&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>31</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#32&quot;,&quot;line 32&quot;],[[42,42],&quot;../src/framework_usage/commands/checks.rs.html#73&quot;,&quot;line 73&quot;],[[66,66],&quot;../src/framework_usage/commands/checks.rs.html#97&quot;,&quot;line 97&quot;],[[74,83],&quot;../src/framework_usage/commands/checks.rs.html#105-114&quot;,&quot;lines 105-114&quot;],[[92,92],&quot;../src/framework_usage/commands/checks.rs.html#123&quot;,&quot;line 123&quot;],[[100,100],&quot;../src/framework_usage/commands/checks.rs.html#131&quot;,&quot;line 131&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>31</span>
 <span>32</span>
 <span>33</span>
 <span>34</span>
@@ -159,6 +159,10 @@ dropped.</p>
 <span>128</span>
 <span>129</span>
 <span>130</span>
+<span>131</span>
+<span>132</span>
+<span>133</span>
+<span>134</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">modonly</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="string">&quot;You are a mod because you were able to invoke this command&quot;</span>)
         .<span class="kw">await</span><span class="question-mark">?</span>;
@@ -237,7 +241,11 @@ dropped.</p>
         <span class="string">&quot;The name of this guild is: {}&quot;</span>,
         <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
         <span class="comment">// ctx.partial_guild().await.unwrap().name</span>
-        <span class="ident">ctx</span>.<span class="ident">guild</span>().<span class="ident">unwrap</span>().<span class="ident">name</span>
+        <span class="ident">ctx</span>.<span class="ident">guild_id</span>()
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">to_partial_guild</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>())
+            .<span class="kw">await</span><span class="question-mark">?</span>
+            .<span class="ident">name</span>
     ))
     .<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -1812,7 +1820,7 @@ dropped.</p>
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.discord" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#92-97">source</a></span><a href="#method.discord" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.discord" class="fnname">discord</a>(&amp;self) -&gt; &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a></h4></section></summary><div class="docblock"><p>Return the stored <a href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="serenity::Context"><code>serenity::Context</code></a> within the underlying context type.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands/checks.rs.html#47&quot;,&quot;line 47&quot;],[[11,11],&quot;../src/framework_usage/commands/checks.rs.html#54&quot;,&quot;line 54&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#47">line 47</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>43</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/framework_usage/commands/checks.rs.html#47&quot;,&quot;line 47&quot;],[[11,11],&quot;../src/framework_usage/commands/checks.rs.html#54&quot;,&quot;line 54&quot;],[[68,68],&quot;../src/framework_usage/commands/checks.rs.html#111&quot;,&quot;line 111&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#47">line 47</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>43</span>
 <span>44</span>
 <span>45</span>
 <span>46</span>
@@ -1830,6 +1838,64 @@ dropped.</p>
 <span>58</span>
 <span>59</span>
 <span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+<span>65</span>
+<span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span>
+<span>79</span>
+<span>80</span>
+<span>81</span>
+<span>82</span>
+<span>83</span>
+<span>84</span>
+<span>85</span>
+<span>86</span>
+<span>87</span>
+<span>88</span>
+<span>89</span>
+<span>90</span>
+<span>91</span>
+<span>92</span>
+<span>93</span>
+<span>94</span>
+<span>95</span>
+<span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+<span>102</span>
+<span>103</span>
+<span>104</span>
+<span>105</span>
+<span>106</span>
+<span>107</span>
+<span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">delete</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Message to be deleted&quot;</span>]</span> <span class="ident">msg</span>: <span class="ident">serenity::Message</span>,
@@ -1847,6 +1913,64 @@ dropped.</p>
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">nickname</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>);
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
+}
+
+<span class="doccomment">/// Crab party... only for &quot;Ferris&quot;!</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">check</span> <span class="op">=</span> <span class="string">&quot;is_ferris&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">ferrisparty</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;```\n&quot;</span>.<span class="ident">to_owned</span>()
+        <span class="op">+</span> <span class="kw-2">&amp;</span><span class="string">r&quot;    _~^~^~_
+\) /  o o  \ (/
+  &#39;_   ¬   _&#39;
+  | &#39;-----&#39; |
+&quot;</span>
+        .<span class="ident">repeat</span>(<span class="number">3</span>)
+        <span class="op">+</span> <span class="string">&quot;```&quot;</span>;
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">response</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="doccomment">/// Add two numbers</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(
+    <span class="ident">prefix_command</span>,
+    <span class="ident">track_edits</span>,
+    <span class="ident">slash_command</span>,
+    <span class="comment">// All cooldowns in seconds</span>
+    <span class="ident">global_cooldown</span> <span class="op">=</span> <span class="number">1</span>,
+    <span class="ident">user_cooldown</span> <span class="op">=</span> <span class="number">5</span>,
+    <span class="ident">guild_cooldown</span> <span class="op">=</span> <span class="number">2</span>,
+    <span class="ident">channel_cooldown</span> <span class="op">=</span> <span class="number">2</span>,
+    <span class="ident">member_cooldown</span> <span class="op">=</span> <span class="number">3</span>,
+)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;First operand&quot;</span>]</span> <span class="ident">a</span>: <span class="ident">f64</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Second operand&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">min</span> <span class="op">=</span> <span class="op">-</span><span class="number">15</span>]</span>
+    <span class="attribute">#[<span class="ident">max</span> <span class="op">=</span> <span class="number">28.765</span>]</span>
+    <span class="ident">b</span>: <span class="ident">f32</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;Result: {}&quot;</span>, <span class="ident">a</span> <span class="op">+</span> <span class="ident">b</span> <span class="kw">as</span> <span class="ident">f64</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="doccomment">/// Get the guild name (guild-only)</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">guild_only</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_guild_name</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
+        <span class="string">&quot;The name of this guild is: {}&quot;</span>,
+        <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
+        <span class="comment">// ctx.partial_guild().await.unwrap().name</span>
+        <span class="ident">ctx</span>.<span class="ident">guild_id</span>()
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">to_partial_guild</span>(<span class="ident">ctx</span>.<span class="highlight"><span class="ident">discord</span></span>())
+            .<span class="kw">await</span><span class="question-mark">?</span>
+            .<span class="ident">name</span>
+    ))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[21,21],&quot;../src/serenity_example_port/main.rs.html#388&quot;,&quot;line 388&quot;],[[140,140],&quot;../src/serenity_example_port/main.rs.html#507&quot;,&quot;line 507&quot;],[[228,228],&quot;../src/serenity_example_port/main.rs.html#595&quot;,&quot;line 595&quot;],[[229,229],&quot;../src/serenity_example_port/main.rs.html#596&quot;,&quot;line 596&quot;],[[258,258],&quot;../src/serenity_example_port/main.rs.html#625&quot;,&quot;line 625&quot;],[[270,270],&quot;../src/serenity_example_port/main.rs.html#637&quot;,&quot;line 637&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#388">line 388</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>367</span>
 <span>368</span>
@@ -3262,7 +3386,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.guild_id" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#124-129">source</a></span><a href="#method.guild_id" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.guild_id" class="fnname">guild_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/id/struct.GuildId.html" title="struct serenity::model::id::GuildId">GuildId</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the guild ID of this context, if we are inside a guild</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-6"><a href="#scraped-examples-6">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#53&quot;,&quot;line 53&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#53">line 53</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>52</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-6"><a href="#scraped-examples-6">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#53&quot;,&quot;line 53&quot;],[[57,57],&quot;../src/framework_usage/commands/checks.rs.html#109&quot;,&quot;line 109&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#53">line 53</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>52</span>
 <span>53</span>
 <span>54</span>
 <span>55</span>
@@ -3271,6 +3395,64 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <span>58</span>
 <span>59</span>
 <span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+<span>65</span>
+<span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span>
+<span>79</span>
+<span>80</span>
+<span>81</span>
+<span>82</span>
+<span>83</span>
+<span>84</span>
+<span>85</span>
+<span>86</span>
+<span>87</span>
+<span>88</span>
+<span>89</span>
+<span>90</span>
+<span>91</span>
+<span>92</span>
+<span>93</span>
+<span>94</span>
+<span>95</span>
+<span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+<span>102</span>
+<span>103</span>
+<span>104</span>
+<span>105</span>
+<span>106</span>
+<span>107</span>
+<span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">is_ferris</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">nickname</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">guild_id</span></span>() {
         <span class="prelude-val">Some</span>(<span class="ident">guild_id</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">nick_in</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="ident">guild_id</span>).<span class="kw">await</span>,
@@ -3279,6 +3461,64 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">nickname</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">name</span>);
 
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
+}
+
+<span class="doccomment">/// Crab party... only for &quot;Ferris&quot;!</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">check</span> <span class="op">=</span> <span class="string">&quot;is_ferris&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">ferrisparty</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;```\n&quot;</span>.<span class="ident">to_owned</span>()
+        <span class="op">+</span> <span class="kw-2">&amp;</span><span class="string">r&quot;    _~^~^~_
+\) /  o o  \ (/
+  &#39;_   ¬   _&#39;
+  | &#39;-----&#39; |
+&quot;</span>
+        .<span class="ident">repeat</span>(<span class="number">3</span>)
+        <span class="op">+</span> <span class="string">&quot;```&quot;</span>;
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="ident">response</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="doccomment">/// Add two numbers</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(
+    <span class="ident">prefix_command</span>,
+    <span class="ident">track_edits</span>,
+    <span class="ident">slash_command</span>,
+    <span class="comment">// All cooldowns in seconds</span>
+    <span class="ident">global_cooldown</span> <span class="op">=</span> <span class="number">1</span>,
+    <span class="ident">user_cooldown</span> <span class="op">=</span> <span class="number">5</span>,
+    <span class="ident">guild_cooldown</span> <span class="op">=</span> <span class="number">2</span>,
+    <span class="ident">channel_cooldown</span> <span class="op">=</span> <span class="number">2</span>,
+    <span class="ident">member_cooldown</span> <span class="op">=</span> <span class="number">3</span>,
+)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add</span>(
+    <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;First operand&quot;</span>]</span> <span class="ident">a</span>: <span class="ident">f64</span>,
+    <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Second operand&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">min</span> <span class="op">=</span> <span class="op">-</span><span class="number">15</span>]</span>
+    <span class="attribute">#[<span class="ident">max</span> <span class="op">=</span> <span class="number">28.765</span>]</span>
+    <span class="ident">b</span>: <span class="ident">f32</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;Result: {}&quot;</span>, <span class="ident">a</span> <span class="op">+</span> <span class="ident">b</span> <span class="kw">as</span> <span class="ident">f64</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="doccomment">/// Get the guild name (guild-only)</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">guild_only</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_guild_name</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
+        <span class="string">&quot;The name of this guild is: {}&quot;</span>,
+        <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
+        <span class="comment">// ctx.partial_guild().await.unwrap().name</span>
+        <span class="ident">ctx</span>.<span class="highlight"><span class="ident">guild_id</span></span>()
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">to_partial_guild</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>())
+            .<span class="kw">await</span><span class="question-mark">?</span>
+            .<span class="ident">name</span>
+    ))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,6],&quot;../src/serenity_example_port/main.rs.html#373&quot;,&quot;line 373&quot;],[[227,227],&quot;../src/serenity_example_port/main.rs.html#594&quot;,&quot;line 594&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#373">line 373</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>367</span>
 <span>368</span>
@@ -3768,29 +4008,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.guild" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#136-138">source</a></span><a href="#method.guild" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.guild" class="fnname">guild</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/guild/struct.Guild.html" title="struct serenity::model::guild::Guild">Guild</a>&gt;</h4></section></summary><div class="docblock"><p>Return the guild of this context, if we are inside a guild.</p>
 <p>Warning: clones the entire Guild instance out of the cache</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-7"><a href="#scraped-examples-7">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[5,5],&quot;../src/framework_usage/commands/checks.rs.html#109&quot;,&quot;line 109&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#109">line 109</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>104</span>
-<span>105</span>
-<span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_guild_name</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
-        <span class="string">&quot;The name of this guild is: {}&quot;</span>,
-        <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
-        <span class="comment">// ctx.partial_guild().await.unwrap().name</span>
-        <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">guild</span></span>().<span class="ident">unwrap</span>().<span class="ident">name</span>
-    ))
-    .<span class="kw">await</span><span class="question-mark">?</span>;
-
-    <span class="prelude-val">Ok</span>(())
-}</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#444&quot;,&quot;line 444&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#444">line 444</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>440</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-7"><a href="#scraped-examples-7">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[4,4],&quot;../src/serenity_example_port/main.rs.html#444&quot;,&quot;line 444&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#444">line 444</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>440</span>
 <span>441</span>
 <span>442</span>
 <span>443</span>
@@ -3838,7 +4056,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.author_member" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#164-169">source</a></span><a href="#method.author_member" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.author_member" class="fnname">author_member</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/guild/member/struct.Member.html" title="struct serenity::model::guild::member::Member">Member</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the author of the invoking message or interaction, as a <a href="https://docs.rs/serenity/*/serenity/model/guild/member/struct.Member.html" title="serenity::Member"><code>serenity::Member</code></a></p>
+</div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.author_member" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/structs/context.rs.html#164-169">source</a></span><a href="#method.author_member" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.author_member" class="fnname">author_member</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/model/guild/member/struct.Member.html" title="struct serenity::model::guild::member::Member">Member</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the author of the invoking message or interaction, as a <a href="https://docs.rs/serenity/*/serenity/model/guild/member/struct.Member.html" title="serenity::Member"><code>serenity::Member</code></a></p>
 <p>Returns None if this command was invoked in DMs, or if the member cache lookup or HTTP
 request failed</p>
 <p>Warning: clones the entire Member instance out of the cache</p>
