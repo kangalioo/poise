@@ -348,8 +348,8 @@
 
     <span class="doccomment">/// Whether commands in messages emitted by this bot itself should be executed as well.</span>
     <span class="kw">pub</span> <span class="ident">execute_self_messages</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Whether commands in messages emitted by bots in general should be executed as well.</span>
-    <span class="kw">pub</span> <span class="ident">execute_bot_messages</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Whether to ignore messages from bots for command invoking. Default `true`</span>
+    <span class="kw">pub</span> <span class="ident">ignore_bots</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Whether command names should be compared case-insensitively.</span>
     <span class="kw">pub</span> <span class="ident">case_insensitive_commands</span>: <span class="ident">bool</span>,
     <span class="comment">/* // TODO: implement
@@ -375,7 +375,7 @@
             <span class="ident">execute_untracked_edits</span>,
             <span class="ident">ignore_edits_if_not_yet_responded</span>,
             <span class="ident">execute_self_messages</span>,
-            <span class="ident">execute_bot_messages</span>,
+            <span class="ident">ignore_bots</span>,
             <span class="ident">case_insensitive_commands</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
@@ -395,7 +395,7 @@
                 <span class="ident">ignore_edits_if_not_yet_responded</span>,
             )
             .<span class="ident">field</span>(<span class="string">&quot;execute_self_messages&quot;</span>, <span class="ident">execute_self_messages</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;execute_bot_messages&quot;</span>, <span class="ident">execute_bot_messages</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;ignore_bots&quot;</span>, <span class="ident">ignore_bots</span>)
             .<span class="ident">field</span>(<span class="string">&quot;case_insensitive_commands&quot;</span>, <span class="ident">case_insensitive_commands</span>)
             .<span class="ident">finish</span>()
     }
@@ -413,7 +413,7 @@
             <span class="ident">execute_untracked_edits</span>: <span class="bool-val">true</span>,
             <span class="ident">ignore_edits_if_not_yet_responded</span>: <span class="bool-val">false</span>,
             <span class="ident">execute_self_messages</span>: <span class="bool-val">false</span>,
-            <span class="ident">execute_bot_messages</span>: <span class="bool-val">true</span>,
+            <span class="ident">ignore_bots</span>: <span class="bool-val">true</span>,
             <span class="ident">case_insensitive_commands</span>: <span class="bool-val">true</span>,
             <span class="comment">// help_when_mentioned: true,</span>
             <span class="comment">// help_commmand: None,</span>
