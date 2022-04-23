@@ -271,6 +271,11 @@
 <span id="266">266</span>
 <span id="267">267</span>
 <span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -371,6 +376,10 @@
     <span class="kw">pub</span> <span class="ident">context_menu_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Whether responses to this command should be ephemeral by default (application-only)</span>
     <span class="kw">pub</span> <span class="ident">ephemeral</span>: <span class="ident">bool</span>,
+
+    <span class="comment">// Like #[non_exhaustive], but #[poise::command] still needs to be able to create an instance</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">__non_exhaustive</span>: (),
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -410,6 +419,7 @@
             <span class="ident">broadcast_typing</span>,
             <span class="ident">context_menu_name</span>,
             <span class="ident">ephemeral</span>,
+            <span class="ident">__non_exhaustive</span>: <span class="kw">_</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Command&quot;</span>)
@@ -540,5 +550,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (f4ec0e7cf 2022-04-22)" ></div>
 </body></html>

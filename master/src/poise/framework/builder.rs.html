@@ -245,6 +245,8 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A builder struct that allows easy and readable creation of a [`crate::Framework`]</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -256,6 +258,7 @@
 <span class="doccomment">/// - [`Self::token`]</span>
 <span class="doccomment">/// - [`Self::user_data_setup`]</span>
 <span class="doccomment">/// - [`Self::options`]</span>
+<span class="doccomment">/// - [`Self::intents`]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Before starting, the builder will make an HTTP request to retrieve the bot&#39;s application ID and</span>
 <span class="doccomment">/// owner, if [`Self::initialize_owners`] is set (true by default).</span>
@@ -419,6 +422,7 @@
         <span class="ident">E</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     {
         <span class="comment">// Aggregate required values or panic if not provided</span>
+        <span class="comment">// WHEN CHANGING THESE, UPDATE FrameworkBuilder docs!</span>
         <span class="kw">let</span> <span class="ident">token</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">token</span>.<span class="ident">expect</span>(<span class="string">&quot;No token was provided to the framework&quot;</span>);
         <span class="kw">let</span> <span class="ident">intents</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">intents</span>.<span class="ident">expect</span>(
             <span class="string">&quot;
@@ -488,5 +492,5 @@ and enable MESSAGE_CONTENT in your Discord bot dashboard
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (f4ec0e7cf 2022-04-22)" ></div>
 </body></html>

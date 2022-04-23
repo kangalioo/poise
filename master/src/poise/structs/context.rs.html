@@ -375,6 +375,24 @@
 <span id="370">370</span>
 <span id="371">371</span>
 <span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Just contains Context and PartialContext structs</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -509,9 +527,27 @@
     <span class="doccomment">/// Return the guild of this context, if we are inside a guild.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Warning: clones the entire Guild instance out of the cache</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::Guild</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">guild_id</span>()<span class="question-mark">?</span>.<span class="ident">to_guild_cached</span>(<span class="self">self</span>.<span class="ident">discord</span>())
     }
+
+    <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
+    <span class="comment">/* // Doesn&#39;t fit in with the rest of the functions here but it&#39;s convenient
+    /// Return the partial guild of this context, if we are inside a guild.
+    ///
+    /// Attempts to find the guild in cache, if cache feature is enabled. Otherwise, falls back to
+    /// an HTTP request
+    ///
+    /// Returns None if in DMs, or if the guild HTTP request fails
+    pub async fn partial_guild(&amp;self) -&gt; Option&lt;serenity::PartialGuild&gt; {
+        #[cfg(feature = &quot;cache&quot;)]
+        if let Some(guild) = self.guild_id()?.to_guild_cached(self.discord()) {
+            return Some(guild.into());
+        }
+
+        self.guild_id()?.to_partial_guild(self.discord()).await.ok()
+    } */</span>
 
     <span class="comment">// Doesn&#39;t fit in with the rest of the functions here but it&#39;s convenient</span>
     <span class="doccomment">/// Returns the author of the invoking message or interaction, as a [`serenity::Member`]</span>
@@ -748,5 +784,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (f4ec0e7cf 2022-04-22)" ></div>
 </body></html>

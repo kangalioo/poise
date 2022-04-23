@@ -207,6 +207,20 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds prefix-command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -236,6 +250,9 @@
     <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">U</span>,
     <span class="doccomment">/// Custom user data carried across a single command invocation</span>
     <span class="kw">pub</span> <span class="ident">invocation_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">tokio::sync::Mutex</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::any::Any</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="comment">// #[non_exhaustive] forbids struct update syntax for ?? reason</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">__non_exhaustive</span>: (),
 }
 <span class="comment">// manual Copy+Clone implementations because Rust is getting confused about the type parameter</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">PrefixContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -261,6 +278,7 @@
             <span class="ident">command</span>: <span class="kw">_</span>,
             <span class="ident">data</span>,
             <span class="ident">invocation_data</span>: <span class="kw">_</span>,
+            <span class="ident">__non_exhaustive</span>: <span class="kw">_</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixContext&quot;</span>)
@@ -341,8 +359,10 @@
     <span class="doccomment">/// command does not send a response at all.</span>
     <span class="kw">pub</span> <span class="ident">ignore_edits_if_not_yet_responded</span>: <span class="ident">bool</span>,
 
-    <span class="doccomment">/// Whether commands in messages emitted by the bot itself should be executed as well.</span>
+    <span class="doccomment">/// Whether commands in messages emitted by this bot itself should be executed as well.</span>
     <span class="kw">pub</span> <span class="ident">execute_self_messages</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Whether to ignore messages from bots for command invoking. Default `true`</span>
+    <span class="kw">pub</span> <span class="ident">ignore_bots</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Whether command names should be compared case-insensitively.</span>
     <span class="kw">pub</span> <span class="ident">case_insensitive_commands</span>: <span class="ident">bool</span>,
     <span class="comment">/* // TODO: implement
@@ -354,6 +374,9 @@
     // /// any specific subcommand is invoked. This command is expected to take the command name as a
     // /// single parameter
     // pub command_specific_help_commmand: Option&lt;Command&lt;U, E&gt;&gt;, */</span>
+    <span class="comment">// #[non_exhaustive] forbids struct update syntax for ?? reason</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">__non_exhaustive</span>: (),
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">std::fmt::Debug</span>, <span class="ident">E</span>: <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">PrefixFrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -368,7 +391,9 @@
             <span class="ident">execute_untracked_edits</span>,
             <span class="ident">ignore_edits_if_not_yet_responded</span>,
             <span class="ident">execute_self_messages</span>,
+            <span class="ident">ignore_bots</span>,
             <span class="ident">case_insensitive_commands</span>,
+            <span class="ident">__non_exhaustive</span>: <span class="kw">_</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PrefixFrameworkOptions&quot;</span>)
@@ -387,6 +412,7 @@
                 <span class="ident">ignore_edits_if_not_yet_responded</span>,
             )
             .<span class="ident">field</span>(<span class="string">&quot;execute_self_messages&quot;</span>, <span class="ident">execute_self_messages</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;ignore_bots&quot;</span>, <span class="ident">ignore_bots</span>)
             .<span class="ident">field</span>(<span class="string">&quot;case_insensitive_commands&quot;</span>, <span class="ident">case_insensitive_commands</span>)
             .<span class="ident">finish</span>()
     }
@@ -404,13 +430,15 @@
             <span class="ident">execute_untracked_edits</span>: <span class="bool-val">true</span>,
             <span class="ident">ignore_edits_if_not_yet_responded</span>: <span class="bool-val">false</span>,
             <span class="ident">execute_self_messages</span>: <span class="bool-val">false</span>,
+            <span class="ident">ignore_bots</span>: <span class="bool-val">true</span>,
             <span class="ident">case_insensitive_commands</span>: <span class="bool-val">true</span>,
             <span class="comment">// help_when_mentioned: true,</span>
             <span class="comment">// help_commmand: None,</span>
             <span class="comment">// command_specific_help_commmand: None,</span>
+            <span class="ident">__non_exhaustive</span>: (),
         }
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (f4ec0e7cf 2022-04-22)" ></div>
 </body></html>

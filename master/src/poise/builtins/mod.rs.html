@@ -321,6 +321,8 @@
 <span id="316">316</span>
 <span id="317">317</span>
 <span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -448,6 +450,7 @@
         <span class="ident"><span class="kw">crate</span>::FrameworkError::DynamicPrefix</span> { <span class="ident">error</span> } =&gt; {
             <span class="macro">println!</span>(<span class="string">&quot;Dynamic prefix failed: {}&quot;</span>, <span class="ident">error</span>);
         }
+        <span class="ident"><span class="kw">crate</span>::FrameworkError::__NonExhaustive</span> =&gt; <span class="macro">panic!</span>(),
     }
 
     <span class="prelude-val">Ok</span>(())
@@ -538,8 +541,8 @@
         })
         .<span class="kw">await</span><span class="question-mark">?</span>;
     } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">guild</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">guild</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
+        <span class="kw">let</span> <span class="ident">guild</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">guild_id</span>() {
+            <span class="prelude-val">Some</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">to_partial_guild</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>()).<span class="kw">await</span><span class="question-mark">?</span>,
             <span class="prelude-val">None</span> =&gt; {
                 <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Must be called in guild&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
@@ -579,6 +582,7 @@
 <span class="doccomment">/// &gt; I am currently in three servers!</span>
 <span class="doccomment">/// &gt; - **A public server** (7123 members)</span>
 <span class="doccomment">/// &gt; - [3 private servers with 456 members total]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">servers</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(<span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">show_private_guilds</span> <span class="op">=</span> <span class="bool-val">false</span>;
     <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="ident">ctx</span> {
@@ -640,5 +644,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (311e2683e 2022-04-18)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (f4ec0e7cf 2022-04-22)" ></div>
 </body></html>
