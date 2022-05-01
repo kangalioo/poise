@@ -7,7 +7,11 @@
     <h1 class="fqn"><span class="in-band">Struct <a href="index.html">poise</a>::<wbr><a class="struct" href="#">Framework</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/framework/mod.rs.html#13-39">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct Framework&lt;U, E&gt; { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The main framework struct which stores all data and handles message and interaction dispatch.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#41-209">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.build" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#45-47">source</a></span><a href="#method.build" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.build" class="fnname">build</a>() -&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h4></section></summary><div class="docblock"><p>Create a framework builder to configure, create and run a framework.</p>
 <p>For more information, see <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a></p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/quickstart/main.rs.html#26&quot;,&quot;line 26&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#26">line 26</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>25</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/quickstart/main.rs.html#22&quot;,&quot;line 22&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#22">line 22</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
 <span>26</span>
 <span>27</span>
 <span>28</span>
@@ -27,25 +31,31 @@
 <span>42</span>
 <span>43</span>
 <span>44</span>
+<span>45</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="highlight focus"><span class="ident">poise::Framework::build</span></span>()
-        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_BOT_TOKEN&quot;</span>).<span class="ident">unwrap</span>())
-        .<span class="ident">intents</span>(
-            <span class="ident">serenity::GatewayIntents::non_privileged</span>() <span class="op">|</span> <span class="ident">serenity::GatewayIntents::MESSAGE_CONTENT</span>,
-        )
-        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {}) }))
+    <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="highlight focus"><span class="ident">poise::Framework::build</span></span>()
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
-            <span class="comment">// configure framework here</span>
-            <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
-                <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
-                ..<span class="ident">Default::default</span>()
-            },
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
             ..<span class="ident">Default::default</span>()
         })
-        .<span class="ident">run</span>()
-        .<span class="kw">await</span>
-        .<span class="ident">unwrap</span>();
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;missing DISCORD_TOKEN&quot;</span>))
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
+                    <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>);
+                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                    .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+                        <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
+                        <span class="ident">b</span>
+                    })
+                    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+                <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
+            })
+        });
+
+    <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
 </div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../src/invocation_data/main.rs.html#50&quot;,&quot;line 50&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#50">line 50</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
@@ -608,7 +618,57 @@ course of action on error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.start" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#170-177">source</a></span><a href="#method.start" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.start" class="fnname">start</a>(self: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;Self&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></section></summary><div class="docblock"><p>Starts the framework.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.start_autosharded" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#180-187">source</a></span><a href="#method.start_autosharded" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.start_autosharded" class="fnname">start_autosharded</a>(self: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;Self&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></section></summary><div class="docblock"><p>Starts the framework. Calls <a href="https://docs.rs/serenity/*/serenity/client/struct.Client.html#method.start_autosharded" title="serenity::Client::start_autosharded"><code>serenity::Client::start_autosharded</code></a> internally</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.options" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#190-192">source</a></span><a href="#method.options" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.options" class="fnname">options</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.FrameworkOptions.html" title="struct poise::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;</h4></section></summary><div class="docblock"><p>Return the stored framework options, including commands.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,8],&quot;../src/invocation_data/main.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#57">line 57</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,11],&quot;../src/quickstart/main.rs.html#32&quot;,&quot;line 32&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
+        .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>()],
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;missing DISCORD_TOKEN&quot;</span>))
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
+            <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
+                    <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="highlight focus"><span class="ident">options</span></span>().<span class="ident">commands</span>);
+                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                    .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+                        <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
+                        <span class="ident">b</span>
+                    })
+                    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+                <span class="prelude-val">Ok</span>(<span class="ident">Data</span> {})
+            })
+        });
+
+    <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[8,8],&quot;../src/invocation_data/main.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#57">line 57</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -756,7 +816,7 @@ course of action on error.</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.shard_manager" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#195-197">source</a></span><a href="#method.shard_manager" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shard_manager" class="fnname">shard_manager</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;Mutex&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/client/bridge/gateway/shard_manager/struct.ShardManager.html" title="struct serenity::client::bridge::gateway::shard_manager::ShardManager">ShardManager</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Returns the serenity’s client shard manager.</p>
+</div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.shard_manager" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#195-197">source</a></span><a href="#method.shard_manager" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shard_manager" class="fnname">shard_manager</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;Mutex&lt;<a class="struct" href="https://docs.rs/serenity/*/serenity/client/bridge/gateway/shard_manager/struct.ShardManager.html" title="struct serenity::client::bridge::gateway::shard_manager::ShardManager">ShardManager</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Returns the serenity’s client shard manager.</p>
 </div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/framework_usage/commands/checks.rs.html#16&quot;,&quot;line 16&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#16">line 16</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>14</span>
 <span>15</span>
 <span>16</span>

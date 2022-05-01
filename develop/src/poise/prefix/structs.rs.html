@@ -219,8 +219,6 @@
 <span id="214">214</span>
 <span id="215">215</span>
 <span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds prefix-command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -315,16 +313,14 @@
     <span class="kw">pub</span> <span class="ident">additional_prefixes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Prefix</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Callback invoked on every message to return a prefix.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If Some is returned, the static prefix, along with the additional prefixes will be ignored,</span>
-    <span class="doccomment">/// and the returned prefix will be used for checking, but if None is returned, the static</span>
-    <span class="doccomment">/// prefix and additional prefixes will be checked instead.</span>
+    <span class="doccomment">/// Override this field for a simple dynamic prefix which changes depending on the guild or user.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Override this field for a simple dynamic prefixe which changes depending on the guild or user.</span>
+    <span class="doccomment">/// For more advanced dynamic prefixes, see [`Self::stripped_dynamic_prefix`]</span>
     <span class="kw">pub</span> <span class="ident">dynamic_prefix</span>:
         <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="ident"><span class="kw">crate</span>::PartialContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Callback invoked on every message to strip the prefix off an incoming message.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Override this field for dynamic prefixes which change depending on guild or user.</span>
+    <span class="doccomment">/// Override this field for advanced dynamic prefixes which change depending on guild or user.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Return value is a tuple of the prefix and the rest of the message:</span>
     <span class="doccomment">/// ```rust,ignore</span>
