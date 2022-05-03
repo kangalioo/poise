@@ -282,9 +282,6 @@
 <span id="277">277</span>
 <span id="278">278</span>
 <span id="279">279</span>
-<span id="280">280</span>
-<span id="281">281</span>
-<span id="282">282</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc_auto_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -309,12 +306,9 @@ Poise is an opinionated Discord bot framework with a few distinctive features:
 <span class="doccomment">/*!
 ```
 
-The quickstart is slash command only. To use prefix commands:
-- add `prefix_command` in [`#[poise::command()]`](command) to make the command prefix-compatible
-- add `| serenity::GatewayIntents::MESSAGE_CONTENT` to the intents to receive full message data
-- add [a prefix](PrefixFrameworkOptions::prefix) in FrameworkOptions
+To run commands, ping your bot and write the command name and arguments after. Run the register
+command to register slash commands, after which you can use those, too.
 
-A full bot would contain a help command, and a more sophisticated system to register slash commands.
 See examples/framework_usage/ in the git repository for a full-featured example bot, showcasing most
 features of poise: `cargo run --example=framework_usage`
 
