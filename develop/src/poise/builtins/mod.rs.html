@@ -312,17 +312,6 @@
 <span id="307">307</span>
 <span id="308">308</span>
 <span id="309">309</span>
-<span id="310">310</span>
-<span id="311">311</span>
-<span id="312">312</span>
-<span id="313">313</span>
-<span id="314">314</span>
-<span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
-<span id="320">320</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -504,14 +493,9 @@
     }
     <span class="ident">commands_builder</span>
 }
-<span class="doccomment">/// Wraps [`create_application_commands`] and does some sane default permission checks, as well as</span>
-<span class="doccomment">/// actually send the registration HTTP request to Discord</span>
+<span class="doccomment">/// Wraps [`create_application_commands`] and adds a bot owner permission check and status messages.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Permission checks:</span>
-<span class="doccomment">/// - global command registration is only allowed for bot owners</span>
-<span class="doccomment">/// - guild-specific command registration is allowed for guild owners and bot owners</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This function is supposed to be ready-to-use implementation for a `~register` command of your</span>
+<span class="doccomment">/// This function is supposed to be a ready-to-use implementation for a `~register` command of your</span>
 <span class="doccomment">/// bot. So if you want, you can copy paste this help message for the command:</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```text</span>
@@ -527,12 +511,12 @@
     <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span> <span class="ident">create_application_commands</span>(<span class="ident">commands</span>);
 
     <span class="kw">let</span> <span class="ident">is_bot_owner</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">owners</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span>);
-    <span class="kw">if</span> <span class="ident">global</span> {
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">is_bot_owner</span> {
-            <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Can only be used by bot owner&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-        }
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">is_bot_owner</span> {
+        <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Can only be used by bot owner&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
+    }
 
+    <span class="kw">if</span> <span class="ident">global</span> {
         <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;Registering {} commands...&quot;</span>, <span class="ident">commands</span>.<span class="ident">len</span>()))
             .<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="ident">serenity::ApplicationCommand::set_global_application_commands</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
@@ -541,23 +525,17 @@
         })
         .<span class="kw">await</span><span class="question-mark">?</span>;
     } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">guild</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">guild_id</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">to_partial_guild</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>()).<span class="kw">await</span><span class="question-mark">?</span>,
+        <span class="kw">let</span> <span class="ident">guild_id</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">guild_id</span>() {
+            <span class="prelude-val">Some</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
             <span class="prelude-val">None</span> =&gt; {
                 <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Must be called in guild&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
             }
         };
-        <span class="kw">let</span> <span class="ident">is_guild_owner</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">author</span>().<span class="ident">id</span> <span class="op">==</span> <span class="ident">guild</span>.<span class="ident">owner_id</span>;
-
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">is_guild_owner</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">is_bot_owner</span> {
-            <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Can only be used by server owner&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-        }
 
         <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(<span class="string">&quot;Registering {} commands...&quot;</span>, <span class="ident">commands</span>.<span class="ident">len</span>()))
             .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="ident">guild</span>
+        <span class="ident">guild_id</span>
             .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                 <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
                 <span class="ident">b</span>
