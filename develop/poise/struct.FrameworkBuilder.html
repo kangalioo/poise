@@ -17,7 +17,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#58-244">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.prefix" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#62-64">source</a></span><a href="#method.prefix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.prefix" class="fnname">prefix</a>(self, _prefix: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;) -&gt; Self</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please set the prefix via FrameworkOptions::prefix_options::prefix</p>
 </div></span></summary><div class="docblock"><p>Set a prefix for commands</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.user_data_setup" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#68-81">source</a></span><a href="#method.user_data_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.user_data_setup" class="fnname">user_data_setup</a>&lt;F&gt;(self, user_data_setup: F) -&gt; Self <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + for&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(&amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a>, &amp;'a <a class="struct" href="https://docs.rs/serenity/*/serenity/model/gateway/struct.Ready.html" title="struct serenity::model::gateway::Ready">Ready</a>, &amp;'a <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;) -&gt; <a class="type" href="type.BoxFuture.html" title="type poise::BoxFuture">BoxFuture</a>&lt;'a, <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, E&gt;&gt;,&nbsp;</span></h4></section></summary><div class="docblock"><p>Set a callback to be invoked to create the user data instance</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,21],&quot;../src/quickstart/main.rs.html#29-42&quot;,&quot;lines 29-42&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#29-42">lines 29-42</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>21</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,22],&quot;../src/quickstart/main.rs.html#29-43&quot;,&quot;lines 29-43&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#29-43">lines 29-43</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>21</span>
 <span>22</span>
 <span>23</span>
 <span>24</span>
@@ -42,6 +42,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>43</span>
 <span>44</span>
 <span>45</span>
+<span>46</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
@@ -52,9 +53,10 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
         .<span class="highlight focus"><span class="ident">user_data_setup</span></span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">guild_id</span> <span class="op">=</span> <span class="ident">serenity::GuildId</span>(<span class="macro">todo!</span>(<span class="string">&quot;GUILD ID HERE&quot;</span>));
                 <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
                     <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>);
-                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                <span class="ident">guild_id</span>
                     .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
                         <span class="ident">b</span>
@@ -643,6 +645,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>43</span>
 <span>44</span>
 <span>45</span>
+<span>46</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
         .<span class="highlight focus"><span class="ident">options</span></span>(<span class="ident">poise::FrameworkOptions</span> {
@@ -653,9 +656,10 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">guild_id</span> <span class="op">=</span> <span class="ident">serenity::GuildId</span>(<span class="macro">todo!</span>(<span class="string">&quot;GUILD ID HERE&quot;</span>));
                 <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
                     <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>);
-                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                <span class="ident">guild_id</span>
                     .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
                         <span class="ident">b</span>
@@ -1248,6 +1252,7 @@ client builder</p>
 <span>43</span>
 <span>44</span>
 <span>45</span>
+<span>46</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
@@ -1258,9 +1263,10 @@ client builder</p>
         .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">guild_id</span> <span class="op">=</span> <span class="ident">serenity::GuildId</span>(<span class="macro">todo!</span>(<span class="string">&quot;GUILD ID HERE&quot;</span>));
                 <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
                     <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>);
-                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                <span class="ident">guild_id</span>
                     .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
                         <span class="ident">b</span>
@@ -1849,6 +1855,7 @@ client builder</p>
 <span>43</span>
 <span>44</span>
 <span>45</span>
+<span>46</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
@@ -1859,9 +1866,10 @@ client builder</p>
         .<span class="highlight focus"><span class="ident">intents</span></span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">guild_id</span> <span class="op">=</span> <span class="ident">serenity::GuildId</span>(<span class="macro">todo!</span>(<span class="string">&quot;GUILD ID HERE&quot;</span>));
                 <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
                     <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>);
-                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                <span class="ident">guild_id</span>
                     .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
                         <span class="ident">b</span>
@@ -2093,7 +2101,7 @@ times with the builder left to defaults, i.e. no command category or subcommands
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.run" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/builder.rs.html#228-234">source</a></span><a href="#method.run" class="anchor"></a><h4 class="code-header">pub async fn <a href="#method.run" class="fnname">run</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></section></summary><div class="docblock"><p>Start the framework with the specified configuration.</p>
 <p><a href="struct.FrameworkBuilder.html#method.run" title="FrameworkBuilder::run"><code>FrameworkBuilder::run</code></a> is just a shorthand that calls <a href="struct.FrameworkBuilder.html#method.build" title="FrameworkBuilder::build"><code>FrameworkBuilder::build</code></a> and
 starts the returned framework</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[23,23],&quot;../src/quickstart/main.rs.html#44&quot;,&quot;line 44&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#44">line 44</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>21</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[24,24],&quot;../src/quickstart/main.rs.html#45&quot;,&quot;line 45&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#45">line 45</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>21</span>
 <span>22</span>
 <span>23</span>
 <span>24</span>
@@ -2118,6 +2126,7 @@ starts the returned framework</p>
 <span>43</span>
 <span>44</span>
 <span>45</span>
+<span>46</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
@@ -2128,9 +2137,10 @@ starts the returned framework</p>
         .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">_ready</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                <span class="kw">let</span> <span class="ident">guild_id</span> <span class="op">=</span> <span class="ident">serenity::GuildId</span>(<span class="macro">todo!</span>(<span class="string">&quot;GUILD ID HERE&quot;</span>));
                 <span class="kw">let</span> <span class="ident">commands_builder</span> <span class="op">=</span>
                     <span class="ident">poise::builtins::create_application_commands</span>(<span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">commands</span>);
-                <span class="ident">serenity::GuildId</span>(<span class="ident">XXXX</span>)
+                <span class="ident">guild_id</span>
                     .<span class="ident">set_application_commands</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">commands_builder</span>;
                         <span class="ident">b</span>
