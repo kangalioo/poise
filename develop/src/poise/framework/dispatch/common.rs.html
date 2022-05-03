@@ -207,6 +207,8 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Prefix and slash agnostic utilities for dispatching incoming events onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -399,6 +401,8 @@
     <span class="prelude-val">Ok</span>(())
 }
 
+<span class="doccomment">/// Should be invoked after running a command. As long as the command didn&#39;t fail due to argument</span>
+<span class="doccomment">/// parsing, this function will trigger the cooldown counter</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">trigger_cooldown_maybe</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">res</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident"><span class="kw">crate</span>::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
