@@ -318,7 +318,7 @@ Discord slash commands can be a bit unintuitive at first. If you&#39;re unfamili
 
 To activate a slash command, your bot
 needs to _register_ in on Discord. You may want to do this manually, with a `register` command
-(poise provides [`builtins::register_application_commands`] as a starting point for that), or you
+(poise provides [`builtins::register_application_commands_buttons`] as a starting point for that), or you
 may want to re-register commands automatically on every bot startup. Choose what you prefer
 
 Commands can be registered _globally_ or _per guild_. Global commands are available on every guild
@@ -562,5 +562,5 @@ underlying this framework, so that&#39;s what I chose.
 <span class="doccomment">/// An owned future has the `&#39;static` lifetime.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (77652b9ef 2022-05-06)" ></div>
 </body></html>

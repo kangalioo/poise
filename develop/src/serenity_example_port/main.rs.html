@@ -668,8 +668,6 @@
 <span id="663">663</span>
 <span id="664">664</span>
 <span id="665">665</span>
-<span id="666">666</span>
-<span id="667">667</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Requires the &#39;framework&#39; feature flag be enabled in your project&#39;s</span>
 <span class="doccomment">//! `Cargo.toml`.</span>
 <span class="doccomment">//!</span>
@@ -792,12 +790,10 @@ If you want more information about a specific command, just pass the command as 
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Register slash commands in this guild or globally</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Run with no arguments to register in guild, run with argument &quot;global&quot; to register globally.</span>
+<span class="doccomment">/// Registers slash commands in this guild or globally</span>
 <span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">hide_in_help</span>)]</span>
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="attribute">#[<span class="ident">flag</span>]</span> <span class="ident">global</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">poise::builtins::register_application_commands</span>(<span class="ident">ctx</span>, <span class="ident">global</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">poise::builtins::register_application_commands_buttons</span>(<span class="ident">ctx</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }
@@ -1338,5 +1334,5 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serenity_example_port" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (77652b9ef 2022-05-06)" ></div>
 </body></html>

@@ -168,8 +168,6 @@
 <span id="163">163</span>
 <span id="164">164</span>
 <span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::str_to_string</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">commands</span>;
@@ -209,12 +207,10 @@ This is an example bot made to showcase features of my custom Discord bot framew
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Register application commands in this guild or globally</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Run with no arguments to register in guild, run with argument &quot;global&quot; to register globally.</span>
+<span class="doccomment">/// Registers or unregisters application commands in this guild or globally</span>
 <span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">hide_in_help</span>)]</span>
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="attribute">#[<span class="ident">flag</span>]</span> <span class="ident">global</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">poise::builtins::register_application_commands</span>(<span class="ident">ctx</span>, <span class="ident">global</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">poise::builtins::register_application_commands_buttons</span>(<span class="ident">ctx</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }
@@ -338,5 +334,5 @@ This is an example bot made to showcase features of my custom Discord bot framew
         .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (77652b9ef 2022-05-06)" ></div>
 </body></html>

@@ -61,8 +61,8 @@
 }
 
 <span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>)]</span>
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="attribute">#[<span class="ident">flag</span>]</span> <span class="ident">global</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">poise::builtins::register_application_commands</span>(<span class="ident">ctx</span>, <span class="ident">global</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">poise::builtins::register_application_commands_buttons</span>(<span class="ident">ctx</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
 
@@ -80,5 +80,5 @@
     <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="quickstart" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="quickstart" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (77652b9ef 2022-05-06)" ></div>
 </body></html>

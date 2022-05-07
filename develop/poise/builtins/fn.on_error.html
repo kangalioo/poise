@@ -13,7 +13,9 @@ how to handle this, for example:</p>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">poise::builtins::on_error</span>(<span class="ident">error</span>).<span class="kw">await</span> {
     <span class="macro">println!</span>(<span class="string">&quot;Fatal error while sending error message: {}&quot;</span>, <span class="ident">e</span>);
 }</code></pre></div>
-</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/framework_usage/main.rs.html#60&quot;,&quot;line 60&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../../src/framework_usage/main.rs.html#60">line 60</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>50</span>
+</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/framework_usage/main.rs.html#58&quot;,&quot;line 58&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../../src/framework_usage/main.rs.html#58">line 58</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>48</span>
+<span>49</span>
+<span>50</span>
 <span>51</span>
 <span>52</span>
 <span>53</span>
@@ -27,8 +29,6 @@ how to handle this, for example:</p>
 <span>61</span>
 <span>62</span>
 <span>63</span>
-<span>64</span>
-<span>65</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="comment">// This is our custom error handler</span>
     <span class="comment">// They are many errors that can occur, so we only handle the ones we want to customize</span>
@@ -45,7 +45,9 @@ how to handle this, for example:</p>
         }
     }
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,17],&quot;../../src/serenity_example_port/main.rs.html#177&quot;,&quot;line 177&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../../src/serenity_example_port/main.rs.html#177">line 177</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>160</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,17],&quot;../../src/serenity_example_port/main.rs.html#175&quot;,&quot;line 175&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../../src/serenity_example_port/main.rs.html#175">line 175</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>158</span>
+<span>159</span>
+<span>160</span>
 <span>161</span>
 <span>162</span>
 <span>163</span>
@@ -66,8 +68,6 @@ how to handle this, for example:</p>
 <span>178</span>
 <span>179</span>
 <span>180</span>
-<span>181</span>
-<span>182</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">on_error</span>(<span class="ident">error</span>: <span class="ident">poise::FrameworkError</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Data</span>, <span class="ident">Error</span><span class="op">&gt;</span>) {
     <span class="kw">match</span> <span class="ident">error</span> {
         <span class="ident">poise::FrameworkError::Command</span> { <span class="ident">error</span>, <span class="ident">ctx</span> } =&gt; {
@@ -239,5 +239,5 @@ how to handle this, for example:</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div></div></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</div></div></div></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (77652b9ef 2022-05-06)" ></div>
 </body></html>
