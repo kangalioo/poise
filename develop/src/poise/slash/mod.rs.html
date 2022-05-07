@@ -72,6 +72,14 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Stores everything specific to application commands.</span>
 
 <span class="kw">mod</span> <span class="ident">structs</span>;
@@ -92,6 +100,20 @@
     <span class="ident">ctx</span>: <span class="ident">ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="ident">builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
+        <span class="ident">ephemeral</span>: <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">ephemeral</span>,
+        <span class="ident">allowed_mentions</span>: <span class="ident">ctx</span>.<span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">allowed_mentions</span>.<span class="ident">clone</span>(),
+        ..<span class="ident">Default::default</span>()
+    };
+    <span class="ident">builder</span>(<span class="kw-2">&amp;mut</span> <span class="ident">data</span>);
+    <span class="ident">_send_application_reply</span>(<span class="ident">ctx</span>, <span class="ident">data</span>).<span class="kw">await</span>
+}
+
+<span class="doccomment">/// private version of [`send_application_reply`] that isn&#39;t generic over the builder to minimize monomorphization-related codegen bloat</span>
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">_send_application_reply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+    <span class="ident">ctx</span>: <span class="ident">ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="kw-2">mut</span> <span class="ident">data</span>: <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">interaction</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">interaction</span> {
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::ApplicationCommand</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::Autocomplete</span>(<span class="kw">_</span>) =&gt; {
@@ -99,12 +121,6 @@
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
-        <span class="ident">ephemeral</span>: <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">ephemeral</span>,
-        <span class="ident">allowed_mentions</span>: <span class="ident">ctx</span>.<span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">allowed_mentions</span>.<span class="ident">clone</span>(),
-        ..<span class="ident">Default::default</span>()
-    };
-    <span class="ident">builder</span>(<span class="kw-2">&amp;mut</span> <span class="ident">data</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">callback</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">framework</span>.<span class="ident">options</span>().<span class="ident">reply_callback</span> {
         <span class="ident">callback</span>(<span class="ident">ctx</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">data</span>);
     }
@@ -142,5 +158,5 @@
     })
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (bed05e996 2022-05-02)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
 </body></html>
