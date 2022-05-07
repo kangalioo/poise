@@ -279,9 +279,6 @@
 <span id="274">274</span>
 <span id="275">275</span>
 <span id="276">276</span>
-<span id="277">277</span>
-<span id="278">278</span>
-<span id="279">279</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc_auto_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -412,8 +409,6 @@ async fn error_handler(error: poise::FrameworkError&lt;&#39;_, Data, Error&gt;) 
 # #[poise::command(prefix_command)] async fn command1(ctx: Context&lt;&#39;_&gt;) -&gt; Result&lt;(), Error&gt; { Ok(()) }
 # #[poise::command(prefix_command)] async fn command2(ctx: Context&lt;&#39;_&gt;) -&gt; Result&lt;(), Error&gt; { Ok(()) }
 # #[poise::command(prefix_command)] async fn command3(ctx: Context&lt;&#39;_&gt;) -&gt; Result&lt;(), Error&gt; { Ok(()) }
-# #[poise::command(prefix_command)] async fn command3_1(ctx: Context&lt;&#39;_&gt;) -&gt; Result&lt;(), Error&gt; { Ok(()) }
-# #[poise::command(prefix_command)] async fn command3_2(ctx: Context&lt;&#39;_&gt;) -&gt; Result&lt;(), Error&gt; { Ok(()) }
 
 # async {
 // Use `Framework::build()` to create a framework builder and supply basic data to the framework:
@@ -439,10 +434,9 @@ poise::Framework::build()
         commands: vec![
             command1(),
             command2(),
-            // To add subcommands, modify the `subcommands` field of the `Command` struct returned
-            // by the command functions
+            // You can also modify a command by changing the fields of its Command instance
             poise::Command {
-                subcommands: vec![command3_1(), command3_2()],
+                // [override fields here]
                 ..command3()
             }
         ],

@@ -160,14 +160,6 @@
 <span id="155">155</span>
 <span id="156">156</span>
 <span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy::str_to_string</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">commands</span>;
@@ -265,15 +257,7 @@ This is an example bot made to showcase features of my custom Discord bot framew
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),

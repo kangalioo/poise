@@ -668,6 +668,9 @@
 <span id="663">663</span>
 <span id="664">664</span>
 <span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Requires the &#39;framework&#39; feature flag be enabled in your project&#39;s</span>
 <span class="doccomment">//! `Cargo.toml`.</span>
 <span class="doccomment">//!</span>
@@ -921,12 +924,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
             <span class="ident">ping</span>(),
             <span class="ident">latency</span>(),
             <span class="ident">some_long_command</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
-                ..<span class="ident">upper_command</span>()
-            },
+            <span class="ident">upper_command</span>(),
             <span class="ident">bird</span>(),
             <span class="ident">cat</span>(),
             <span class="ident">dog</span>(),
@@ -1318,7 +1316,15 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 }
 
 <span class="doccomment">/// Dummy command to test subcommands</span>
-<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;upper&quot;</span>, <span class="ident">category</span> <span class="op">=</span> <span class="string">&quot;General&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(
+    <span class="ident">prefix_command</span>,
+    <span class="ident">slash_command</span>,
+    <span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;upper&quot;</span>,
+    <span class="ident">category</span> <span class="op">=</span> <span class="string">&quot;General&quot;</span>,
+    <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
+    <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
+    <span class="ident">subcommands</span>(<span class="string">&quot;sub&quot;</span>)
+)]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">upper_command</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;This is the main function!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 

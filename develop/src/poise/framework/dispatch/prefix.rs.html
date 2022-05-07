@@ -251,9 +251,6 @@
 <span id="246">246</span>
 <span id="247">247</span>
 <span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches incoming messages and message edits onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -350,16 +347,13 @@
 <span class="doccomment">/// string).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// #[poise::command(prefix_command)] async fn command1(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
-<span class="doccomment">/// #[poise::command(prefix_command)] async fn command2(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
-<span class="doccomment">/// #[poise::command(prefix_command)] async fn command3(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
-<span class="doccomment">/// let commands = vec![</span>
-<span class="doccomment">///     command1(),    </span>
-<span class="doccomment">///     poise::Command {</span>
-<span class="doccomment">///         subcommands: vec![command3()],</span>
-<span class="doccomment">///         ..command2()</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">/// ];</span>
+<span class="doccomment">/// #[poise::command(prefix_command)]</span>
+<span class="doccomment">/// async fn command1(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
+<span class="doccomment">/// #[poise::command(prefix_command, subcommands(&quot;command3&quot;))]</span>
+<span class="doccomment">/// async fn command2(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
+<span class="doccomment">/// #[poise::command(prefix_command)]</span>
+<span class="doccomment">/// async fn command3(ctx: poise::Context&lt;&#39;_, (), ()&gt;) -&gt; Result&lt;(), ()&gt; { Ok(()) }</span>
+<span class="doccomment">/// let commands = vec![command1(), command2()];</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// assert_eq!(</span>
 <span class="doccomment">///     poise::find_command(&amp;commands, &quot;command1 my arguments&quot;, false),</span>

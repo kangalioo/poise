@@ -179,7 +179,7 @@
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[83,83],&quot;../src/framework_usage/main.rs.html#149&quot;,&quot;line 149&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#149">line 149</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[75,75],&quot;../src/framework_usage/main.rs.html#141&quot;,&quot;line 141&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#141">line 141</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -271,14 +271,6 @@
 <span>155</span>
 <span>156</span>
 <span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -311,15 +303,7 @@
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -379,7 +363,7 @@
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[59,59],&quot;../src/serenity_example_port/main.rs.html#294&quot;,&quot;line 294&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#294">line 294</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
+</div></div><div class="scraped-example " data-locs="[[[54,54],&quot;../src/serenity_example_port/main.rs.html#289&quot;,&quot;line 289&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#289">line 289</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
 <span>236</span>
 <span>237</span>
 <span>238</span>
@@ -475,11 +459,6 @@
 <span>328</span>
 <span>329</span>
 <span>330</span>
-<span>331</span>
-<span>332</span>
-<span>333</span>
-<span>334</span>
-<span>335</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -499,12 +478,7 @@
             <span class="ident">ping</span>(),
             <span class="ident">latency</span>(),
             <span class="ident">some_long_command</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
-                ..<span class="ident">upper_command</span>()
-            },
+            <span class="ident">upper_command</span>(),
             <span class="ident">bird</span>(),
             <span class="ident">cat</span>(),
             <span class="ident">dog</span>(),
@@ -759,7 +733,12 @@ course of action on error.</p>
         .<span class="kw">await</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,3],&quot;../src/serenity_example_port/main.rs.html#496&quot;,&quot;line 496&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#496">line 496</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>493</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,3],&quot;../src/serenity_example_port/main.rs.html#491&quot;,&quot;line 491&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#491">line 491</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>488</span>
+<span>489</span>
+<span>490</span>
+<span>491</span>
+<span>492</span>
+<span>493</span>
 <span>494</span>
 <span>495</span>
 <span>496</span>
@@ -774,11 +753,6 @@ course of action on error.</p>
 <span>505</span>
 <span>506</span>
 <span>507</span>
-<span>508</span>
-<span>509</span>
-<span>510</span>
-<span>511</span>
-<span>512</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">latency</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="comment">// The shard manager is an interface for mutating, stopping, restarting, and</span>
     <span class="comment">// retrieving information about shards.</span>

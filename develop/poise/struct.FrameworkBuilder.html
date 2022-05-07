@@ -189,7 +189,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[85,91],&quot;../src/framework_usage/main.rs.html#151-157&quot;,&quot;lines 151-157&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#151-157">lines 151-157</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[77,83],&quot;../src/framework_usage/main.rs.html#143-149&quot;,&quot;lines 143-149&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#143-149">lines 143-149</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -281,14 +281,6 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>155</span>
 <span>156</span>
 <span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -321,15 +313,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -389,7 +373,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[63,69],&quot;../src/serenity_example_port/main.rs.html#298-304&quot;,&quot;lines 298-304&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#298-304">lines 298-304</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
+</div></div><div class="scraped-example " data-locs="[[[58,64],&quot;../src/serenity_example_port/main.rs.html#293-299&quot;,&quot;lines 293-299&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#293-299">lines 293-299</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
 <span>236</span>
 <span>237</span>
 <span>238</span>
@@ -485,11 +469,6 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>328</span>
 <span>329</span>
 <span>330</span>
-<span>331</span>
-<span>332</span>
-<span>333</span>
-<span>334</span>
-<span>335</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -509,12 +488,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">ping</span>(),
             <span class="ident">latency</span>(),
             <span class="ident">some_long_command</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
-                ..<span class="ident">upper_command</span>()
-            },
+            <span class="ident">upper_command</span>(),
             <span class="ident">bird</span>(),
             <span class="ident">cat</span>(),
             <span class="ident">dog</span>(),
@@ -764,7 +738,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[92,92],&quot;../src/framework_usage/main.rs.html#158&quot;,&quot;line 158&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#158">line 158</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[84,84],&quot;../src/framework_usage/main.rs.html#150&quot;,&quot;line 150&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#150">line 150</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -856,14 +830,6 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>155</span>
 <span>156</span>
 <span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -896,15 +862,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -964,7 +922,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[62,62],&quot;../src/serenity_example_port/main.rs.html#297&quot;,&quot;line 297&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#297">line 297</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
+</div></div><div class="scraped-example " data-locs="[[[57,57],&quot;../src/serenity_example_port/main.rs.html#292&quot;,&quot;line 292&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#292">line 292</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
 <span>236</span>
 <span>237</span>
 <span>238</span>
@@ -1060,11 +1018,6 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>328</span>
 <span>329</span>
 <span>330</span>
-<span>331</span>
-<span>332</span>
-<span>333</span>
-<span>334</span>
-<span>335</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1084,12 +1037,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">ping</span>(),
             <span class="ident">latency</span>(),
             <span class="ident">some_long_command</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
-                ..<span class="ident">upper_command</span>()
-            },
+            <span class="ident">upper_command</span>(),
             <span class="ident">bird</span>(),
             <span class="ident">cat</span>(),
             <span class="ident">dog</span>(),
@@ -1343,7 +1291,7 @@ client builder</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[84,84],&quot;../src/framework_usage/main.rs.html#150&quot;,&quot;line 150&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#150">line 150</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[76,76],&quot;../src/framework_usage/main.rs.html#142&quot;,&quot;line 142&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#142">line 142</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -1435,14 +1383,6 @@ client builder</p>
 <span>155</span>
 <span>156</span>
 <span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -1475,15 +1415,7 @@ client builder</p>
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -1543,7 +1475,7 @@ client builder</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[61,61],&quot;../src/serenity_example_port/main.rs.html#296&quot;,&quot;line 296&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#296">line 296</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
+</div></div><div class="scraped-example " data-locs="[[[56,56],&quot;../src/serenity_example_port/main.rs.html#291&quot;,&quot;line 291&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#291">line 291</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
 <span>236</span>
 <span>237</span>
 <span>238</span>
@@ -1639,11 +1571,6 @@ client builder</p>
 <span>328</span>
 <span>329</span>
 <span>330</span>
-<span>331</span>
-<span>332</span>
-<span>333</span>
-<span>334</span>
-<span>335</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -1663,12 +1590,7 @@ client builder</p>
             <span class="ident">ping</span>(),
             <span class="ident">latency</span>(),
             <span class="ident">some_long_command</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
-                ..<span class="ident">upper_command</span>()
-            },
+            <span class="ident">upper_command</span>(),
             <span class="ident">bird</span>(),
             <span class="ident">cat</span>(),
             <span class="ident">dog</span>(),
@@ -1770,7 +1692,7 @@ client builder</p>
 
     <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[93,95],&quot;../src/framework_usage/main.rs.html#159-161&quot;,&quot;lines 159-161&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#159-161">lines 159-161</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[85,87],&quot;../src/framework_usage/main.rs.html#151-153&quot;,&quot;lines 151-153&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#151-153">lines 151-153</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -1862,14 +1784,6 @@ client builder</p>
 <span>155</span>
 <span>156</span>
 <span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -1902,15 +1816,7 @@ client builder</p>
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -2161,7 +2067,7 @@ starts the returned framework</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[96,96],&quot;../src/framework_usage/main.rs.html#162&quot;,&quot;line 162&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#162">line 162</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[88,88],&quot;../src/framework_usage/main.rs.html#154&quot;,&quot;line 154&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#154">line 154</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -2253,14 +2159,6 @@ starts the returned framework</p>
 <span>155</span>
 <span>156</span>
 <span>157</span>
-<span>158</span>
-<span>159</span>
-<span>160</span>
-<span>161</span>
-<span>162</span>
-<span>163</span>
-<span>164</span>
-<span>165</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -2293,15 +2191,7 @@ starts the returned framework</p>
             <span class="ident">checks::get_guild_name</span>(),
             <span class="ident">checks::only_in_dms</span>(),
             <span class="ident">checks::lennyface</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[
-                    <span class="ident">subcommands::child1</span>(),
-                    <span class="ident">subcommands::child2</span>(),
-                    <span class="comment">// Let&#39;s make sure poise isn&#39;t confused by the duplicate names!</span>
-                    <span class="ident">subcommands::parent</span>(),
-                ],
-                ..<span class="ident">subcommands::parent</span>()
-            },
+            <span class="ident">subcommands::parent</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -2361,7 +2251,7 @@ starts the returned framework</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[70,70],&quot;../src/serenity_example_port/main.rs.html#305&quot;,&quot;line 305&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#305">line 305</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
+</div></div><div class="scraped-example " data-locs="[[[65,65],&quot;../src/serenity_example_port/main.rs.html#300&quot;,&quot;line 300&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#300">line 300</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>235</span>
 <span>236</span>
 <span>237</span>
 <span>238</span>
@@ -2457,11 +2347,6 @@ starts the returned framework</p>
 <span>328</span>
 <span>329</span>
 <span>330</span>
-<span>331</span>
-<span>332</span>
-<span>333</span>
-<span>334</span>
-<span>335</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">poise::FrameworkOptions</span> {
         <span class="ident">commands</span>: <span class="macro">vec!</span>[
@@ -2481,12 +2366,7 @@ starts the returned framework</p>
             <span class="ident">ping</span>(),
             <span class="ident">latency</span>(),
             <span class="ident">some_long_command</span>(),
-            <span class="ident">poise::Command</span> {
-                <span class="comment">// A command can have sub-commands, just like in command lines tools.</span>
-                <span class="comment">// Imagine `cargo help` and `cargo help run`.</span>
-                <span class="ident">subcommands</span>: <span class="macro">vec!</span>[<span class="ident">sub</span>()],
-                ..<span class="ident">upper_command</span>()
-            },
+            <span class="ident">upper_command</span>(),
             <span class="ident">bird</span>(),
             <span class="ident">cat</span>(),
             <span class="ident">dog</span>(),

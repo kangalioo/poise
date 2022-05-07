@@ -6,7 +6,12 @@
         </a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In poise</a></h2><div id="sidebar-vars" data-name="say_reply" data-ty="fn" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Function <a href="index.html">poise</a>::<wbr><a class="fn" href="#">say_reply</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/reply.rs.html#398-403">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust fn"><code>pub async fn say_reply&lt;U, E&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;ctx: <a class="enum" href="enum.Context.html" title="enum poise::Context">Context</a>&lt;'_, U, E&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;text: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="enum.ReplyHandle.html" title="enum poise::ReplyHandle">ReplyHandle</a>&lt;'_&gt;, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt;</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Shorthand of <a href="fn.send_reply.html" title="send_reply"><code>send_reply</code></a> for text-only messages</p>
 <p>Note: panics when called in an autocomplete context!</p>
-</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[16,19],&quot;../src/serenity_example_port/main.rs.html#454-457&quot;,&quot;lines 454-457&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#454-457">lines 454-457</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>438</span>
+</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[16,19],&quot;../src/serenity_example_port/main.rs.html#449-452&quot;,&quot;lines 449-452&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../src/serenity_example_port/main.rs.html#449-452">lines 449-452</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>433</span>
+<span>434</span>
+<span>435</span>
+<span>436</span>
+<span>437</span>
+<span>438</span>
 <span>439</span>
 <span>440</span>
 <span>441</span>
@@ -25,11 +30,6 @@
 <span>454</span>
 <span>455</span>
 <span>456</span>
-<span>457</span>
-<span>458</span>
-<span>459</span>
-<span>460</span>
-<span>461</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">about_role</span>(
     <span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">description</span> <span class="op">=</span> <span class="string">&quot;Name of the role&quot;</span>]</span> <span class="ident">potential_role_name</span>: <span class="ident">String</span>,

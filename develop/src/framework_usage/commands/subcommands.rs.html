@@ -28,21 +28,13 @@
 <span id="23">23</span>
 <span id="24">24</span>
 <span id="25">25</span>
-<span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Context</span>, <span class="ident">Error</span>};
-
-<span class="comment">// Subcommands are defined independently of their parent. The parent-child relation is set when</span>
-<span class="comment">// adding commands into the framework, using `.subcommand()` on the command builder callback (See</span>
-<span class="comment">// main.rs)</span>
 
 <span class="doccomment">/// A command with two subcommands: `child1` and `child2`</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This command can only be called as a prefix command with `~parent`. Discord doesn&#39;t permit \</span>
-<span class="doccomment">/// invoking the root command of a slash command.</span>
-<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>)]</span>
+<span class="doccomment">/// Running this function directly, without any subcommand, is only supported in prefix commands.</span>
+<span class="doccomment">/// Discord doesn&#39;t permit invoking the root command of a slash command if it has subcommands.</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>, <span class="ident">subcommands</span>(<span class="string">&quot;child1&quot;</span>, <span class="string">&quot;child2&quot;</span>))]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">parent</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Hello there!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
@@ -51,14 +43,14 @@
 <span class="doccomment">/// A subcommand of `parent`</span>
 <span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>)]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">child1</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;You invoked `parent child1`!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;You invoked the first child command!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
 
 <span class="doccomment">/// Another subcommand of `parent`</span>
 <span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">prefix_command</span>, <span class="ident">slash_command</span>)]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">child2</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;You invoked `parent child2`!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;You invoked the second child command!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
