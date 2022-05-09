@@ -402,6 +402,7 @@
 <span id="397">397</span>
 <span id="398">398</span>
 <span id="399">399</span>
+<span id="400">400</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Infrastructure for replying, i.e. sending a message in a command context</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file dispatches to command-type specific reply code, which is in the prefix and slash</span>
@@ -411,13 +412,13 @@
 
 <span class="doccomment">/// Message builder that abstracts over prefix and application command responses</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Message content.</span>
     <span class="kw">pub</span> <span class="ident">content</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Embeds, if present.</span>
     <span class="kw">pub</span> <span class="ident">embeds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">serenity::CreateEmbed</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Message attachments.</span>
-    <span class="kw">pub</span> <span class="ident">attachments</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">serenity::AttachmentType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">attachments</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">serenity::AttachmentType</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Whether the message is ephemeral (only has an effect in application commands)</span>
     <span class="kw">pub</span> <span class="ident">ephemeral</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Message components, that is, buttons and select menus.</span>
@@ -428,7 +429,7 @@
     <span class="kw">pub</span> <span class="ident">reference_message</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::MessageReference</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Set the content of the message.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">content</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">content</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>.<span class="ident">into</span>());
@@ -464,7 +465,7 @@
     <span class="doccomment">/// Add an attachment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will not have an effect in a slash command&#39;s initial response!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">attachment</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">attachment</span>: <span class="ident">serenity::AttachmentType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">attachment</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">attachment</span>: <span class="ident">serenity::AttachmentType</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">attachments</span>.<span class="ident">push</span>(<span class="ident">attachment</span>);
         <span class="self">self</span>
     }
@@ -507,13 +508,13 @@
 
 <span class="doccomment">/// Methods to create a message builder from any type from this [`CreateReply`]. Used by poise</span>
 <span class="doccomment">/// internally to actually send a response to Discord</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Serialize this response builder to a [`serenity::CreateInteractionResponseData`]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_slash_initial_response</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateInteractionResponseData</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_slash_initial_response</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateInteractionResponseData</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
             <span class="ident">content</span>,
             <span class="ident">embeds</span>,
-            <span class="ident">attachments</span>: <span class="kw">_</span>, <span class="comment">// serenity doesn&#39;t support attachments in initial response yet</span>
+            <span class="ident">attachments</span>,
             <span class="ident">components</span>,
             <span class="ident">ephemeral</span>,
             <span class="ident">allowed_mentions</span>,
@@ -537,12 +538,13 @@
             });
         }
         <span class="ident">f</span>.<span class="ident">ephemeral</span>(<span class="ident">ephemeral</span>);
+        <span class="ident">f</span>.<span class="ident">add_files</span>(<span class="ident">attachments</span>);
     }
 
     <span class="doccomment">/// Serialize this response builder to a [`serenity::CreateInteractionResponseFollowup`]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_slash_followup_response</span>(
         <span class="self">self</span>,
-        <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateInteractionResponseFollowup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+        <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateInteractionResponseFollowup</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
             <span class="ident">content</span>,
@@ -605,7 +607,7 @@
     }
 
     <span class="doccomment">/// Serialize this response builder to a [`serenity::EditMessage`]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_prefix_edit</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::EditMessage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_prefix_edit</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::EditMessage</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
             <span class="ident">content</span>,
             <span class="ident">embeds</span>,
@@ -643,7 +645,7 @@
     }
 
     <span class="doccomment">/// Serialize this response builder to a [`serenity::CreateMessage`]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_prefix</span>(<span class="self">self</span>, <span class="ident">m</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateMessage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_prefix</span>(<span class="self">self</span>, <span class="ident">m</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateMessage</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
             <span class="ident">content</span>,
             <span class="ident">embeds</span>,
@@ -719,10 +721,10 @@
 
     <span class="doccomment">/// Edits the message that this [`ReplyHandle`] points to</span>
     <span class="comment">// TODO: return the edited Message object?</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">edit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">edit</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-        <span class="ident">builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+        <span class="ident">builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
         <span class="comment">// TODO: deduplicate this block of code</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span> {
@@ -780,9 +782,9 @@
 <span class="doccomment">/// ).await?;</span>
 <span class="doccomment">/// # Ok(()) }</span>
 <span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_reply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_reply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="ident">builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+    <span class="ident">builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">ctx</span> {
         <span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>) =&gt; {
