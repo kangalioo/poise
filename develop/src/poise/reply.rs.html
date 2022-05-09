@@ -402,10 +402,6 @@
 <span id="397">397</span>
 <span id="398">398</span>
 <span id="399">399</span>
-<span id="400">400</span>
-<span id="401">401</span>
-<span id="402">402</span>
-<span id="403">403</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Infrastructure for replying, i.e. sending a message in a command context</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file dispatches to command-type specific reply code, which is in the prefix and slash</span>
@@ -540,9 +536,7 @@
                 <span class="ident">f</span>
             });
         }
-        <span class="kw">if</span> <span class="ident">ephemeral</span> {
-            <span class="ident">f</span>.<span class="ident">flags</span>(<span class="ident">serenity::InteractionApplicationCommandCallbackDataFlags::EPHEMERAL</span>);
-        }
+        <span class="ident">f</span>.<span class="ident">ephemeral</span>(<span class="ident">ephemeral</span>);
     }
 
     <span class="doccomment">/// Serialize this response builder to a [`serenity::CreateInteractionResponseFollowup`]</span>
@@ -576,9 +570,7 @@
                 <span class="ident">f</span>
             });
         }
-        <span class="kw">if</span> <span class="ident">ephemeral</span> {
-            <span class="ident">f</span>.<span class="ident">flags</span>(<span class="ident">serenity::InteractionApplicationCommandCallbackDataFlags::EPHEMERAL</span>);
-        }
+        <span class="ident">f</span>.<span class="ident">ephemeral</span>(<span class="ident">ephemeral</span>);
         <span class="ident">f</span>.<span class="ident">add_files</span>(<span class="ident">attachments</span>);
     }
 
@@ -810,5 +802,5 @@
     <span class="ident">send_reply</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">content</span>(<span class="ident">text</span>.<span class="ident">into</span>())).<span class="kw">await</span>
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (ea92b0838 2022-05-07)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (cb1219871 2022-05-08)" ></div>
 </body></html>

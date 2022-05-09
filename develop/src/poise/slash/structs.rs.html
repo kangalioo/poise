@@ -289,11 +289,6 @@
 <span id="284">284</span>
 <span id="285">285</span>
 <span id="286">286</span>
-<span id="287">287</span>
-<span id="288">288</span>
-<span id="289">289</span>
-<span id="290">290</span>
-<span id="291">291</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds application command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>, <span class="ident">Framework</span>};
@@ -449,11 +444,6 @@
             <span class="ident">ApplicationCommandOrAutocompleteInteraction::Autocomplete</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(()),
         };
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">serenity::InteractionApplicationCommandCallbackDataFlags::empty</span>();
-        <span class="kw">if</span> <span class="ident">ephemeral</span> {
-            <span class="ident">flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">serenity::InteractionApplicationCommandCallbackDataFlags::EPHEMERAL</span>;
-        }
-
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>
             .<span class="ident">has_sent_initial_response</span>
             .<span class="ident">load</span>(<span class="ident">std::sync::atomic::Ordering::SeqCst</span>)
@@ -461,7 +451,7 @@
             <span class="ident">interaction</span>
                 .<span class="ident">create_interaction_response</span>(<span class="self">self</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
                     <span class="ident">f</span>.<span class="ident">kind</span>(<span class="ident">serenity::InteractionResponseType::DeferredChannelMessageWithSource</span>)
-                        .<span class="ident">interaction_response_data</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">flags</span>(<span class="ident">flags</span>))
+                        .<span class="ident">interaction_response_data</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">ephemeral</span>(<span class="ident">ephemeral</span>))
                 })
                 .<span class="kw">await</span><span class="question-mark">?</span>;
             <span class="self">self</span>.<span class="ident">has_sent_initial_response</span>
@@ -586,5 +576,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (ea92b0838 2022-05-07)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (cb1219871 2022-05-08)" ></div>
 </body></html>
