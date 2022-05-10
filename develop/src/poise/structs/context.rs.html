@@ -495,8 +495,8 @@
         }
     }
 
-    <span class="doccomment">/// Return a read-only reference to [`crate::Framework`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">framework</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Returns a view into data stored by the framework, like configuration</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">framework</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::FrameworkContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident"><span class="self">Self</span>::Application</span>(<span class="ident">ctx</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">framework</span>,
             <span class="ident"><span class="self">Self</span>::Prefix</span>(<span class="ident">ctx</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">framework</span>,
@@ -769,7 +769,7 @@
     <span class="doccomment">/// Serenity&#39;s context, like HTTP or cache</span>
     <span class="kw">pub</span> <span class="ident">discord</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Context</span>,
     <span class="doccomment">/// Useful if you need the list of commands, for example for a custom help command</span>
-    <span class="kw">pub</span> <span class="ident">framework</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">framework</span>: <span class="ident"><span class="kw">crate</span>::FrameworkContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Your custom user data</span>
     <span class="comment">// TODO: redundant with framework</span>
     <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">U</span>,
@@ -788,5 +788,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (cb1219871 2022-05-08)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (88860d547 2022-05-09)" ></div>
 </body></html>

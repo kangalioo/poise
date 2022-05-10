@@ -221,17 +221,15 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
-<span id="219">219</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
 <span class="kw">mod</span> <span class="ident">dispatch</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">dispatch</span>::{<span class="ident">dispatch_event</span>, <span class="ident">dispatch_message</span>, <span class="ident">find_command</span>, <span class="ident">FrameworkContext</span>};
 
 <span class="kw">mod</span> <span class="ident">builder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">builder</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
-
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">dispatch</span>::{<span class="ident">dispatch_message</span>, <span class="ident">find_command</span>};
 
 <span class="doccomment">/// The main framework struct which stores all data and handles message and interaction dispatch.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Framework</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> {
@@ -333,7 +331,7 @@
             <span class="kw">let</span> <span class="ident">existing_event_handler</span> <span class="op">=</span> <span class="ident">existing_event_handler</span>.<span class="ident">clone</span>();
 
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
-                <span class="ident">dispatch::dispatch_event</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">framework</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="ident">event</span>).<span class="kw">await</span>;
+                <span class="ident">dispatch::raw_dispatch_event</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">framework</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="ident">event</span>).<span class="kw">await</span>;
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">handler</span>) <span class="op">=</span> <span class="ident">existing_event_handler</span> {
                     <span class="ident">event</span>.<span class="ident">dispatch</span>(<span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">handler</span>).<span class="kw">await</span>;
                 }
@@ -442,5 +440,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (cb1219871 2022-05-08)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (88860d547 2022-05-09)" ></div>
 </body></html>
