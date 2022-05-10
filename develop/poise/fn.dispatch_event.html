@@ -5,5 +5,29 @@
     <nav class="sidebar"><a class="sidebar-logo" href="../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
         </a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In poise</a></h2><div id="sidebar-vars" data-name="dispatch_event" data-ty="fn" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../poise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Function <a href="index.html">poise</a>::<wbr><a class="fn" href="#">dispatch_event</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/poise/framework/dispatch/mod.rs.html#83-179">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust fn"><code>pub async fn dispatch_event&lt;U:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>, E&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;framework: <a class="struct" href="struct.FrameworkContext.html" title="struct poise::FrameworkContext">FrameworkContext</a>&lt;'_, U, E&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;ctx: &amp;<a class="struct" href="https://docs.rs/serenity/*/serenity/client/context/struct.Context.html" title="struct serenity::client::context::Context">Context</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;event: &amp;<a class="enum" href="enum.Event.html" title="enum poise::Event">Event</a>&lt;'_&gt;<br>)</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Central event handling function of this library</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (88860d547 2022-05-09)" ></div>
+</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../src/manual_dispatch/main.rs.html#34&quot;,&quot;line 34&quot;]]"><div class="scraped-example-title">examples/manual_dispatch/main.rs (<a href="../src/manual_dispatch/main.rs.html#34">line 34</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+</pre><pre class="rust"><code>    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">message</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">serenity::Context</span>, <span class="ident">new_message</span>: <span class="ident">serenity::Message</span>) {
+        <span class="comment">// FrameworkContext contains all data that poise::Framework usually manages</span>
+        <span class="kw">let</span> <span class="ident">shard_manager</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">shard_manager</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>()).<span class="ident">clone</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">framework_data</span> <span class="op">=</span> <span class="ident">poise::FrameworkContext</span> {
+            <span class="ident">bot_id</span>: <span class="ident">serenity::UserId</span>(<span class="number">846453852164587620</span>),
+            <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>,
+            <span class="ident">user_data</span>: <span class="kw-2">&amp;</span>(),
+            <span class="ident">shard_manager</span>: <span class="kw-2">&amp;</span><span class="ident">shard_manager</span>,
+        };
+
+        <span class="highlight focus"><span class="ident">poise::dispatch_event</span></span>(<span class="ident">framework_data</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="ident">poise::Event::Message</span> { <span class="ident">new_message</span> }).<span class="kw">await</span>;
+    }</code></pre></div>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (88860d547 2022-05-09)" ></div>
 </body></html>
