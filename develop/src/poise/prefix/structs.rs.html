@@ -219,6 +219,10 @@
 <span id="214">214</span>
 <span id="215">215</span>
 <span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Holds prefix-command definition structs.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -323,10 +327,14 @@
     <span class="doccomment">/// Override this field for advanced dynamic prefixes which change depending on guild or user.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Return value is a tuple of the prefix and the rest of the message:</span>
-    <span class="doccomment">/// ```rust,ignore</span>
+    <span class="doccomment">/// ```rust,no_run</span>
+    <span class="doccomment">/// # poise::PrefixFrameworkOptions::&lt;(), ()&gt; { stripped_dynamic_prefix: Some(|_, msg, _| Box::pin(async move {</span>
+    <span class="doccomment">/// let my_cool_prefix = &quot;$&quot;;</span>
     <span class="doccomment">/// if msg.content.starts_with(my_cool_prefix) {</span>
-    <span class="doccomment">///     return Some(msg.content.split_at(my_cool_prefix.len()));</span>
+    <span class="doccomment">///     return Ok(Some(msg.content.split_at(my_cool_prefix.len())));</span>
     <span class="doccomment">/// }</span>
+    <span class="doccomment">/// Ok(None)</span>
+    <span class="doccomment">/// # })), ..Default::default() };</span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="ident">stripped_dynamic_prefix</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>
         <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">fn</span>(
@@ -436,5 +444,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (88860d547 2022-05-09)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (ecd44958e 2022-05-10)" ></div>
 </body></html>
