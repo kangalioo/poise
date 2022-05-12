@@ -230,7 +230,7 @@
         })
         .<span class="kw">await</span><span class="question-mark">?</span>;
 
-    <span class="prelude-val">Ok</span>(<span class="ident">M::parse</span>(<span class="ident">response</span>.<span class="ident">data</span>.<span class="ident">clone</span>()).<span class="ident">map_err</span>(<span class="ident">serenity::Error::Other</span>)<span class="question-mark">?</span>)
+    <span class="ident">M::parse</span>(<span class="ident">response</span>.<span class="ident">data</span>.<span class="ident">clone</span>()).<span class="ident">map_err</span>(<span class="ident">serenity::Error::Other</span>)
 }
 
 <span class="doccomment">/// Derivable trait for modal interactions, Discords version of interactive forms</span>
