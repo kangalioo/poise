@@ -137,6 +137,14 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
 </pre><pre class="rust"><code><span class="doccomment">/**
 Poise supports several pre-command checks (sorted by order of execution):
 - owners_only
@@ -271,6 +279,14 @@ Poise supports several pre-command checks (sorted by order of execution):
 
     <span class="prelude-val">Ok</span>(())
 }
+
+<span class="doccomment">/// Utilizes the permissions v2 `default_member_permissions` field</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">slash_command</span>, <span class="ident">default_member_permissions</span> <span class="op">=</span> <span class="string">&quot;ADMINISTRATOR&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">permissions_v2</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="string">&quot;Whoop! You&#39;re authorized!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (ecd44958e 2022-05-10)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (6dd68402c 2022-05-11)" ></div>
 </body></html>

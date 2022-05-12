@@ -276,6 +276,15 @@
 <span id="271">271</span>
 <span id="272">272</span>
 <span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -335,7 +344,13 @@
     <span class="doccomment">/// Note: in prefix commands, this only has an effect if</span>
     <span class="doccomment">/// `crate::PrefixFrameworkOptions::edit_tracker` is set.</span>
     <span class="kw">pub</span> <span class="ident">reuse_response</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Permissions which users must have to invoke this command.</span>
+    <span class="doccomment">/// Permissions which users must have to invoke this command. Used by Discord to set who can</span>
+    <span class="doccomment">/// invoke this as a slash command. Not used on prefix commands or checked internally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Set to [`serenity::Permissions::empty()`] by default</span>
+    <span class="kw">pub</span> <span class="ident">default_member_permissions</span>: <span class="ident">serenity::Permissions</span>,
+    <span class="doccomment">/// Permissions which users must have to invoke this command. This is checked internally and</span>
+    <span class="doccomment">/// works for both prefix commands and slash commands.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Set to [`serenity::Permissions::empty()`] by default</span>
     <span class="kw">pub</span> <span class="ident">required_permissions</span>: <span class="ident">serenity::Permissions</span>,
@@ -404,6 +419,7 @@
             <span class="ident">inline_help</span>,
             <span class="ident">multiline_help</span>,
             <span class="ident">cooldowns</span>,
+            <span class="ident">default_member_permissions</span>,
             <span class="ident">required_permissions</span>,
             <span class="ident">required_bot_permissions</span>,
             <span class="ident">owners_only</span>,
@@ -435,6 +451,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;inline_help&quot;</span>, <span class="ident">inline_help</span>)
             .<span class="ident">field</span>(<span class="string">&quot;multiline_help&quot;</span>, <span class="ident">multiline_help</span>)
             .<span class="ident">field</span>(<span class="string">&quot;cooldowns&quot;</span>, <span class="ident">cooldowns</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;default_member_permissions&quot;</span>, <span class="ident">default_member_permissions</span>)
             .<span class="ident">field</span>(<span class="string">&quot;required_permissions&quot;</span>, <span class="ident">required_permissions</span>)
             .<span class="ident">field</span>(<span class="string">&quot;required_bot_permissions&quot;</span>, <span class="ident">required_bot_permissions</span>)
             .<span class="ident">field</span>(<span class="string">&quot;owners_only&quot;</span>, <span class="ident">owners_only</span>)
@@ -494,7 +511,8 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommand::default</span>();
         <span class="ident">builder</span>
             .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
-            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>))
+            .<span class="ident">default_member_permissions</span>(<span class="self">self</span>.<span class="ident">default_member_permissions</span>);
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">is_empty</span>() {
             <span class="kw">for</span> <span class="ident">param</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parameters</span> {
@@ -550,5 +568,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (ecd44958e 2022-05-10)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (6dd68402c 2022-05-11)" ></div>
 </body></html>
