@@ -139,12 +139,6 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
 </pre><pre class="rust"><code><span class="doccomment">/**
 Poise supports several pre-command checks (sorted by order of execution):
 - owners_only
@@ -251,13 +245,7 @@ Poise supports several pre-command checks (sorted by order of execution):
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_guild_name</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
         <span class="string">&quot;The name of this guild is: {}&quot;</span>,
-        <span class="comment">// TODO: uncomment when https://github.com/serenity-rs/serenity/pull/1865 can be used</span>
-        <span class="comment">// ctx.partial_guild().await.unwrap().name</span>
-        <span class="ident">ctx</span>.<span class="ident">guild_id</span>()
-            .<span class="ident">unwrap</span>()
-            .<span class="ident">to_partial_guild</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>())
-            .<span class="kw">await</span><span class="question-mark">?</span>
-            .<span class="ident">name</span>
+        <span class="ident">ctx</span>.<span class="ident">partial_guild</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">name</span>
     ))
     .<span class="kw">await</span><span class="question-mark">?</span>;
 
