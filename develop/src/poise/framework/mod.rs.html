@@ -211,6 +211,7 @@
 <span id="206">206</span>
 <span id="207">207</span>
 <span id="208">208</span>
+<span id="209">209</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
 <span class="kw">mod</span> <span class="ident">dispatch</span>;
@@ -285,6 +286,7 @@
     {
         <span class="kw">use</span> <span class="ident">std::sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>};
 
+        <span class="comment">// TODO: this should happen even with manual dispatching, when not involving Framework</span>
         <span class="doccomment">/// Fill in [`Command::qualified_name`] with the correct values</span>
         <span class="kw">fn</span> <span class="ident">set_qualified_names</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(<span class="ident">command</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) {
             <span class="kw">for</span> <span class="ident">subcommand</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">command</span>.<span class="ident">subcommands</span> {
