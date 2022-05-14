@@ -184,6 +184,12 @@
 <span id="179">179</span>
 <span id="180">180</span>
 <span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains all code to dispatch incoming events onto framework commands</span>
 
 <span class="kw">mod</span> <span class="ident">common</span>;
@@ -242,6 +248,7 @@
     <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>,
 {
     <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::Event::Ready</span> { <span class="ident">data_about_bot</span> } <span class="op">=</span> <span class="ident">event</span> {
+        <span class="kw">let</span> <span class="kw">_</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">framework</span>.<span class="ident">bot_id</span>.<span class="ident">set</span>(<span class="ident">data_about_bot</span>.<span class="ident">user</span>.<span class="ident">id</span>);
         <span class="kw">let</span> <span class="ident">user_data_setup</span> <span class="op">=</span> <span class="ident">Option::take</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">framework</span>.<span class="ident">user_data_setup</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>());
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">user_data_setup</span>) <span class="op">=</span> <span class="ident">user_data_setup</span> {
             <span class="kw">match</span> <span class="ident">user_data_setup</span>(<span class="ident">ctx</span>, <span class="ident">data_about_bot</span>, <span class="ident">framework</span>).<span class="kw">await</span> {
@@ -258,10 +265,15 @@
         }
     }
 
+    <span class="kw">let</span> <span class="ident">user_data</span> <span class="op">=</span> <span class="ident">framework</span>.<span class="ident">user_data</span>().<span class="kw">await</span>;
+    <span class="kw">let</span> <span class="ident">bot_id</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">framework</span>
+        .<span class="ident">bot_id</span>
+        .<span class="ident">get</span>()
+        .<span class="ident">expect</span>(<span class="string">&quot;bot ID not set even though we awaited Ready&quot;</span>);
     <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::FrameworkContext</span> {
-        <span class="ident">bot_id</span>: <span class="ident">framework</span>.<span class="ident">bot_id</span>,
+        <span class="ident">bot_id</span>,
         <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">options</span>,
-        <span class="ident">user_data</span>: <span class="ident">framework</span>.<span class="ident">user_data</span>().<span class="kw">await</span>,
+        <span class="ident">user_data</span>,
         <span class="ident">shard_manager</span>: <span class="kw-2">&amp;</span><span class="ident">framework</span>.<span class="ident">shard_manager</span>,
     };
     <span class="ident">dispatch_event</span>(<span class="ident">framework</span>, <span class="ident">ctx</span>, <span class="ident">event</span>).<span class="kw">await</span>;
@@ -366,5 +378,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (6dd68402c 2022-05-11)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (f1f721e64 2022-05-13)" ></div>
 </body></html>
