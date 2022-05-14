@@ -212,6 +212,7 @@
 <span id="207">207</span>
 <span id="208">208</span>
 <span id="209">209</span>
+<span id="210">210</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
 <span class="kw">mod</span> <span class="ident">dispatch</span>;
@@ -406,8 +407,9 @@
     }
 
     <span class="doccomment">/// Returns the serenity&#39;s client shard manager.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shard_manager</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">tokio::sync::Mutex</span><span class="op">&lt;</span><span class="ident">serenity::ShardManager</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">shard_manager</span>.<span class="ident">clone</span>()
+    <span class="comment">// Returns a reference so you can plug it into [`FrameworkContext`]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shard_manager</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">tokio::sync::Mutex</span><span class="op">&lt;</span><span class="ident">serenity::ShardManager</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">shard_manager</span>
     }
 
     <span class="doccomment">/// Retrieves user data, or blocks until it has been initialized (once the Ready event has been</span>
