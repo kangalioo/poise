@@ -281,6 +281,9 @@
 <span id="274">274</span>
 <span id="275">275</span>
 <span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc_auto_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -490,6 +493,9 @@ underlying this framework, so that&#39;s what I chose.
 
 <span class="kw">mod</span> <span class="ident">structs</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">structs</span>::<span class="kw-2">*</span>;
+
+<span class="kw">mod</span> <span class="ident">dispatch</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">dispatch</span>::<span class="kw-2">*</span>;
 
 <span class="kw">mod</span> <span class="ident">framework</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">framework</span>::<span class="kw-2">*</span>;

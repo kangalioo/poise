@@ -236,19 +236,6 @@
 <span id="229">229</span>
 <span id="230">230</span>
 <span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A builder struct that allows easy and readable creation of a [`crate::Framework`]</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -441,29 +428,16 @@ and enable MESSAGE_CONTENT in your Discord bot dashboard
             .<span class="ident">expect</span>(<span class="string">&quot;No user data setup function was provided to the framework&quot;</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">options</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">expect</span>(<span class="string">&quot;No framework options provided&quot;</span>);
 
-        <span class="comment">// Retrieve application info via HTTP</span>
-        <span class="kw">let</span> <span class="ident">application_info</span> <span class="op">=</span> <span class="ident">serenity::Http::new</span>(<span class="kw-2">&amp;</span><span class="ident">token</span>)
-            .<span class="ident">get_current_application_info</span>()
-            .<span class="kw">await</span><span class="question-mark">?</span>;
-
         <span class="comment">// Build framework options by concatenating user-set options with commands and owners</span>
         <span class="ident">options</span>.<span class="ident">commands</span>.<span class="ident">extend</span>(<span class="self">self</span>.<span class="ident">commands</span>);
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">initialize_owners</span> {
-            <span class="ident">options</span>.<span class="ident">owners</span>.<span class="ident">insert</span>(<span class="ident">application_info</span>.<span class="ident">owner</span>.<span class="ident">id</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">team</span>) <span class="op">=</span> <span class="ident">application_info</span>.<span class="ident">team</span> {
-                <span class="kw">for</span> <span class="ident">member</span> <span class="kw">in</span> <span class="ident">team</span>.<span class="ident">members</span> {
-                    <span class="comment">// This `if` currently always evaluates to true but it becomes important once</span>
-                    <span class="comment">// Discord implements more team roles than Admin</span>
-                    <span class="kw">if</span> <span class="ident">member</span>.<span class="ident">permissions</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span> <span class="op">==</span> <span class="string">&quot;*&quot;</span>) {
-                        <span class="ident">options</span>.<span class="ident">owners</span>.<span class="ident">insert</span>(<span class="ident">member</span>.<span class="ident">user</span>.<span class="ident">id</span>);
-                    }
-                }
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident"><span class="kw">super</span>::insert_owners_from_http</span>(<span class="kw-2">&amp;</span><span class="ident">token</span>, <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">owners</span>).<span class="kw">await</span> {
+                <span class="macro">log::warn!</span>(<span class="string">&quot;Failed to insert owners from HTTP: {}&quot;</span>, <span class="ident">e</span>);
             }
         }
 
         <span class="comment">// Create serenity client</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">client_builder</span> <span class="op">=</span>
-            <span class="ident">serenity::ClientBuilder::new</span>(<span class="ident">token</span>, <span class="ident">intents</span>).<span class="ident">application_id</span>(<span class="ident">application_info</span>.<span class="ident">id</span>.<span class="number">0</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">client_builder</span> <span class="op">=</span> <span class="ident">serenity::ClientBuilder::new</span>(<span class="ident">token</span>, <span class="ident">intents</span>);
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">client_settings</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">client_settings</span> {
             <span class="ident">client_builder</span> <span class="op">=</span> <span class="ident">client_settings</span>(<span class="ident">client_builder</span>);
         }
