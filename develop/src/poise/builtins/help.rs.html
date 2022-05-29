@@ -208,9 +208,12 @@
 <span id="201">201</span>
 <span id="202">202</span>
 <span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains the built-in help command and surrounding infrastructure</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Write</span> <span class="kw">as</span> <span class="kw">_</span>;
 
 <span class="doccomment">/// Optional configuration for how the help message from [`help()`] looks</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HelpConfiguration</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -315,8 +318,9 @@
 
             <span class="kw">let</span> <span class="ident">total_command_name_length</span> <span class="op">=</span> <span class="ident">prefix</span>.<span class="ident">chars</span>().<span class="ident">count</span>() <span class="op">+</span> <span class="ident">command</span>.<span class="ident">name</span>.<span class="ident">chars</span>().<span class="ident">count</span>();
             <span class="kw">let</span> <span class="ident">padding</span> <span class="op">=</span> <span class="number">12_usize</span>.<span class="ident">saturating_sub</span>(<span class="ident">total_command_name_length</span>) <span class="op">+</span> <span class="number">1</span>;
-            <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;  {}{}{}{}\n&quot;</span>,
+            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="macro">writeln!</span>(
+                <span class="ident">menu</span>,
+                <span class="string">&quot;  {}{}{}{}&quot;</span>,
                 <span class="ident">prefix</span>,
                 <span class="ident">command</span>.<span class="ident">name</span>,
                 <span class="string">&quot; &quot;</span>.<span class="ident">repeat</span>(<span class="ident">padding</span>),
@@ -335,7 +339,7 @@
                 <span class="prelude-val">None</span> =&gt; <span class="kw">continue</span>,
             };
             <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">command</span>.<span class="ident">context_menu_name</span>.<span class="ident">unwrap_or</span>(<span class="ident">command</span>.<span class="ident">name</span>);
-            <span class="ident">menu</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;  {} (on {})\n&quot;</span>, <span class="ident">name</span>, <span class="ident">kind</span>);
+            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="macro">writeln!</span>(<span class="ident">menu</span>, <span class="string">&quot;  {} (on {})&quot;</span>, <span class="ident">name</span>, <span class="ident">kind</span>);
         }
     }
 
@@ -412,5 +416,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (4cbaac699 2022-05-25)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (1fede1753 2022-05-28)" ></div>
 </body></html>

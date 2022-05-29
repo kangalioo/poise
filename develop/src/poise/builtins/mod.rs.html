@@ -229,6 +229,12 @@
 <span id="222">222</span>
 <span id="223">223</span>
 <span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -241,6 +247,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">register</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Write</span> <span class="kw">as</span> <span class="kw">_</span>;
 
 <span class="doccomment">/// An error handler that prints the error into the console and also into the Discord chat.</span>
 <span class="doccomment">/// If the user invoked the command wrong ([`crate::FrameworkError::ArgumentParse`]), the command</span>
@@ -431,15 +438,20 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;I am currently in {} servers!\n&quot;</span>, <span class="ident">guilds</span>.<span class="ident">len</span>());
     <span class="kw">for</span> <span class="ident">guild</span> <span class="kw">in</span> <span class="ident">guilds</span> {
         <span class="kw">if</span> <span class="ident">guild</span>.<span class="ident">is_public</span> <span class="op">|</span><span class="op">|</span> <span class="ident">show_private_guilds</span> {
-            <span class="ident">response</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;- **{}** ({} members)\n&quot;</span>, <span class="ident">guild</span>.<span class="ident">name</span>, <span class="ident">guild</span>.<span class="ident">num_members</span>);
+            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="macro">writeln!</span>(
+                <span class="ident">response</span>,
+                <span class="string">&quot;- **{}** ({} members)&quot;</span>,
+                <span class="ident">guild</span>.<span class="ident">name</span>, <span class="ident">guild</span>.<span class="ident">num_members</span>
+            );
         } <span class="kw">else</span> {
             <span class="ident">num_private_guilds</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
             <span class="ident">num_private_guild_members</span> <span class="op">+</span><span class="op">=</span> <span class="ident">guild</span>.<span class="ident">num_members</span>;
         }
     }
     <span class="kw">if</span> <span class="ident">num_private_guilds</span> <span class="op">&gt;</span> <span class="number">0</span> {
-        <span class="ident">response</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;- [{} private servers with {} members total]\n&quot;</span>,
+        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="macro">writeln!</span>(
+            <span class="ident">response</span>,
+            <span class="string">&quot;- [{} private servers with {} members total]&quot;</span>,
             <span class="ident">num_private_guilds</span>, <span class="ident">num_private_guild_members</span>
         );
     }
@@ -454,5 +466,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (4cbaac699 2022-05-25)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (1fede1753 2022-05-28)" ></div>
 </body></html>
