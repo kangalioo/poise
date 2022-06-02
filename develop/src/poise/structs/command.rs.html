@@ -227,6 +227,11 @@
 <span id="220">220</span>
 <span id="221">221</span>
 <span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -393,8 +398,13 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommand::default</span>();
         <span class="ident">builder</span>
             .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
-            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>))
-            .<span class="ident">default_member_permissions</span>(<span class="self">self</span>.<span class="ident">default_member_permissions</span>);
+            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+
+        <span class="comment">// This is_empty check is needed because Discord special cases empty</span>
+        <span class="comment">// default_member_permissions to mean &quot;admin-only&quot; (yes it&#39;s stupid)</span>
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">default_member_permissions</span>.<span class="ident">is_empty</span>() {
+            <span class="ident">builder</span>.<span class="ident">default_member_permissions</span>(<span class="self">self</span>.<span class="ident">default_member_permissions</span>);
+        }
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">is_empty</span>() {
             <span class="kw">for</span> <span class="ident">param</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parameters</span> {
@@ -450,5 +460,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (1fede1753 2022-05-28)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (12cd71f4d 2022-06-01)" ></div>
 </body></html>
