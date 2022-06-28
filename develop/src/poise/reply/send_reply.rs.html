@@ -187,6 +187,15 @@
 <span id="181">181</span>
 <span id="182">182</span>
 <span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
 </pre><pre class="rust"><code><span class="doccomment">//! All functions to actually send a reply</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -343,6 +352,15 @@
     <span class="prelude-val">Ok</span>(<span class="ident">Box::new</span>(<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">response</span>) <span class="op">=</span> <span class="ident">existing_response</span> {
         <span class="ident">response</span>
             .<span class="ident">edit</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
+                <span class="comment">// Reset the message. We don&#39;t want leftovers of the previous message (e.g. user</span>
+                <span class="comment">// sends a message with `.content(&quot;abc&quot;)` in a track_edits command, and the edited</span>
+                <span class="comment">// message happens to contain embeds, we don&#39;t want to keep those embeds)</span>
+                <span class="comment">// (*f = Default::default() won&#39;t do)</span>
+                <span class="ident">f</span>.<span class="ident">content</span>(<span class="string">&quot;&quot;</span>);
+                <span class="ident">f</span>.<span class="ident">set_embeds</span>(<span class="ident">Vec::new</span>());
+                <span class="ident">f</span>.<span class="ident">components</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>);
+                <span class="ident">f</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;attachments&quot;</span>, <span class="macro">serenity::json::json!</span> { [] });
+
                 <span class="ident">reply</span>.<span class="ident">to_prefix_edit</span>(<span class="ident">f</span>);
                 <span class="ident">f</span>
             })

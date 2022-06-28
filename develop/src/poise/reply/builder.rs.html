@@ -276,9 +276,6 @@
 <span id="270">270</span>
 <span id="271">271</span>
 <span id="272">272</span>
-<span id="273">273</span>
-<span id="274">274</span>
-<span id="275">275</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The builder to create a new reply</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -491,12 +488,10 @@
             <span class="ident">reference_message</span>: <span class="kw">_</span>, <span class="comment">// can&#39;t edit reference message afterwards</span>
         } <span class="op">=</span> <span class="self">self</span>;
 
-        <span class="comment">// Empty string resets content (happens when user replaces text with embed)</span>
-        <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>.<span class="ident">as_deref</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>));
-
-        <span class="ident">f</span>.<span class="ident">set_embeds</span>(<span class="ident">embeds</span>);
-
-        <span class="ident">f</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;attachments&quot;</span>, <span class="macro">serenity::json::json!</span> { [] }); <span class="comment">// reset attachments</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">content</span>) <span class="op">=</span> <span class="ident">content</span> {
+            <span class="ident">f</span>.<span class="ident">content</span>(<span class="ident">content</span>);
+        }
+        <span class="ident">f</span>.<span class="ident">add_embeds</span>(<span class="ident">embeds</span>);
         <span class="kw">for</span> <span class="ident">attachment</span> <span class="kw">in</span> <span class="ident">attachments</span> {
             <span class="ident">f</span>.<span class="ident">attachment</span>(<span class="ident">attachment</span>);
         }
@@ -508,13 +503,12 @@
             });
         }
 
-        <span class="comment">// When components is None, this will still be run to reset the components.</span>
-        <span class="ident">f</span>.<span class="ident">components</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">components</span>) <span class="op">=</span> <span class="ident">components</span> {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">components</span>) <span class="op">=</span> <span class="ident">components</span> {
+            <span class="ident">f</span>.<span class="ident">components</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
                 <span class="kw-2">*</span><span class="ident">f</span> <span class="op">=</span> <span class="ident">components</span>;
-            }
-            <span class="ident">f</span>
-        });
+                <span class="ident">f</span>
+            });
+        }
     }
 
     <span class="doccomment">/// Serialize this response builder to a [`serenity::CreateMessage`]</span>

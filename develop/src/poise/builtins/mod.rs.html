@@ -234,6 +234,7 @@
 <span id="228">228</span>
 <span id="229">229</span>
 <span id="230">230</span>
+<span id="231">231</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This file provides sample commands and utility functions like help menus or error handlers to</span>
@@ -246,7 +247,6 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">register</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
-<span class="kw">use</span> <span class="ident">std::fmt::Write</span> <span class="kw">as</span> <span class="kw">_</span>;
 
 <span class="doccomment">/// An error handler that prints the error into the console and also into the Discord chat.</span>
 <span class="doccomment">/// If the user invoked the command wrong ([`crate::FrameworkError::ArgumentParse`]), the command</span>
@@ -400,6 +400,8 @@
 <span class="doccomment">/// &gt; - [3 private servers with 456 members total]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">servers</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(<span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
+    <span class="kw">use</span> <span class="ident">std::fmt::Write</span> <span class="kw">as</span> <span class="kw">_</span>;
+
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">show_private_guilds</span> <span class="op">=</span> <span class="bool-val">false</span>;
     <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="ident">ctx</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">app</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">discord</span>().<span class="ident">http</span>.<span class="ident">get_current_application_info</span>().<span class="kw">await</span> {
