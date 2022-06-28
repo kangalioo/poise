@@ -26,7 +26,7 @@ for example for command-specific help (i.e. <code>~help command_name</code>). Es
 <li>Useful if you have many commands with very similar help messages: you can abstract the common parts into a function</li>
 </ul>
 </li>
-<li><code>check</code>: Path to a function which is invoked for every invocation. If the function returns false, the command is not executed</li>
+<li><code>check</code>: Path to a function which is invoked for every invocation. If the function returns false, the command is not executed (can be used multiple times)</li>
 <li><code>on_error</code>: Error handling function</li>
 <li><code>rename</code>: Choose an alternative command name instead of the function name
 <ul>
