@@ -63,6 +63,16 @@
 <span id="57">57</span>
 <span id="58">58</span>
 <span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Context</span>, <span class="ident">Error</span>};
 <span class="kw">use</span> <span class="ident">futures</span>::{<span class="ident">Stream</span>, <span class="ident">StreamExt</span>};
 <span class="kw">use</span> <span class="ident">std::fmt::Write</span> <span class="kw">as</span> <span class="kw">_</span>;
@@ -71,16 +81,26 @@
 <span class="comment">// function, which will be called on demand when the user is typing a command.</span>
 <span class="comment">//</span>
 <span class="comment">// The first parameter of that function is ApplicationContext or Context, and the second parameter</span>
-<span class="comment">// is the partial input which the user has typed so far.</span>
+<span class="comment">// is a &amp;str of the partial input which the user has typed so far.</span>
 <span class="comment">//</span>
 <span class="comment">// As the return value of autocomplete functions, you can return a Stream, an Iterator, or an</span>
-<span class="comment">// IntoIterator (which includes e.g. Vec&lt;T&gt; and [T; N]).</span>
+<span class="comment">// IntoIterator like Vec&lt;T&gt; and [T; N].</span>
 <span class="comment">//</span>
-<span class="comment">// As the type of the returned items, you can use either the type directly, or wrap it in</span>
-<span class="comment">// AutocompleteChoice. By wrapping in AutocompleteChoice, you can set a custom name for each choice</span>
-<span class="comment">// which will be displayed in the Discord UI.</span>
+<span class="comment">// The returned collection type must be a &amp;str/String (or number, if you&#39;re implementing</span>
+<span class="comment">// autocomplete on a number type). Wrap the type in poise::AutocompleteChoice to set a custom label</span>
+<span class="comment">// for each choice which will be displayed in the Discord UI.</span>
+<span class="comment">//</span>
+<span class="comment">// Example function return types (assuming non-number parameter -&gt; autocomplete choices are string):</span>
+<span class="comment">// - `-&gt; impl Stream&lt;String&gt;`</span>
+<span class="comment">// - `-&gt; Vec&lt;String&gt;`</span>
+<span class="comment">// - `-&gt; impl Iterator&lt;String&gt;`</span>
+<span class="comment">// - `-&gt; impl Iterator&lt;&amp;str&gt;`</span>
+<span class="comment">// - `-&gt; impl Iterator&lt;poise::AutocompleteChoice&lt;&amp;str&gt;&gt;`</span>
 
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">autocomplete_name</span>(<span class="ident">_ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">partial</span>: <span class="ident">String</span>) -&gt; <span class="kw">impl</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">autocomplete_name</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
+    <span class="ident">_ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+    <span class="ident">partial</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+) -&gt; <span class="kw">impl</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">String</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span> {
     <span class="ident">futures::stream::iter</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;Amanda&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Christian&quot;</span>, <span class="string">&quot;Danny&quot;</span>, <span class="string">&quot;Ester&quot;</span>, <span class="string">&quot;Falk&quot;</span>])
         .<span class="ident">filter</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="ident">futures::future::ready</span>(<span class="ident">name</span>.<span class="ident">starts_with</span>(<span class="kw-2">&amp;</span><span class="ident">partial</span>)))
         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="ident">name</span>.<span class="ident">to_string</span>())
@@ -88,7 +108,7 @@
 
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">autocomplete_number</span>(
     <span class="ident">_ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    <span class="ident">_partial</span>: <span class="ident">u32</span>,
+    <span class="ident">_partial</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
 ) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">poise::AutocompleteChoice</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="comment">// Dummy choices</span>
     [<span class="number">1_u32</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
@@ -123,5 +143,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2f3ddd9f5 2022-06-27)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="framework_usage" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (27eb6d701 2022-07-04)" ></div>
 </body></html>

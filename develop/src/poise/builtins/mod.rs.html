@@ -374,10 +374,10 @@
 <span class="doccomment">/// An autocomplete function that can be used for the command parameter in your help function.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See examples/framework_usage for an example</span>
-<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">autocomplete_command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="ident">partial</span>: <span class="ident">String</span>,
-) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">String</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">autocomplete_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="ident">partial</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">String</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span> {
     <span class="ident">ctx</span>.<span class="ident">framework</span>()
         .<span class="ident">options</span>()
         .<span class="ident">commands</span>
@@ -467,5 +467,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2f3ddd9f5 2022-06-27)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (27eb6d701 2022-07-04)" ></div>
 </body></html>
