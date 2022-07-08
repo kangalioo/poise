@@ -68,7 +68,7 @@ dropped.</p>
     <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="string">&quot;Pong!&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#32&quot;,&quot;line 32&quot;],[[54,54],&quot;../src/framework_usage/commands/checks.rs.html#85&quot;,&quot;line 85&quot;],[[78,78],&quot;../src/framework_usage/commands/checks.rs.html#109&quot;,&quot;line 109&quot;],[[86,89],&quot;../src/framework_usage/commands/checks.rs.html#117-120&quot;,&quot;lines 117-120&quot;],[[98,98],&quot;../src/framework_usage/commands/checks.rs.html#129&quot;,&quot;line 129&quot;],[[106,106],&quot;../src/framework_usage/commands/checks.rs.html#137&quot;,&quot;line 137&quot;],[[114,114],&quot;../src/framework_usage/commands/checks.rs.html#145&quot;,&quot;line 145&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>31</span>
+</div></div><div class="scraped-example " data-locs="[[[1,1],&quot;../src/framework_usage/commands/checks.rs.html#32&quot;,&quot;line 32&quot;],[[47,47],&quot;../src/framework_usage/commands/checks.rs.html#78&quot;,&quot;line 78&quot;],[[71,71],&quot;../src/framework_usage/commands/checks.rs.html#102&quot;,&quot;line 102&quot;],[[79,82],&quot;../src/framework_usage/commands/checks.rs.html#110-113&quot;,&quot;lines 110-113&quot;],[[91,91],&quot;../src/framework_usage/commands/checks.rs.html#122&quot;,&quot;line 122&quot;],[[99,99],&quot;../src/framework_usage/commands/checks.rs.html#130&quot;,&quot;line 130&quot;],[[107,107],&quot;../src/framework_usage/commands/checks.rs.html#138&quot;,&quot;line 138&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#32">line 32</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>31</span>
 <span>32</span>
 <span>33</span>
 <span>34</span>
@@ -179,13 +179,6 @@ dropped.</p>
 <span>139</span>
 <span>140</span>
 <span>141</span>
-<span>142</span>
-<span>143</span>
-<span>144</span>
-<span>145</span>
-<span>146</span>
-<span>147</span>
-<span>148</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">modonly</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="highlight focus"><span class="ident">say</span></span>(<span class="string">&quot;You are a mod because you were able to invoke this command&quot;</span>)
         .<span class="kw">await</span><span class="question-mark">?</span>;
@@ -217,19 +210,12 @@ dropped.</p>
     <span class="prelude-val">Ok</span>(<span class="ident">name</span>.<span class="ident">eq_ignore_ascii_case</span>(<span class="string">&quot;ferris&quot;</span>))
 }
 
-<span class="doccomment">/// Always passes the check and prints a line on the console</span>
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">noisy_check</span>(<span class="ident">_ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="macro">println!</span>(<span class="string">&quot;Noisy check has been called!&quot;</span>);
-    <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
-}
-
 <span class="doccomment">/// Crab party... only for &quot;Ferris&quot;!</span>
 <span class="attribute">#[<span class="ident">poise::command</span>(
     <span class="ident">prefix_command</span>,
     <span class="ident">slash_command</span>,
     <span class="ident">check</span> <span class="op">=</span> <span class="string">&quot;is_ferris&quot;</span>,
     <span class="comment">// You can write `check = ...` multiple times to add multiple checks</span>
-    <span class="ident">check</span> <span class="op">=</span> <span class="string">&quot;noisy_check&quot;</span>,
 )]</span>
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">ferrisparty</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="string">&quot;```\n&quot;</span>.<span class="ident">to_owned</span>()
@@ -3237,15 +3223,15 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 <p>Attempts to find the guild in cache, if cache feature is enabled. Otherwise, falls back to
 an HTTP request</p>
 <p>Returns None if in DMs, or if the guild HTTP request fails</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-8"><a href="#scraped-examples-8">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[3,3],&quot;../src/framework_usage/commands/checks.rs.html#119&quot;,&quot;line 119&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#119">line 119</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>116</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-8"><a href="#scraped-examples-8">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[3,3],&quot;../src/framework_usage/commands/checks.rs.html#112&quot;,&quot;line 112&quot;]]"><div class="scraped-example-title">examples/framework_usage/commands/checks.rs (<a href="../src/framework_usage/commands/checks.rs.html#112">line 112</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
 <span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
-<span>124</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_guild_name</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">ctx</span>.<span class="ident">say</span>(<span class="macro">format!</span>(
         <span class="string">&quot;The name of this guild is: {}&quot;</span>,
