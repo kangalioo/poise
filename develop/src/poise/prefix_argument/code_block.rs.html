@@ -148,6 +148,18 @@
 <span id="142">142</span>
 <span id="143">143</span>
 <span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Parsing code for [`CodeBlock`], a prefix-specific command parameter type</span>
 
 <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
@@ -206,11 +218,15 @@
         <span class="ident">rest</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">code_block</span>[(<span class="ident">code_block_end</span> <span class="op">+</span> <span class="number">3</span>)..];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">code_block</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">code_block</span>[..<span class="ident">code_block_end</span>];
 
-        <span class="comment">// If a word is preceded directly by the three backticks and succeeded directly by a</span>
+        <span class="comment">// If a string is preceded directly by the three backticks and succeeded directly by a</span>
         <span class="comment">// newline, it&#39;s interpreted as the code block language</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">language</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">first_newline</span>) <span class="op">=</span> <span class="ident">code_block</span>.<span class="ident">find</span>(<span class="string">&#39;\n&#39;</span>) {
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">code_block</span>[..<span class="ident">first_newline</span>].<span class="ident">contains</span>(<span class="ident">char::is_whitespace</span>) {
+            <span class="comment">// Experimentation revealed language idents may only consist of [A-Za-z0-9+-._]</span>
+            <span class="kw">let</span> <span class="ident">is_valid</span> <span class="op">=</span> <span class="ident">code_block</span>[..<span class="ident">first_newline</span>]
+                .<span class="ident">chars</span>()
+                .<span class="ident">all</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">is_ascii_alphanumeric</span>() <span class="op">|</span><span class="op">|</span> <span class="string">&quot;+-._&quot;</span>.<span class="ident">contains</span>(<span class="ident">c</span>));
+            <span class="kw">if</span> <span class="ident">is_valid</span> {
                 <span class="ident">language</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">code_block</span>[..<span class="ident">first_newline</span>]);
                 <span class="ident">code_block</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">code_block</span>[(<span class="ident">first_newline</span> <span class="op">+</span> <span class="number">1</span>)..];
             }
@@ -277,6 +293,14 @@
         (<span class="string">&quot;```rust\nhi```&quot;</span>, <span class="string">&quot;hi&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">&quot;rust&quot;</span>)),
         (<span class="string">&quot;```rust  hi```&quot;</span>, <span class="string">&quot;rust  hi&quot;</span>, <span class="prelude-val">None</span>),
         (<span class="string">&quot;```rust\n\n\n\n\nhi\n\n\n\n```&quot;</span>, <span class="string">&quot;hi&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">&quot;rust&quot;</span>)),
+        (<span class="string">&quot;```+__....-.+.++\nhi\n```&quot;</span>, <span class="string">&quot;hi&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">&quot;+__....-.+.++&quot;</span>)),
+        (<span class="string">&quot;```+__.:...-.+.++\nhi\n```&quot;</span>, <span class="string">&quot;+__.:...-.+.++\nhi&quot;</span>, <span class="prelude-val">None</span>),
+        <span class="comment">// https://discord.com/channels/273534239310479360/592856094527848449/997519220369797131</span>
+        (
+            <span class="string">&quot;```#![feature(never_type)]\nfn uwu(_: &amp;!) {}\n```&quot;</span>,
+            <span class="string">&quot;#![feature(never_type)]\nfn uwu(_: &amp;!) {}&quot;</span>,
+            <span class="prelude-val">None</span>,
+        ),
     ] {
         <span class="macro">assert_eq!</span>(
             <span class="ident">pop_from</span>(<span class="ident">string</span>).<span class="ident">unwrap</span>().<span class="number">1</span>,
@@ -293,5 +317,5 @@
     <span class="macro">assert_eq!</span>(<span class="ident">pop_from</span>(<span class="string">&quot;``````&quot;</span>), <span class="prelude-val">Err</span>(<span class="ident">CodeBlockError</span>));
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (1517f5de0 2022-07-07)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (c2f428d2f 2022-07-14)" ></div>
 </body></html>
