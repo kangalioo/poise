@@ -310,12 +310,36 @@
 <span id="304">304</span>
 <span id="305">305</span>
 <span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
-<span class="kw">mod</span> <span class="ident">builder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">builder</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
+
+<span class="kw">mod</span> <span class="ident">builder</span>;
 
 <span class="doccomment">/// The main framework struct which stores all data and handles message and interaction dispatch.</span>
 <span class="doccomment">///</span>
@@ -435,10 +459,27 @@
 
     <span class="doccomment">/// Small utility function for starting the framework that is agnostic over client sharding</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Used internally by [`Self::start()`] and [`Self::start_autosharded()`]</span>
+    <span class="doccomment">/// You can use these shortcut methods to start the framework with a single shard</span>
+    <span class="doccomment">/// or with automatic sharding: [`Framework::start`], [`Framework::start_autosharded`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Examples</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Start shards in a range</span>
+    <span class="doccomment">/// ```rust,no_run</span>
+    <span class="doccomment">/// # async fn _test(framework: std::sync::Arc&lt;poise::Framework&lt;(), ()&gt;&gt;) -&gt; Result&lt;(), serenity::Error&gt; {</span>
+    <span class="doccomment">/// let shard_range = [3, 7];</span>
+    <span class="doccomment">/// let total_shards = 8;</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// framework</span>
+    <span class="doccomment">///     .start_with(|mut client| async move {</span>
+    <span class="doccomment">///         client.start_shard_range(shard_range, total_shards).await</span>
+    <span class="doccomment">///    })</span>
+    <span class="doccomment">///    .await?;</span>
+    <span class="doccomment">/// # Ok(()) };</span>
+    <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">start_with</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">std::future::Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">serenity::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="self">self</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-        <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">serenity::Client</span>) -&gt; <span class="ident">F</span>,
+        <span class="ident">start</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="ident">serenity::Client</span>) -&gt; <span class="ident">F</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -459,7 +500,9 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="doccomment">/// Starts the framework.</span>
+    <span class="doccomment">/// Starts the framework with a shard. Calls [`serenity::Client::start`] internally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// See [`Framework::start_with`] for other sharding configurations.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -469,7 +512,10 @@
             .<span class="kw">await</span>
     }
 
-    <span class="doccomment">/// Starts the framework. Calls [`serenity::Client::start_autosharded`] internally</span>
+    <span class="doccomment">/// Starts the framework with automatic sharding.</span>
+    <span class="doccomment">/// Calls [`serenity::Client::start_autosharded`] internally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// See [`Framework::start_with`] for other sharding configurations.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">start_autosharded</span>(<span class="self">self</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">serenity::Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">U</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
