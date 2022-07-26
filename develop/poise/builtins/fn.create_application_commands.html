@@ -91,7 +91,7 @@ to register the commands on Discord</p>
 <span>121</span>
 <span>122</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="kw">_</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {

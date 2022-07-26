@@ -39,7 +39,7 @@
 
 <span class="attribute">#[<span class="ident">tokio::main</span>]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::build</span>()
+    <span class="kw">let</span> <span class="ident">framework</span> <span class="op">=</span> <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
             <span class="ident">commands</span>: <span class="macro">vec!</span>[<span class="ident">age</span>(), <span class="ident">register</span>()],
             ..<span class="ident">Default::default</span>()
@@ -129,8 +129,8 @@ Example usage:
 }</code></pre></div>
 <h3 id="create-and-configure-framework"><a href="#create-and-configure-framework">Create and configure framework</a></h3>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>
-<span class="comment">// Use `Framework::build()` to create a framework builder and supply basic data to the framework:</span>
-<span class="ident">poise::Framework::build</span>()
+<span class="comment">// Use `Framework::builder()` to create a framework builder and supply basic data to the framework:</span>
+<span class="ident">poise::Framework::builder</span>()
     .<span class="ident">token</span>(<span class="string">&quot;...&quot;</span>)
     .<span class="ident">user_data_setup</span>(<span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
         <span class="comment">// construct user data here (invoked when bot connects to Discord)</span>

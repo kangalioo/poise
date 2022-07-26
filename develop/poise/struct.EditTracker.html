@@ -180,7 +180,7 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
         ..<span class="ident">Default::default</span>()
     };
 
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Missing `TOKEN` env var, see README for more information.&quot;</span>))
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
@@ -347,7 +347,7 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 
     <span class="comment">// The Framework builder will automatically retrieve the bot owner and application ID via the</span>
     <span class="comment">// passed token, so that information need not be passed here</span>
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         <span class="comment">// Configure the client with your Discord bot token in the environment.</span>
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Expected DISCORD_TOKEN in the environment&quot;</span>))
         .<span class="ident">options</span>(<span class="ident">options</span>)

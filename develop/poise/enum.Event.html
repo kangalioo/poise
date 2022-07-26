@@ -420,7 +420,7 @@
         ..<span class="ident">Default::default</span>()
     };
 
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Missing `TOKEN` env var, see README for more information.&quot;</span>))
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {

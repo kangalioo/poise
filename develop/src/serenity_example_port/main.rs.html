@@ -960,7 +960,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="comment">// The Framework builder will automatically retrieve the bot owner and application ID via the</span>
     <span class="comment">// passed token, so that information need not be passed here</span>
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         <span class="comment">// Configure the client with your Discord bot token in the environment.</span>
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Expected DISCORD_TOKEN in the environment&quot;</span>))
         .<span class="ident">options</span>(<span class="ident">options</span>)

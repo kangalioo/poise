@@ -2468,7 +2468,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="comment">// The Framework builder will automatically retrieve the bot owner and application ID via the</span>
     <span class="comment">// passed token, so that information need not be passed here</span>
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         <span class="comment">// Configure the client with your Discord bot token in the environment.</span>
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Expected DISCORD_TOKEN in the environment&quot;</span>))
         .<span class="ident">options</span>(<span class="ident">options</span>)
@@ -3929,7 +3929,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
 
     <span class="comment">// The Framework builder will automatically retrieve the bot owner and application ID via the</span>
     <span class="comment">// passed token, so that information need not be passed here</span>
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         <span class="comment">// Configure the client with your Discord bot token in the environment.</span>
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Expected DISCORD_TOKEN in the environment&quot;</span>))
         .<span class="ident">options</span>(<span class="ident">options</span>)
@@ -4492,7 +4492,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         ..<span class="ident">Default::default</span>()
     };
 
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Missing `TOKEN` env var, see README for more information.&quot;</span>))
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
@@ -4896,7 +4896,7 @@ fn _dispatch_error_no_macro&lt;&#39;fut&gt;(
         ..<span class="ident">Default::default</span>()
     };
 
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;Missing `TOKEN` env var, see README for more information.&quot;</span>))
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">_ctx</span>, <span class="ident">_ready</span>, <span class="ident">_framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
@@ -5001,7 +5001,7 @@ execution.</p>
 <span>121</span>
 <span>122</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="kw">_</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
@@ -5229,7 +5229,7 @@ execution.</p>
 
 <span class="attribute">#[<span class="ident">tokio::main</span>]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="ident">poise::Framework::build</span>()
+    <span class="ident">poise::Framework::builder</span>()
         .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
         .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">ctx</span>, <span class="kw">_</span>, <span class="ident">framework</span><span class="op">|</span> {
             <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
