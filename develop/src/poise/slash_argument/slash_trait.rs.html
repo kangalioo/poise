@@ -357,7 +357,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">create</span>(<span class="self">self</span>, <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>) {
-        <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::String</span>);
+        <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::String</span>);
     }
 }
 
@@ -383,7 +383,7 @@
                 <span class="ident">builder</span>
                     .<span class="ident">min_number_value</span>(<span class="ident">f64::max</span>(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&gt;</span><span class="ident">::MIN</span> <span class="kw">as</span> <span class="ident">f64</span>, <span class="op">-</span><span class="number">9007199254740991.</span>))
                     .<span class="ident">max_number_value</span>(<span class="ident">f64::min</span>(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&gt;</span><span class="ident">::MAX</span> <span class="kw">as</span> <span class="ident">f64</span>, <span class="number">9007199254740991.</span>))
-                    .<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::Integer</span>);
+                    .<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::Integer</span>);
             }
         }
     )<span class="op">*</span> };
@@ -407,7 +407,7 @@
             }
 
             <span class="kw">fn</span> <span class="ident">create</span>(<span class="self">self</span>, <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>) {
-                <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::Number</span>);
+                <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::Number</span>);
             }
         }
     )<span class="op">*</span> };
@@ -428,7 +428,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">create</span>(<span class="self">self</span>, <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>) {
-        <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::Boolean</span>);
+        <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::Boolean</span>);
     }
 }
 
@@ -464,7 +464,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">create</span>(<span class="self">self</span>, <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>) {
-        <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::Attachment</span>);
+        <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::Attachment</span>);
     }
 }
 
@@ -500,7 +500,7 @@
             }
 
             <span class="kw">fn</span> <span class="ident">create</span>(<span class="self">self</span>, <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serenity::CreateApplicationCommandOption</span>) {
-                <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">slash_param_type</span>);
+                <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">slash_param_type</span>);
             }
         }
     };

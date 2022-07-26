@@ -261,7 +261,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ApplicationCommandOrAutocompleteInteraction</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Returns the data field of the underlying interaction</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::ApplicationCommandInteractionData</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::CommandData</span> {
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident"><span class="self">Self</span>::ApplicationCommand</span>(<span class="ident">x</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">x</span>.<span class="ident">data</span>,
             <span class="ident"><span class="self">Self</span>::Autocomplete</span>(<span class="ident">x</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">x</span>.<span class="ident">data</span>,
@@ -333,7 +333,7 @@
     <span class="doccomment">/// **Not** equivalent to `self.interaction.data().options`. That one refers to just the</span>
     <span class="doccomment">/// top-level command arguments, whereas [`Self::args`] is the options of the actual</span>
     <span class="doccomment">/// subcommand, if any.</span>
-    <span class="kw">pub</span> <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
+    <span class="kw">pub</span> <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">serenity::CommandDataOption</span>],
     <span class="doccomment">/// Keeps track of whether an initial response has been sent.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Discord requires different HTTP endpoints for initial and additional responses.</span>
@@ -439,7 +439,7 @@
     <span class="doccomment">/// ```rust</span>
     <span class="doccomment">/// # use poise::serenity_prelude as serenity;</span>
     <span class="doccomment">/// # let _: fn(&amp;mut serenity::CreateApplicationCommandOption) -&gt; &amp;mut serenity::CreateApplicationCommandOption =</span>
-    <span class="doccomment">/// |b| b.kind(serenity::ApplicationCommandOptionType::Integer).min_int_value(0).max_int_value(u32::MAX)</span>
+    <span class="doccomment">/// |b| b.kind(serenity::CommandOptionType::Integer).min_int_value(0).max_int_value(u32::MAX)</span>
     <span class="doccomment">/// # ;</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">derivative</span>(<span class="ident">Debug</span> <span class="op">=</span> <span class="string">&quot;ignore&quot;</span>)]</span>

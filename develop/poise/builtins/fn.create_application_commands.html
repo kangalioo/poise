@@ -12,7 +12,7 @@ to register the commands on Discord</p>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let</span> <span class="ident">commands</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">framework</span>().<span class="ident">options</span>().<span class="ident">commands</span>;
 <span class="kw">let</span> <span class="ident">create_commands</span> <span class="op">=</span> <span class="ident">poise::builtins::create_application_commands</span>(<span class="ident">commands</span>);
 
-<span class="ident">serenity::ApplicationCommand::set_global_application_commands</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+<span class="ident">serenity::Command::set_global_application_commands</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
     <span class="kw-2">*</span><span class="ident">b</span> <span class="op">=</span> <span class="ident">create_commands</span>; <span class="comment">// replace the given builder with the one prepared by poise</span>
     <span class="ident">b</span>
 }).<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>

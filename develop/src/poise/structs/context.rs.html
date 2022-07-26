@@ -685,7 +685,7 @@
                 };
 
                 <span class="comment">// Check slash command</span>
-                <span class="kw">if</span> <span class="ident">interaction</span>.<span class="ident">data</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::ApplicationCommandType::ChatInput</span> {
+                <span class="kw">if</span> <span class="ident">interaction</span>.<span class="ident">data</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::CommandType::ChatInput</span> {
                     <span class="kw">return</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">action</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">slash_action</span> {
                         <span class="ident">action</span>(<span class="ident">ctx</span>).<span class="kw">await</span>
                     } <span class="kw">else</span> {

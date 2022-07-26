@@ -208,9 +208,6 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Dispatches interactions onto framework commands</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -218,20 +215,17 @@
 <span class="doccomment">/// Check if the interaction with the given name and arguments matches any framework command</span>
 <span class="kw">fn</span> <span class="ident">find_matching_command</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
     <span class="ident">interaction_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">interaction_options</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
+    <span class="ident">interaction_options</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> [<span class="ident">serenity::CommandDataOption</span>],
     <span class="ident">commands</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>],
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(
-    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> [<span class="ident">serenity::ApplicationCommandInteractionDataOption</span>],
-)<span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> [<span class="ident">serenity::CommandDataOption</span>])<span class="op">&gt;</span> {
     <span class="ident">commands</span>.<span class="ident">iter</span>().<span class="ident">find_map</span>(<span class="op">|</span><span class="ident">cmd</span><span class="op">|</span> {
         <span class="kw">if</span> <span class="ident">interaction_name</span> <span class="op">!</span><span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">name</span> <span class="op">&amp;&amp;</span> <span class="prelude-val">Some</span>(<span class="ident">interaction_name</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">context_menu_name</span> {
             <span class="kw">return</span> <span class="prelude-val">None</span>;
         }
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">sub_interaction</span>) <span class="op">=</span> <span class="ident">interaction_options</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">option</span><span class="op">|</span> {
-            <span class="ident">option</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::ApplicationCommandOptionType::SubCommand</span>
-                <span class="op">|</span><span class="op">|</span> <span class="ident">option</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::ApplicationCommandOptionType::SubCommandGroup</span>
+            <span class="ident">option</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::CommandOptionType::SubCommand</span>
+                <span class="op">|</span><span class="op">|</span> <span class="ident">option</span>.<span class="ident">kind</span> <span class="op">==</span> <span class="ident">serenity::CommandOptionType::SubCommandGroup</span>
         }) {
             <span class="ident">find_matching_command</span>(
                 <span class="kw-2">&amp;</span><span class="ident">sub_interaction</span>.<span class="ident">name</span>,
@@ -320,14 +314,14 @@
         <span class="ident">ctx</span>.<span class="ident">command</span>,
     ));
     <span class="kw">let</span> <span class="ident">action_result</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">interaction</span>.<span class="ident">data</span>.<span class="ident">kind</span> {
-        <span class="ident">serenity::ApplicationCommandType::ChatInput</span> =&gt; {
+        <span class="ident">serenity::CommandType::ChatInput</span> =&gt; {
             <span class="kw">let</span> <span class="ident">action</span> <span class="op">=</span> <span class="ident">ctx</span>
                 .<span class="ident">command</span>
                 .<span class="ident">slash_action</span>
                 .<span class="ident">ok_or</span>(<span class="ident">command_structure_mismatch_error</span>)<span class="question-mark">?</span>;
             <span class="ident">action</span>(<span class="ident">ctx</span>).<span class="kw">await</span>
         }
-        <span class="ident">serenity::ApplicationCommandType::User</span> =&gt; {
+        <span class="ident">serenity::CommandType::User</span> =&gt; {
             <span class="kw">match</span> (<span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">context_menu_action</span>, <span class="kw-2">&amp;</span><span class="ident">interaction</span>.<span class="ident">data</span>.<span class="ident">target</span>()) {
                 (
                     <span class="prelude-val">Some</span>(<span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="ident">action</span>)),
@@ -336,7 +330,7 @@
                 <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">command_structure_mismatch_error</span>),
             }
         }
-        <span class="ident">serenity::ApplicationCommandType::Message</span> =&gt; {
+        <span class="ident">serenity::CommandType::Message</span> =&gt; {
             <span class="kw">match</span> (<span class="ident">ctx</span>.<span class="ident">command</span>.<span class="ident">context_menu_action</span>, <span class="kw-2">&amp;</span><span class="ident">interaction</span>.<span class="ident">data</span>.<span class="ident">target</span>()) {
                 (
                     <span class="prelude-val">Some</span>(<span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="ident">action</span>)),

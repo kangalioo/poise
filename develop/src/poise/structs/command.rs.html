@@ -229,8 +229,6 @@
 <span id="223">223</span>
 <span id="224">224</span>
 <span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -369,7 +367,7 @@
             .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">is_empty</span>() {
-            <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::SubCommand</span>);
+            <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::SubCommand</span>);
 
             <span class="kw">for</span> <span class="ident">param</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parameters</span> {
                 <span class="comment">// Using `?` because if this command has slash-incompatible parameters, we cannot</span>
@@ -377,7 +375,7 @@
                 <span class="ident">builder</span>.<span class="ident">add_sub_option</span>(<span class="ident">param</span>.<span class="ident">create_as_slash_command_option</span>()<span class="question-mark">?</span>);
             }
         } <span class="kw">else</span> {
-            <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::ApplicationCommandOptionType::SubCommandGroup</span>);
+            <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::SubCommandGroup</span>);
 
             <span class="kw">for</span> <span class="ident">subcommand</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subcommands</span> {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">subcommand</span>) <span class="op">=</span> <span class="ident">subcommand</span>.<span class="ident">create_as_subcommand</span>() {
@@ -431,10 +429,8 @@
         <span class="ident">builder</span>
             .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">context_menu_name</span>.<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">name</span>))
             .<span class="ident">kind</span>(<span class="kw">match</span> <span class="ident">context_menu_action</span> {
-                <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="kw">_</span>) =&gt; <span class="ident">serenity::ApplicationCommandType::User</span>,
-                <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="kw">_</span>) =&gt; {
-                    <span class="ident">serenity::ApplicationCommandType::Message</span>
-                }
+                <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="kw">_</span>) =&gt; <span class="ident">serenity::CommandType::User</span>,
+                <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="kw">_</span>) =&gt; <span class="ident">serenity::CommandType::Message</span>,
             });
 
         <span class="prelude-val">Some</span>(<span class="ident">builder</span>)
