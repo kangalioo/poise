@@ -262,10 +262,10 @@
 }
 
 <span class="doccomment">/// private version of [`send_application_reply`] that isn&#39;t generic over the builder to minimize monomorphization-related codegen bloat</span>
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">_send_application_reply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
-    <span class="kw-2">mut</span> <span class="ident">data</span>: <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">_send_application_reply</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
+    <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::ApplicationContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
+    <span class="kw-2">mut</span> <span class="ident">data</span>: <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">interaction</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">interaction</span> {
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::ApplicationCommand</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::Autocomplete</span>(<span class="kw">_</span>) =&gt; {

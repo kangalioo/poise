@@ -42,7 +42,45 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 
     <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,16],&quot;../src/invocation_data/main.rs.html#52-65&quot;,&quot;lines 52-65&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#52-65">lines 52-65</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[14,14],&quot;../src/fluent_localization/main.rs.html#53&quot;,&quot;line 53&quot;]]"><div class="scraped-example-title">examples/fluent_localization/main.rs (<a href="../src/fluent_localization/main.rs.html#53">line 53</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">env_logger::init</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">welcome</span>(), <span class="ident">register</span>()];
+    <span class="kw">let</span> <span class="ident">translations</span> <span class="op">=</span> <span class="ident">translation::read_ftl</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to read translation files&quot;</span>);
+    <span class="ident">translation::apply_translations</span>(<span class="kw-2">&amp;</span><span class="ident">translations</span>, <span class="kw-2">&amp;mut</span> <span class="ident">commands</span>);
+
+    <span class="ident">poise::Framework::build</span>()
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>,
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="highlight focus"><span class="ident">user_data_setup</span></span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> { <span class="ident">translations</span> }) }))
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[3,16],&quot;../src/invocation_data/main.rs.html#52-65&quot;,&quot;lines 52-65&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#52-65">lines 52-65</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -190,7 +228,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[78,84],&quot;../src/framework_usage/main.rs.html#144-150&quot;,&quot;lines 144-150&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#144-150">lines 144-150</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[79,85],&quot;../src/framework_usage/main.rs.html#145-151&quot;,&quot;lines 145-151&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#145-151">lines 145-151</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -283,6 +321,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -317,6 +356,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -593,7 +633,45 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 
     <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,69],&quot;../src/invocation_data/main.rs.html#66-118&quot;,&quot;lines 66-118&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#66-118">lines 66-118</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,13],&quot;../src/fluent_localization/main.rs.html#49-52&quot;,&quot;lines 49-52&quot;]]"><div class="scraped-example-title">examples/fluent_localization/main.rs (<a href="../src/fluent_localization/main.rs.html#49-52">lines 49-52</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">env_logger::init</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">welcome</span>(), <span class="ident">register</span>()];
+    <span class="kw">let</span> <span class="ident">translations</span> <span class="op">=</span> <span class="ident">translation::read_ftl</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to read translation files&quot;</span>);
+    <span class="ident">translation::apply_translations</span>(<span class="kw-2">&amp;</span><span class="ident">translations</span>, <span class="kw-2">&amp;mut</span> <span class="ident">commands</span>);
+
+    <span class="ident">poise::Framework::build</span>()
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="highlight focus"><span class="ident">options</span></span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>,
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> { <span class="ident">translations</span> }) }))
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[17,69],&quot;../src/invocation_data/main.rs.html#66-118&quot;,&quot;lines 66-118&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#66-118">lines 66-118</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -741,7 +819,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[85,85],&quot;../src/framework_usage/main.rs.html#151&quot;,&quot;line 151&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#151">line 151</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[86,86],&quot;../src/framework_usage/main.rs.html#152&quot;,&quot;line 152&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#152">line 152</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -834,6 +912,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -868,6 +947,7 @@ owner, if <a href="struct.FrameworkBuilder.html#method.initialize_owners" title=
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -1148,7 +1228,45 @@ client builder</p>
 
     <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[2,2],&quot;../src/invocation_data/main.rs.html#51&quot;,&quot;line 51&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#51">line 51</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[8,8],&quot;../src/fluent_localization/main.rs.html#47&quot;,&quot;line 47&quot;]]"><div class="scraped-example-title">examples/fluent_localization/main.rs (<a href="../src/fluent_localization/main.rs.html#47">line 47</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">env_logger::init</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">welcome</span>(), <span class="ident">register</span>()];
+    <span class="kw">let</span> <span class="ident">translations</span> <span class="op">=</span> <span class="ident">translation::read_ftl</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to read translation files&quot;</span>);
+    <span class="ident">translation::apply_translations</span>(<span class="kw-2">&amp;</span><span class="ident">translations</span>, <span class="kw-2">&amp;mut</span> <span class="ident">commands</span>);
+
+    <span class="ident">poise::Framework::build</span>()
+        .<span class="highlight focus"><span class="ident">token</span></span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>,
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> { <span class="ident">translations</span> }) }))
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[2,2],&quot;../src/invocation_data/main.rs.html#51&quot;,&quot;line 51&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#51">line 51</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -1296,7 +1414,7 @@ client builder</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[77,77],&quot;../src/framework_usage/main.rs.html#143&quot;,&quot;line 143&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#143">line 143</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[78,78],&quot;../src/framework_usage/main.rs.html#144&quot;,&quot;line 144&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#144">line 144</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -1389,6 +1507,7 @@ client builder</p>
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -1423,6 +1542,7 @@ client builder</p>
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -1699,7 +1819,45 @@ client builder</p>
 
     <span class="ident">framework</span>.<span class="ident">run</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[86,88],&quot;../src/framework_usage/main.rs.html#152-154&quot;,&quot;lines 152-154&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#152-154">lines 152-154</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[9,9],&quot;../src/fluent_localization/main.rs.html#48&quot;,&quot;line 48&quot;]]"><div class="scraped-example-title">examples/fluent_localization/main.rs (<a href="../src/fluent_localization/main.rs.html#48">line 48</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">env_logger::init</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">welcome</span>(), <span class="ident">register</span>()];
+    <span class="kw">let</span> <span class="ident">translations</span> <span class="op">=</span> <span class="ident">translation::read_ftl</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to read translation files&quot;</span>);
+    <span class="ident">translation::apply_translations</span>(<span class="kw-2">&amp;</span><span class="ident">translations</span>, <span class="kw-2">&amp;mut</span> <span class="ident">commands</span>);
+
+    <span class="ident">poise::Framework::build</span>()
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
+        .<span class="highlight focus"><span class="ident">intents</span></span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>,
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> { <span class="ident">translations</span> }) }))
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[87,89],&quot;../src/framework_usage/main.rs.html#153-155&quot;,&quot;lines 153-155&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#153-155">lines 153-155</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -1792,6 +1950,7 @@ client builder</p>
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -1826,6 +1985,7 @@ client builder</p>
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -1928,7 +2088,45 @@ starts the returned framework</p>
 
     <span class="ident">framework</span>.<span class="highlight focus"><span class="ident">run</span></span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[70,70],&quot;../src/invocation_data/main.rs.html#119&quot;,&quot;line 119&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#119">line 119</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[15,15],&quot;../src/fluent_localization/main.rs.html#54&quot;,&quot;line 54&quot;]]"><div class="scraped-example-title">examples/fluent_localization/main.rs (<a href="../src/fluent_localization/main.rs.html#54">line 54</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">env_logger::init</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">welcome</span>(), <span class="ident">register</span>()];
+    <span class="kw">let</span> <span class="ident">translations</span> <span class="op">=</span> <span class="ident">translation::read_ftl</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to read translation files&quot;</span>);
+    <span class="ident">translation::apply_translations</span>(<span class="kw-2">&amp;</span><span class="ident">translations</span>, <span class="kw-2">&amp;mut</span> <span class="ident">commands</span>);
+
+    <span class="ident">poise::Framework::build</span>()
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>,
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> { <span class="ident">translations</span> }) }))
+        .<span class="highlight focus"><span class="ident">run</span></span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[70,70],&quot;../src/invocation_data/main.rs.html#119&quot;,&quot;line 119&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#119">line 119</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>
@@ -2076,7 +2274,7 @@ starts the returned framework</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[89,89],&quot;../src/framework_usage/main.rs.html#155&quot;,&quot;line 155&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#155">line 155</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[90,90],&quot;../src/framework_usage/main.rs.html#156&quot;,&quot;line 156&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#156">line 156</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -2169,6 +2367,7 @@ starts the returned framework</p>
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -2203,6 +2402,7 @@ starts the returned framework</p>
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),

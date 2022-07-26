@@ -15,13 +15,15 @@ for example for command-specific help (i.e. <code>~help command_name</code>). Es
 <li><code>prefix_command</code>: Generate a prefix command</li>
 <li><code>slash_command</code>: Generate a slash command</li>
 <li><code>context_menu_command</code>: Generate a context menu command</li>
+<li><code>description_localized</code>: Adds localized description of the parameter <code>description_localized(&quot;locale&quot;, &quot;Description&quot;)</code> (slash-only)</li>
+<li><code>name_localized</code>: Adds localized name of the parameter <code>name_localized(&quot;locale&quot;, &quot;new_name&quot;)</code> (slash-only)</li>
 <li><code>subcommands</code>: List of subcommands <code>subcommands(&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;)</code></li>
 <li><code>aliases</code>: Command name aliases (only applies to prefix commands)</li>
 <li><code>invoke_on_edit</code>: Reruns the command if an existing invocation message is edited (prefix only)</li>
 <li><code>reuse_response</code>: After the first response, post subsequent responses as edits to the initial message (prefix only)</li>
 <li><code>track_edits</code>: Shorthand for <code>invoke_on_edit</code> and <code>reuse_response</code> (prefix only)</li>
 <li><code>broadcast_typing</code>: Trigger a typing indicator while command runs (only applies to prefix commands I think)</li>
-<li><code>explanation_fn</code>: Path to a string-returning function which is used for the detailed explanations instead of documentation comments
+<li><code>help_text_fn</code>: Path to a string-returning function which is used for command help text instead of documentation comments
 <ul>
 <li>Useful if you have many commands with very similar help messages: you can abstract the common parts into a function</li>
 </ul>
@@ -65,9 +67,11 @@ You can also wrap types in <code>Option</code> or <code>Vec</code> to make them 
 are multiple attributes you can use on parameters:</p>
 <ul>
 <li><code>#[description = &quot;&quot;]</code>: Sets description of the parameter (slash-only)</li>
-<li><code>#[autocomplete = &quot;&quot;]</code>: Sets the autocomplete callback (slash-only)</li>
+<li><code>#[description_localized(&quot;locale&quot;, &quot;Description&quot;)]</code>: Adds localized description of the parameter (slash-only)</li>
+<li><code>#[name_localized(&quot;locale&quot;, &quot;new_name&quot;)]</code>: Adds localized name of the parameter (slash-only)</li>
+<li><code>#[autocomplete = &quot;callback()&quot;]</code>: Sets the autocomplete callback (slash-only)</li>
 <li><code>#[channel_types(&quot;&quot;, &quot;&quot;)]</code>: For channel parameters, restricts allowed channel types (slash-only)</li>
-<li><code>#[rename = &quot;&quot;]</code>: Changes the user-facing name of the parameter (slash-only)</li>
+<li><code>#[rename = &quot;new_name&quot;]</code>: Changes the user-facing name of the parameter (slash-only)</li>
 <li><code>#[min = 0]</code>: Minimum value for this number parameter (slash-only)</li>
 <li><code>#[max = 0]</code>: Maximum value for this number parameter (slash-only)</li>
 <li><code>#[rest]</code>: Use the entire rest of the message for this parameter (prefix-only)</li>
@@ -78,6 +82,30 @@ are multiple attributes you can use on parameters:</p>
 </ul>
 </li>
 </ul>
+<h2 id="help-text"><a href="#help-text">Help text</a></h2>
+<p>Documentation comments are used as command help text. The first paragraph is the command
+description (<code>Command::description</code>) and all following paragraphs are the multiline help text
+(<code>Command::help_text</code>).</p>
+<p>In the multiline help text, put <code>\</code> at the end of a line to escape the newline.</p>
+<p>Example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">/// This is the description of my cool command, it can span multiple</span>
+<span class="doccomment">/// lines if you need to</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Here in the following paragraphs, you can give information on how \</span>
+<span class="doccomment">/// to use the command that will be shown in your command&#39;s help.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// You could also put example invocations here:</span>
+<span class="doccomment">/// `~coolcommand test`</span>
+<span class="attribute">#[<span class="ident">poise::command</span>(<span class="ident">slash_command</span>)]</span>
+<span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">coolcommand</span>(<span class="ident">ctx</span>: <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">s</span>: <span class="ident">String</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> { ... }</code></pre></div>
+<p>results in</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">poise::Command</span> {
+    <span class="ident">description</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;This is the description of my cool command, it can span multiple lines if you need to&quot;</span>.<span class="ident">into</span>()),
+    <span class="ident">help_text</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;Here in the following paragraphs, you can give information on how to use the command that will be shown in your command&#39;s help.\n\nYou could also put example invocations here:\n`~coolcommand test`&quot;</span>.<span class="ident">into</span>()),
+    ...
+}</code></pre></div>
 <h2 id="internals"><a href="#internals">Internals</a></h2>
 <p>Internally, this attribute macro generates a function with a single [<code>poise::Command</code>]
 return type, which contains all data about this command. For example, it transforms a function of
@@ -97,7 +125,7 @@ this form:</p>
 
     <span class="ident">poise::Command</span> {
         <span class="ident">name</span>: <span class="string">&quot;my_command&quot;</span>,
-        <span class="ident">inline_help</span>: <span class="string">&quot;This is a command&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;This is a command&quot;</span>,
         <span class="ident">prefix_action</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">ctx</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
             <span class="ident">inner</span>(<span class="ident">ctx</span>.<span class="ident">into</span>()).<span class="kw">await</span>
         })),

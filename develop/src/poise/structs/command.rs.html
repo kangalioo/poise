@@ -229,6 +229,25 @@
 <span id="223">223</span>
 <span id="224">224</span>
 <span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Command struct, which stores all information about a single framework command</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>, <span class="ident">BoxFuture</span>};
@@ -262,7 +281,9 @@
     <span class="doccomment">/// Subcommands of this command, if any</span>
     <span class="kw">pub</span> <span class="ident">subcommands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Main name of the command. Aliases (prefix-only) can be set in [`Self::aliases`].</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
+    <span class="doccomment">/// Localized names with locale string as the key (slash-only)</span>
+    <span class="kw">pub</span> <span class="ident">name_localizations</span>: <span class="ident">std::collections::HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Full name including parent command names.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Initially set to just [`Self::name`] and properly populated when the framework is started.</span>
@@ -277,11 +298,14 @@
     <span class="doccomment">/// Whether to hide this command in help menus.</span>
     <span class="kw">pub</span> <span class="ident">hide_in_help</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Short description of the command. Displayed inline in help menus and similar.</span>
-    <span class="kw">pub</span> <span class="ident">inline_help</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="comment">// TODO: rename to description</span>
+    <span class="kw">pub</span> <span class="ident">description</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Localized descriptions with locale string as the key (slash-only)</span>
+    <span class="kw">pub</span> <span class="ident">description_localizations</span>: <span class="ident">std::collections::HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Multiline description with detailed usage instructions. Displayed in the command specific</span>
     <span class="doccomment">/// help: `~help command_name`</span>
     <span class="comment">// TODO: fix the inconsistency that this is String and everywhere else it&#39;s &amp;&#39;static str</span>
-    <span class="kw">pub</span> <span class="ident">multiline_help</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>() -&gt; <span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">help_text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>() -&gt; <span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Handles command cooldowns. Mainly for framework internal use</span>
     <span class="kw">pub</span> <span class="ident">cooldowns</span>: <span class="ident">std::sync::Mutex</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Cooldowns</span><span class="op">&gt;</span>,
     <span class="doccomment">/// After the first response, whether to post subsequent responses as edits to the initial</span>
@@ -363,8 +387,14 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommandOption::default</span>();
         <span class="ident">builder</span>
-            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
-            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+            .<span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>)
+            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">description</span>.<span class="ident">as_deref</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+        <span class="kw">for</span> (<span class="ident">locale</span>, <span class="ident">name</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name_localizations</span> {
+            <span class="ident">builder</span>.<span class="ident">name_localized</span>(<span class="ident">locale</span>, <span class="ident">name</span>);
+        }
+        <span class="kw">for</span> (<span class="ident">locale</span>, <span class="ident">description</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">description_localizations</span> {
+            <span class="ident">builder</span>.<span class="ident">description_localized</span>(<span class="ident">locale</span>, <span class="ident">description</span>);
+        }
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">subcommands</span>.<span class="ident">is_empty</span>() {
             <span class="ident">builder</span>.<span class="ident">kind</span>(<span class="ident">serenity::CommandOptionType::SubCommand</span>);
@@ -394,8 +424,14 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommand::default</span>();
         <span class="ident">builder</span>
-            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">name</span>)
-            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">inline_help</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+            .<span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>)
+            .<span class="ident">description</span>(<span class="self">self</span>.<span class="ident">description</span>.<span class="ident">as_deref</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;A slash command&quot;</span>));
+        <span class="kw">for</span> (<span class="ident">locale</span>, <span class="ident">name</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name_localizations</span> {
+            <span class="ident">builder</span>.<span class="ident">name_localized</span>(<span class="ident">locale</span>, <span class="ident">name</span>);
+        }
+        <span class="kw">for</span> (<span class="ident">locale</span>, <span class="ident">description</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">description_localizations</span> {
+            <span class="ident">builder</span>.<span class="ident">description_localized</span>(<span class="ident">locale</span>, <span class="ident">description</span>);
+        }
 
         <span class="comment">// This is_empty check is needed because Discord special cases empty</span>
         <span class="comment">// default_member_permissions to mean &quot;admin-only&quot; (yes it&#39;s stupid)</span>
@@ -427,7 +463,8 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">serenity::CreateApplicationCommand::default</span>();
         <span class="ident">builder</span>
-            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">context_menu_name</span>.<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">name</span>))
+            <span class="comment">// TODO: localization?</span>
+            .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">context_menu_name</span>.<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>))
             .<span class="ident">kind</span>(<span class="kw">match</span> <span class="ident">context_menu_action</span> {
                 <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::User</span>(<span class="kw">_</span>) =&gt; <span class="ident">serenity::CommandType::User</span>,
                 <span class="ident"><span class="kw">crate</span>::ContextMenuCommandAction::Message</span>(<span class="kw">_</span>) =&gt; <span class="ident">serenity::CommandType::Message</span>,
@@ -437,13 +474,14 @@
     }
 
     <span class="doccomment">/// **Deprecated**</span>
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Please use `crate::Command { category: \&quot;...\&quot;, ..command() }` instead&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Please use `poise::Command { category: \&quot;...\&quot;, ..command() }` instead&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">category</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">category</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">category</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">category</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Insert a subcommand</span>
+    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Please use `poise::Command { subcommands: vec![...], ..command() }` instead&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subcommand</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="kw-2">mut</span> <span class="ident">subcommand</span>: <span class="ident"><span class="kw">crate</span>::Command</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,

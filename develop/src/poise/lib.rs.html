@@ -301,6 +301,7 @@
 <span id="295">295</span>
 <span id="296">296</span>
 <span id="297">297</span>
+<span id="298">298</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc_auto_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -309,6 +310,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::type_complexity</span>)]</span>
 <span class="comment">// native #[non_exhaustive] is awful because you can&#39;t do struct update syntax with it (??)</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::manual_non_exhaustive</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
 
 <span class="doccomment">/*!
 Poise is an opinionated Discord bot framework with a few distinctive features:
@@ -390,7 +392,7 @@ type Context&lt;&#39;a&gt; = poise::Context&lt;&#39;a, Data, Error&gt;;
     hide_in_help,
     required_permissions = &quot;SEND_MESSAGES&quot;,
     aliases(&quot;bigounce&quot;, &quot;abomination&quot;),
-    explanation_fn = &quot;my_huge_ass_command_help&quot;,
+    help_text_fn = &quot;my_huge_ass_command_help&quot;,
     check = &quot;check&quot;,
     on_error = &quot;error_handler&quot;,
 )]

@@ -18,9 +18,47 @@ additional conveniences built-in:</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Framework%3CU%2C%20E%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#46-191">source</a></span><a href="#impl-Framework%3CU%2C%20E%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;U, E&gt; <a class="struct" href="struct.Framework.html" title="struct poise::Framework">Framework</a>&lt;U, E&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.build" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#51-53">source</a></span><h4 class="code-header">pub fn <a href="#method.build" class="fnname">build</a>() -&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span> Deprecated: <p>Please use Framework::builder instead</p>
 </div></span></summary><div class="docblock"><p>Create a framework builder to configure, create and run a framework.</p>
 <p>For more information, see <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.builder" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#58-60">source</a></span><h4 class="code-header">pub fn <a href="#method.builder" class="fnname">builder</a>() -&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h4></section></summary><div class="docblock"><p>Create a framework builder to configure, create and run a framework.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[7,7],&quot;../src/fluent_localization/main.rs.html#46&quot;,&quot;line 46&quot;]]"><div class="scraped-example-title">examples/fluent_localization/main.rs (<a href="../src/fluent_localization/main.rs.html#46">line 46</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+</pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">env_logger::init</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">welcome</span>(), <span class="ident">register</span>()];
+    <span class="kw">let</span> <span class="ident">translations</span> <span class="op">=</span> <span class="ident">translation::read_ftl</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to read translation files&quot;</span>);
+    <span class="ident">translation::apply_translations</span>(<span class="kw-2">&amp;</span><span class="ident">translations</span>, <span class="kw-2">&amp;mut</span> <span class="ident">commands</span>);
+
+    <span class="highlight focus"><span class="ident">poise::Framework::build</span></span>()
+        .<span class="ident">token</span>(<span class="ident">std::env::var</span>(<span class="string">&quot;TOKEN&quot;</span>).<span class="ident">unwrap</span>())
+        .<span class="ident">intents</span>(<span class="ident">serenity::GatewayIntents::non_privileged</span>())
+        .<span class="ident">options</span>(<span class="ident">poise::FrameworkOptions</span> {
+            <span class="ident">commands</span>,
+            ..<span class="ident">Default::default</span>()
+        })
+        .<span class="ident">user_data_setup</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="prelude-val">Ok</span>(<span class="ident">Data</span> { <span class="ident">translations</span> }) }))
+        .<span class="ident">run</span>()
+        .<span class="kw">await</span>
+        .<span class="ident">unwrap</span>();
+}</code></pre></div>
+</div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.builder" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#58-60">source</a></span><h4 class="code-header">pub fn <a href="#method.builder" class="fnname">builder</a>() -&gt; <a class="struct" href="struct.FrameworkBuilder.html" title="struct poise::FrameworkBuilder">FrameworkBuilder</a>&lt;U, E&gt;</h4></section></summary><div class="docblock"><p>Create a framework builder to configure, create and run a framework.</p>
 <p>For more information, see <a href="struct.FrameworkBuilder.html" title="FrameworkBuilder"><code>FrameworkBuilder</code></a></p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/quickstart/main.rs.html#28&quot;,&quot;line 28&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#28">line 28</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>27</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[1,1],&quot;../src/quickstart/main.rs.html#28&quot;,&quot;line 28&quot;]]"><div class="scraped-example-title">examples/quickstart/main.rs (<a href="../src/quickstart/main.rs.html#28">line 28</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>27</span>
 <span>28</span>
 <span>29</span>
 <span>30</span>
@@ -192,7 +230,7 @@ additional conveniences built-in:</p>
         .<span class="kw">await</span>
         .<span class="ident">unwrap</span>();
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[76,76],&quot;../src/framework_usage/main.rs.html#142&quot;,&quot;line 142&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#142">line 142</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div></div><div class="scraped-example " data-locs="[[[77,77],&quot;../src/framework_usage/main.rs.html#143&quot;,&quot;line 143&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#143">line 143</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -285,6 +323,7 @@ additional conveniences built-in:</p>
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -319,6 +358,7 @@ additional conveniences built-in:</p>
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
@@ -581,7 +621,7 @@ course of action on error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.start" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#151-158">source</a></span><h4 class="code-header">pub async fn <a href="#method.start" class="fnname">start</a>(self: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;Self&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></section></summary><div class="docblock"><p>Starts the framework.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.start_autosharded" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#161-168">source</a></span><h4 class="code-header">pub async fn <a href="#method.start_autosharded" class="fnname">start_autosharded</a>(self: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;Self&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/serenity/*/serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,&nbsp;</span></h4></section></summary><div class="docblock"><p>Starts the framework. Calls <a href="https://docs.rs/serenity/*/serenity/client/struct.Client.html#method.start_autosharded" title="serenity::Client::start_autosharded"><code>serenity::Client::start_autosharded</code></a> internally</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.options" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/poise/framework/mod.rs.html#171-173">source</a></span><h4 class="code-header">pub fn <a href="#method.options" class="fnname">options</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.FrameworkOptions.html" title="struct poise::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;</h4></section></summary><div class="docblock"><p>Return the stored framework options, including commands.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,8],&quot;../src/invocation_data/main.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#57">line 57</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,8],&quot;../src/invocation_data/main.rs.html#57&quot;,&quot;line 57&quot;]]"><div class="scraped-example-title">examples/invocation_data/main.rs (<a href="../src/invocation_data/main.rs.html#57">line 57</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>49</span>
 <span>50</span>
 <span>51</span>
 <span>52</span>

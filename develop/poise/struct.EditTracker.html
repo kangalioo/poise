@@ -11,7 +11,7 @@ feature.</p>
 <p>Note: <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> will only purge messages outside the duration when <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a>
 is called. If you supply the created <a href="struct.EditTracker.html" title="EditTracker"><code>EditTracker</code></a> to <a href="struct.Framework.html" title="crate::Framework"><code>crate::Framework</code></a>, the framework
 will take care of that by calling <a href="struct.EditTracker.html#method.purge" title="Self::purge"><code>Self::purge</code></a> periodically.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[37,37],&quot;../src/framework_usage/main.rs.html#103&quot;,&quot;line 103&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#103">line 103</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[38,38],&quot;../src/framework_usage/main.rs.html#104&quot;,&quot;line 104&quot;]]"><div class="scraped-example-title">examples/framework_usage/main.rs (<a href="../src/framework_usage/main.rs.html#104">line 104</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>66</span>
 <span>67</span>
 <span>68</span>
 <span>69</span>
@@ -104,6 +104,7 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
 <span>156</span>
 <span>157</span>
 <span>158</span>
+<span>159</span>
 </pre><pre class="rust"><code><span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">env_logger::init</span>();
 
@@ -138,6 +139,7 @@ will take care of that by calling <a href="struct.EditTracker.html#method.purge"
             <span class="ident">checks::lennyface</span>(),
             <span class="ident">checks::permissions_v2</span>(),
             <span class="ident">subcommands::parent</span>(),
+            <span class="ident">localization::welcome</span>(),
         ],
         <span class="ident">prefix_options</span>: <span class="ident">poise::PrefixFrameworkOptions</span> {
             <span class="ident">prefix</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;~&quot;</span>.<span class="ident">into</span>()),
