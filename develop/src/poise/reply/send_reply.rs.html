@@ -196,6 +196,9 @@
 <span id="190">190</span>
 <span id="191">191</span>
 <span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
 </pre><pre class="rust"><code><span class="doccomment">//! All functions to actually send a reply</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
@@ -226,7 +229,7 @@
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">ctx</span> {
         <span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>) =&gt; {
-            <span class="ident"><span class="kw">crate</span>::ReplyHandle::Known</span>(<span class="ident"><span class="kw">crate</span>::send_prefix_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>)
+            <span class="ident"><span class="kw">crate</span>::ReplyHandle</span>(<span class="ident"><span class="kw">super</span>::ReplyHandleInner::Prefix</span>(<span class="ident"><span class="kw">crate</span>::send_prefix_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>))
         }
         <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>) =&gt; <span class="ident"><span class="kw">crate</span>::send_application_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>,
     })
@@ -269,7 +272,7 @@
     <span class="kw">let</span> <span class="ident">interaction</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">interaction</span> {
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::ApplicationCommand</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
         <span class="ident"><span class="kw">crate</span>::ApplicationCommandOrAutocompleteInteraction::Autocomplete</span>(<span class="kw">_</span>) =&gt; {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident"><span class="kw">crate</span>::ReplyHandle::Autocomplete</span>)
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident"><span class="kw">crate</span>::ReplyHandle</span>(<span class="ident"><span class="kw">super</span>::ReplyHandleInner::Autocomplete</span>))
         }
     };
 
@@ -281,8 +284,8 @@
         .<span class="ident">has_sent_initial_response</span>
         .<span class="ident">load</span>(<span class="ident">std::sync::atomic::Ordering::SeqCst</span>);
 
-    <span class="prelude-val">Ok</span>(<span class="kw">if</span> <span class="ident">has_sent_initial_response</span> {
-        <span class="ident"><span class="kw">crate</span>::ReplyHandle::Known</span>(<span class="ident">Box::new</span>(
+    <span class="kw">let</span> <span class="ident">followup</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">has_sent_initial_response</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(
             <span class="ident">interaction</span>
                 .<span class="ident">create_followup_message</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>, <span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
                     <span class="ident">data</span>.<span class="ident">to_slash_followup_response</span>(<span class="ident">f</span>);
@@ -303,11 +306,14 @@
         <span class="ident">ctx</span>.<span class="ident">has_sent_initial_response</span>
             .<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">std::sync::atomic::Ordering::SeqCst</span>);
 
-        <span class="ident"><span class="kw">crate</span>::ReplyHandle::Unknown</span> {
-            <span class="ident">http</span>: <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">discord</span>.<span class="ident">http</span>,
-            <span class="ident">interaction</span>,
-        }
-    })
+        <span class="prelude-val">None</span>
+    };
+
+    <span class="prelude-val">Ok</span>(<span class="ident"><span class="kw">crate</span>::ReplyHandle</span>(<span class="ident"><span class="kw">crate</span>::ReplyHandleInner::Application</span> {
+        <span class="ident">http</span>: <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">discord</span>.<span class="ident">http</span>,
+        <span class="ident">interaction</span>,
+        <span class="ident">followup</span>,
+    }))
 }
 
 <span class="doccomment">/// Prefix-specific reply function. For more details, see [`crate::send_reply`].</span>

@@ -106,6 +106,27 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Infrastructure for replying, i.e. sending a message in a command context</span>
 
 <span class="kw">mod</span> <span class="ident">builder</span>;
@@ -117,29 +138,34 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>;
 <span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
 
-<span class="doccomment">/// Returned from [`send_reply()`] to retrieve the sent message object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Discord sometimes returns the [`serenity::Message`] object directly, but sometimes you have to</span>
-<span class="doccomment">/// request it manually. This enum abstracts over the two cases</span>
+<span class="doccomment">/// Private enum so we can extend, split apart, or merge variants without breaking changes</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// When sending a normal message or application command followup response, Discord returns the</span>
-    <span class="doccomment">/// message object directly</span>
-    <span class="ident">Known</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">serenity::Message</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// When sending an initial application command response, you need to request the message object</span>
-    <span class="doccomment">/// seperately</span>
-    <span class="ident">Unknown</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">enum</span> <span class="ident">ReplyHandleInner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// A reply sent to a prefix command, i.e. a normal standalone message</span>
+    <span class="ident">Prefix</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">serenity::Message</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// An application command response</span>
+    <span class="ident">Application</span> {
         <span class="doccomment">/// Serenity HTTP instance that can be used to request the interaction response message</span>
         <span class="doccomment">/// object</span>
         <span class="ident">http</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::Http</span>,
         <span class="doccomment">/// Interaction which contains the necessary data to request the interaction response</span>
         <span class="doccomment">/// message object</span>
         <span class="ident">interaction</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">serenity::ApplicationCommandInteraction</span>,
+        <span class="doccomment">/// If this is a followup response, the Message object (which Discord only returns for</span>
+        <span class="doccomment">/// followup responses, not initial)</span>
+        <span class="ident">followup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">serenity::Message</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Reply was attempted to be sent in autocomplete context, resulting in a no-op. Calling</span>
     <span class="doccomment">/// methods on this variant will panic</span>
     <span class="ident">Autocomplete</span>,
 }
+
+<span class="doccomment">/// Returned from [`send_reply()`] to operate on the sent message</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Discord sometimes returns the [`serenity::Message`] object directly, but sometimes you have to</span>
+<span class="doccomment">/// request it manually. This enum abstracts over the two cases</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">ReplyHandleInner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Retrieve the message object of the sent reply.</span>
@@ -148,28 +174,36 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Only needs to do an HTTP request in the application command response case</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">into_message</span>(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">serenity::Message</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Known</span>(<span class="ident">msg</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="kw-2">*</span><span class="ident">msg</span>),
-            <span class="ident"><span class="self">Self</span>::Unknown</span> { <span class="ident">http</span>, <span class="ident">interaction</span> } =&gt; <span class="ident">interaction</span>.<span class="ident">get_interaction_response</span>(<span class="ident">http</span>).<span class="kw">await</span>,
-            <span class="ident"><span class="self">Self</span>::Autocomplete</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context&quot;</span>),
+        <span class="kw">use</span> <span class="ident">ReplyHandleInner</span>::<span class="kw-2">*</span>;
+        <span class="kw">match</span> <span class="self">self</span>.<span class="number">0</span> {
+            <span class="ident">Prefix</span>(<span class="ident">msg</span>) <span class="op">|</span> <span class="ident">Application</span> { <span class="ident">followup</span>: <span class="prelude-val">Some</span>(<span class="ident">msg</span>), .. } =&gt; <span class="prelude-val">Ok</span>(<span class="kw-2">*</span><span class="ident">msg</span>),
+            <span class="ident">Application</span> { <span class="ident">http</span>, <span class="ident">interaction</span>, <span class="ident">followup</span>: <span class="prelude-val">None</span> } =&gt; {
+                <span class="ident">interaction</span>.<span class="ident">get_interaction_response</span>(<span class="ident">http</span>).<span class="kw">await</span>
+            },
+            <span class="ident">Autocomplete</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context&quot;</span>),
         }
     }
 
     <span class="doccomment">/// Retrieve the message object of the sent reply.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a reference to the known Message object, or fetches the message from the discord API.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// To get an owned [`serenity::Message`], use [`Self::into_message()`]</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">message</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">serenity::Message</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Known</span>(<span class="ident">msg</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Cow::Borrowed</span>(<span class="ident">msg</span>)),
-            <span class="ident"><span class="self">Self</span>::Unknown</span> { <span class="ident">http</span>, <span class="ident">interaction</span> } =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Cow::Owned</span>(
+        <span class="kw">use</span> <span class="ident">ReplyHandleInner</span>::<span class="kw-2">*</span>;
+        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span> {
+            <span class="ident">Prefix</span>(<span class="ident">msg</span>) <span class="op">|</span> <span class="ident">Application</span> { <span class="ident">followup</span>: <span class="prelude-val">Some</span>(<span class="ident">msg</span>), .. } =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Cow::Borrowed</span>(<span class="ident">msg</span>)),
+            <span class="ident">Application</span> { <span class="ident">http</span>, <span class="ident">interaction</span>, <span class="ident">followup</span>: <span class="prelude-val">None</span> } =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Cow::Owned</span>(
                 <span class="ident">interaction</span>.<span class="ident">get_interaction_response</span>(<span class="ident">http</span>).<span class="kw">await</span><span class="question-mark">?</span>,
             )),
-            <span class="ident"><span class="self">Self</span>::Autocomplete</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context&quot;</span>),
+            <span class="ident">Autocomplete</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context&quot;</span>),
         }
     }
 
     <span class="doccomment">/// Edits the message that this [`ReplyHandle`] points to</span>
     <span class="comment">// TODO: return the edited Message object?</span>
+    <span class="comment">// TODO: should I eliminate the ctx parameter by storing it in self instead? Would infect</span>
+    <span class="comment">//  ReplyHandle with &lt;U, E&gt; type parameters</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">edit</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
@@ -186,8 +220,8 @@
             <span class="ident">callback</span>(<span class="ident">ctx</span>, <span class="kw-2">&amp;mut</span> <span class="ident">reply</span>);
         }
 
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Known</span>(<span class="ident">msg</span>) =&gt; {
+        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span> {
+            <span class="ident">ReplyHandleInner::Prefix</span>(<span class="ident">msg</span>) =&gt; {
                 <span class="ident">msg</span>.<span class="ident">clone</span>()
                     .<span class="ident">edit</span>(<span class="ident">ctx</span>.<span class="ident">discord</span>(), <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="ident">reply</span>.<span class="ident">to_prefix_edit</span>(<span class="ident">b</span>);
@@ -195,7 +229,7 @@
                     })
                     .<span class="kw">await</span><span class="question-mark">?</span>;
             }
-            <span class="ident"><span class="self">Self</span>::Unknown</span> { <span class="ident">http</span>, <span class="ident">interaction</span> } =&gt; {
+            <span class="ident">ReplyHandleInner::Application</span> { <span class="ident">http</span>, <span class="ident">interaction</span>, <span class="ident">followup</span>: <span class="prelude-val">None</span> } =&gt; {
                 <span class="ident">interaction</span>
                     .<span class="ident">edit_original_interaction_response</span>(<span class="ident">http</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
                         <span class="ident">reply</span>.<span class="ident">to_slash_initial_response_edit</span>(<span class="ident">b</span>);
@@ -203,7 +237,15 @@
                     })
                     .<span class="kw">await</span><span class="question-mark">?</span>;
             }
-            <span class="ident"><span class="self">Self</span>::Autocomplete</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context&quot;</span>),
+            <span class="ident">ReplyHandleInner::Application</span> { <span class="ident">http</span>, <span class="ident">interaction</span>, <span class="ident">followup</span>: <span class="prelude-val">Some</span>(<span class="ident">msg</span>) } =&gt; {
+                <span class="ident">interaction</span>
+                    .<span class="ident">edit_followup_message</span>(<span class="ident">http</span>, <span class="ident">msg</span>.<span class="ident">id</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> {
+                        <span class="ident">reply</span>.<span class="ident">to_slash_followup_response</span>(<span class="ident">b</span>);
+                        <span class="ident">b</span>
+                    })
+                    .<span class="kw">await</span><span class="question-mark">?</span>;
+            }
+            <span class="ident">ReplyHandleInner::Autocomplete</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;reply is a no-op in autocomplete context&quot;</span>),
         }
         <span class="prelude-val">Ok</span>(())
     }
