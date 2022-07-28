@@ -302,6 +302,51 @@
 <span id="296">296</span>
 <span id="297">297</span>
 <span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_nightly</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc_auto_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">test</span>(<span class="ident">attr</span>(<span class="ident">deny</span>(<span class="ident">deprecated</span>))))]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">rust_2018_idioms</span>)]</span>
@@ -332,6 +377,51 @@ command to register slash commands, after which you can use those, too.
 
 See examples/framework_usage/ in the git repository for a full-featured example bot, showcasing most
 features of poise: `cargo run --example=framework_usage`
+
+# Introduction to serenity
+
+Serenity is the Discord API wrapper library poise is built on top of. Using poise automatically
+means using serenity, so here&#39;s a couple tips:
+
+## `impl Trait` parameters
+
+Many serenity functions take an argument of type [`impl CacheHttp`](serenity::CacheHttp) or
+[`impl AsRef&lt;Http&gt;`](serenity::Http). Here, you commonly pass in
+[`&amp;serenity::Context`](serenity::Context), which you can get from
+[`poise::Context`](crate::Context) via [`ctx.discord()`](crate::Context::discord)
+
+## Gateway intents
+
+To run a Discord bot, you need to set _gateway intents_: a list of event types you want to receive
+from Discord. A sensible default is [`serenity::GatewayIntents::non_privileged()`] which contains
+all event types except privileged ones. Privileged intents require manual enabling in your bot
+dashboard to use (and large bots require whitelisting by Discord). A notable privileged intent
+is [MESSAGE_CONTENT](serenity::GatewayIntents::MESSAGE_CONTENT) which is required for poise prefix
+commands.
+
+To set multiple gateway events, use the OR operator:
+`serenity::GatewayIntents::non_privileged() | serenity::GatewayIntents::MESSAGE_CONTENT`
+
+## Discord actions outside a command
+
+You can run Discord actions outside of commands by cloning and storing [`serenity::CacheAndHttp`]/
+[`Arc&lt;serenity::Http&gt;`](serenity::Http)/[`Arc&lt;serenity::Cache&gt;`](serenity::Cache). You can get
+those either from [`serenity::Context`] (passed to
+[`user_data_setup`](crate::FrameworkBuilder::user_data_setup) and all commands via
+[`ctx.discord()`](crate::Context::discord)) or before starting the framework via
+[`framework.client()`](crate::Framework::client)[`.cache_and_http`](serenity::Client::cache_and_http).
+
+Pass your `CacheAndHttp` or `Arc&lt;Http&gt;` to serenity functions in place of the usual
+`serenity::Context`
+
+## Finding serenity methods
+
+Many serenity structs have an ID field. Some useful methods are defined only on the Id types.
+For example:
+- [`serenity::Guild`] and [`serenity::GuildId`]
+- [`serenity::User`] and [`serenity::UserId`]
+- [`serenity::Role`] and [`serenity::RoleId`]
+- ...
 
 # Introduction to slash commands
 
@@ -545,7 +635,6 @@ underlying this framework, so that&#39;s what I chose.
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">futures_core</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">futures_util</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">poise_macros</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">serenity</span>;
 
 <span class="doccomment">/// This module re-exports a bunch of items from all over serenity. Useful if you can&#39;t</span>
 <span class="doccomment">/// remember the full paths of serenity items.</span>
@@ -592,6 +681,7 @@ underlying this framework, so that&#39;s what I chose.
         <span class="kw-2">*</span>,
     };
 }
+<span class="kw">use</span> <span class="ident">serenity_prelude</span> <span class="kw">as</span> <span class="ident">serenity</span>; <span class="comment">// private alias for crate docs intradoc-links</span>
 
 <span class="kw">use</span> <span class="ident">std::future::Future</span>;
 <span class="kw">use</span> <span class="ident">std::pin::Pin</span>;
@@ -601,5 +691,5 @@ underlying this framework, so that&#39;s what I chose.
 <span class="doccomment">/// An owned future has the `&#39;static` lifetime.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxFuture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
 </body></html>

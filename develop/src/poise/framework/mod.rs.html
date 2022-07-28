@@ -333,6 +333,12 @@
 <span id="327">327</span>
 <span id="328">328</span>
 <span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The central Framework struct that ties everything together.</span>
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">builder</span>::<span class="kw-2">*</span>;
@@ -360,7 +366,7 @@
     <span class="ident">options</span>: <span class="ident"><span class="kw">crate</span>::FrameworkOptions</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// Will be initialized to Some on construction, and then taken out on startup</span>
-    <span class="ident">client</span>: <span class="ident">std::sync::Mutex</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::Client</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">client</span>: <span class="ident">parking_lot::Mutex</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">serenity::Client</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Initialized to Some during construction; so shouldn&#39;t be None at any observable point</span>
     <span class="ident">shard_manager</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">tokio::sync::Mutex</span><span class="op">&lt;</span><span class="ident">serenity::ShardManager</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Filled with Some on construction. Taken out and executed on first Ready gateway event</span>
@@ -451,7 +457,7 @@
             <span class="ident">user_data_setup</span>: <span class="ident">Mutex::new</span>(<span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">user_data_setup</span>))),
             <span class="ident">options</span>,
             <span class="ident">shard_manager</span>: <span class="ident">client</span>.<span class="ident">shard_manager</span>.<span class="ident">clone</span>(),
-            <span class="ident">client</span>: <span class="ident">Mutex::new</span>(<span class="prelude-val">Some</span>(<span class="ident">client</span>)),
+            <span class="ident">client</span>: <span class="ident">parking_lot::Mutex::new</span>(<span class="prelude-val">Some</span>(<span class="ident">client</span>)),
         });
         <span class="kw">let</span> <span class="kw">_</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">framework_cell</span>.<span class="ident">set</span>(<span class="ident">framework</span>.<span class="ident">clone</span>());
         <span class="prelude-val">Ok</span>(<span class="ident">framework</span>)
@@ -488,7 +494,6 @@
         <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">client</span>
             .<span class="ident">lock</span>()
-            .<span class="ident">unwrap</span>()
             .<span class="ident">take</span>()
             .<span class="ident">expect</span>(<span class="string">&quot;Prepared client is missing&quot;</span>);
 
@@ -534,6 +539,13 @@
     <span class="comment">// Returns a reference so you can plug it into [`FrameworkContext`]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shard_manager</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">tokio::sync::Mutex</span><span class="op">&lt;</span><span class="ident">serenity::ShardManager</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">shard_manager</span>
+    }
+
+    <span class="doccomment">/// Returns the serenity client. Panics if the framework has already started!</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">client</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl</span> <span class="ident">std::ops::DerefMut</span><span class="op">&lt;</span><span class="ident">Target</span> <span class="op">=</span> <span class="ident">serenity::Client</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
+        <span class="ident">parking_lot::MutexGuard::map</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">lock</span>(), <span class="op">|</span><span class="ident">c</span><span class="op">|</span> {
+            <span class="ident">c</span>.<span class="ident">as_mut</span>().<span class="ident">expect</span>(<span class="string">&quot;framework has started&quot;</span>)
+        })
     }
 
     <span class="doccomment">/// Retrieves user data, or blocks until it has been initialized (once the Ready event has been</span>
@@ -663,5 +675,5 @@
     })
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="poise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
 </body></html>
