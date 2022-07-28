@@ -228,9 +228,9 @@
     <span class="ident">builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::CreateReply</span><span class="op">&lt;</span><span class="lifetime">&#39;att</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::ReplyHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">serenity::Error</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">ctx</span> {
-        <span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>) =&gt; {
-            <span class="ident"><span class="kw">crate</span>::ReplyHandle</span>(<span class="ident"><span class="kw">super</span>::ReplyHandleInner::Prefix</span>(<span class="ident"><span class="kw">crate</span>::send_prefix_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>))
-        }
+        <span class="ident"><span class="kw">crate</span>::Context::Prefix</span>(<span class="ident">ctx</span>) =&gt; <span class="ident"><span class="kw">crate</span>::ReplyHandle</span>(<span class="ident"><span class="kw">super</span>::ReplyHandleInner::Prefix</span>(
+            <span class="ident"><span class="kw">crate</span>::send_prefix_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>,
+        )),
         <span class="ident"><span class="kw">crate</span>::Context::Application</span>(<span class="ident">ctx</span>) =&gt; <span class="ident"><span class="kw">crate</span>::send_application_reply</span>(<span class="ident">ctx</span>, <span class="ident">builder</span>).<span class="kw">await</span><span class="question-mark">?</span>,
     })
 }
